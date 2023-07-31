@@ -1,0 +1,123 @@
+2022/10/20 20:36:17 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:20 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:51 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:51 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:52 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:52 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:52 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:52 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:38:52 [error] [php] Undefined offset: -2 (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:50)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:39:02 [error] [php] strtotime() expects parameter 1 to be string, array given (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:43)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): ApiController->actionExpiredEmployee()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:39:03 [error] [php] strtotime() expects parameter 1 to be string, array given (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Controller.php:43)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): ApiController->actionExpiredEmployee()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/expiredEmployee/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2022/10/20 20:59:46 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:486
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('home/images/img...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/home/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home/index
+---

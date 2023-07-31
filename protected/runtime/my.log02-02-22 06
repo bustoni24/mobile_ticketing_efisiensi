@@ -1,0 +1,110 @@
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/product-1.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/product-2.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/product-3.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/product-4.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/product-5.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/news-1.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/news-2.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/news-3.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/news-4.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---
+2022/02/02 06:12:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "assets" seperti yang diminta. in C:\xampp\htdocs\kellola\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(270): CController->missingAction('assets')
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): CController->run('assets')
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/assets/...')
+#3 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/kellola/index.php/product/assets/img/news-5.jpg
+HTTP_REFERER=http://localhost/kellola/index.php/product/index
+---

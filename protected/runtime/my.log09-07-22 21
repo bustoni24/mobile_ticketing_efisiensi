@@ -1,0 +1,192 @@
+2022/07/09 21:55:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC' at line 1. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`id_kendaraan`, `t`.`nomor_kendaraan`, `t`.`nomor_lambung`, `t`.`nomor_rangka`, `t`.`nomor_mesin`, `t`.`berat`, `t`.`kapasitas_seat`, `t`.`jenis_kendaraan`, `t`.`tahun_pembuatan`, `t`.`jumlah_jarak_tempuh`, `t`.`no_stnk`, `t`.`lampiran_stnk`, `t`.`masa_berlaku_stnk`, `t`.`jatuh_tempo_tahunan`, `t`.`nomor_kir`, `t`.`lampiran_kir`, `t`.`masa_berlaku_kir`, `t`.`kps`, `t`.`lampiran_kps`, `t`.`jenis_trayek`, `t`.`rute_trayek`, `t`.`unit`, `t`.`active` FROM `kendaraan` `t` JOIN (select * from penjadwalan_bus where ) WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC.
+2022/07/09 21:55:59 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC' at line 1 in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Helper.php(349): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/penjadwalan/viewPenjadwalanRutin.php(144): Helper->getNomorLambung()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('viewPenjadwalan...', Array, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php(250): CController->render('viewPenjadwalan...', Array)
+#10 [internal function]: PenjadwalanController->actionPerbaikanRutin('3')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(PenjadwalanController), Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PenjadwalanController), Object(ReflectionMethod), Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('perbaikanRutin')
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/per...')
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#25 {main}
+REQUEST_URI=/efisiensi/penjadwalan/perbaikanRutin/3
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/rutin
+---
+2022/07/09 21:58:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC' at line 1. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`id_kendaraan`, `t`.`nomor_kendaraan`, `t`.`nomor_lambung`, `t`.`nomor_rangka`, `t`.`nomor_mesin`, `t`.`berat`, `t`.`kapasitas_seat`, `t`.`jenis_kendaraan`, `t`.`tahun_pembuatan`, `t`.`jumlah_jarak_tempuh`, `t`.`no_stnk`, `t`.`lampiran_stnk`, `t`.`masa_berlaku_stnk`, `t`.`jatuh_tempo_tahunan`, `t`.`nomor_kir`, `t`.`lampiran_kir`, `t`.`masa_berlaku_kir`, `t`.`kps`, `t`.`lampiran_kps`, `t`.`jenis_trayek`, `t`.`rute_trayek`, `t`.`unit`, `t`.`active` FROM `kendaraan` `t` JOIN (select * from penjadwalan_bus where unit=4 and DATE(tanggal)=DATE(now())) WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC.
+2022/07/09 21:58:02 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC' at line 1 in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Helper.php(349): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/penjadwalan/viewPenjadwalanRutin.php(144): Helper->getNomorLambung()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('viewPenjadwalan...', Array, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php(250): CController->render('viewPenjadwalan...', Array)
+#10 [internal function]: PenjadwalanController->actionPerbaikanRutin('3')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(PenjadwalanController), Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PenjadwalanController), Object(ReflectionMethod), Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('perbaikanRutin')
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/per...')
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#25 {main}
+REQUEST_URI=/efisiensi/penjadwalan/perbaikanRutin/3
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/rutin
+---
+2022/07/09 21:58:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC' at line 1. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`id_kendaraan`, `t`.`nomor_kendaraan`, `t`.`nomor_lambung`, `t`.`nomor_rangka`, `t`.`nomor_mesin`, `t`.`berat`, `t`.`kapasitas_seat`, `t`.`jenis_kendaraan`, `t`.`tahun_pembuatan`, `t`.`jumlah_jarak_tempuh`, `t`.`no_stnk`, `t`.`lampiran_stnk`, `t`.`masa_berlaku_stnk`, `t`.`jatuh_tempo_tahunan`, `t`.`nomor_kir`, `t`.`lampiran_kir`, `t`.`masa_berlaku_kir`, `t`.`kps`, `t`.`lampiran_kps`, `t`.`jenis_trayek`, `t`.`rute_trayek`, `t`.`unit`, `t`.`active` FROM `kendaraan` `t` JOIN (select * from penjadwalan_bus where unit=4 and DATE(tanggal)=DATE(now())) WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC.
+2022/07/09 21:58:02 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC' at line 1 in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Helper.php(349): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/penjadwalan/viewPenjadwalanRutin.php(144): Helper->getNomorLambung()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('viewPenjadwalan...', Array, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php(250): CController->render('viewPenjadwalan...', Array)
+#10 [internal function]: PenjadwalanController->actionPerbaikanRutin('3')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(PenjadwalanController), Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PenjadwalanController), Object(ReflectionMethod), Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('perbaikanRutin')
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/per...')
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#25 {main}
+REQUEST_URI=/efisiensi/penjadwalan/perbaikanRutin/3
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/rutin
+---
+2022/07/09 21:58:50 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit' in 'where clause'. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`id_kendaraan`, `t`.`nomor_kendaraan`, `t`.`nomor_lambung`, `t`.`nomor_rangka`, `t`.`nomor_mesin`, `t`.`berat`, `t`.`kapasitas_seat`, `t`.`jenis_kendaraan`, `t`.`tahun_pembuatan`, `t`.`jumlah_jarak_tempuh`, `t`.`no_stnk`, `t`.`lampiran_stnk`, `t`.`masa_berlaku_stnk`, `t`.`jatuh_tempo_tahunan`, `t`.`nomor_kir`, `t`.`lampiran_kir`, `t`.`masa_berlaku_kir`, `t`.`kps`, `t`.`lampiran_kps`, `t`.`jenis_trayek`, `t`.`rute_trayek`, `t`.`unit`, `t`.`active` FROM `kendaraan` `t` JOIN (select * from penjadwalan_bus where unit=4 and DATE(tanggal)=DATE(now())) pb ON pb.kendaraan_id=t.id WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC.
+2022/07/09 21:58:50 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit' in 'where clause' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Helper.php(349): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/penjadwalan/viewPenjadwalanRutin.php(144): Helper->getNomorLambung()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('viewPenjadwalan...', Array, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php(250): CController->render('viewPenjadwalan...', Array)
+#10 [internal function]: PenjadwalanController->actionPerbaikanRutin('3')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(PenjadwalanController), Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PenjadwalanController), Object(ReflectionMethod), Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('perbaikanRutin')
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/per...')
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#25 {main}
+REQUEST_URI=/efisiensi/penjadwalan/perbaikanRutin/3
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/rutin
+---
+2022/07/09 21:58:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit' in 'where clause'. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`id_kendaraan`, `t`.`nomor_kendaraan`, `t`.`nomor_lambung`, `t`.`nomor_rangka`, `t`.`nomor_mesin`, `t`.`berat`, `t`.`kapasitas_seat`, `t`.`jenis_kendaraan`, `t`.`tahun_pembuatan`, `t`.`jumlah_jarak_tempuh`, `t`.`no_stnk`, `t`.`lampiran_stnk`, `t`.`masa_berlaku_stnk`, `t`.`jatuh_tempo_tahunan`, `t`.`nomor_kir`, `t`.`lampiran_kir`, `t`.`masa_berlaku_kir`, `t`.`kps`, `t`.`lampiran_kps`, `t`.`jenis_trayek`, `t`.`rute_trayek`, `t`.`unit`, `t`.`active` FROM `kendaraan` `t` JOIN (select * from penjadwalan_bus where unit=4 and DATE(tanggal)=DATE(now())) pb ON pb.kendaraan_id=t.id WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC.
+2022/07/09 21:58:51 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit' in 'where clause' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Helper.php(349): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/penjadwalan/viewPenjadwalanRutin.php(144): Helper->getNomorLambung()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('viewPenjadwalan...', Array, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php(250): CController->render('viewPenjadwalan...', Array)
+#10 [internal function]: PenjadwalanController->actionPerbaikanRutin('3')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(PenjadwalanController), Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PenjadwalanController), Object(ReflectionMethod), Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('perbaikanRutin')
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/per...')
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#25 {main}
+REQUEST_URI=/efisiensi/penjadwalan/perbaikanRutin/3
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/rutin
+---
+2022/07/09 21:58:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit' in 'where clause'. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`id_kendaraan`, `t`.`nomor_kendaraan`, `t`.`nomor_lambung`, `t`.`nomor_rangka`, `t`.`nomor_mesin`, `t`.`berat`, `t`.`kapasitas_seat`, `t`.`jenis_kendaraan`, `t`.`tahun_pembuatan`, `t`.`jumlah_jarak_tempuh`, `t`.`no_stnk`, `t`.`lampiran_stnk`, `t`.`masa_berlaku_stnk`, `t`.`jatuh_tempo_tahunan`, `t`.`nomor_kir`, `t`.`lampiran_kir`, `t`.`masa_berlaku_kir`, `t`.`kps`, `t`.`lampiran_kps`, `t`.`jenis_trayek`, `t`.`rute_trayek`, `t`.`unit`, `t`.`active` FROM `kendaraan` `t` JOIN (select * from penjadwalan_bus where unit=4 and DATE(tanggal)=DATE(now())) pb ON pb.kendaraan_id=t.id WHERE t.unit=4 OR t.unit="Purwokerto" ORDER BY t.nomor_lambung ASC.
+2022/07/09 21:58:51 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit' in 'where clause' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Helper.php(349): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/penjadwalan/viewPenjadwalanRutin.php(144): Helper->getNomorLambung()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('viewPenjadwalan...', Array, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php(250): CController->render('viewPenjadwalan...', Array)
+#10 [internal function]: PenjadwalanController->actionPerbaikanRutin('3')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(PenjadwalanController), Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PenjadwalanController), Object(ReflectionMethod), Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('perbaikanRutin')
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/per...')
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#25 {main}
+REQUEST_URI=/efisiensi/penjadwalan/perbaikanRutin/3
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/rutin
+---

@@ -1,0 +1,9 @@
+2023/06/18 21:11:47 [error] [php] Undefined index: City_id (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ApiController.php:194)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/getAjaxTerminal?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2

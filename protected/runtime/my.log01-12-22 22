@@ -1,0 +1,27 @@
+2022/12/01 22:18:49 [error] [exception.CHttpException.400] CHttpException: Request anda tidak valid in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:337
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('profile')
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/profile/TV...')
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/index.php/user/profile/TVD.001
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/12/01 22:35:22 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_half_start.png" in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_hal...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/logo_half_start.png
+HTTP_REFERER=http://localhost/efisiensi/home
+---

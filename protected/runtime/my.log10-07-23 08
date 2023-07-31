@@ -1,0 +1,25 @@
+2023/07/10 08:17:34 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't.trip_id='3' AND bt.tanggal='2023-07-10'
+ORDER BY `ta`.`titik_keberangkatan_...' at line 5. Statement SQL yang dijalankan: SELECT `t`.`id`, `t`.`trip_id`, `t`.`route_id`, `t`.`armada_id`, `bt`.`tanggal`, `t`.`jam`, `ta`.`agen_id`, `ta`.`titik_keberangkatan_id`, `ta`.`harga`, `bt`.`kode_booking`, `bt`.`nama_penumpang`, `bt`.`no_telp`, `bt`.`kursi`
+FROM `booking_trip_request` `t`
+JOIN (select bt.trip_request_id, bt.tanggal, btp.kode_booking, btp.nama_penumpang, btp.no_telp, btp.kursi from booking_trip bt join (select kode_booking, booking_trip_id, nama_penumpang, no_telp, kursi from booking_trip_penumpang) btp on btp.booking_trip_id=bt.id ) bt ON bt.trip_request_id=t.id
+JOIN (select route_id, agen_id, titik_keberangkatan_id, harga from trip_agen) ta ON ta.route_id=t.route_id
+WHERE 1=1 t.trip_id=:tripId AND bt.tanggal=:tanggal
+ORDER BY `ta`.`titik_keberangkatan_id` ASC. Bound with :tripId='3', :tanggal='2023-07-10'.
+2023/07/10 08:17:34 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't.trip_id='3' AND bt.tanggal='2023-07-10'
+ORDER BY `ta`.`titik_keberangkatan_...' at line 5 in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/models/ticketing/BookingTrip.php(146): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/ManifestController.php(17): BookingTrip->getDataManifest(Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): ManifestController->actionIndex()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/manif...')
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#11 {main}
+REQUEST_URI=/efisiensi/ticketing/manifest/?Manifest%5Bstartdate%5D=2023-07-10&Manifest%5Btrip_id%5D=3
+HTTP_REFERER=http://localhost/efisiensi/ticketing/manifest/
+---

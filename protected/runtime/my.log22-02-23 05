@@ -1,0 +1,180 @@
+2023/02/22 05:44:12 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:13 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:13 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27MESSAGE_TYPE_WAREHOUSE%27,%27MESSAGE_TYPE_WAREHOUSE_CONFIRM%27
+HTTP_REFERER=http://localhost/efisiensi/warehouse/masuk
+---
+2023/02/22 05:44:14 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:15 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:15 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27MESSAGE_TYPE_WAREHOUSE%27,%27MESSAGE_TYPE_WAREHOUSE_CONFIRM%27
+HTTP_REFERER=http://localhost/efisiensi/warehouse/masuk
+---
+2023/02/22 05:44:16 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:17 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:17 [error] [exception.ParseError] ParseError: syntax error, unexpected ';' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27MESSAGE_TYPE_WAREHOUSE%27,%27MESSAGE_TYPE_WAREHOUSE_CONFIRM%27
+HTTP_REFERER=http://localhost/efisiensi/warehouse/masuk
+---
+2023/02/22 05:44:25 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:25 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27MESSAGE_TYPE_WAREHOUSE%27,%27MESSAGE_TYPE_WAREHOUSE_CONFIRM%27
+HTTP_REFERER=http://localhost/efisiensi/warehouse/masuk
+---
+2023/02/22 05:44:26 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:27 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27MESSAGE_TYPE_WAREHOUSE%27,%27MESSAGE_TYPE_WAREHOUSE_CONFIRM%27
+HTTP_REFERER=http://localhost/efisiensi/warehouse/masuk
+---
+2023/02/22 05:44:27 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:28 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:29 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27MESSAGE_TYPE_WAREHOUSE%27,%27MESSAGE_TYPE_WAREHOUSE_CONFIRM%27
+HTTP_REFERER=http://localhost/efisiensi/warehouse/masuk
+---
+2023/02/22 05:44:29 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---
+2023/02/22 05:44:30 [error] [exception.ParseError] ParseError: syntax error, unexpected ')', expecting variable (T_VARIABLE) or '{' or '$' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/CronController.php:175
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27EMPLOYE_EXPIRED%27
+HTTP_REFERER=http://localhost/efisiensi/index.php/jenisServis/admin
+---

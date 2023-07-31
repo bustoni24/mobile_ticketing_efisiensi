@@ -1,0 +1,43 @@
+2023/06/29 20:54:14 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/icon.png
+HTTP_REFERER=http://localhost/efisiensi/ticketing/home/
+---
+2023/06/29 20:54:19 [error] [exception.CException] CException: Properti "CWebUser.role" tidak didefinisikan. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/auth/CWebUser.php(146): CComponent->__get('role')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/themes/gentelella/views/layouts/main_ticketing.php(1162): CWebUser->__get('role')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div class="row...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div class="row...')
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(215): COutputProcessor->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(309): CBaseController->endWidget('CContentDecorat...')
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/themes/gentelella/views/layouts/column_ticketing.php(10): CBaseController->endContent()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(787): CBaseController->renderFile('/Applications/X...', Array, true)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/AgenPerwakilanController.php(147): CController->render('admin', Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/AgenPerwakilanController.php(118): AgenPerwakilanController->actionAdmin()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): AgenPerwakilanController->actionIndex()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('')
+#25 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/agenP...')
+#26 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#27 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#28 {main}
+REQUEST_URI=/efisiensi/ticketing/agenPerwakilan/
+HTTP_REFERER=http://localhost/efisiensi/ticketing/home/
+---

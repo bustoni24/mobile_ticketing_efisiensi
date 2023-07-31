@@ -1,0 +1,382 @@
+2022/04/27 19:20:42 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:21:09 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:21:43 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:24:36 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:25:22 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:26:08 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:41:09 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:41:32 [error] [php] require_once(./protected/extension/fileponds/config.php): failed to open stream: No such file or directory (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:281)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/proccessImage
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (281)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (281)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:43:18 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:43:29 [error] [php] file_get_contents(./database.json): failed to open stream: No such file or directory (C:\xampp\htdocs\kellola\protected\extensions\fileponds\util\read_write_functions.php:4)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\protected\controllers\ProductController.php(363): saveImagesToTempLocation()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\actions\CInlineAction.php(49): ProductController->actionProccessImage()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#10 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#11 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/proccessImage
+in C:\xampp\htdocs\kellola\protected\extensions\fileponds\util\read_write_functions.php (4)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (314)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (363)
+2022/04/27 19:45:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:46:14 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693afd83d0d
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:48:54 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:49:58 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:50:17 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693c045d934
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:50:50 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:51:00 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:51:48 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:52:02 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693c6eec03a
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:56:43 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:57:32 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693db056bef
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:57:39 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693dadb272b
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:57:41 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693daac0c42
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:57:44 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693dad3b0f8
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:57:46 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693dab2156f
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:58:33 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/27 19:59:04 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693e0eabc10
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:59:07 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693e0e67937
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:59:10 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693e09b3121
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/04/27 19:59:12 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\kellola\protected\controllers\ProductController.php:436)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#2 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): ProductController->run()
+#9 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/product/revertImage?key=62693e0977cad
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (436)
+in C:\xampp\htdocs\kellola\protected\controllers\ProductController.php (469)
+in C:\xampp\htdocs\kellola\index.php (29)

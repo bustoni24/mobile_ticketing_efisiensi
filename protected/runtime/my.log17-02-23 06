@@ -1,0 +1,168 @@
+2023/02/17 06:09:09 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:10 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:11 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:12 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:13 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:14 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:15 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:16 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:17 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:18 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:19 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:20 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:21 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---
+2023/02/17 06:09:22 [error] [exception.ParseError] ParseError: syntax error, unexpected 'const' (T_CONST), expecting '=' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/components/Constant.php:57
+Stack trace:
+#0 [internal function]: YiiBase::autoload('Constant')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(359): spl_autoload_call('Constant')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('getNotification...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('cron/getNotific...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#6 {main}
+REQUEST_URI=/efisiensi/cron/getNotification?type=%27NOTIFY_DAILYCHECK%27
+HTTP_REFERER=http://localhost/efisiensi/penjadwalan/formService/36
+---

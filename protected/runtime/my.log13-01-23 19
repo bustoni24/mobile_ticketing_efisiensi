@@ -1,0 +1,40 @@
+2023/01/13 19:16:54 [error] [php] A non well formed numeric value encountered (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ApiController.php:79)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/notifyDailyCheck/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2023/01/13 19:17:53 [error] [php] A non well formed numeric value encountered (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ApiController.php:79)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/notifyDailyCheck/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2023/01/13 19:17:54 [error] [php] A non well formed numeric value encountered (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ApiController.php:79)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/notifyDailyCheck/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2
+2023/01/13 19:17:54 [error] [php] A non well formed numeric value encountered (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ApiController.php:79)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(286): ApiController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): ApiController->runActionWithFilters()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): ApiController->run()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/api/notifyDailyCheck/?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2

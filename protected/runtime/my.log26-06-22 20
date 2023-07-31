@@ -1,0 +1,45 @@
+2022/06/26 20:23:33 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\xampp\htdocs\efisiensi\yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 C:\xampp\htdocs\efisiensi\yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\efisiensi\yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(459): CModule->getComponent('db')
+#4 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(639): CApplication->getDb()
+#5 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1436): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1492): CActiveRecord->getTableAlias(true)
+#7 C:\xampp\htdocs\efisiensi\protected\controllers\FrontController.php(11): CActiveRecord->findByPk(NULL)
+#8 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(281): FrontController->init()
+#9 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#10 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/
+---
+2022/06/26 20:23:40 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ in C:\xampp\htdocs\efisiensi\yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 C:\xampp\htdocs\efisiensi\yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\efisiensi\yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(459): CModule->getComponent('db')
+#4 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(639): CApplication->getDb()
+#5 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1436): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1492): CActiveRecord->getTableAlias(true)
+#7 C:\xampp\htdocs\efisiensi\protected\controllers\FrontController.php(11): CActiveRecord->findByPk(NULL)
+#8 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(281): FrontController->init()
+#9 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#10 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/
+---
+2022/06/26 20:24:11 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/icon.png
+HTTP_REFERER=http://localhost/efisiensi/home/index
+---

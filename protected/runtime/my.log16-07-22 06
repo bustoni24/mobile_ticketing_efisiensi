@@ -1,0 +1,144 @@
+2022/07/16 06:05:43 [error] [php] Trying to get property 'status' of non-object (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:669)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PenjadwalanController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PenjadwalanController->filterAccessControl()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PenjadwalanController->runActionWithFilters()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PenjadwalanController->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+2022/07/16 06:05:44 [error] [php] Trying to get property 'status' of non-object (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:669)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PenjadwalanController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PenjadwalanController->filterAccessControl()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PenjadwalanController->runActionWithFilters()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PenjadwalanController->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+2022/07/16 06:05:44 [error] [php] Trying to get property 'status' of non-object (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:669)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PenjadwalanController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PenjadwalanController->filterAccessControl()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PenjadwalanController->runActionWithFilters()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PenjadwalanController->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+2022/07/16 06:05:47 [error] [php] Trying to get property 'status' of non-object (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:669)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PenjadwalanController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PenjadwalanController->filterAccessControl()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PenjadwalanController->runActionWithFilters()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PenjadwalanController->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+2022/07/16 06:05:48 [error] [php] Trying to get property 'status' of non-object (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:669)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PenjadwalanController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PenjadwalanController->filterAccessControl()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PenjadwalanController->runActionWithFilters()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PenjadwalanController->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+2022/07/16 06:05:56 [error] [php] Trying to get property 'status' of non-object (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:669)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PenjadwalanController->runAction()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PenjadwalanController->filterAccessControl()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PenjadwalanController->runActionWithFilters()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PenjadwalanController->run()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+2022/07/16 06:09:03 [error] [php] Undefined variable: availableConfirm (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/bengkel/formService.php:110)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): BengkelController->renderFile()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): BengkelController->renderPartial()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/BengkelController.php(129): BengkelController->render()
+#3 unknown(0): BengkelController->actionFormService()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): BengkelController->runAction()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): BengkelController->filterAccessControl()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): BengkelController->runActionWithFilters()
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): BengkelController->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/bengkel/formService/2?type=insidental
+2022/07/16 06:38:51 [error] [exception.ParseError] ParseError: syntax error, unexpected ')' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:781
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+HTTP_REFERER=http://localhost/efisiensi/bengkel/formService/2?type=insidental
+---
+2022/07/16 06:40:38 [error] [exception.ParseError] ParseError: syntax error, unexpected ')' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:781
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+HTTP_REFERER=http://localhost/efisiensi/bengkel/formService/2?type=insidental
+---
+2022/07/16 06:40:45 [error] [exception.ParseError] ParseError: syntax error, unexpected ')' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:781
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+HTTP_REFERER=http://localhost/efisiensi/bengkel/formService/2?type=insidental
+---
+2022/07/16 06:40:59 [error] [exception.ParseError] ParseError: syntax error, unexpected ')' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:781
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+---

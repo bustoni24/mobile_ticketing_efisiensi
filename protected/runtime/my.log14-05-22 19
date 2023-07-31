@@ -1,0 +1,153 @@
+2022/05/14 19:13:44 [error] [exception.CHttpException.400] CHttpException: Request anda tidak valid in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:337
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('profile')
+#9 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/profile/im...')
+#10 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/index.php/user/profile/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/user/profile/1
+---
+2022/05/14 19:13:45 [error] [exception.CHttpException.400] CHttpException: Request anda tidak valid in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:337
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('profile')
+#9 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/profile/im...')
+#10 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/index.php/user/profile/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/user/profile/1
+---
+2022/05/14 19:13:53 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:13:54 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:15:36 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:15:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:16:47 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:16:47 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:19:49 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:19:50 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:20:16 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:20:17 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:21:28 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:22:29 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---
+2022/05/14 19:22:30 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/img.jpg" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/img.jpg')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/home
+---

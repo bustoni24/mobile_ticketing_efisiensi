@@ -1,0 +1,62 @@
+2022/07/04 21:02:23 [error] [php] Undefined variable: supplierData (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PembelianController.php:298)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PembelianController->runAction()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PembelianController->filterAccessControl()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PembelianController->runActionWithFilters()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PembelianController->run()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/pembelian/perbandinganHarga
+2022/07/04 21:02:23 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/icon.png
+HTTP_REFERER=http://localhost/efisiensi/pembelian/perbandinganHarga
+---
+2022/07/04 21:02:47 [error] [php] Undefined variable: kirim_ke (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/pembelian/template_order_pembelian.php:49)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): PembelianController->renderFile()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PembelianController.php(302): PembelianController->renderPartial()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PembelianController.php(255): PembelianController->cetakPembelian()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): PembelianController->actionPerbandinganHarga()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PembelianController->runAction()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PembelianController->filterAccessControl()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PembelianController->runActionWithFilters()
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PembelianController->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/pembelian/perbandinganHarga
+2022/07/04 21:03:19 [error] [php] Undefined index: total_harga (/Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/pembelian/template_order_pembelian.php:89)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): PembelianController->renderFile()
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PembelianController.php(302): PembelianController->renderPartial()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PembelianController.php(255): PembelianController->cetakPembelian()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): PembelianController->actionPerbandinganHarga()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): PembelianController->runAction()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CAccessControlFilter->filter()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): PembelianController->filterAccessControl()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): PembelianController->runActionWithFilters()
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): PembelianController->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CWebApplication->run()
+REQUEST_URI=/efisiensi/pembelian/perbandinganHarga

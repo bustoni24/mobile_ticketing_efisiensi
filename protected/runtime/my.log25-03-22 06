@@ -1,0 +1,26 @@
+2022/03/25 06:39:44 [error] [php] Undefined variable: countBanner (C:\xampp\htdocs\kellola\protected\views\home\index.php:70)
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(872): HomeController->renderFile()
+#1 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(785): HomeController->renderPartial()
+#2 C:\xampp\htdocs\kellola\protected\controllers\HomeController.php(27): HomeController->render()
+#3 C:\xampp\htdocs\kellola\yii\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#4 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(286): HomeController->runAction()
+#6 C:\xampp\htdocs\kellola\yii\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#7 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(282): HomeController->run()
+#8 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\kellola\index.php(29): CWebApplication->run()
+REQUEST_URI=/kellola/home/index
+in C:\xampp\htdocs\kellola\protected\views\home\index.php (70)
+in C:\xampp\htdocs\kellola\protected\controllers\HomeController.php (27)
+in C:\xampp\htdocs\kellola\index.php (29)
+2022/03/25 06:42:17 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/images/icon.png
+HTTP_REFERER=http://localhost/kellola/home/index
+---

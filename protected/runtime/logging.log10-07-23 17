@@ -1,0 +1,129 @@
+2023/07/10 17:13:13 [error] [php] include(Sdm.php): failed to open stream: No such file or directory (/Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/YiiBase.php:463)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(73): spl_autoload_call()
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionRegister()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CWebApplication->run()
+REQUEST_URI=/mobile_ticketing/index.php/register
+2023/07/10 17:22:30 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:22:32 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:25:45 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:26:43 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:26:45 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:26:52 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:08 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:10 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:10 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/icon.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/icon.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:51 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/logo_only_pedulijogja.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_onl...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/logo_only_pedulijogja.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/10 17:28:51 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/icon.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---

@@ -1,0 +1,331 @@
+2022/04/26 22:05:35 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/js/accounting.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/js/accounting.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:05:36 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:08:22 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:12:17 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:12:23 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:13:06 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:13:31 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:16:32 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:16:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:22:50 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:23:30 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:27:08 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:27:58 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:29:09 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:31:16 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:35:16 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:35:52 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f2436bc2/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f2436bc2...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f2436bc2/swiper-bundle.min.js.map
+---
+2022/04/26 22:38:34 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:39:04 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:39:05 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/themes/modern/theme.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/themes/modern/theme.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:39:06 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/example/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/example/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:39:06 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/example_dependency/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/example_dependency/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:39:06 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/layer/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/layer/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:39:07 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/jbimages/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/jbimages/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:41:03 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:42:32 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/themes/modern/theme.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/themes/modern/theme.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:42:33 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/example/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/example/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:42:33 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/example_dependency/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/example_dependency/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:42:33 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/layer/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/layer/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:42:33 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/a6670545/assets/vendor/tinymce/plugins/jbimages/plugin.min.js" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/a6670545...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/a6670545/assets/vendor/tinymce/plugins/jbimages/plugin.min.js
+HTTP_REFERER=http://localhost/kellola/product/create
+---
+2022/04/26 22:44:27 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:45:17 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:45:50 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:47:56 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:48:50 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:51:29 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:51:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:51:43 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:52:20 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---
+2022/04/26 22:53:09 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/f64cf0a7/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f64cf0a7...')
+#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
+#3 {main}
+REQUEST_URI=/kellola/assets/f64cf0a7/swiper-bundle.min.js.map
+---

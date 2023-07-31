@@ -1,0 +1,11 @@
+2022/07/02 06:01:18 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "pembelian" seperti yang diminta. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:486
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(270): CController->missingAction('pembelian')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('pembelian')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('pembelian/pembe...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/pembelian/pembelian
+HTTP_REFERER=http://localhost/efisiensi/pembelian/perbandinganHarga
+---

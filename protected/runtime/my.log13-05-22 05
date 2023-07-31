@@ -1,0 +1,209 @@
+2022/05/13 05:03:19 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('sdm/images/img....')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/sdm/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/sdm/
+---
+2022/05/13 05:03:20 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('sdm/images/img....')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/sdm/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/sdm/
+---
+2022/05/13 05:05:24 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/admin
+---
+2022/05/13 05:05:25 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/admin
+---
+2022/05/13 05:05:28 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/create
+---
+2022/05/13 05:05:58 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:05:59 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:05 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/create
+---
+2022/05/13 05:06:06 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/create
+---
+2022/05/13 05:06:14 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:15 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:21 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/create
+---
+2022/05/13 05:06:27 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:29 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:32 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/depo/create
+---
+2022/05/13 05:06:43 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:43 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/admin
+---
+2022/05/13 05:06:48 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/1
+---
+2022/05/13 05:06:48 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "images" seperti yang diminta. in C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php:486
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depo/images/img...')
+#3 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/depo/images/img.jpg
+HTTP_REFERER=http://localhost/efisiensi/index.php/depo/1
+---

@@ -1,0 +1,52 @@
+2022/05/18 18:46:28 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY nama_barang ASC' at line 1. Statement SQL yang dijalankan: SELECT * FROM `barang` `t` WHERE id= ORDER BY nama_barang ASC.
+in C:\xampp\htdocs\efisiensi\protected\controllers\BarangController.php (261)
+in C:\xampp\htdocs\efisiensi\index.php (29)
+2022/05/18 18:46:28 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY nama_barang ASC' at line 1. The SQL statement executed was: SELECT * FROM `barang` `t` WHERE id= ORDER BY nama_barang ASC in C:\xampp\htdocs\efisiensi\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\efisiensi\protected\controllers\BarangController.php(261): CActiveRecord->findAll(Array)
+#4 C:\xampp\htdocs\efisiensi\yii\framework\web\actions\CInlineAction.php(49): BarangController->actionGetAjaxById()
+#5 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('getAjaxById')
+#14 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('barang/getAjaxB...')
+#15 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#17 {main}
+REQUEST_URI=/efisiensi/barang/getAjaxById
+HTTP_REFERER=http://localhost/efisiensi/jenisServis/create
+---
+2022/05/18 18:54:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY nama_barang ASC' at line 1. Statement SQL yang dijalankan: SELECT * FROM `barang` `t` WHERE id= ORDER BY nama_barang ASC.
+in C:\xampp\htdocs\efisiensi\protected\controllers\BarangController.php (261)
+in C:\xampp\htdocs\efisiensi\index.php (29)
+2022/05/18 18:54:08 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY nama_barang ASC' at line 1. The SQL statement executed was: SELECT * FROM `barang` `t` WHERE id= ORDER BY nama_barang ASC in C:\xampp\htdocs\efisiensi\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\efisiensi\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\efisiensi\yii\framework\db\ar\CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\efisiensi\protected\controllers\BarangController.php(261): CActiveRecord->findAll(Array)
+#4 C:\xampp\htdocs\efisiensi\yii\framework\web\actions\CInlineAction.php(49): BarangController->actionGetAjaxById()
+#5 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\efisiensi\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\efisiensi\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(282): CController->run('getAjaxById')
+#14 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('barang/getAjaxB...')
+#15 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\efisiensi\index.php(29): CApplication->run()
+#17 {main}
+REQUEST_URI=/efisiensi/barang/getAjaxById
+HTTP_REFERER=http://localhost/efisiensi/jenisServis/create
+---

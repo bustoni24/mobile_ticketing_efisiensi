@@ -1,0 +1,1 @@
+ALTER TABLE `user`     ADD COLUMN `user_code` INT(6) NOT NULL AFTER `kecamatan_id`,    CHANGE `email` `email` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL ;

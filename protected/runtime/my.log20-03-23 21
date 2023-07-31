@@ -1,0 +1,12 @@
+2023/03/20 21:16:10 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "OrderBarang" seperti yang diminta. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:486
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(270): CController->missingAction('OrderBarang')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('OrderBarang')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('pembelian/Order...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/pembelian/OrderBarang
+HTTP_REFERER=http://localhost/efisiensi/pembelian/inputHarga/663
+---
+2023/03/20 21:32:18 [error] [system.db.CDbCommand] CDbCommand::execute() gagal: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column `efisiensi`.`order_supplier`.`tanggal_inden` at row 1. Statement SQL yang dijalankan: INSERT INTO `order_supplier` (`supplier_id`, `order_barang_id`, `tanggal_inden`, `jumlah_total`, `tipe_pembayaran`, `status`, `created_date`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6). Bound with :yp0=2, :yp1=666, :yp2='', :yp3=133200, :yp4='cash', :yp5=1, :yp6='2023-03-20 21:32:18'.

@@ -1,0 +1,150 @@
+2022/06/30 20:12:22 [error] [exception.CException] CException: Properti "BarangKeluar.is_approved" tidak didefinisikan. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(162): CComponent->__set('is_approved', 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/WarehouseController.php(123): CActiveRecord->__set('is_approved', 1)
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): WarehouseController->actionAjaxKeluarKendaraan()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('ajaxKeluarKenda...')
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('warehouse/ajaxK...')
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#15 {main}
+REQUEST_URI=/efisiensi/warehouse/ajaxKeluarKendaraan
+HTTP_REFERER=http://localhost/efisiensi/warehouse/keluar
+---
+2022/06/30 20:12:35 [error] [exception.CException] CException: Properti "BarangKeluar.is_approved" tidak didefinisikan. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(162): CComponent->__set('is_approved', 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/WarehouseController.php(123): CActiveRecord->__set('is_approved', 1)
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): WarehouseController->actionAjaxKeluarKendaraan()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('ajaxKeluarKenda...')
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('warehouse/ajaxK...')
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#15 {main}
+REQUEST_URI=/efisiensi/warehouse/ajaxKeluarKendaraan
+HTTP_REFERER=http://localhost/efisiensi/warehouse/keluar
+---
+2022/06/30 20:20:07 [error] [exception.CException] CException: OrderBarang dan behaviornya tidak memiliki method ataupun closure bernama "riwayatPerbaikan" in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(229): CComponent->__call('riwayatPerbaika...', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/warehouse/keluarDepo.php(35): CActiveRecord->__call('riwayatPerbaika...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('keluarDepo', Array, true)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/WarehouseController.php(77): CController->render('keluarDepo', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): WarehouseController->actionKeluarDepo()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('keluarDepo')
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('warehouse/kelua...')
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#20 {main}
+REQUEST_URI=/efisiensi/warehouse/keluarDepo
+HTTP_REFERER=http://localhost/efisiensi/warehouse/keluarDepo
+---
+2022/06/30 20:20:41 [error] [exception.CException] CException: Properti "OrderBarang.bengkel_id" tidak didefinisikan. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(145): CComponent->__get('bengkel_id')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CModel.php(596): CActiveRecord->__get('bengkel_id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/warehouse/keluarDepo.php(57): CModel->offsetGet('bengkel_id')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php(624): CBaseController->{closure}(Object(OrderBarang), 0, Object(CDataColumn))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CDataColumn.php(148): CComponent->evaluateExpression(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridColumn.php(237): CDataColumn->getDataCellContent(0)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridColumn.php(160): CGridColumn->renderDataCellContent(0, Object(OrderBarang))
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(655): CGridColumn->renderDataCell(0)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(639): CGridView->renderDataCell(Object(CDataColumn), 0)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(595): CGridView->renderTableRow(0)
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(505): CGridView->renderTableBody()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(181): CGridView->renderItems()
+#12 [internal function]: CBaseListView->renderSection(Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(164): preg_replace_callback('/{(\\w+)}/', Array, '{summary}\n{item...')
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(149): CBaseListView->renderContent()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(182): CBaseListView->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/warehouse/keluarDepo.php(116): CBaseController->widget('CGridViewBarang...', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('keluarDepo', Array, true)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/WarehouseController.php(77): CController->render('keluarDepo', Array)
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): WarehouseController->actionKeluarDepo()
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#25 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#26 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#27 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#28 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#29 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#30 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#31 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('keluarDepo')
+#32 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('warehouse/kelua...')
+#33 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#34 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#35 {main}
+REQUEST_URI=/efisiensi/warehouse/keluarDepo
+HTTP_REFERER=http://localhost/efisiensi/warehouse/keluarDepo
+---
+2022/06/30 20:21:16 [error] [exception.CException] CException: Properti "OrderBarang.bengkel_id" tidak didefinisikan. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(145): CComponent->__get('bengkel_id')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CModel.php(596): CActiveRecord->__get('bengkel_id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/warehouse/keluarDepo.php(57): CModel->offsetGet('bengkel_id')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CComponent.php(624): CBaseController->{closure}(Object(OrderBarang), 0, Object(CDataColumn))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CDataColumn.php(148): CComponent->evaluateExpression(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridColumn.php(237): CDataColumn->getDataCellContent(0)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridColumn.php(160): CGridColumn->renderDataCellContent(0, Object(OrderBarang))
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(655): CGridColumn->renderDataCell(0)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(639): CGridView->renderDataCell(Object(CDataColumn), 0)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(595): CGridView->renderTableRow(0)
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(505): CGridView->renderTableBody()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(181): CGridView->renderItems()
+#12 [internal function]: CBaseListView->renderSection(Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(164): preg_replace_callback('/{(\\w+)}/', Array, '{summary}\n{item...')
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(149): CBaseListView->renderContent()
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(182): CBaseListView->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/warehouse/keluarDepo.php(116): CBaseController->widget('CGridViewBarang...', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('keluarDepo', Array, true)
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/WarehouseController.php(77): CController->render('keluarDepo', Array)
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): WarehouseController->actionKeluarDepo()
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#25 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#26 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#27 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#28 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#29 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#30 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#31 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('keluarDepo')
+#32 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('warehouse/kelua...')
+#33 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#34 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#35 {main}
+REQUEST_URI=/efisiensi/warehouse/keluarDepo
+HTTP_REFERER=http://localhost/efisiensi/warehouse/keluarDepo
+---

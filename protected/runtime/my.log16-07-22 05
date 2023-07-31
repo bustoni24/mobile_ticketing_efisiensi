@@ -1,0 +1,93 @@
+2022/07/16 05:07:22 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/efisiensi/images/icon.png
+HTTP_REFERER=http://localhost/efisiensi/bengkel/listKendaraan
+---
+2022/07/16 05:17:41 [error] [exception.CHttpException.400] CHttpException: Request anda tidak valid in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:337
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('formService')
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('bengkel/formSer...')
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/bengkel/formService/?type=
+HTTP_REFERER=http://localhost/efisiensi/bengkel/daftarTunggu
+---
+2022/07/16 05:18:29 [error] [exception.CHttpException.400] CHttpException: Request anda tidak valid in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:337
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('formService')
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('bengkel/formSer...')
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/bengkel/formService/?type=rutin
+HTTP_REFERER=http://localhost/efisiensi/bengkel/daftarTunggu
+---
+2022/07/16 05:19:51 [error] [exception.CHttpException.400] CHttpException: Request anda tidak valid in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:337
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('formService')
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('bengkel/formSer...')
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#12 {main}
+REQUEST_URI=/efisiensi/bengkel/formService/?type=rutin
+HTTP_REFERER=http://localhost/efisiensi/bengkel/daftarTunggu
+---
+2022/07/16 05:54:50 [error] [exception.ParseError] ParseError: syntax error, unexpected '<', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:667
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+HTTP_REFERER=http://localhost/efisiensi/bengkel/formService/2?type=insidental
+---
+2022/07/16 05:54:51 [error] [exception.ParseError] ParseError: syntax error, unexpected '<', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:667
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+HTTP_REFERER=http://localhost/efisiensi/bengkel/formService/2?type=insidental
+---
+2022/07/16 05:54:51 [error] [exception.ParseError] ParseError: syntax error, unexpected '<', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PenjadwalanController.php:667
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('addPenjadwalanV...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('penjadwalan/add...')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#4 {main}
+REQUEST_URI=/efisiensi/penjadwalan/addPenjadwalanV2
+HTTP_REFERER=http://localhost/efisiensi/bengkel/formService/2?type=insidental
+---

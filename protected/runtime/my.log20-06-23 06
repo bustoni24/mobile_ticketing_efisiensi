@@ -1,0 +1,11 @@
+2023/06/20 06:01:06 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "boarding" seperti yang diminta. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:486
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(270): CController->missingAction('boarding')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('boarding')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/agenP...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/ticketing/agenPerwakilan/boarding/1
+HTTP_REFERER=http://localhost/efisiensi/ticketing/agenPerwakilan/
+---

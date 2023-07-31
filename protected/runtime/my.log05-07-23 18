@@ -1,0 +1,36 @@
+2023/07/05 18:26:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'province_id' in where clause is ambiguous. Statement SQL yang dijalankan: SELECT t.id, CONCAT(titik_keberangkatan, " - ", c.name) as titik_keberangkatan FROM `titik_keberangkatan` `t` JOIN city c ON c.id=t.city_id WHERE t.is_boarding=1 AND province_id=34 ORDER BY titik_keberangkatan.
+2023/07/05 18:26:35 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'province_id' in where clause is ambiguous in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/models/ticketing/TitikKeberangkatan.php(171): CActiveRecord->findAll(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/ticketing/tripAgen/_form.php(35): TitikKeberangkatan->getBoardings(Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/ticketing/tripAgen/create.php(20): CController->renderPartial('_form', Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('create', Array, true)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/TripAgenController.php(67): CController->render('create', Array)
+#14 [internal function]: TripAgenController->actionCreate('2')
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(TripAgenController), Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TripAgenController), Object(ReflectionMethod), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#26 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/tripA...')
+#27 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#28 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#29 {main}
+REQUEST_URI=/efisiensi/ticketing/tripAgen/create/2
+HTTP_REFERER=http://localhost/efisiensi/ticketing/tripAgen/2
+---

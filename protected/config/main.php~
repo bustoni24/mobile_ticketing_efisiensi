@@ -1,0 +1,168 @@
+<?php
+
+// uncomment the following to define a path alias
+// Yii::setPathOfAlias('local','path/to/local-folder');
+// This is the main Web application configuration. Any writable
+// CWebApplication properties can be configured here.
+
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
+return array(
+    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'name' => 'YII',
+    'defaultController' => 'registration',
+    // preloading 'log' component
+    'preload' => array('log'),
+    // autoloading model and component classes
+    'import' => array(
+        'application.models.*',
+        'application.components.*',
+    ),
+    'modules' => array(
+        // uncomment the following to enable the Gii tool
+
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => 'aaaddd',
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'ipFilters' => array('127.0.0.1', '::1'),
+        ),
+    ),
+    // application components
+    'components' => array(
+        'user' => array(
+            // enable cookie-based authentication
+            'allowAutoLogin' => true,
+             'loginUrl'=>array('unauthorized/index'),
+        ),        
+        // uncomment the following to enable URLs in path-format
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.Bootstrap',
+        ),
+        'urlManager' => array(
+            'urlFormat' => 'path',
+            'rules' => array(
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ),
+        ),
+        // uncomment the following to use a MySQL database
+        'db' => array(
+            'connectionString' => 'mysql:host=' . constant("DBHOST") . ';dbname=' . constant("DBNAME"),
+            'emulatePrepare' => true,
+            'username' => constant("DBUsername"),
+            'password' => constant("DBPassword"),
+            'charset' => 'utf8',
+        ),
+        /*
+          'dbakademik'=>array(
+          'class'=>'CDbConnection',
+          'connectionString' => 'mysql:host=localhost;dbname=joyoboyo',
+          'emulatePrepare' => true,
+          'username' => 'root',
+          'password' => '',
+          'charset' => 'utf8',
+          ),
+         */
+        'errorHandler' => array(
+            // use 'site/error' action to display errors
+            'errorAction' => 'site/error',
+        ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'info, error, vardump',
+                    'categories' => "boyo_log",
+                    'logFile' => 'joyo.log' . date('d-m-y H'),
+                ),
+            // uncomment the following to show log messages on web pages
+            /*
+              array(
+              'class'=>'CWebLogRoute',
+              ),
+             */
+            ),
+        ),
+        'messages' => array(
+            'class' => 'CDbMessageSource',
+            'cacheID' => 'cache',
+            'cachingDuration' => 43200, // 12 hours
+            'connectionID' => 'db',
+            'sourceMessageTable' => 'source_message',
+            'translatedMessageTable' => 'message',
+        ),
+        // ===============
+        'ePdf' => array(
+            'class' => 'ext.yii-pdf.EYiiPdf',
+            'params' => array(
+                'mpdf' => array(
+                    'librarySourcePath' => 'application.vendors.mpdf.*',
+                    'constants' => array(
+                        '_MPDF_TEMP_PATH' => Yii::getPathOfAlias('application.runtime'),
+                    ),
+                    'class' => 'mpdf', // the literal class filename to be loaded from the vendors folder
+                    'defaultParams' => array(// More info: http://mpdf1.com/manual/index.php?tid=184
+                        'mode' => '', //  This parameter specifies the mode of the new document.
+                        'format' => 'A4', // format A4, A5, ...
+                        'default_font_size' => 0, // Sets the default document font size in points (pt)
+                        'default_font' => '', // Sets the default font-family for the new document.
+                        'mgl' => 15, // margin_left. Sets the page margins for the new document.
+                        'mgr' => 15, // margin_right
+                        'mgt' => 16, // margin_top
+                        'mgb' => 16, // margin_bottom
+                        'mgh' => 9, // margin_header
+                        'mgf' => 9, // margin_footer
+                        'orientation' => 'P', // landscape or portrait orientation
+                    )
+                ),
+            ),
+        ),
+        'widgetFactory' => array(
+            'widgets' => array(
+                'CLinkPager' => array(
+                    'htmlOptions' => array(
+                    //'class' => 'pagination'
+                    ),
+                    'header' => false,
+                    'maxButtonCount' => 10,
+                //'cssFile' => false,
+                ),
+                'CGridView' => array(
+                    'htmlOptions' => array(
+                    //	'class' => 'items table-responsive'
+                    ),
+                    //'pagerCssClass' => 'dataTables_paginate paging_bootstrap',
+                    //'itemsCssClass' => 'items table-hover table-responsive table-custom',
+                    'emptyText' => ' - ',
+                    //'cssFile' => false,
+                    //'summaryCssClass' => 'dataTables_info',
+                    'summaryText' => 'Data {start} - {end} dari {count} data',
+                    'template' => '<div class="row"><div class="col-md-12 col-sm-12">{summary}</div><br>
+	 										{items}<div class="col-md-12 col-sm-12">{pager}</div></div><br />',
+                    'pager' => array(
+                        //'class'          => 'CLinkPager',
+                        'header' => '',
+                        'firstPageLabel' => '<<',
+                        'prevPageLabel' => '<',
+                        'nextPageLabel' => '>',
+                        'lastPageLabel' => '>>',
+                    ),
+                ),
+            ),
+        ),
+    // ===============
+    ),
+    // application-level parameters that can be accessed
+    // using Yii::app()->params['paramName']
+    'params' => array(
+        // this is used in contact page
+        'sessionTimeoutSeconds' => 1800, // in second
+        'adminEmail' => 'webmaster@example.com',
+        'ldap_host' => constant("LdapHost"),
+        'ldap_port' => constant("LdapPort"),
+        'ldap_domain' => constant("LdapDomain"),
+        'ldap_dn' => constant("LdapDN"),
+    ),
+);

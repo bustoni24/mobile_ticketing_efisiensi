@@ -1,0 +1,224 @@
+2023/07/17 05:36:46 [error] [exception.CException] CException: Asset "./app" yang dipublikasikan tidak ada. in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/components/Constant.php(76): CAssetManager->publish('./app')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/views/layouts/loginv2.php(13): Constant::frontAsset()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(787): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(65): CController->render('loginMember', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#11 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#12 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#13 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#14 {main}
+REQUEST_URI=/mobile_ticketing/login
+---
+2023/07/17 05:36:46 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/icon.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:37:37 [error] [exception.CException] CException: Asset "./app" yang dipublikasikan tidak ada. in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/components/Constant.php(76): CAssetManager->publish('./app')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/views/layouts/loginv2.php(13): Constant::frontAsset()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(787): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(65): CController->render('loginMember', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#11 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#12 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#13 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#14 {main}
+REQUEST_URI=/mobile_ticketing/login
+---
+2023/07/17 05:37:37 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/icon.png
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:37:38 [error] [exception.CException] CException: Asset "./app" yang dipublikasikan tidak ada. in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/components/Constant.php(76): CAssetManager->publish('./app')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/views/layouts/loginv2.php(13): Constant::frontAsset()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(787): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(65): CController->render('loginMember', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#11 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#12 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#13 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#14 {main}
+REQUEST_URI=/mobile_ticketing/login
+---
+2023/07/17 05:37:38 [error] [exception.CException] CException: Asset "./app" yang dipublikasikan tidak ada. in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/components/Constant.php(76): CAssetManager->publish('./app')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/views/layouts/loginv2.php(13): Constant::frontAsset()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(787): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(65): CController->render('loginMember', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#11 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#12 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#13 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#14 {main}
+REQUEST_URI=/mobile_ticketing/login
+---
+2023/07/17 05:37:39 [error] [exception.CException] CException: Asset "./app" yang dipublikasikan tidak ada. in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/components/Constant.php(76): CAssetManager->publish('./app')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/views/layouts/loginv2.php(13): Constant::frontAsset()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(787): CBaseController->renderFile('/Applications/X...', Array, true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(65): CController->render('loginMember', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#11 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#12 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#13 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#14 {main}
+REQUEST_URI=/mobile_ticketing/login
+---
+2023/07/17 05:38:31 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:38:31 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:39:38 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:39:39 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:40:12 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:40:23 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:40:23 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:40:32 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:41:38 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:41:52 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/4b9b543c/login-7152a68561.js" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/4b9b543c...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/assets/4b9b543c/login-7152a68561.js
+HTTP_REFERER=http://localhost/mobile_ticketing/login
+---
+2023/07/17 05:50:21 [error] [php] include(Sdm.php): failed to open stream: No such file or directory (/Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/YiiBase.php:463)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/SiteController.php(73): spl_autoload_call()
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionRegister()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CWebApplication->run()
+REQUEST_URI=/mobile_ticketing/register
+2023/07/17 05:50:21 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "images/icon.png" in /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/icon.png')
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobile_ticketing/images/icon.png
+HTTP_REFERER=http://localhost/mobile_ticketing/register
+---

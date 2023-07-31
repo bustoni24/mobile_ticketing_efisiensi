@@ -1,0 +1,108 @@
+2023/06/29 22:32:06 [error] [system.db.CDbCommand] CDbCommand::fetch() gagal: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist. Statement SQL yang dijalankan: SELECT `id`
+FROM `trip_agen`
+WHERE route_id=:routeID. Bound with :routeID='20230629223206.06'.
+2023/06/29 22:32:06 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/ticketing/components/BookingTripHelper.php(17): CDbCommand->queryRow()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/TripAgenController.php(61): BookingTripHelper->getRouteId()
+#3 [internal function]: TripAgenController->actionCreate('1')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(TripAgenController), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TripAgenController), Object(ReflectionMethod), Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/tripA...')
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#18 {main}
+REQUEST_URI=/efisiensi/ticketing/tripAgen/create/1
+HTTP_REFERER=http://localhost/efisiensi/ticketing/tripAgen/create/1
+---
+2023/06/29 22:33:22 [error] [system.db.CDbCommand] CDbCommand::fetch() gagal: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist. Statement SQL yang dijalankan: SELECT `id`
+FROM `trip_agen`
+WHERE route_id=:routeID. Bound with :routeID='20230629223322.06'.
+2023/06/29 22:33:22 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/ticketing/components/BookingTripHelper.php(17): CDbCommand->queryRow()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/TripAgenController.php(61): BookingTripHelper->getRouteId()
+#3 [internal function]: TripAgenController->actionCreate('1')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(TripAgenController), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TripAgenController), Object(ReflectionMethod), Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/tripA...')
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#18 {main}
+REQUEST_URI=/efisiensi/ticketing/tripAgen/create/1
+HTTP_REFERER=http://localhost/efisiensi/ticketing/tripAgen/create/1
+---
+2023/06/29 22:33:26 [error] [system.db.CDbCommand] CDbCommand::fetch() gagal: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist. Statement SQL yang dijalankan: SELECT `id`
+FROM `trip_agen`
+WHERE route_id=:routeID. Bound with :routeID='20230629223326.06'.
+2023/06/29 22:33:26 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/ticketing/components/BookingTripHelper.php(17): CDbCommand->queryRow()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/TripAgenController.php(61): BookingTripHelper->getRouteId()
+#3 [internal function]: TripAgenController->actionCreate('1')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(TripAgenController), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TripAgenController), Object(ReflectionMethod), Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/tripA...')
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#18 {main}
+REQUEST_URI=/efisiensi/ticketing/tripAgen/create/1
+HTTP_REFERER=http://localhost/efisiensi/ticketing/tripAgen/create/1
+---
+2023/06/29 22:34:03 [error] [system.db.CDbCommand] CDbCommand::fetch() gagal: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist. Statement SQL yang dijalankan: SELECT `id`
+FROM `trip_agen`
+WHERE route_id=:routeID. Bound with :routeID='20230629223403.06'.
+2023/06/29 22:34:03 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'efisiensi.trip_agen' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/ticketing/components/BookingTripHelper.php(17): CDbCommand->queryRow()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/ticketing/TripAgenController.php(61): BookingTripHelper->getRouteId()
+#3 [internal function]: TripAgenController->actionCreate('1')
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs(Object(TripAgenController), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TripAgenController), Object(ReflectionMethod), Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ticketing/tripA...')
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#18 {main}
+REQUEST_URI=/efisiensi/ticketing/tripAgen/create/1
+HTTP_REFERER=http://localhost/efisiensi/ticketing/tripAgen/create/1
+---

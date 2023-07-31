@@ -1,0 +1,56 @@
+2022/09/27 21:10:22 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "setUserFinger" seperti yang diminta. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:486
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(270): CController->missingAction('setUserFinger')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('setUserFinger')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('presensi/setUse...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/presensi/setUserFinger
+HTTP_REFERER=http://localhost/efisiensi/index.php/presensi/setUserFinger?Sdm_page=4
+---
+2022/09/27 21:10:32 [error] [exception.CHttpException.404] CHttpException: Sistem tidak bisa menemukan action "adminKebumen" seperti yang diminta. in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php:486
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(270): CController->missingAction('adminKebumen')
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('adminKebumen')
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('presensi/adminK...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#5 {main}
+REQUEST_URI=/efisiensi/index.php/presensi/adminKebumen
+---
+2022/09/27 21:11:38 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.id' in 'field list'. Statement SQL yang dijalankan: SELECT t.*, p.id as idPresensi FROM `sdm` `t` WHERE t.unit = 1 AND t.active=1 LIMIT 10.
+2022/09/27 21:11:38 [error] [exception.CDbException] CDbException: CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.id' in 'field list' in /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1359): CDbCommand->queryAll()
+#2 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/db/ar/CActiveRecord.php(1478): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CActiveDataProvider.php(199): CActiveRecord->findAll(Object(CDbCriteria))
+#4 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
+#5 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/CBaseListView.php(125): CDataProvider->getData()
+#6 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/zii/widgets/grid/CGridView.php(355): CBaseListView->init()
+#7 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(147): CGridView->init()
+#8 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(181): CBaseController->createWidget('zii.widgets.gri...', Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/views/presensi/adminKebumen.php(109): CBaseController->widget('zii.widgets.gri...', Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(126): require('/Applications/X...')
+#11 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/X...', Array, true)
+#12 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(872): CBaseController->renderFile('/Applications/X...', Array, true)
+#13 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(785): CController->renderPartial('adminKebumen', Array, true)
+#14 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/protected/controllers/PresensiController.php(69): CController->render('adminKebumen', Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/actions/CInlineAction.php(49): PresensiController->actionSdmKebumen()
+#16 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#18 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(1148): CFilter->filter(Object(CFilterChain))
+#20 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#22 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(291): CFilterChain->run()
+#23 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(282): CController->run('sdmKebumen')
+#25 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('presensi/sdmKeb...')
+#26 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#27 /Applications/XAMPP/xamppfiles/htdocs/efisiensi/index.php(27): CApplication->run()
+#28 {main}
+REQUEST_URI=/efisiensi/index.php/presensi/sdmKebumen
+HTTP_REFERER=http://localhost/efisiensi/index.php/presensi/sdmKebumen?Sdm_page=4
+---

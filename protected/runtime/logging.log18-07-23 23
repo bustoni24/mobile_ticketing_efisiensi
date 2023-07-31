@@ -1,0 +1,16 @@
+2023/07/18 23:21:02 [error] [php] Undefined index: id_trip (/Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/views/home/booking_trip.php:13)
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(872): HomeController->renderFile()
+#1 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(785): HomeController->renderPartial()
+#2 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/protected/controllers/HomeController.php(56): HomeController->render()
+#3 unknown(0): HomeController->actionBookingTrip()
+#4 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CAction.php(115): ReflectionMethod->invokeArgs()
+#5 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(286): HomeController->runAction()
+#8 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CController.php(265): HomeController->runActionWithFilters()
+#9 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(282): HomeController->run()
+#10 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#12 /Applications/XAMPP/xamppfiles/htdocs/mobile_ticketing/index.php(27): CWebApplication->run()
+REQUEST_URI=/mobile_ticketing/home/bookingTrip/16
