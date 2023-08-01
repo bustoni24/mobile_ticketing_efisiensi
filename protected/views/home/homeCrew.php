@@ -11,11 +11,24 @@
             'enableAjaxValidation'=>false,
         )); 
         ?>
-      <div class="row height-75 d-relative">
+      <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
+            <label>Masukkan Tanggal Penugasan</label>
               <?= CHtml::textField('Booking[startdate]',$model->startdate,['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
         </div>
       </div>
+
+      <div class="row d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+              <?= CHtml::dropDownList('Booking[tujuan]', $model->tujuan, Armada::object()->getTujuan($_GET), ['prompt'=>'Pilih Tujuan']); ?>
+        </div>
+      </div>
+      <div class="row d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-warning pull-right" id="cari">Cari</button>
+        </div>
+      </div>
+
         <?php $this->endWidget(); ?>
     </div>
 
@@ -28,39 +41,42 @@
 </div>
 
 <script>
-     var latitude = null;
-    var longitude = null;
+    var latitude = "<?= isset($_GET['latitude']) ? $_GET['latitude'] : null ?>";
+    var longitude = "<?= isset($_GET['longitude']) ? $_GET['longitude'] : null ?>";
     document.addEventListener("DOMContentLoaded", function() {
-            // Cek apakah browser mendukung Geolocation API
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        latitude = position.coords.latitude;
-                        longitude = position.coords.longitude;
-                        // alert('latitude: ' + latitude + ', longitude: ' + longitude);
-                        refreshListBooking(latitude, longitude);
-                    },
-                    function(error) {
-                        switch (error.code) {
-                            case error.PERMISSION_DENIED:
-                                console.log("Izin akses lokasi ditolak oleh pengguna.");
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                console.log("Informasi lokasi tidak tersedia.");
-                                break;
-                            case error.TIMEOUT:
-                                console.log("Permintaan waktu untuk akses lokasi habis.");
-                                break;
-                            case error.UNKNOWN_ERROR:
-                                console.log("Terjadi kesalahan yang tidak diketahui.");
-                                break;
-                        }
-                    }
-                );
-            } else {
-                console.log("Geolocation tidak didukung oleh browser Anda.");
-            }
+        $('select').select2();
 
+            if (latitude === 'null' || latitude === null || latitude === "") {
+                 // Cek apakah browser mendukung Geolocation API
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            latitude = position.coords.latitude;
+                            longitude = position.coords.longitude;
+                            // alert('latitude: ' + latitude + ', longitude: ' + longitude);
+                            refreshListBooking(latitude, longitude);
+                        },
+                        function(error) {
+                            switch (error.code) {
+                                case error.PERMISSION_DENIED:
+                                    console.log("Izin akses lokasi ditolak oleh pengguna.");
+                                    break;
+                                case error.POSITION_UNAVAILABLE:
+                                    console.log("Informasi lokasi tidak tersedia.");
+                                    break;
+                                case error.TIMEOUT:
+                                    console.log("Permintaan waktu untuk akses lokasi habis.");
+                                    break;
+                                case error.UNKNOWN_ERROR:
+                                    console.log("Terjadi kesalahan yang tidak diketahui.");
+                                    break;
+                            }
+                        }
+                    );
+                } else {
+                    console.log("Geolocation tidak didukung oleh browser Anda.");
+                }
+            }
             <?php
         //flashes
         foreach(Yii::app()->user->getFlashes() as $key => $message){
@@ -88,8 +104,9 @@
 
 function refreshListBooking(latitude, longitude) {
     if (latitude !== null && longitude !== null) {
-        var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
-        updateListView(data);
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude;
+        // var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
+        // updateListView(data);
     }
 }
 
@@ -101,7 +118,13 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
 		header: true
 	});
 
-    $('#Booking_startdate').on('change', function(){
+    $('#cari').on('click', function(){
+        var startdate = $('#Booking_startdate').val();
+        var tujuanId = $('#Booking_tujuan').val();
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+startdate+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuanId;
+    });
+
+   /*  $('#Booking_startdate').on('change', function(){
         var name = $(this).attr('name');
         var value = $(this).val();
         var data = {};
@@ -111,7 +134,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         // console.log(data);
         
         updateListView(data);
-    });
+    }); */
 
     function updateListView(data)
         {

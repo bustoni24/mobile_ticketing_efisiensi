@@ -84,6 +84,31 @@ class Armada
 		return $result;
     }
 
+    public function getTujuan($get)
+    {
+        $result = [];
+        if (!isset($get['startdate'], $get['latitude'], $get['longitude'])) {
+            return $result;
+        }
+        $get = array_merge([
+            'user_id' => Yii::app()->user->id,
+            'role' => Yii::app()->user->role
+        ], $get);
+       
+		$res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getTujuan',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $get
+            ]
+        ]);
+        // Helper::getInstance()->dump($res['data']);
+        if (isset($res['data'])) {
+            $result = $res['data'];
+        }
+		return $result;
+    }
+
 	private static $instance;
 
     public static function object()

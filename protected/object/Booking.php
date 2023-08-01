@@ -11,7 +11,7 @@ class Booking
     public $alamat_titik_keberangkatan;
     public $route_id = null;
     public $armada_ke = null;
-    public $latitude, $longitude;
+    public $latitude, $longitude, $tujuan, $penjadwalan_id;
 
     public function searchBooking()
     {
@@ -34,10 +34,11 @@ class Booking
                     'latitude' => isset($this->latitude) ? $this->latitude : null,
                     'longitude' => isset($this->longitude) ? $this->longitude : null,
                     'user_id' => Yii::app()->user->id,
-                    'role' => Yii::app()->user->role
+                    'role' => Yii::app()->user->role,
+                    'tujuan' => isset($this->tujuan) ? $this->tujuan : null,
                     ]
             ]
-        ]);       
+        ]);
 
         if (isset($res['data'])) {
             $data = [
@@ -79,7 +80,8 @@ class Booking
                     'armada_ke' => $this->armada_ke,
                     'startdate' => $this->startdate,
                     'user_id' => Yii::app()->user->id,
-                    'role' => Yii::app()->user->role
+                    'role' => Yii::app()->user->role,
+                    'penjadwalan_id' => $this->penjadwalan_id
                     ]
             ]
         ]);  

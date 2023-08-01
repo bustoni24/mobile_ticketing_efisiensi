@@ -35,7 +35,7 @@
     }
 
     /* Area Fokus */
-   /*  .qr-focus-box {
+    /* .qr-focus-box {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -96,7 +96,7 @@ const scanner = new Instascan.Scanner(opts);
 // Mengaktifkan kamera dan memulai scanning QR code
 Instascan.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {
-        scanner.start(cameras[1]); // Gunakan kamera pertama yang ditemukan
+        scanner.start(cameras[0]); // Gunakan kamera pertama yang ditemukan
     } else {
         console.error('Kamera tidak ditemukan.');
     }
@@ -111,13 +111,13 @@ scanner.addListener('scan', function (content) {
 
 function doExecScannerResult(value) {
     $.ajax({
-        url: "<?= Constant::baseUrl().'/booking/scannerResult' ?>",
+        url: "<?= Constant::baseUrl().'/booking/scannerResultCrew' ?>",
         type: 'POST',
         data: {id:value},
         dataType: 'JSON',
         success: function(data) {
             if (data.success && typeof data.data !== "undefined") {
-                location.href = "<?= Constant::baseUrl() . '/home/qrResult?data=' ?>"+btoa(JSON.stringify(data.data));
+                location.href = "<?= Constant::baseUrl() . '/home/qrResultCrew?data=' ?>"+btoa(JSON.stringify(data.data));
             } else {
                 swal.fire(JSON.stringify(data), '', 'error');
             }

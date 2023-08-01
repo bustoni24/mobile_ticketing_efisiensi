@@ -7,8 +7,8 @@ $modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data[
 $layoutDeck = $data['data']['layoutDeck'];
 $seatBooked = $data['data']['seatBooked'];
 $listTerdekat = $data['data']['listTitikTerdekat'];
-// Helper::getInstance()->dump($data['data']['latitude']);
-$isCrew = Yii::app()->user->role == 'Cabin Crew';
+// Helper::getInstance()->dump($data);
+$isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
 ?>
 <div class="col-sm-12">
 
@@ -241,6 +241,7 @@ $isCrew = Yii::app()->user->role == 'Cabin Crew';
     <div class="row height-75 d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Titik Terdekat</label>
+            <?= CHtml::hiddenField('BookingTrip[titik_id]', (isset($listTerdekat['titik_id']) ? $listTerdekat['titik_id'] : '')) ?>
             <?= CHtml::textField('BookingTrip[titik_keberangkatan]',(isset($listTerdekat['titik_keberangkatan']) ? $listTerdekat['titik_keberangkatan'] : ''),['placeholder' => 'Titik Terdekat', 'readonly' => isset($listTerdekat['titik_keberangkatan'])]); ?>
             <span><?= 'Alamat: ' . (isset($listTerdekat['alamat']) ? $listTerdekat['alamat'] : '') ?></span>
         </div>
@@ -261,12 +262,13 @@ $isCrew = Yii::app()->user->role == 'Cabin Crew';
 
 <?php endif; ?>
 
+<?php if (in_array(Yii::app()->user->role, ['Agen', 'Cabin Crew'])): ?>
     <div class="layout-form-deck" id="layoutPenumpang">
         <h5>DATA PENUMPANG</h5>
         <p>Masukan data penumpang (Nama dan No Telp) sebagai data manifest</p>
 
         <?= CHtml::hiddenField('BookingTrip[total_harga]', ''); ?>
-        <?= CHtml::hiddenField('BookingTrip[route_id]', $modelTripAgen->route_id); ?>
+        <?= CHtml::hiddenField('BookingTrip[route_id]', (isset($listTerdekat['route_id']) ? $listTerdekat['route_id'] : $modelTripAgen->route_id)); ?>
         <?= CHtml::hiddenField('BookingTrip[armada_ke]', $post['armada_ke']); ?>
         <?= CHtml::hiddenField('BookingTrip[startdate]', $post['startdate']); ?>
         <?= CHtml::hiddenField('BookingTrip[penjadwalan_id]', $post['penjadwalan_id']); ?>
@@ -321,6 +323,75 @@ $isCrew = Yii::app()->user->role == 'Cabin Crew';
         </div>
     </div>
     </div>
+    <?php endif; ?>
+
+    <?php if (in_array(Yii::app()->user->role, ['Checker'])): ?>
+    <div class="row" style="overflow: auto;">
+        <table class="table">
+            <tr>
+                <th>Kode Booking</th>
+                <th>Nama Penumpang</th>
+                <th>Nomor HP</th>
+                <th>Jenis Kelamin</th>
+                <th>Nomor Kursi</th>
+            </tr>
+            <?php 
+            foreach ($data['data']['seatBooked'] as $seatBooked) {
+                if (!isset($seatBooked['id']))
+                    continue;
+
+                $dataSeat = $seatBooked[$seatBooked['id']];
+                ?>
+                <tr>
+                    <td><?= $dataSeat['kode_booking']; ?></td>
+                    <td><?= $dataSeat['nama']; ?></td>
+                    <td><?= $dataSeat['no_hp']; ?></td>
+                    <td><?= $dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita'; ?></td>
+                    <td><?= $dataSeat['no_kursi']; ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered">
+            <tr>
+                <th width="60%">Apakah jumlah dan data penumpang sudah sesuai?</th>
+                <td width="40%">
+                    <?= CHtml::radioButtonList("Booking[jumlah_sesuai]", "", [
+                        '0' => 'Tidak',
+                        '1' => 'Ya'
+                    ], [
+                        'separator' => "&nbsp;&nbsp;",
+                        'required' => true
+                    ]) ?>
+                </td>
+            </tr>
+            <tr>
+                <th width="60%">Apakah data crew dan perjalanan sudah sesuai?</th>
+                <td width="40%">
+                    <?= CHtml::radioButtonList("Booking[crew_sesuai]", "", [
+                        '0' => 'Tidak',
+                        '1' => 'Ya'
+                    ], [
+                        'separator' => "&nbsp;&nbsp;"
+                    ]) ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container-button-float">
+        <div class="row-0">
+            <div class="float-div">
+                <button class="btn btn-warning">Sesuai</button>
+                <button type="button" class="btn btn-danger" id="tolak">Tidak Sesuai</button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <?php $this->endWidget(); ?>
 

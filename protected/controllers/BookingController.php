@@ -149,6 +149,23 @@ class BookingController extends Controller
         doPrintResult($result->success());
     }
 
+    public function actionScannerResultCrew()
+    {
+        $result = new Returner;
+        if (!isset($_POST['id'])) {
+            doPrintResult($result->dump("invalid parameter"));
+        }
+
+        $scannerResult = Yii::app()->controller->decode($_POST['id']);
+        $scannerResult = json_decode($scannerResult, true);
+        if (!isset($scannerResult['route_id'], $scannerResult['startdate'], $scannerResult['armada_ke'])) {
+            doPrintResult($result->dump(json_encode($scannerResult)));
+        }
+
+        $result->put('data', $scannerResult);
+        doPrintResult($result->success());
+    }
+
     public function actionRejectBooking()
     {
         $result = new Returner;
@@ -162,6 +179,31 @@ class BookingController extends Controller
         ], $_POST);
         $reject = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/rejectBooking',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $_POST
+            ]
+        ]);
+        if (!$reject['success']) {
+            doPrintResult($reject['message']);
+        }
+        doPrintResult($result->success());
+    }
+
+    public function actionRejectTrip()
+    {
+        $result = new Returner;
+        if (!isset($_POST['alasan'], $_POST['penjadwalan_id'])) {
+            doPrintResult($result->dump("invalid parameter"));
+        }
+
+        $_POST = array_merge([
+            'user_id' => Yii::app()->user->id,
+            'role' => Yii::app()->user->role,
+            'status' => 2
+        ], $_POST);
+        $reject = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/confirmTrip',
             'parameter' => [
                 'method' => 'POST',
                 'postfields' => $_POST

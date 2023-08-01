@@ -574,6 +574,11 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     .w-100 {
         width: 100%;
     }
+    .btn-scan-crew {
+        font-size: 1.8rem;
+        border-radius: 20px;
+        padding: 10px 20px;
+    }
     </style>
 </head>
   <body class="nav-md">
@@ -609,10 +614,13 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
             <?php } ?>
 
             <?php if (in_array(Yii::app()->user->role, ['Agen'])): ?>
-                <div class="tagname-container">
+                <div class="tagname-container mb-10">
                     <h5 class="mb-0">Nama: <?= Yii::app()->user->nama; ?></h5>
                     <div class="d-flex align-items-baseline">
-                    <span>Saldo: Rp</span><span id="topSaldo"> <?= (isset(Yii::app()->user->saldo) && !empty(Yii::app()->user->saldo) ? Helper::getInstance()->getRupiah(Yii::app()->user->saldo) : '0' ); ?></span><span>,-</span> &nbsp;&nbsp;<a href="<?= Constant::baseUrl().'/home/topUpSaldo'; ?>" class="btn btn-success">Tambah Saldo</a>
+                    <span>Saldo: </span>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                        <span>Rp </span><span id="topSaldo"> <?= (isset(Yii::app()->user->saldo) && !empty(Yii::app()->user->saldo) ? Helper::getInstance()->getRupiah(Yii::app()->user->saldo) : '0' ); ?></span><span>,-</span> &nbsp;&nbsp;&nbsp;<a href="<?= Constant::baseUrl().'/home/topUpSaldo'; ?>" class="btn btn-success">Tambah Saldo</a>
                     </div>
                 </div>
 

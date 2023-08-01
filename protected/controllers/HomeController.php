@@ -77,9 +77,10 @@ class HomeController extends Controller
 	public function actionHomeCrew()
 	{
 		$model = new Booking;
-		$model->startdate = (isset($_GET['Booking']['startdate']) && !empty($_GET['Booking']['startdate']) ? date('Y-m-d', strtotime($_GET['Booking']['startdate'])) : date('Y-m-d'));
+		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
 		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
+		$model->tujuan = isset($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			// Helper::getInstance()->dump($_POST);
@@ -97,13 +98,14 @@ class HomeController extends Controller
 						'user_id' => Yii::app()->user->id,
 						'crew_id' => Yii::app()->user->id,
 						'role' => Yii::app()->user->role,
+						'tujuan_id' => $model->tujuan
 					]
 				]
 			]);
-			if ($saveTransaction['success']) {
+			if ($saveTransaction['success']) {				
 				$last_id_booking = isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : '';
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
-				return $this->redirect(Constant::baseUrl().'/home/index?Booking[startdate]=' . $model->startdate . '&last_id_booking=' . $last_id_booking);
+				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&last_id_booking=' . $last_id_booking);
 			} else {
 				Helper::getInstance()->dump($saveTransaction);
 			}
@@ -267,10 +269,20 @@ class HomeController extends Controller
 		$this->render('qrscan');
 	}
 
+	public function actionQrCrew()
+	{
+		$this->render('qrCrew');
+	}
+
 	public function actionQrResult()
 	{
 		if (!isset($_GET['data'])) {
 			throw new CHttpException(401,'invalid data');
+		}
+		switch (Yii::app()->user->role) {
+			case 'Checker':
+				return $this->redirect(Constant::baseUrl() . '/home/qrResultChecker?data=' . $_GET['data']);
+				break;
 		}
 		$data = base64_decode($_GET['data']);
 		$data = json_decode($data, true);
@@ -296,6 +308,88 @@ class HomeController extends Controller
 		}
 		// Helper::getInstance()->dump($data);
 		return $this->render('qrResult', [
+			'data' => $data
+		]);
+	}
+
+	public function actionQrResultCrew()
+	{
+		if (!isset($_GET['data'])) {
+			throw new CHttpException(401,'invalid data');
+		}
+		$data = base64_decode($_GET['data']);
+		$data = json_decode($data, true);
+		if (!isset($data['startdate'], $data['route_id'], $data['armada_ke'], $data['penjadwalan_id'])) {
+			throw new CHttpException(401,'invalid parameter');
+		}
+		$model = new Booking('routeDetail');
+		$model->startdate = $data['startdate'];
+		$model->route_id = $data['route_id'];
+		$model->armada_ke = $data['armada_ke'];
+		$model->penjadwalan_id = $data['penjadwalan_id'];
+
+		if (isset($_POST['Booking']['jumlah_sesuai'])) {
+			$_POST = array_merge([
+				'user_id' => Yii::app()->user->id,
+				'role' => Yii::app()->user->role,
+				'status' => 1,
+				'penjadwalan_id' => $data['penjadwalan_id']
+			], $_POST);
+			// Helper::getInstance()->dump($_POST);
+			$reject = ApiHelper::getInstance()->callUrl([
+				'url' => 'apiMobile/confirmTrip',
+				'parameter' => [
+					'method' => 'POST',
+					'postfields' => $_POST
+				]
+			]);
+			if (!$reject['success']) {
+				Helper::getInstance()->dump($reject);
+			}
+
+			Yii::app()->user->setFlash('success', 'Konfirmasi Kesesuaian Trip berhasil');
+			return $this->redirect(array('index'));
+		}
+
+		return $this->render('qrResultCrew', [
+			'model' => $model,
+			'post' => $data
+		]);
+	}
+
+	public function actionQrResultChecker()
+	{
+		if (!isset($_GET['data'])) {
+			throw new CHttpException(401,'invalid data');
+		}
+		$data = base64_decode($_GET['data']);
+		$data = json_decode($data, true);
+
+		// Helper::getInstance()->dump($data);
+		if (isset($_POST['Booking']['kode_booking'])) {
+			$_POST = array_merge([
+				'user_id' => Yii::app()->user->id,
+				'role' => Yii::app()->user->role,
+				'status' => 1,
+				'penjadwalan_id' => $data['penjadwalan_id']
+			], $_POST);
+			// Helper::getInstance()->dump($_POST);
+			$reject = ApiHelper::getInstance()->callUrl([
+				'url' => 'apiMobile/confirmTrip',
+				'parameter' => [
+					'method' => 'POST',
+					'postfields' => $_POST
+				]
+			]);
+			if (!$reject['success']) {
+				Helper::getInstance()->dump($reject);
+			}
+
+			Yii::app()->user->setFlash('success', 'Konfirmasi Kesesuaian Trip berhasil');
+			return $this->redirect(array('index'));
+		}
+
+		return $this->render('qrResultChecker', [
 			'data' => $data
 		]);
 	}
@@ -339,7 +433,7 @@ class HomeController extends Controller
 						'postfields' => [
 							'nominal' => str_replace(".", "", $post['nominal']),
 							'file_name' => $fileName,
-							'url' => SERVER . '/' . $fileName,
+							'url' => SERVER . '/uploads/' . $fileName,
 							'user_id' => Yii::app()->user->id,
 							'role' => Yii::app()->user->role
 						]
