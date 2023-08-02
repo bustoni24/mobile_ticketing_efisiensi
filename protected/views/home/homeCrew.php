@@ -43,6 +43,7 @@
 <script>
     var latitude = "<?= isset($_GET['latitude']) ? $_GET['latitude'] : null ?>";
     var longitude = "<?= isset($_GET['longitude']) ? $_GET['longitude'] : null ?>";
+    var tujuan = "<?= isset($data_raw['subTripSelected']['id']) ? $data_raw['subTripSelected']['id'] : null ?>";
     document.addEventListener("DOMContentLoaded", function() {
         $('select').select2();
 
@@ -104,7 +105,7 @@
 
 function refreshListBooking(latitude, longitude) {
     if (latitude !== null && longitude !== null) {
-        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude;
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuan;
         // var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
         // updateListView(data);
     }

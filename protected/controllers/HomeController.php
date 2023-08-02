@@ -83,7 +83,9 @@ class HomeController extends Controller
 		$model->tujuan = isset($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
-			// Helper::getInstance()->dump($_POST);
+			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
+				throw new CHttpException(401,'Mohon untuk memilih kursi terlebih dahulu');
+			}
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [
@@ -111,8 +113,14 @@ class HomeController extends Controller
 			}
 		}
 
+		$dataRaw = $model->searchBooking()->getData();
+		if (isset($dataRaw[0]['data'])) {
+			$dataRaw = $dataRaw[0]['data'];
+		}
+
 		$this->render('homeCrew', [
-			'model' => $model
+			'model' => $model,
+			'data_raw' => $dataRaw
 		]);
 	}
 

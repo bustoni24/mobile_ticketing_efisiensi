@@ -7,7 +7,7 @@ $modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data[
 $layoutDeck = $data['data']['layoutDeck'];
 $seatBooked = $data['data']['seatBooked'];
 $listTerdekat = $data['data']['listTitikTerdekat'];
-// Helper::getInstance()->dump($data);
+// Helper::getInstance()->dump($data['data']);
 $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
 ?>
 <div class="col-sm-12">
@@ -298,7 +298,7 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
                             </tr>
                             <tr>
                                 <td>
-                                    <?= CHtml::textField('FormSeat[kursi][]', '', ['readonly'=>true, 'class'=>'seatForm']); ?>
+                                    <?= CHtml::textField('FormSeat[kursi][]', '', ['readonly'=>true, 'class'=>'seatForm','required'=>true]); ?>
                                 </td>
                                 <td>
                                     <?= CHtml::dropDownList('FormSeat[gender][]', '', [
@@ -317,7 +317,7 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
     <div class="container-button-float">
     <div class="row-0">
         <div class="button-float">
-            <button class="float-btn btn-submit" id="beliTiket">
+            <button class="float-btn btn-submit" id="beliTiket" onclick="return confirmSubmitTrip();">
                 Rp &nbsp;<span id="total_price">0</span> &nbsp;| Beli Tiket
             </button>
         </div>
@@ -398,6 +398,13 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
 </div>
 
 <script>
+    function confirmSubmitTrip()
+    {
+        return true;
+        var bookingTujuan = $('#Booking_tujuan').val();
+        /* alert(bookingTujuan);
+        return false; */
+    }
      $(document).on('ready', function() {        
         <?php
         //flashes

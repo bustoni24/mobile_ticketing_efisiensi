@@ -261,8 +261,10 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 
-		if (isset(Yii::app()->session))
+		if (isset(Yii::app()->session)){
+			Yii::app()->session->clear();
             Yii::app()->session->destroy();
+		}
 		Yii::app()->user->logout();
 		
 		$this->redirect(Constant::baseUrl().'/');
@@ -271,8 +273,10 @@ class SiteController extends Controller
 	public function actionLogoutAdmin()
 	{
 
-		if (isset(Yii::app()->session))
+		if (isset(Yii::app()->session)){
+			Yii::app()->session->clear();
             Yii::app()->session->destroy();
+		}
 		Yii::app()->user->logout();
 		
 		$this->redirect(Constant::baseUrl().'/loginadmin');
