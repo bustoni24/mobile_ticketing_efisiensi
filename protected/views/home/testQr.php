@@ -34,8 +34,14 @@
             /* transform: rotate(90deg); */
     }
 
+    .box {
+  width: 200px;
+  aspect-ratio: 1;
+  clip-path: polygon(85.36% 85.36%,14.64% 85.36%,14.64% 14.64%,85.36% 14.64%);
+}
+
     /* Area Fokus */
-   /*  .qr-focus-box {
+    .qr-focus-box {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -44,7 +50,7 @@
         background: rgb(7 7 7 / 80%);
         -webkit-clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
         clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
-    } */
+    }
 
     #qr-result {
         position: absolute;
@@ -65,6 +71,7 @@
                 </div>
             </div>
         </div>
+       
     </div>
     <div id="qr-result"></div>
 
@@ -103,7 +110,10 @@ let opts = {
 const scanner = new Instascan.Scanner(opts);
 // Mengaktifkan kamera dan memulai scanning QR code
 Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 0) {
+    console.log(cameras.length);
+    if (cameras.length > 1) {
+        scanner.start(cameras[1]);
+    }else if (cameras.length > 0) {
         scanner.start(cameras[0]); // Gunakan kamera pertama yang ditemukan
     } else {
         console.error('Kamera tidak ditemukan.');
@@ -117,24 +127,35 @@ scanner.addListener('scan', function (content) {
     doExecScannerResult(content);
 });
 
-function doExecScannerResult(value) {
-    $.ajax({
-        url: "<?= Constant::baseUrl().'/booking/scannerResult' ?>",
-        type: 'POST',
-        data: {id:value},
-        dataType: 'JSON',
-        success: function(data) {
-            if (data.success && typeof data.data !== "undefined") {
-                location.href = "<?= Constant::baseUrl() . '/home/qrResult?data=' ?>"+btoa(JSON.stringify(data.data));
-            } else {
-                var message = (typeof data.message !== "undefined") ? data.message : JSON.stringify(data);
-                swal.fire(message, '', 'error');
-            }
+function doExecScannerResult(result)
+{
+    scanner.stop();
+}
+
+function startingScan() {
+    Instascan.Camera.getCameras().then(cameras => 
+    {
+        if(cameras.length > 0){
+            scanner.start(cameras[1]);
+        } else {
+            console.error("Please enable Camera!");
+        }
+    });
+}
+function stoppingScan() {
+    Instascan.Camera.getCameras().then(cameras => 
+    {
+        if(cameras.length > 1){
+            scanner.stop(cameras[1]);
+        } else if(cameras.length > 0) {
+            scanner.stop(cameras[1]);
+        } else {
+            console.error("Please enable Camera!");
         }
     });
 }
 
-var existing = true;
+var existing = false;
 function switchingCamera() {
     Instascan.Camera.getCameras().then(cameras => 
     {

@@ -82,6 +82,19 @@ class HomeController extends Controller
 		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
 		$model->tujuan = isset($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
+		//cari penugasan
+		$penugasan = ApiHelper::getInstance()->callUrl([
+			'url' => 'apiMobile/penugasanCrew',
+			'parameter' => [
+				'method' => 'POST',
+				'postfields' => [
+					'startdate' => $model->startdate,
+					'user_id' => Yii::app()->user->id,
+					'role' => Yii::app()->user->role
+					]
+			]
+		]);
+
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
 				throw new CHttpException(401,'Mohon untuk memilih kursi terlebih dahulu');
@@ -113,14 +126,9 @@ class HomeController extends Controller
 			}
 		}
 
-		$dataRaw = $model->searchBooking()->getData();
-		if (isset($dataRaw[0]['data'])) {
-			$dataRaw = $dataRaw[0]['data'];
-		}
-
 		$this->render('homeCrew', [
 			'model' => $model,
-			'data_raw' => $dataRaw
+			'penugasan' => $penugasan
 		]);
 	}
 
@@ -203,46 +211,67 @@ class HomeController extends Controller
 				]
 			]);
 			if (isset($res['data']) && !empty($res['data'])) {
+				ksort($res['data']);
 				$result['html'] = '<div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">';
 				$i = 0;
 				foreach ($res['data'] as $d) {
 					$result['html'] .= '
-						<div class="panel">
-						<a class="panel-heading d-flex align-space-between" role="tab" id="headingPanel'. $d['id'] .'" data-toggle="collapse" data-parent="#accordion" href="#collapsPanel'. $d['id'] .'" aria-expanded="true" aria-controls="collapsPanel'. $d['id'] .'">
-							<table class="table border-none mb-0">
-							<tr>
-								<td><h4 class="panel-title">Armada ke '. $d['armada_ke'] .'</h4></td>
-								<td><h4 class="panel-title">'. $d['jam'] .'</h4></td>
-							</tr>
-							</table>
-						</a>
-						<div id="collapsPanel'. $d['id'] .'" class="panel-collapse collapse '. ($i == 0 ? 'in' : '') .'" role="tabpanel" aria-labelledby="headingPanel'. $d['id'] .'">
-							<div class="panel-body">';
-							foreach ($d['data'] as $d_) {
-								$result['html'] .= '<div class="card-booking">
-									<div class="x_title grey-dark mb-0 border-all">
-										<table class="w-100">
-											<tr class="va-baseline">
-												<td class="col-md-8">
-													<h5 class="mt-5 mb-5">'. $d_['trip'] .'</h5>
-												</td>
-												<td class="col-md-4">
-													<h5 class="mt-5 mb-5">'. $d_['tarif'] .'</h5>
-												</td>
-											</tr>
+					<div class="panel">
+					<a class="panel-heading d-flex align-space-between" role="tab" id="headingPanel'. $d['id'] .'" data-toggle="collapse" data-parent="#accordion" href="#collapsPanel'. $d['id'] .'" aria-expanded="true" aria-controls="collapsPanel'. $d['id'] .'">
+						<table class="table border-none mb-0">
+						<tr>
+							<td><h4 class="panel-title color-primary">Keberangkatan '. $d['armada_ke'] .' ('. $d['jam'] .')</h4></td>
+							<td style="text-align:right;"><h5 class="m-0">'. $d['no_lambung'] .'</h5></td>
+						</tr>
+						</table>
+					</a>
+					<div id="collapsPanel'. $d['id'] .'" class="panel-collapse collapse '. ($i == 0 ? 'in' : '') .'" role="tabpanel" aria-labelledby="headingPanel'. $d['id'] .'">
+						<div class="panel-body">';
+						$result['html'] .= '<div class="accordion" id="subaccordion'.$d['id'].'" role="tablist" aria-multiselectable="true">';
+						$ii = 0;
+						foreach ($d['data'] as $jam => $dat) {
+							$result['html'] .= '
+								<div class="panel">
+									<a class="panel-heading d-flex align-space-between" role="tab" id="subHeadingPanel'. $d['id'].$ii .'" data-toggle="collapse" data-parent="#subaccordion'.$d['id'].'" href="#subCollapsPanel'. $d['id'].$ii .'" aria-expanded="true" aria-controls="subCollapsPanel'. $d['id'].$ii .'">
+										<table class="table border-none mb-0">
+										<tr>
+											<td><h4 class="panel-title">Armada Utama</h4></td>
+										</tr>
 										</table>
-										<div class="clearfix"></div>
-									</div>
+									</a>
+									<div id="subCollapsPanel'. $d['id'].$ii .'" class="panel-collapse collapse '. ($ii == 0 ? 'in' : '') .'" role="tabpanel" aria-labelledby="subHeadingPanel'. $d['id'].$ii .'">
+										<div class="panel-body">';
+								foreach ($dat as $d_) {
+									$result['html'] .= '<div class="card-booking">
+										<div class="x_title grey-dark mb-0 border-all">
+											<table class="w-100">
+												<tr class="va-baseline">
+													<td class="col-md-8">
+														<h5 class="mt-5 mb-5">'. $d_['trip'] .'</h5>
+													</td>
+													<td class="col-md-4">
+														<h5 class="mt-5 mb-5">'. $d_['tarif'] .'</h5>
+													</td>
+												</tr>
+											</table>
+											<div class="clearfix"></div>
+										</div>
 
-									<div class="content-card">
-										<span class="btn btn-info card-trip" data-route_id="'. $d_['route_id'] .'" data-armada_ke="'. $d['armada_ke'] .'">Beli Tiket</span>
+										<div class="content-card">
+											<span class="btn btn-info card-trip" data-route_id="'. $d_['route_id'] .'" data-armada_ke="'. $d['armada_ke'] .'">Beli Tiket</span>
+										</div>
+									</div>';
+								}
+								$result['html'] .= '</div>
 									</div>
 								</div>';
-							}
-						$result['html'] .= '</div>
+							$ii++;
+						}
+					$result['html'] .= '</div>
 						</div>
-						</div>';
-						$i++;
+					</div>
+					</div>';
+					$i++;
 				}
 				$result['html'] .= '</div>';
 			}
@@ -295,6 +324,7 @@ class HomeController extends Controller
 		$data = base64_decode($_GET['data']);
 		$data = json_decode($data, true);
 		if (isset($_POST['Booking']['kode_booking'])) {
+			// Helper::getInstance()->dump($_POST);
 			$res = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/confirmBooking',
 				'parameter' => [
@@ -302,6 +332,7 @@ class HomeController extends Controller
 					'postfields' => [
 						'booking_id' => $data['booking_id'],
 						'user_id' => Yii::app()->user->id,
+						'status' => isset($_POST['turun']) ? Constant::STATUS_PENUMPANG_TURUN : Constant::STATUS_PENUMPANG_NAIK,
 						'role' => Yii::app()->user->role,
 						'postArray' => $_POST['Booking']
 					]
@@ -313,6 +344,7 @@ class HomeController extends Controller
 			}
 			Yii::app()->user->setFlash('success', 'Konfirmasi Booking berhasil');
 			$this->redirect(array('index'));
+			// $this->redirect(Constant::baseUrl() . '/home/homeCrew?startdate=' . $data['tanggal']);
 		}
 		// Helper::getInstance()->dump($data);
 		return $this->render('qrResult', [
@@ -462,5 +494,10 @@ class HomeController extends Controller
 		return $this->render('topUpSaldo', [
 			'post' => $post
 		]);
+	}
+
+	public function actionTestQr()
+	{
+		return $this->render('testQr');
 	}
 }

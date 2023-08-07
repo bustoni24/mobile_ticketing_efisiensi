@@ -459,6 +459,11 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         left: 70%;
     }
 
+    .booked-girl {
+        z-index: 0;
+        background-image: url('<?= Constant::iconSeat("temporary") ?>');
+    }
+
     .text-checkmark{
         position:absolute;
         top: 70%;
@@ -579,6 +584,12 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         border-radius: 20px;
         padding: 10px 20px;
     }
+    .mb-15{
+        margin-bottom: 15px;
+    }
+    .border-none {
+        border: none;
+    }
     </style>
 </head>
   <body class="nav-md">
@@ -619,7 +630,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
                     <div class="d-flex align-items-baseline">
                     <span>Saldo: </span>
                     </div>
-                    <div class="d-flex align-items-baseline">
+                    <div class="d-flex align-items-baseline mb-15">
                         <span>Rp </span><span id="topSaldo"> <?= (isset(Yii::app()->user->saldo) && !empty(Yii::app()->user->saldo) ? Helper::getInstance()->getRupiah(Yii::app()->user->saldo) : '0' ); ?></span><span>,-</span> &nbsp;&nbsp;&nbsp;<a href="<?= Constant::baseUrl().'/home/topUpSaldo'; ?>" class="btn btn-success">Tambah Saldo</a>
                     </div>
                 </div>

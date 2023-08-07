@@ -1,12 +1,10 @@
 <?php 
-$post = $data['data']['post']['post'];
-$routeId = $data['data']['post']['routeId'];
-$modelTrip = (object)$data['data']['modelTrip'];
-$modelTripAgen = (object)$data['data']['modelTripAgen'];
-$modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data['data']['modelBookingExist'] : [];
-$layoutDeck = $data['data']['layoutDeck'];
-$seatBooked = $data['data']['seatBooked'];
-$listTerdekat = $data['data']['listTitikTerdekat'];
+$post = isset($data['data']['post']['post']) ? $data['data']['post']['post'] : [];
+$modelTrip = isset($data['data']['modelTrip']) ? (object)$data['data']['modelTrip'] : [];
+$modelTripAgen = isset($data['data']['modelTripAgen']) ? (object)$data['data']['modelTripAgen'] : [];
+$layoutDeck = isset($data['data']['layoutDeck']) ? $data['data']['layoutDeck'] : [];
+$seatBooked = isset($data['data']['seatBooked']) ? $data['data']['seatBooked'] : [];
+$subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data']['subTripSelected'] : [];
 // Helper::getInstance()->dump($data['data']);
 $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
 ?>
@@ -18,7 +16,7 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
     </div>
 </div>
 
-<div class="card-booking card-book">
+<div class="card-booking card-book border-none">
     <div class="x_title grey-dark mb-0">
         <h4><?= $post['group']. ' - ' . $post['kelas']; ?></h4>
         <h4><?= $modelTrip->boarding_kota_nama . ' - ' . $modelTrip->destination_kota_nama . ', ' . $this->getDay($post['startdate']) . ', ' . $this->IndonesiaTgl($post['startdate']) . ' ' . (!$isCrew ? $post['jam'] : ''); ?></h4>
@@ -65,7 +63,7 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
                                                             <div class="checkbox">
                                                             <label class="checkbox-wrapper">
                                                                 '. CHtml::checkBox('SeatBus[seat][99]', (isset($post['seat_bus'][99]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$k, 'data-index' => 99, 'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'], 'disabled' => isset($seatBooked[$k]) ] )
-                                                                .' <span class="checkmark '. (isset($seatBooked[$k]) ? 'booked' : '') .'" 
+                                                                .' <span class="checkmark '. (isset($seatBooked[$k]['jk']) ? $seatBooked[$k]['jk'] : '') .'" 
                                                                 data-passengerId="'.$indexed.'"
                                                                 data-passengerData=\''. $subIndexed .'\'
                                                                 data-seat="'. $seatValue .'"
@@ -103,8 +101,8 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
                                                     echo '<td>
                                                         <div class="checkbox">
                                                             <label class="checkbox-wrapper">
-                                                                '. CHtml::checkBox('SeatBus[seat]['. $i .']', (isset($post['seat_bus'][$i]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$seat_, 'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'],'data-index' => $i, 'disabled' => isset($seatBooked[$seat_]) ] )
-                                                                .' <span class="checkmark '. (isset($seatBooked[$seat_]) ? 'booked' : '') .'" 
+                                                                '. CHtml::checkBox('SeatBus[seat]['. $i .']', (isset($post['seat_bus'][$i]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$seat_, 'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'],'data-index' => $seat_, 'disabled' => isset($seatBooked[$seat_]) ] )
+                                                                .' <span class="checkmark '. (isset($seatBooked[$seat_]['jk']) ? $seatBooked[$seat_]['jk'] : '') .'" 
                                                                 data-passengerId="'.$indexed.'"
                                                                 data-passengerData=\''. $subIndexed .'\'
                                                                 data-seat="'. $seatValue .'"
@@ -143,8 +141,8 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
                                                             echo '<td>
                                                             <div class="checkbox">
                                                                 <label class="checkbox-wrapper">
-                                                                '. CHtml::checkBox('SeatBus[seat]['. $i .']', (isset($post['seat_bus'][$i]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$seat_, 'data-tarif'=>$post['tarif'],'data-tlActive'=>$post['seatTl_active'],'data-index' => $i, 'disabled' => isset($seatBooked[$seat_]) ] )
-                                                                .' <span class="checkmark '. (isset($seatBooked[$seat_]) ? 'booked' : '') .'" 
+                                                                '. CHtml::checkBox('SeatBus[seat]['. $i .']', (isset($post['seat_bus'][$i]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$seat_, 'data-tarif'=>$post['tarif'],'data-tlActive'=>$post['seatTl_active'],'data-index' => $seat_, 'disabled' => isset($seatBooked[$seat_]) ] )
+                                                                .' <span class="checkmark '. (isset($seatBooked[$seat_]['jk']) ? $seatBooked[$seat_]['jk'] : '') .'" 
                                                                 data-passengerId="'.$indexed.'"
                                                                 data-passengerData=\''. $subIndexed .'\'
                                                                 data-seat="'. $seatValue .'"
@@ -188,8 +186,8 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
                                                     echo '<td style="width:22.5%">
                                                         <div class="checkbox">
                                                             <label class="checkbox-wrapper">
-                                                                '. CHtml::checkBox('SeatBus[seat]['. $i .']', (isset($post['seat_bus'][$i]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$seat_,'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'],'data-index' => $i, 'disabled' => isset($seatBooked[$seat_]) ] )
-                                                                .' <span class="checkmark '. (isset($seatBooked[$seat_]) ? 'booked' : '') .'" 
+                                                                '. CHtml::checkBox('SeatBus[seat]['. $i .']', (isset($post['seat_bus'][$i]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$seat_,'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'],'data-index' => $seat_, 'disabled' => isset($seatBooked[$seat_]) ] )
+                                                                .' <span class="checkmark '. (isset($seatBooked[$seat_]['jk']) ? $seatBooked[$seat_]['jk'] : '') .'" 
                                                                 data-passengerId="'.$indexed.'"
                                                                 data-passengerData=\''. $subIndexed .'\'
                                                                 data-seat="'. $seatValue .'"
@@ -224,210 +222,5 @@ $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
             </div>
         </div>
     </div>
-    
-    <?php $form=$this->beginWidget('CActiveForm', array(
-        'id'=>'pembelian-tiket-form',
-        // Please note: When you enable ajax validation, make sure the corresponding
-        // controller action is handling ajax validation correctly.
-        // There is a call to performAjaxValidation() commented in generated controller code.
-        // See class documentation of CActiveForm for details on this.,
-        'enableAjaxValidation'=>false,
-        'htmlOptions' => ['onsubmit'=>'return onSubmitForm(event)']
-    )); 
-    ?>
-
-<?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
-
-    <div class="row height-75 d-relative">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <label>Titik Terdekat</label>
-            <?= CHtml::hiddenField('BookingTrip[titik_id]', (isset($listTerdekat['titik_id']) ? $listTerdekat['titik_id'] : '')) ?>
-            <?= CHtml::textField('BookingTrip[titik_keberangkatan]',(isset($listTerdekat['titik_keberangkatan']) ? $listTerdekat['titik_keberangkatan'] : ''),['placeholder' => 'Titik Terdekat', 'readonly' => isset($listTerdekat['titik_keberangkatan'])]); ?>
-            <span><?= 'Alamat: ' . (isset($listTerdekat['alamat']) ? $listTerdekat['alamat'] : '') ?></span>
-        </div>
-    </div>
-
-    <div class="row height-75 d-relative">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <label>Jam Keberangkatan Terdekat</label>
-            <?= CHtml::textField('BookingTrip[jam_keberangkatan]',(isset($listTerdekat['jam']) ? $listTerdekat['jam'] : ''),['placeholder' => 'Jam Keberangkatan Terdekat', 'readonly' => isset($listTerdekat['jam'])]); ?>
-        </div>
-    </div>
-
-    <div class="row height-75 d-relative">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <?= CHtml::textField('BookingTrip[daerah_titik_keberangkatan]','',['autocomplete' => 'off', 'placeholder' => 'Ketik Nama Dearah Keberangkatan','required'=>true]); ?>
-        </div>
-    </div>
-
-<?php endif; ?>
-
-<?php if (in_array(Yii::app()->user->role, ['Agen', 'Cabin Crew'])): ?>
-    <div class="layout-form-deck" id="layoutPenumpang">
-        <h5>DATA PENUMPANG</h5>
-        <p>Masukan data penumpang (Nama dan No Telp) sebagai data manifest</p>
-
-        <?= CHtml::hiddenField('BookingTrip[total_harga]', ''); ?>
-        <?= CHtml::hiddenField('BookingTrip[route_id]', (isset($listTerdekat['route_id']) ? $listTerdekat['route_id'] : $modelTripAgen->route_id)); ?>
-        <?= CHtml::hiddenField('BookingTrip[armada_ke]', $post['armada_ke']); ?>
-        <?= CHtml::hiddenField('BookingTrip[startdate]', $post['startdate']); ?>
-        <?= CHtml::hiddenField('BookingTrip[penjadwalan_id]', $post['penjadwalan_id']); ?>
-        <?= CHtml::hiddenField('BookingTrip[latitude]', (isset($data['data']['latitude']) ? $data['data']['latitude'] : '')) ?>
-        <?= CHtml::hiddenField('BookingTrip[longitude]', (isset($data['data']['longitude']) ? $data['data']['longitude'] : '')) ?>
-        <?= CHtml::hiddenField('BookingTrip[jarak]', (isset($listTerdekat['distance']) ? $listTerdekat['distance'] : '')); ?>
-        <table class="table">
-            <tbody id="table-form-passenger">
-                <tr id="form-passenger0" class="form-passenger">
-                    <td>
-                        <table class="table border-none">
-                            <tr>
-                                <th>Nama</th>
-                                <th>No Telp</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <?= CHtml::textField('FormSeat[name][]', '', ['placeholder'=>'Penumpang' ,'autocomplete'=>'off', 'required' => true]); ?>
-                                </td>
-                                <td>
-                                    <?= CHtml::textField('FormSeat[telp][]', '', ['placeholder'=>'Telepon' ,'autocomplete'=>'off', 'required' => true]); ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Kursi</th>
-                                <th>Gender</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <?= CHtml::textField('FormSeat[kursi][]', '', ['readonly'=>true, 'class'=>'seatForm','required'=>true]); ?>
-                                </td>
-                                <td>
-                                    <?= CHtml::dropDownList('FormSeat[gender][]', '', [
-                                        'L' => 'Pria',
-                                        'P' => 'Wanita'
-                                    ]); ?>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="container-button-float">
-    <div class="row-0">
-        <div class="button-float">
-            <button class="float-btn btn-submit" id="beliTiket" onclick="return confirmSubmitTrip();">
-                Rp &nbsp;<span id="total_price">0</span> &nbsp;| Beli Tiket
-            </button>
-        </div>
-    </div>
-    </div>
-    <?php endif; ?>
-
-    <?php if (in_array(Yii::app()->user->role, ['Checker'])): ?>
-    <div class="row" style="overflow: auto;">
-        <table class="table">
-            <tr>
-                <th>Kode Booking</th>
-                <th>Nama Penumpang</th>
-                <th>Nomor HP</th>
-                <th>Jenis Kelamin</th>
-                <th>Nomor Kursi</th>
-            </tr>
-            <?php 
-            foreach ($data['data']['seatBooked'] as $seatBooked) {
-                if (!isset($seatBooked['id']))
-                    continue;
-
-                $dataSeat = $seatBooked[$seatBooked['id']];
-                ?>
-                <tr>
-                    <td><?= $dataSeat['kode_booking']; ?></td>
-                    <td><?= $dataSeat['nama']; ?></td>
-                    <td><?= $dataSeat['no_hp']; ?></td>
-                    <td><?= $dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita'; ?></td>
-                    <td><?= $dataSeat['no_kursi']; ?></td>
-                </tr>
-                <?php
-            }
-            ?>
-        </table>
-    </div>
-
-    <div class="row">
-        <table class="table table-bordered">
-            <tr>
-                <th width="60%">Apakah jumlah dan data penumpang sudah sesuai?</th>
-                <td width="40%">
-                    <?= CHtml::radioButtonList("Booking[jumlah_sesuai]", "", [
-                        '0' => 'Tidak',
-                        '1' => 'Ya'
-                    ], [
-                        'separator' => "&nbsp;&nbsp;",
-                        'required' => true
-                    ]) ?>
-                </td>
-            </tr>
-            <tr>
-                <th width="60%">Apakah data crew dan perjalanan sudah sesuai?</th>
-                <td width="40%">
-                    <?= CHtml::radioButtonList("Booking[crew_sesuai]", "", [
-                        '0' => 'Tidak',
-                        '1' => 'Ya'
-                    ], [
-                        'separator' => "&nbsp;&nbsp;"
-                    ]) ?>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="container-button-float">
-        <div class="row-0">
-            <div class="float-div">
-                <button class="btn btn-warning">Sesuai</button>
-                <button type="button" class="btn btn-danger" id="tolak">Tidak Sesuai</button>
-            </div>
-        </div>
-    </div>
-    <?php endif; ?>
-
-    <?php $this->endWidget(); ?>
 
 </div>
-
-<script>
-    function confirmSubmitTrip()
-    {
-        return true;
-        var bookingTujuan = $('#Booking_tujuan').val();
-        /* alert(bookingTujuan);
-        return false; */
-    }
-     $(document).on('ready', function() {        
-        <?php
-        //flashes
-        foreach(Yii::app()->user->getFlashes() as $key => $message){
-            ?>
-            console.log('<?= $key ?>');
-            Swal.fire({
-                    title: '<?= $message ?>',
-                    icon: '<?= $key ?>',
-                    showDenyButton: '<?= ($key == 'success') ? true : false ?>',
-                    showCancelButton: false,
-                    confirmButtonText: 'OK',
-                    denyButtonText: `Cetak eTicket`,
-                    denyButtonColor: '#F58220',
-            }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isDenied) {
-                        window.open("<?= Constant::baseUrl().'/booking/itinerary?id=' . (isset($modelBookingExist->id) ? $modelBookingExist->id : '')  ?>",'_blank');
-                    }
-            });
-
-            <?php
-        }
-    ?>
-    });
-</script>

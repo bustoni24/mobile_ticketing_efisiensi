@@ -168,7 +168,7 @@ $("body").on('click', 'span.booked, span.text-checkmark', function(){
     var seat = $(this).attr('data-seat');
     let startdate = $(this).attr('data-startdate');
     let penjadwalan_id = $(this).attr('data-penjadwalan_id');
-    let tujuan = $(this).attr('data-tujuan');
+    // let tujuan = $(this).attr('data-tujuan');
     
     if (typeof dataPassenger.nama !== 'undefined' && dataPassenger.nama !== "" && dataPassenger.nama !== null) {
         Swal.fire({
@@ -183,7 +183,7 @@ $("body").on('click', 'span.booked, span.text-checkmark', function(){
                             <tr>
                                 <td>Tujuan</td>
                                 <td style='width:10px;'>:</td>
-                                <td>${tujuan}</td>
+                                <td>${dataPassenger.kota_tujuan}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -16,8 +16,7 @@
         // controller action is handling ajax validation correctly.
         // There is a call to performAjaxValidation() commented in generated controller code.
         // See class documentation of CActiveForm for details on this.,
-        'enableAjaxValidation'=>false,
-        'htmlOptions' => ['onsubmit'=>'return onSubmitForm(event)']
+        'enableAjaxValidation'=>false
     )); 
     ?>
 
@@ -56,6 +55,7 @@
     <div class="row-0">
         <div class="float-div">
             <button class="btn btn-warning">Konfirmasi</button>
+            <input class="btn btn-success" value="Turun" name="turun" type="submit"/>
             <button type="button" class="btn btn-danger" id="tolak">Tolak</button>
         </div>
     </div>
@@ -65,7 +65,7 @@
 
 
 <script>
-    function onSubmitForm(ev) {
+    /* function onSubmitForm(ev) {
         Swal.fire({
                     title: 'Konfirmasi Booking',
                     icon: 'info',
@@ -74,14 +74,13 @@
                     confirmButtonText: 'OK',
                     denyButtonText: `Cancel`,
             }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         return true;
                     } else if (result.isDenied) {
                         return false;
                     }
             });
-    }
+    } */
 
     $('#tolak').on('click', function(){
         let booking_id = "<?= $data['booking_id']; ?>";

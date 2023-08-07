@@ -130,7 +130,9 @@ class BookingController extends Controller
         }
 
         $_POST = array_merge([
-            'startdate' => date('Y-m-d')
+            'startdate' => date('Y-m-d'),
+            'user_id' => Yii::app()->user->id,
+            'role' => Yii::app()->user->role
         ], $_POST);
 
         $scannerResult = ApiHelper::getInstance()->callUrl([
@@ -213,6 +215,18 @@ class BookingController extends Controller
             doPrintResult($reject['message']);
         }
         doPrintResult($result->success());
+    }
+
+    public function actionCheckAvailableBooking()
+    {
+        $res = BookingHelper::getInstance()->checkAvailableBooking($_POST);
+        doPrintResult($res);
+    }
+
+    public function actionCheckBeforeAfterSeat()
+    {
+        $res = BookingHelper::getInstance()->checkBeforeAfterSeat($_POST);
+        doPrintResult($res);
     }
 
     public function actionItinerary()

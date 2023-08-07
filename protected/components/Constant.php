@@ -22,6 +22,21 @@ class Constant {
     const LEVEL_AKSES_DRIVER = 6;
     const LEVEL_AKSES_KEUANGAN = 7;
 
+    const BOOKING_CONFIRM = 1;
+    const BOOKING_REJECT = 2;
+    const BOOKING_OUT = 3;
+    const BOOKING_RESCHEDULING = 4;
+
+    const TRIP_TIDAK_SESUAI = 2;
+    const TRIP_SESUAI = 1;
+
+    const STATUS_PENUMPANG_BOOKED = 0;
+    const STATUS_PENUMPANG_NAIK = 1;
+    const STATUS_PENUMPANG_TURUN = 2;
+    const STATUS_PENUMPANG_RESCHEDULING = 3;
+    const STATUS_PENUMPANG_REFUND = 4;
+    const STATUS_PENUMPANG_REJECT = 5;
+
     public static function iconSeat($type = "") {
         switch ($type) {
             case 'selected':

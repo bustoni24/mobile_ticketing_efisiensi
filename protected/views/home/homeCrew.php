@@ -20,7 +20,7 @@
 
       <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
-              <?= CHtml::dropDownList('Booking[tujuan]', $model->tujuan, Armada::object()->getTujuan($_GET), ['prompt'=>'Pilih Tujuan']); ?>
+              <?= CHtml::dropDownList('Booking[tujuan]', $model->tujuan, Armada::object()->getTujuan($_GET), ['prompt'=>'Pilih Tujuan','required'=>true]); ?>
         </div>
       </div>
       <div class="row d-relative">
@@ -38,14 +38,20 @@
         'itemView'=>'_view_list_booking',
         'emptyText' => 'Tidak ditemukan penugasan',
     )); ?>
+
+    <?php 
+    $data = isset($model->searchBooking()->getData()[0]) ? $model->searchBooking()->getData()[0] : [];
+    echo $this->renderPartial('_bottom_field', array(
+        'data' => $data
+        ), false); ?>
 </div>
 
 <script>
     var latitude = "<?= isset($_GET['latitude']) ? $_GET['latitude'] : null ?>";
     var longitude = "<?= isset($_GET['longitude']) ? $_GET['longitude'] : null ?>";
-    var tujuan = "<?= isset($data_raw['subTripSelected']['id']) ? $data_raw['subTripSelected']['id'] : null ?>";
+    var tujuan = "<?= isset($penugasan['data']['tujuan_id']) ? $penugasan['data']['tujuan_id'] : null ?>";
     document.addEventListener("DOMContentLoaded", function() {
-        $('select').select2();
+        $('#Booking_tujuan').select2();
 
             if (latitude === 'null' || latitude === null || latitude === "") {
                  // Cek apakah browser mendukung Geolocation API
@@ -125,18 +131,6 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+startdate+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuanId;
     });
 
-   /*  $('#Booking_startdate').on('change', function(){
-        var name = $(this).attr('name');
-        var value = $(this).val();
-        var data = {};
-        data[name] = value;
-        data['latitude'] = latitude;
-        data['longitude'] = longitude;
-        // console.log(data);
-        
-        updateListView(data);
-    }); */
-
     function updateListView(data)
         {
             if (typeof data === "undefined" || data === null || data === "")
@@ -185,7 +179,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         }
         }
 
-    function addFormSeatAction(element)
+    function addFormSeatAction(element, selectedElement = "")
     {
         if (typeof element === "undefined") {
             alert('Terjadi kesalahan');
@@ -200,7 +194,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
             }
         }
 
-        var seatIndex = parseInt(element.attr('data-index')) + 1;
+        var seatIndex = parseInt(element.attr('data-index'));
         var passengerFormId = 'passengerForm' + seatIndex;
         var valSeat = element.val();
 
@@ -231,13 +225,13 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
 
             // $('#harga_kursi').append('<div id="'+ elementID +'" class="row d-flex justify-between"> <p class="mb-0">Nomor Kursi '+ element.val() +'</p> <p class="mb-0 text-bold">Rp. '+harga+'</p></div>');
 
-            if (count <= 0) {
+            if (count <= 0 || $('#form-passenger0').find('input.seatForm').val() === "") {
                 $('#form-passenger0').find('input.seatForm').val(valSeat);
             } else {
                 $('#table-form-passenger').append($addForm);
             }
         } else {
-            if (count > 1) {
+            if (count > 1 && typeof $('#' + passengerFormId).val() !== "undefined") {
                 $('#' + passengerFormId).remove();
             } else {
                 $('#form-passenger0').find('input[type="text"]').val('');
@@ -310,6 +304,18 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                                     <input type="text" id="no_kursi" class="form-control" placeholder="- Ketik Nomor Kursi -" value="${dataPassenger.no_kursi}">
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Status Penumpang</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select id="status" class="form-control">
+                                        <option value="">- Pilih Status -</option>
+                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_NAIK ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_NAIK ?>">Naik</option>
+                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_TURUN ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_TURUN ?>">Turun</option>
+                                    </select>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -317,7 +323,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                 icon: 'info',
                 showDenyButton: false,
                 showCancelButton: true,
-                confirmButtonText: 'Konfirmasi',
+                confirmButtonText: 'Ubah Data',
                 confirmButtonColor: '#F58220',
                 focusConfirm: false,
                 preConfirm: () => {
@@ -325,6 +331,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     const no_hp = Swal.getPopup().querySelector('#no_hp').value;
                     const no_kursi = Swal.getPopup().querySelector('#no_kursi').value;
                     const kode_booking = Swal.getPopup().querySelector('#kode_booking').value;
+                    const status = Swal.getPopup().querySelector('#status').value;
                     if (!nama_penumpang) {
                         Swal.showValidationMessage(`Silahkan ketik nama penumpang`)
                     }
@@ -334,11 +341,18 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     if (!no_kursi) {
                         Swal.showValidationMessage(`Silahkan ketik nama penumpang`)
                     }
-                    return { kode_booking: kode_booking, nama_penumpang: nama_penumpang, no_hp: no_hp, no_kursi: no_kursi }
+                    if (!status) {
+                        Swal.showValidationMessage(`Silahkan pilih status penumpang`)
+                    }
+                    return { kode_booking: kode_booking, nama_penumpang: nama_penumpang, no_hp: no_hp, no_kursi: no_kursi, status: status }
                 }
             }).then((result) => {
             if (result.isConfirmed) {
-                    var data = {kode_booking: result.value.kode_booking, nama_penumpang: result.value.nama_penumpang, no_hp: result.value.no_hp, no_kursi: result.value.no_kursi, penjadwalan_id: penjadwalan_id};
+                    var data = {kode_booking: result.value.kode_booking, nama_penumpang: result.value.nama_penumpang, no_hp: result.value.no_hp, no_kursi: result.value.no_kursi, penjadwalan_id: penjadwalan_id, status: result.value.status, latitude:"<?= isset($_GET['latitude']) ? $_GET['latitude'] : '' ?>", longitude:"<?= isset($_GET['longitude']) ? $_GET['longitude'] : '' ?>"};
+
+                    if (data.status === "<?= Constant::STATUS_PENUMPANG_REJECT ?>") {
+                        return false;
+                    }
                     
                     $.ajax({
                         type : "POST",
@@ -357,6 +371,18 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                                     });
                             } else {
                                 console.log(data);
+                                var message = typeof data.message !== "undefined" ? data.message : 'Data gagal konfirmasi';
+                                Swal.fire({
+                                    html: message,
+                                    icon: 'error',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK'
+                                    });
+                                    //action reload
+                                    /* setTimeout(function() {
+                                        location.reload();
+                                    }, 1500); */
                             }
                         },
                         error : function(data){

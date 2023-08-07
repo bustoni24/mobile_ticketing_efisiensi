@@ -2,14 +2,57 @@
 
 class BookingHelper {
 
-    public function scannerResult($post = [])
+    public function checkAvailableBooking($post = [])
     {
         $result = new Returner;
-        if (!isset($post['id'])) 
-            return $result->dump('invalid ID');
+        if (!isset($post['trip_id'],$post['startdate'],$post['armada_ke'],$post['seat'])) {
+            return $result->dump('invalid parameter');
+        }
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/checkAvailableBooking',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        $html = "";
+        $seatBooked = [];
+        if (isset($check['data'])) {
+            $html = "<table class='table'><tbody>";
+            foreach ($check['data'] as $key => $value) {
+                $html .= "<tr>
+                    <td>Kursi nomor $key sudah terisi</td>
+                    <td>Kode booking: $value</td>
+                </tr>";
 
-        //search data booking
-        
+                $seatBooked[] = $key;
+            }
+            $html .= "<tr>
+                    <td colspan='2' class='red'>Mohon untuk mengganti nomor kursi</td>
+                    </tr>";
+            $html .= "</tbody></table>";
+
+            $check['data'] = $html;
+            $check['seat_booked'] = $seatBooked;
+            return $check;
+        }
+        return $check;
+    }
+
+    public function checkBeforeAfterSeat($post = [])
+    {
+        $result = new Returner;
+        if (!isset($post['trip_id'],$post['startdate'],$post['armada_ke'],$post['seatCount'])) {
+            return $result->dump('invalid parameter');
+        }
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/checkBeforeAfterSeat',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
     }
 
     private static $instance;

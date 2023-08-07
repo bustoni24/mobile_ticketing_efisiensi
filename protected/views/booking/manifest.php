@@ -37,7 +37,7 @@
 			<?php 
 			if (isset($post['data'])):
 				foreach ($post['data'] as $key => $postData) {
-					echo '<h4 class="header">Armada ke '. $key .'</h4>';
+					echo '<h4 class="header">Keberangkatan '. $key .' '. (isset($postData['no_lambung']) ? ', Nomor Lambung: ' . $postData['no_lambung'] : '') .'</h4>';
 					?>
 					<table class="table table-bordered">
 						<?php if (isset($postData['kuota'])): ?>
@@ -70,6 +70,7 @@
 											<th>Harga</th>
 											<th>No Kursi</th>
 											<th>Terjual Oleh</th>
+											<th>Status</th>
 											<!-- <th>Lunas?</th>
 											<th>Discount</th> -->
 										</tr>
@@ -84,7 +85,14 @@
 												<td><?= $manifest['harga'] > 0 ? Helper::getInstance()->getRupiah($manifest['harga']) : $manifest['harga']; ?></td>
 												<td><?= $manifest['kursi'] ?></td>
 												<td><?= $manifest['agen_nama'] ?></td>
-												
+												<td><?= ($manifest['status'] == Constant::STATUS_PENUMPANG_TURUN ? 'Konfirmasi turun' : 
+													($manifest['status'] == Constant::STATUS_PENUMPANG_RESCHEDULING ? 'Reschedule' : 
+													($manifest['status'] == Constant::STATUS_PENUMPANG_REJECT ? 'Ditolak' : 
+													($manifest['status'] == Constant::STATUS_PENUMPANG_REFUND ? 'Refund' : 
+														($manifest['status'] == Constant::STATUS_PENUMPANG_NAIK ? 'Konfirmasi Naik' : 'Pemesanan Baru')
+													)	
+													)
+													)) ?></td>
 											</tr>
 											<?php
 										} ?>

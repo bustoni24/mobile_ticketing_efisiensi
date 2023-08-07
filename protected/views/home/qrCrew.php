@@ -35,7 +35,7 @@
     }
 
     /* Area Fokus */
-    /* .qr-focus-box {
+    .qr-focus-box {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -44,7 +44,7 @@
         background: rgb(7 7 7 / 80%);
         -webkit-clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
         clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
-    } */
+    }
 
     #qr-result {
         position: absolute;
@@ -57,6 +57,14 @@
         <video id="qr-video" playsinline></video>
         <!-- Area Fokus -->
         <div class="qr-focus-box"></div>
+
+        <div class="container-button-float">
+            <div class="row-0">
+                <div class="button-float" style="font-size: 2rem;">
+                <button type="button" class="btn btn-warning switch-camera" onclick="switchingCamera()"><i class="fa fa-refresh"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="qr-result"></div>
 
@@ -95,9 +103,7 @@ let opts = {
 const scanner = new Instascan.Scanner(opts);
 // Mengaktifkan kamera dan memulai scanning QR code
 Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 1) {
-        scanner.start(cameras[1]);
-    }else if (cameras.length > 0) {
+    if (cameras.length > 0) {
         scanner.start(cameras[0]); // Gunakan kamera pertama yang ditemukan
     } else {
         console.error('Kamera tidak ditemukan.');
@@ -124,6 +130,31 @@ function doExecScannerResult(value) {
                 swal.fire(JSON.stringify(data), '', 'error');
             }
         }
+    });
+}
+
+var existing = true;
+function switchingCamera() {
+    Instascan.Camera.getCameras().then(cameras => 
+    {
+        if (!existing) {
+            if(cameras.length > 1) {
+                scanner.stop(cameras[1]);
+            }
+            if(cameras.length > 0){
+                scanner.start(cameras[0]);
+            }
+            existing = true;
+        } else {
+            if(cameras.length > 1) {
+                scanner.start(cameras[1]);
+            }
+            if(cameras.length > 0){
+                scanner.stop(cameras[0]);
+            }
+            existing = false;
+        }
+        console.log(existing);
     });
 }
     </script>
