@@ -102,7 +102,7 @@ class Armada
                 'postfields' => $get
             ]
         ]);
-        // Helper::getInstance()->dump($res['data']);
+        // Helper::getInstance()->dump($res);
         if (isset($res['data'])) {
             $result = $res['data'];
         }

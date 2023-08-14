@@ -55,6 +55,22 @@ class BookingHelper {
         return $check;
     }
 
+    public function deletePengeluaran($post = [])
+    {
+        $result = new Returner;
+        if (!isset($post['id'])) {
+            return $result->dump('invalid parameter');
+        }
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/deletePengeluaran',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
+    }
+
     private static $instance;
 
     private function __construct()

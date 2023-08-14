@@ -106,6 +106,9 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         top: 0;
         height: 90px;
     }
+    .justify-between {
+        justify-content: space-between;
+    }
     .nav-md .container.body .right_cols {
     margin-top: 90px;
     width:100%;
@@ -235,6 +238,9 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         font-style: normal;
     }
     .container-history {
+        overflow-x: auto;
+    }
+    .overflowX {
         overflow-x: auto;
     }
     .successTrx{
@@ -590,6 +596,25 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     .border-none {
         border: none;
     }
+    .p-0 {
+        padding: 0!important;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .text-left {
+        text-align: left;
+    }
+    .justify-end {
+        justify-content: end;
+    }
+    .container-button-float .button-float-left-side {
+        width: 100%;
+        max-width: 500px;
+        float: left;
+        text-align: left;
+        margin-left: 10px;
+    }
     </style>
 </head>
   <body class="nav-md">
@@ -783,7 +808,7 @@ function getUpdateSaldo(userId)
             if (data.success == 1) {
                 $('#topSaldo').html(accounting.formatNumber(data.saldo, 0, "."));
             } else {
-                console.log(data);
+                // console.log(data);
             }
           },
           error : function(xhr, response, error){

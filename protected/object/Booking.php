@@ -49,7 +49,7 @@ class Booking
             ];
         }
 
-        // Helper::getInstance()->dump($data);
+        // Helper::getInstance()->dump($res);
         
 		return new CArrayDataProvider($data, array(
 			'keyField' => 'id',

@@ -55,34 +55,7 @@
 
             if (latitude === 'null' || latitude === null || latitude === "") {
                  // Cek apakah browser mendukung Geolocation API
-                if ("geolocation" in navigator) {
-                    navigator.geolocation.getCurrentPosition(
-                        function(position) {
-                            latitude = position.coords.latitude;
-                            longitude = position.coords.longitude;
-                            // alert('latitude: ' + latitude + ', longitude: ' + longitude);
-                            refreshListBooking(latitude, longitude);
-                        },
-                        function(error) {
-                            switch (error.code) {
-                                case error.PERMISSION_DENIED:
-                                    console.log("Izin akses lokasi ditolak oleh pengguna.");
-                                    break;
-                                case error.POSITION_UNAVAILABLE:
-                                    console.log("Informasi lokasi tidak tersedia.");
-                                    break;
-                                case error.TIMEOUT:
-                                    console.log("Permintaan waktu untuk akses lokasi habis.");
-                                    break;
-                                case error.UNKNOWN_ERROR:
-                                    console.log("Terjadi kesalahan yang tidak diketahui.");
-                                    break;
-                            }
-                        }
-                    );
-                } else {
-                    console.log("Geolocation tidak didukung oleh browser Anda.");
-                }
+                getLatLong();
             }
             <?php
         //flashes
@@ -108,10 +81,43 @@
         }
     ?>
         });
+        
+        
+    function getLatLong()
+    {
+        if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                        // alert('latitude: ' + latitude + ', longitude: ' + longitude);
+                        refreshListBooking(latitude, longitude);
+                    },
+                    function(error) {
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                console.log("Izin akses lokasi ditolak oleh pengguna.");
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                console.log("Informasi lokasi tidak tersedia.");
+                                break;
+                            case error.TIMEOUT:
+                                console.log("Permintaan waktu untuk akses lokasi habis.");
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                console.log("Terjadi kesalahan yang tidak diketahui.");
+                                break;
+                        }
+                    }
+                );
+            } else {
+                console.log("Geolocation tidak didukung oleh browser Anda.");
+            }
+    }
 
 function refreshListBooking(latitude, longitude) {
     if (latitude !== null && longitude !== null) {
-        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuan;
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+$('#Booking_tujuan').val();
         // var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
         // updateListView(data);
     }
@@ -126,9 +132,13 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
 	});
 
     $('#cari').on('click', function(){
-        var startdate = $('#Booking_startdate').val();
+        // var startdate = $('#Booking_startdate').val();
+        // var tujuanId = $('#Booking_tujuan').val();
+        getLatLong();
+
+        /* var startdate = $('#Booking_startdate').val();
         var tujuanId = $('#Booking_tujuan').val();
-        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+startdate+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuanId;
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+startdate+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuanId; */
     });
 
     function updateListView(data)
@@ -396,4 +406,6 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
             console.log(dataPassenger);
         }
     });
+    
+    // setInterval(getLatLong, 5000*60);
 </script>

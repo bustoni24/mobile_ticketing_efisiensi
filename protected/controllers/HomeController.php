@@ -80,7 +80,7 @@ class HomeController extends Controller
 		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
 		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
-		$model->tujuan = isset($_GET['tujuan']) ? $_GET['tujuan'] : null;
+		$model->tujuan = isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
 		//cari penugasan
 		$penugasan = ApiHelper::getInstance()->callUrl([
@@ -94,6 +94,10 @@ class HomeController extends Controller
 					]
 			]
 		]);
+		if (!isset($model->tujuan) && isset($penugasan['data']['tujuan_id']) && !empty($penugasan['data']['tujuan_id']))
+			$model->tujuan = $penugasan['data']['tujuan_id'];
+
+		// Helper::getInstance()->dump($penugasan);
 
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
@@ -117,6 +121,7 @@ class HomeController extends Controller
 					]
 				]
 			]);
+			// Helper::getInstance()->dump($saveTransaction);
 			if ($saveTransaction['success']) {				
 				$last_id_booking = isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : '';
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
@@ -465,13 +470,20 @@ class HomeController extends Controller
 				$image->resize(800, 0);
 				$image->save('uploads/' . $fileName);
 
+				$nominal = str_replace(".", "", $post['nominal']);
+				$bayar = str_replace(".", "", $post['bayar']);
+				$bonus = null;
+				if ($nominal != $bayar)
+					$bonus = 200000;
 				//upload to API
 				$res = ApiHelper::getInstance()->callUrl([
 					'url' => 'apiMobile/topUpSaldo',
 					'parameter' => [
 						'method' => 'POST',
 						'postfields' => [
-							'nominal' => str_replace(".", "", $post['nominal']),
+							'nominal' => $nominal,
+							'bayar' => $bayar,
+							'bonus' => $bonus,
 							'file_name' => $fileName,
 							'url' => SERVER . '/uploads/' . $fileName,
 							'user_id' => Yii::app()->user->id,

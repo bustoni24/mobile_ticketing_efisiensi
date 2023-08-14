@@ -30,6 +30,12 @@
                             <span class="txt">Manifest</span>
                         </a>
                     </div>
+                    <div class="coll <?= (in_array($this->action->Id, ['inputPengeluaranCrew']) ? 'coll_aktif' : '') ?>" id="coll_akun">
+                        <a href="<?= Constant::baseUrl().'/booking/inputPengeluaranCrew'; ?>" class="menu-item" id="akun">
+                            <i class="fa fa-pencil"></i>
+                            <span class="txt">Pengeluaran</span>
+                        </a>
+                    </div>
                     <?php
                 case 'Checker':
                     ?>

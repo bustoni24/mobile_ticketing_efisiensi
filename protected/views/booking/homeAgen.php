@@ -1,5 +1,16 @@
 
+<style>
+    .gj-datepicker {
+        display: none;
+    }
+</style>
+<?php 
+$data = isset($model->routeDetail()->getData()[0]) ? $model->routeDetail()->getData()[0] : [];
+?>
 <div class="row mt-20">
+
+<?= CHtml::hiddenField('Booking[startdate]',$model->startdate); ?>
+<?= CHtml::hiddenField('Booking[tujuan]', isset($data['data']['subTripSelected']['id']) ? $data['data']['subTripSelected']['id'] : ''); ?>
 
 <?php 
 $this->widget('zii.widgets.CListView', array(
@@ -9,6 +20,11 @@ $this->widget('zii.widgets.CListView', array(
     'emptyText' => 'Tidak ditemukan data booking',
 )); 
 ?>
+
+<?php 
+    echo $this->renderPartial('/home/_bottom_field', array(
+        'data' => $data
+        ), false); ?>
 </div>
 
 <script>
