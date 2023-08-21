@@ -21,14 +21,15 @@
     ?>
 
     <?php foreach ($data['list'] as $list) {
+        // Helper::getInstance()->dump($data['list']);
         ?>
         <div class="card-booking card-book mb-50">
         <?php
         foreach ($list as $key => $value) {
-            if (in_array($key, ['tanggal', 'jam', 'jenis_kelamin']))
+            if (in_array($key, ['tanggal', 'jam', 'jenis_kelamin', 'rit']))
                 continue;
             ?>
-            <div class="row">
+            <div class="row <?= in_array($key, ['daerah_pengantaran','zona_pengantaran']) ? "none pengantaran_field" : ""; ?>">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                     <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
                     <?php if (in_array($key, ['no_hp'])) {
@@ -38,6 +39,19 @@
                             'L' => 'Pria',
                             'P' => 'Wanita'
                         ], ['class'=>'form-control']);
+                    } else if (in_array($key, ['status'])) {
+                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], [
+                            Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                            Constant::STATUS_PENUMPANG_TURUN => 'Turun',
+                            Constant::STATUS_PENUMPANG_PENGAJUAN_REFUND => 'Pengajuan Refund',
+                        ], ['class'=>'form-control', 'prompt' => 'Pilih Status Penumpang', 'required' => true]);
+                    } else if (in_array($key, ['opsi_pengantaran'])) {
+                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], [
+                            Constant::PENGANTARAN_TIDAK => ucwords(Constant::PENGANTARAN_TIDAK),
+                            Constant::PENGANTARAN_YA => ucwords(Constant::PENGANTARAN_YA)
+                        ], ['class'=>'form-control opsi_pengantaran']);
+                    } else if (in_array($key, ['zona_pengantaran'])) {
+                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], Helper::getInstance()->getZonaPengantaran(), ['class'=>'form-control']);
                     } else {
                         echo CHtml::textField("Booking[$key][]", $list[$key], ['class'=>'form-control', 'readonly' => in_array($key, ['kode_booking'])]);
                     } ?>
@@ -55,8 +69,8 @@
     <div class="row-0">
         <div class="float-div">
             <button class="btn btn-warning">Konfirmasi</button>
-            <input class="btn btn-success" value="Turun" name="turun" type="submit"/>
-            <button type="button" class="btn btn-danger" id="tolak">Tolak</button>
+            <!-- <input class="btn btn-success" value="Turun" name="turun" type="submit"/> -->
+            <!-- <button type="button" class="btn btn-danger" id="tolak">Tolak</button> -->
         </div>
     </div>
 </div>
@@ -81,6 +95,19 @@
                     }
             });
     } */
+
+    $('.opsi_pengantaran').on('change', function() {
+        var parent = $(this).parent().parent().parent().find('.pengantaran_field');
+        if ($(this).val() === 'ya') {
+            if (typeof parent !== "undefined") {
+                parent.removeClass('none');
+            }
+        } else {
+            if (typeof parent !== "undefined") {
+                parent.addClass('none');
+            }
+        }
+    });
 
     $('#tolak').on('click', function(){
         let booking_id = "<?= $data['booking_id']; ?>";

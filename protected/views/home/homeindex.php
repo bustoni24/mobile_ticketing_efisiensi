@@ -18,9 +18,19 @@
         )); 
         ?>
       <div class="row d-relative">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 mb-0">
             <label>Pilih Tanggal Penugasan</label>
               <?= CHtml::textField('startdate',(isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d')),['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <label>Pilih RIT</label>
+              <?= CHtml::dropDownList('rit',(isset($_GET['rit']) ? $_GET['rit'] : 1), [
+                1 => 'RIT 1',
+                2 => 'RIT 2',
+              ],['class' => 'form-control']); ?>
         </div>
       </div>
 
@@ -75,6 +85,6 @@
 	});
 
     $('#filter').on('click', function(){
-        location.href="<?= Constant::baseUrl() . '/home/index?startdate=' ?>" + $('#startdate').val();
+        location.href="<?= Constant::baseUrl() . '/home/index?startdate=' ?>" + $('#startdate').val() + "&rit=" + $('#rit').val();
     });
 </script>

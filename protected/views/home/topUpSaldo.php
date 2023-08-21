@@ -8,9 +8,21 @@
         'enableAjaxValidation'=>false,
         'htmlOptions' => ['onsubmit'=>'return onSubmitForm(event)','enctype'=>"multipart/form-data"]
     )); 
+$isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->user->tipe_agen, ['internal']);
+    // Helper::getInstance()->dump(Yii::app()->user->tipe_agen);
     ?>
 
 <div class="card-booking card-book mb-50">
+
+    <?php if ($isAgenInternal): ?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <label>Deposit Untuk</label>
+            <?= CHtml::dropDownList('Deposit[agen_id]', (isset($post['agen_id']) ? $post['agen_id'] : ''), AgenPerwakilan::object()->getListAgenDeposit(), ['required'=>true, 'prompt' => 'Pilih Tujuan Deposit']) ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
             <label>Nominal</label>
@@ -28,7 +40,7 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-            <label>Bukti Transfer</label>
+            <label id="bukti_tf">Bukti Transfer</label>
             <?= CHtml::fileField('Deposit[file]', '', ['class'=>'form-control', 'required'=>true]) ?>
         </div>
     </div>
@@ -46,6 +58,19 @@
 <script>
     var minimBonus = 10000000;
     var bonusSaldo = 200000;
+    $(document).on('ready', function() {
+        $('select').select2();
+
+        $('#Deposit_agen_id').on('change', function() {
+            if ($(this).val() === 'self') {
+                $('#Deposit_file').attr('required', false);
+                $('#bukti_tf').html("Bukti Transfer (Tidak Wajib)");
+            } else {
+                $('#Deposit_file').attr('required', true);
+                $('#bukti_tf').html("Bukti Transfer");
+            }
+        });
+    });
     $('input.number').on('keyup', function(e){
         e.preventDefault();
         var value = $(this).val();

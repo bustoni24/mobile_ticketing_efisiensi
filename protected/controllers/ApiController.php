@@ -55,6 +55,9 @@ class ApiController extends Controller
 			doPrintResult(['success' => 0, 'message' => 'invalid data :: ' . json_encode($data), 'code' => '400']);
         }
 
+		//set state
+		Helper::getInstance()->setState(Constant::AGEN_SALDO, $data['data']['saldo']);
+
 		doPrintResult(['success'=>1,'saldo'=>$data['data']['saldo']]);
 	}
 	

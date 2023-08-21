@@ -20,6 +20,16 @@
 
       <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
+            <label>Pilih RIT</label>
+              <?= CHtml::dropDownList('Booking[rit]',(isset($_GET['rit']) ? $_GET['rit'] : 1), [
+                1 => 'RIT 1',
+                2 => 'RIT 2',
+              ],['class' => 'form-control']); ?>
+        </div>
+      </div>
+
+      <div class="row d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
               <?= CHtml::dropDownList('Booking[tujuan]', $model->tujuan, Armada::object()->getTujuan($_GET), ['prompt'=>'Pilih Tujuan','required'=>true]); ?>
         </div>
       </div>
@@ -41,6 +51,7 @@
 
     <?php 
     $data = isset($model->searchBooking()->getData()[0]) ? $model->searchBooking()->getData()[0] : [];
+    // Helper::getInstance()->dump($data);
     echo $this->renderPartial('_bottom_field', array(
         'data' => $data
         ), false); ?>
@@ -49,7 +60,9 @@
 <script>
     var latitude = "<?= isset($_GET['latitude']) ? $_GET['latitude'] : null ?>";
     var longitude = "<?= isset($_GET['longitude']) ? $_GET['longitude'] : null ?>";
-    var tujuan = "<?= isset($penugasan['data']['tujuan_id']) ? $penugasan['data']['tujuan_id'] : null ?>";
+    var tujuan = "<?= isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : (isset($penugasan['data']['tujuan_id']) ? $penugasan['data']['tujuan_id'] : null) ?>";
+    var titik_real_id = "<?= isset($data['data']['listTitikTerdekat']['titik_id']) ? $data['data']['listTitikTerdekat']['titik_id'] : '' ?>";
+    // console.log(tujuan);
     document.addEventListener("DOMContentLoaded", function() {
         $('#Booking_tujuan').select2();
 
@@ -117,7 +130,7 @@
 
 function refreshListBooking(latitude, longitude) {
     if (latitude !== null && longitude !== null) {
-        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+$('#Booking_tujuan').val();
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&rit="+$('#Booking_rit').val()+"&tujuan="+$('#Booking_tujuan').val();
         // var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
         // updateListView(data);
     }
@@ -132,6 +145,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
 	});
 
     $('#cari').on('click', function(){
+        $(this).html('PROSES..');
         // var startdate = $('#Booking_startdate').val();
         // var tujuanId = $('#Booking_tujuan').val();
         getLatLong();
@@ -358,7 +372,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                 }
             }).then((result) => {
             if (result.isConfirmed) {
-                    var data = {kode_booking: result.value.kode_booking, nama_penumpang: result.value.nama_penumpang, no_hp: result.value.no_hp, no_kursi: result.value.no_kursi, penjadwalan_id: penjadwalan_id, status: result.value.status, latitude:"<?= isset($_GET['latitude']) ? $_GET['latitude'] : '' ?>", longitude:"<?= isset($_GET['longitude']) ? $_GET['longitude'] : '' ?>"};
+                    var data = {kode_booking: result.value.kode_booking, nama_penumpang: result.value.nama_penumpang, no_hp: result.value.no_hp, no_kursi: result.value.no_kursi, penjadwalan_id: penjadwalan_id, status: result.value.status, latitude:"<?= isset($_GET['latitude']) ? $_GET['latitude'] : '' ?>", longitude:"<?= isset($_GET['longitude']) ? $_GET['longitude'] : '' ?>", titik_real_id:titik_real_id};
 
                     if (data.status === "<?= Constant::STATUS_PENUMPANG_REJECT ?>") {
                         return false;
@@ -407,5 +421,32 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         }
     });
     
+    $("body").on('keyup', 'input.number', function(e){
+        e.preventDefault();
+        var value = $(this).val();
+        value = value.replace(".", "");
+        value = value.replace(".", "");
+        $(this).val(accounting.formatNumber(value, 0, "."));
+    });
+    $("body").on("change", '#BookingTrip_extra_bagasi', function(e){
+        e.preventDefault();
+
+        if ($(this).is(":checked")) {
+            $('#BookingTrip_nominal_bagasi').attr('readonly', false);
+        } else {
+            $('#BookingTrip_nominal_bagasi').attr('readonly', true);
+        }
+    });
+    $("body").on("change", '#BookingTrip_tipe_pembayaran', function(e) {
+        e.preventDefault();
+
+        if ($(this).val() === 'transfer') {
+            $('#formBuktiBayar').removeClass('none');
+            $('#BookingTrip_bukti_pembayaran').attr('required', true);
+        } else {
+            $('#formBuktiBayar').addClass('none');
+            $('#BookingTrip_bukti_pembayaran').attr('required', false);
+        }
+    })
     // setInterval(getLatLong, 5000*60);
 </script>

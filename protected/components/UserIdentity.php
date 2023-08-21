@@ -25,12 +25,14 @@ class UserIdentity extends CUserIdentity {
         $login = ApiHelper::getInstance()->callUrl($parameters);
         if (isset($login['data'])) {
             $this->_id = $login['data']['id'];
+            $this->setState('sdm_id', $login['data']['sdm_id']);
             $this->setState('username', $login['data']['username']);
             $this->setState('role', $login['data']['role']);
             $this->setState('nama', $login['data']['name']);
             $this->setState('no_hp', $login['data']['no_hp']);
             $this->setState('alamat', $login['data']['alamat']);
             $this->setState('saldo', $login['data']['saldo']);
+            $this->setState('tipe_agen', $login['data']['tipe_agen']);
 
             $this->errorCode = self::ERROR_NONE;
 

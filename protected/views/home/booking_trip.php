@@ -52,8 +52,9 @@
         var trip_id = $(this).attr('data-tripId');
         var keyword = $(this).val();
         var element = $('#listDataTrip');
+        var startdate = "<?= isset($_GET['startdate']) && !empty($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d'); ?>";
 
-        var data = {trip_id:trip_id,keyword:keyword};
+        var data = {trip_id:trip_id,keyword:keyword,startdate:startdate};
         $.ajax({
             type : "POST",
             url : "<?= Constant::baseUrl() . '/home/ajaxBookingTrip' ?>",
@@ -78,8 +79,9 @@
 
         var trip_id = $(this).attr('data-trip_id');
         var titik_id = $(this).attr('data-titik_id');
+        var startdate = "<?= isset($_GET['startdate']) && !empty($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d'); ?>";
         var element = $("#content-agen"+titik_id);
-        var data = {trip_id:trip_id,titik_id:titik_id};
+        var data = {trip_id:trip_id,titik_id:titik_id,startdate:startdate};
         // console.log(data);
         $.ajax({
             type : "POST",
@@ -111,8 +113,9 @@
         var route_id = $(this).attr('data-route_id');
         var startdate = "<?= $_GET['startdate'] ?>";
         var armada_ke = $(this).attr('data-armada_ke');
+        var penjadwalan_id = $(this).attr('data-penjadwalan_id');
 
         //redirect to bookint trip
-        $.form("<?= Constant::baseUrl() . '/booking/routeDetail?id='; ?>"+route_id+"_"+startdate+"_"+armada_ke, {route_id:route_id}).submit();
+        $.form("<?= Constant::baseUrl() . '/booking/routeDetail?id='; ?>"+route_id+"_"+startdate+"_"+armada_ke+"_"+penjadwalan_id, {route_id:route_id}).submit();
     });
 </script>

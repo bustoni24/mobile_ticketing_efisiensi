@@ -236,7 +236,8 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
         // controller action is handling ajax validation correctly.
         // There is a call to performAjaxValidation() commented in generated controller code.
         // See class documentation of CActiveForm for details on this.,
-        'enableAjaxValidation'=>false
+        'enableAjaxValidation'=>false,
+        'htmlOptions' => ['enctype'=>"multipart/form-data"]
     )); 
     ?>
 
@@ -312,11 +313,79 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
                                     ],['class'=>'inputSeat']); ?>
                                 </td>
                             </tr>
+                            <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+                                <tr>
+                                    <th>Opsi Pengantaran</th>
+                                    <th>Daerah Pengantaran</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?= CHtml::dropDownList("FormSeat[opsi_pengantaran][]", '', [
+                                                Constant::PENGANTARAN_TIDAK => ucwords(Constant::PENGANTARAN_TIDAK),
+                                                Constant::PENGANTARAN_YA => ucwords(Constant::PENGANTARAN_YA)
+                                            ], ['class'=>'inputSeat opsi_pengantaran']); 
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?= CHtml::textField("FormSeat[daerah_pengantaran][]", '', ['class'=>'inputSeat opsi_pengantaran']); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Zona Pengantaran</th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <?= CHtml::dropDownList('FormSeat[zona_pengantaran][]', '', Helper::getInstance()->getZonaPengantaran(),['class'=>'inputSeat opsi_pengantaran']); ?>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                         </table>
                     </td>
                 </tr>
             </tbody>
         </table>
+            <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td width="40%">
+                        <div class="checkbox">
+                            <label>
+                            <?= CHtml::checkBox('BookingTrip[extra_bagasi]', false); ?> Extra Bagasi
+                            </label>
+                        </div>
+                        </td>
+                        <td>
+                        <div class="row">
+                            <label class="mt-0">Nominal Bagasi</label>
+                            <?= CHtml::textField('BookingTrip[nominal_bagasi]', '',['class'=>'form-control number', 'readonly' => true]); ?>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="mt-0">Tipe Pembayaran</label>
+                                <?= CHtml::dropDownList('BookingTrip[tipe_pembayaran]', '', [
+                                    Constant::TIPE_PEMBAYARAN_TUNAI => ucwords(Constant::TIPE_PEMBAYARAN_TUNAI),
+                                    Constant::TIPE_PEMBAYARAN_TRANSFER => ucwords(Constant::TIPE_PEMBAYARAN_TRANSFER)
+                                ],['class'=>'form-control']); ?>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row none" id="formBuktiBayar">
+                                <label class="mt-0">Bukti Pembayaran</label>
+                                <input type="file" name="BookingTrip[bukti_pembayaran]" id="BookingTrip_bukti_pembayaran" class="form-control" accept="image/png, image/gif, image/jpeg"/>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <?php endif; ?>
+            
     </div>
 
     <div class="container-button-float">

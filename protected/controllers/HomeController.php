@@ -20,6 +20,9 @@ class HomeController extends Controller
 				if (isset($_GET['startdate'])) {
 					$post['startdate'] = $_GET['startdate'];
 				}
+				if (isset($_GET['rit'])) {
+					$post['rit'] = $_GET['rit'];
+				}
 				if (isset($post['startdate'])) {
 					//cari penugasan
 					$res = ApiHelper::getInstance()->callUrl([
@@ -28,11 +31,13 @@ class HomeController extends Controller
 							'method' => 'POST',
 							'postfields' => [
 								'startdate' => $post['startdate'],
+								'rit' => isset($post['rit']) ? $post['rit'] : 1,
 								'user_id' => Yii::app()->user->id,
 								'role' => Yii::app()->user->role
 								]
 						]
 					]);
+					// Helper::getInstance()->dump($res);
 					if (isset($res['data']))
 						$post['data'] = $res['data'];
 				}
@@ -80,6 +85,7 @@ class HomeController extends Controller
 		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
 		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
+		$model->rit = isset($_GET['rit']) ? $_GET['rit'] : 1;
 		$model->tujuan = isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
 		//cari penugasan
@@ -89,6 +95,7 @@ class HomeController extends Controller
 				'method' => 'POST',
 				'postfields' => [
 					'startdate' => $model->startdate,
+					'rit' => $model->rit,
 					'user_id' => Yii::app()->user->id,
 					'role' => Yii::app()->user->role
 					]
@@ -97,12 +104,41 @@ class HomeController extends Controller
 		if (!isset($model->tujuan) && isset($penugasan['data']['tujuan_id']) && !empty($penugasan['data']['tujuan_id']))
 			$model->tujuan = $penugasan['data']['tujuan_id'];
 
-		// Helper::getInstance()->dump($penugasan);
+		// Helper::getInstance()->dump($model->tujuan);
 
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
 				throw new CHttpException(401,'Mohon untuk memilih kursi terlebih dahulu');
 			}
+
+			$urlFile = null;
+			$fileName = null;
+			if (isset($_POST['BookingTrip']['tipe_pembayaran']) && in_array($_POST['BookingTrip']['tipe_pembayaran'], ['transfer'])) {
+				//harus melampirkan bukti bayar
+				if (!isset($_FILES['BookingTrip']['tmp_name']['bukti_pembayaran']) || empty($_FILES['BookingTrip']['tmp_name']['bukti_pembayaran'])) {
+					throw new CHttpException(401,'Mohon untuk melampirkan bukti pembayaran jika memilih pembayaran transfer');
+				}
+
+				$targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/";
+				$fileSource = basename($_FILES['BookingTrip']['name']['bukti_pembayaran']);
+			    $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
+                if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
+                    throw new CHttpException(401,'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
+                }
+                $fileName = 'bukti_pembayaran_booking_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+                $targetFile = $targetDirectory . $fileName;
+
+                if (move_uploaded_file($_FILES["BookingTrip"]["tmp_name"]["bukti_pembayaran"], $targetFile)) {
+                    Yii::import('application.extensions.image.Image');
+                    $image = new Image('uploads/' . $fileName);
+                    $image->resize(800, 0);
+                    $image->save('uploads/' . $fileName);
+
+                    $urlFile = SERVER . '/uploads/' . $fileName;
+                }
+
+			}
+			// Helper::getInstance()->dump([$_POST, $_FILES]);
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [
@@ -117,12 +153,20 @@ class HomeController extends Controller
 						'user_id' => Yii::app()->user->id,
 						'crew_id' => Yii::app()->user->id,
 						'role' => Yii::app()->user->role,
-						'tujuan_id' => $model->tujuan
+						'tujuan_id' => $model->tujuan,
+						'rit' => $model->rit,
+						'filename' => $fileName,
+                		'url_file' => $urlFile,
 					]
 				]
 			]);
 			// Helper::getInstance()->dump($saveTransaction);
-			if ($saveTransaction['success']) {				
+			if (isset($targetFile) && !empty($targetFile)) {
+				if (file_exists($targetFile)) {
+					unlink($targetFile);	
+				}
+			}
+			if ($saveTransaction['success']) {			
 				$last_id_booking = isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : '';
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&last_id_booking=' . $last_id_booking);
@@ -179,7 +223,8 @@ class HomeController extends Controller
 					'method' => 'POST',
 					'postfields' => [
 						'id_trip' => $_POST['trip_id'],
-						'keyword' => $_POST['keyword']
+						'keyword' => $_POST['keyword'],
+						'startdate' => isset($_POST['startdate']) ? $_POST['startdate'] : date('Y-m-d')
 					]
 				]
 			]);
@@ -211,7 +256,8 @@ class HomeController extends Controller
 					'method' => 'POST',
 					'postfields' => [
 						'id_trip' => $_POST['trip_id'],
-						'titik_id' => $_POST['titik_id']
+						'titik_id' => $_POST['titik_id'],
+						'startdate' => isset($_POST['startdate']) ? $_POST['startdate'] : date('Y-m-d')
 					]
 				]
 			]);
@@ -263,7 +309,7 @@ class HomeController extends Controller
 										</div>
 
 										<div class="content-card">
-											<span class="btn btn-info card-trip" data-route_id="'. $d_['route_id'] .'" data-armada_ke="'. $d['armada_ke'] .'">Beli Tiket</span>
+											<span class="btn btn-info card-trip" data-route_id="'. $d_['route_id'] .'" data-armada_ke="'. $d['armada_ke'] .'" data-penjadwalan_id="'. $d['penjadwalan_id'] .'">Beli Tiket</span>
 										</div>
 									</div>';
 								}
@@ -328,6 +374,7 @@ class HomeController extends Controller
 		}
 		$data = base64_decode($_GET['data']);
 		$data = json_decode($data, true);
+		// Helper::getInstance()->dump($data);
 		if (isset($_POST['Booking']['kode_booking'])) {
 			// Helper::getInstance()->dump($_POST);
 			$res = ApiHelper::getInstance()->callUrl([
@@ -444,32 +491,72 @@ class HomeController extends Controller
 		$post = [];
 		if (isset($_POST['Deposit'])) {
 			$post = $_POST['Deposit'];
-			if (!isset($_FILES['Deposit']['name']['file'], $_FILES["Deposit"]["tmp_name"]["file"])) {
+			$post['agen_id'] = isset($post['agen_id']) ? $post['agen_id'] : Yii::app()->user->sdm_id;
+			
+			if (!isset($_FILES['Deposit']['name']['file'], $_FILES["Deposit"]["tmp_name"]["file"]) && !in_array($post['agen_id'], ["self"])) {
 				Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti transfer');
 				return $this->render('topUpSaldo', [
 					'post' => $post
 				]);
 			}
 			// Helper::getInstance()->dump($post);
-			$targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
-			$fileSource = basename($_FILES['Deposit']['name']['file']);
-			$imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
-			$fileName = 'deposit_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
-			$targetFile = $targetDirectory . $fileName;
-			// Izinkan tipe file tertentu (misalnya, hanya izinkan gambar)
-			if(!in_array($imageFileType, ["jpg","png","jpeg","gif","pdf"])) {
-				Yii::app()->user->setFlash('error', 'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
-				return $this->render('topUpSaldo', [
-					'post' => $post
-				]);
-			}
+			if (!in_array($post['agen_id'], ["self"])) {
+				$targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
+				$fileSource = basename($_FILES['Deposit']['name']['file']);
+				$imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
+				$fileName = 'deposit_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+				$targetFile = $targetDirectory . $fileName;
+				// Izinkan tipe file tertentu (misalnya, hanya izinkan gambar)
+				if(!in_array($imageFileType, ["jpg","png","jpeg","gif","pdf"])) {
+					Yii::app()->user->setFlash('error', 'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
+					return $this->render('topUpSaldo', [
+						'post' => $post
+					]);
+				}
 
-			if (move_uploaded_file($_FILES["Deposit"]["tmp_name"]["file"], $targetFile)) {
-				Yii::import('application.extensions.image.Image');
-				$image = new Image('uploads/' . $fileName);
-				$image->resize(800, 0);
-				$image->save('uploads/' . $fileName);
+				if (move_uploaded_file($_FILES["Deposit"]["tmp_name"]["file"], $targetFile)) {
+					Yii::import('application.extensions.image.Image');
+					$image = new Image('uploads/' . $fileName);
+					$image->resize(800, 0);
+					$image->save('uploads/' . $fileName);
 
+					$nominal = str_replace(".", "", $post['nominal']);
+					$bayar = str_replace(".", "", $post['bayar']);
+					$bonus = null;
+					if ($nominal != $bayar)
+						$bonus = 200000;
+					//upload to API
+					$res = ApiHelper::getInstance()->callUrl([
+						'url' => 'apiMobile/topUpSaldo',
+						'parameter' => [
+							'method' => 'POST',
+							'postfields' => [
+								'type' => 'eksternal',
+								'agen_id' => $post['agen_id'],
+								'nominal' => $nominal,
+								'bayar' => $bayar,
+								'bonus' => $bonus,
+								'file_name' => $fileName,
+								'url' => SERVER . '/uploads/' . $fileName,
+								'user_id' => Yii::app()->user->id,
+								'role' => Yii::app()->user->role
+							]
+						]
+					]);
+
+					if (!$res['success']) {
+						Helper::getInstance()->dump($res['message']);
+					}
+
+					unlink($targetFile);
+					Yii::app()->user->setFlash('success', "Permintaan Top Up Saldo sudah terkirim. Mohon tunggu sampai admin konfirmasi");
+					return $this->redirect(Constant::baseUrl().'/home/index');
+				} else {
+					Helper::getInstance()->dump('Terjadi kesalahan');
+				}
+			} else {
+				$post['agen_id'] = Yii::app()->user->sdm_id;
+				// Helper::getInstance()->dump($post);
 				$nominal = str_replace(".", "", $post['nominal']);
 				$bayar = str_replace(".", "", $post['bayar']);
 				$bonus = null;
@@ -481,11 +568,13 @@ class HomeController extends Controller
 					'parameter' => [
 						'method' => 'POST',
 						'postfields' => [
+							'type' => Yii::app()->user->tipe_agen,
+							'agen_id' => $post['agen_id'],
 							'nominal' => $nominal,
 							'bayar' => $bayar,
 							'bonus' => $bonus,
-							'file_name' => $fileName,
-							'url' => SERVER . '/uploads/' . $fileName,
+							'file_name' => null,
+							'url' => null,
 							'user_id' => Yii::app()->user->id,
 							'role' => Yii::app()->user->role
 						]
@@ -495,12 +584,9 @@ class HomeController extends Controller
 				if (!$res['success']) {
 					Helper::getInstance()->dump($res['message']);
 				}
-
-				unlink($targetFile);
+				
 				Yii::app()->user->setFlash('success', "Permintaan Top Up Saldo sudah terkirim. Mohon tunggu sampai admin konfirmasi");
 				return $this->redirect(Constant::baseUrl().'/home/index');
-			} else {
-				Helper::getInstance()->dump('Terjadi kesalahan');
 			}
 		}
 		return $this->render('topUpSaldo', [

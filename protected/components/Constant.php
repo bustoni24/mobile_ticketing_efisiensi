@@ -36,6 +36,13 @@ class Constant {
     const STATUS_PENUMPANG_RESCHEDULING = 3;
     const STATUS_PENUMPANG_REFUND = 4;
     const STATUS_PENUMPANG_REJECT = 5;
+    const STATUS_PENUMPANG_PENGAJUAN_REFUND = 6;
+
+    const AGEN_SALDO = 'agen_saldo';
+    const PENGANTARAN_YA = 'ya';
+    const PENGANTARAN_TIDAK = 'tidak';
+    const TIPE_PEMBAYARAN_TUNAI = 'tunai';
+    const TIPE_PEMBAYARAN_TRANSFER = 'transfer';
 
     public static function iconSeat($type = "") {
         switch ($type) {

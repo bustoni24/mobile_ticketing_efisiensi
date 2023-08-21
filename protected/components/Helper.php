@@ -1373,6 +1373,31 @@ class Helper {
 				}
   }
 
+  public function getZonaPengantaran()
+  {
+    $result = [];
+    for ($i=1; $i <= 3; $i++) { 
+      $result[$i] = "Zona " . $i;
+    }
+    return $result;
+  }
+
+  public function getPengeluaranItem($data)
+  {
+    $result = [
+      'parkir_bandara' => ['value' => 10000, 'readonly' => true],
+      'parkir' => ['value' => '', 'attach' => true],
+      'tol' => ['value' => '', 'attach' => true],
+      'surat-surat' => ['value' => '', 'attach' => true],
+    ];
+    if (isset($data['trip_label'])) {
+      if (in_array($data['trip_label'], ['SMG','JEP'])) {
+        unset($result['parkir_bandara']);
+      }
+    }
+    return $result;
+  }
+
   public function hashSha1($body = [])
     {
         $encode_data = json_encode($body, JSON_UNESCAPED_SLASHES);

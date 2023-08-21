@@ -30,6 +30,7 @@ class BookingController extends Controller
 		$routeID = $arrId[0];
 		$startdate = $arrId[1];
 		$armada_ke = $arrId[2];
+        $penjadwalan_id = isset($arrId[3]) && !empty($arrId[3]) ? $arrId[3] : null;
 
         $model = new Booking('routeDetail');
         $model->route_id = $routeID;
@@ -45,7 +46,7 @@ class BookingController extends Controller
 						'route_id' => isset($_POST['BookingTrip']['route_id']) ? $_POST['BookingTrip']['route_id'] : null,
 						'startdate' => isset($_POST['BookingTrip']['startdate']) ? $_POST['BookingTrip']['startdate'] : null,
 						'armada_ke' => isset($_POST['BookingTrip']['armada_ke']) ? $_POST['BookingTrip']['armada_ke'] : null,
-						'penjadwalan_id' => isset($_POST['BookingTrip']['penjadwalan_id']) ? $_POST['BookingTrip']['penjadwalan_id'] : null,
+						'penjadwalan_id' => $penjadwalan_id,
 						'BookingTrip' => $_POST['BookingTrip'],
 						'FormSeat' => $_POST['FormSeat'],
 						'user_id' => Yii::app()->user->id,
@@ -98,6 +99,7 @@ class BookingController extends Controller
     public function actionInputPengeluaranCrew()
     {
         $post['startdate'] = isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d');
+        $post['rit'] = isset($_GET['rit']) ? $_GET['rit'] : 1;
 
         //cari penugasan
         $res = ApiHelper::getInstance()->callUrl([
@@ -106,45 +108,114 @@ class BookingController extends Controller
                 'method' => 'POST',
                 'postfields' => [
                     'startdate' => $post['startdate'],
+                    'rit' => $post['rit'],
                     'user_id' => Yii::app()->user->id,
                     'role' => Yii::app()->user->role
                     ]
             ]
         ]);
+        // Helper::getInstance()->dump($res);
         if (isset($res['data']))
             $post['data'] = $res['data'];
+
+        if (isset($post['data'])):
+            //cari pengeluaran data
+            $pengeluaranDatas = ApiHelper::getInstance()->callUrl([
+                'url' => 'apiMobile/getDataPengeluaran',
+                'parameter' => [
+                    'method' => 'POST',
+                    'postfields' => [
+                        'startdate' => $post['startdate'],
+                        'user_id' => Yii::app()->user->id,
+                        'penjadwalan_id' => $post['data']['penjadwalan_id'],
+                        'trip_id' => $post['data']['trip_id']
+                        ]
+                ]
+            ]);
+        endif;
+        $post['pengeluaran_data'] = isset($pengeluaranDatas['data']) ? (array)$pengeluaranDatas['data'] : [];
 
         if (isset($_POST['submit'])) {
             $targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
             //upload multiple
+            $postPengeluaran = $_POST;
+            $postPengeluaran = array_merge($post['pengeluaran_data'], $postPengeluaran);
+            if (!empty($postPengeluaran['parkir']) && empty($_FILES['attach_parkir']['tmp_name']) && !isset($post['pengeluaran_data']['parkir']['lampiran'])) {
+                Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti pengeluaran parkir');
+                return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+            }
+            if (!empty($postPengeluaran['tol']) && empty($_FILES['attach_tol']['tmp_name']) && !isset($post['pengeluaran_data']['tol']['lampiran'])) {
+                Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti pengeluaran tol');
+                return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+            }
+            if (!empty($postPengeluaran['surat-surat']) && empty($_FILES['attach_surat-surat']['tmp_name']) && !isset($post['pengeluaran_data']['surat-surat']['lampiran'])) {
+                Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti pengeluaran surat-surat');
+                return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+            }
             $targetFileArray = [];
             $fileNameArray = [];
             $urlFileArray = [];
-            $countFile = count($_FILES['pengeluaran']['name']['file']);
-            for ($i=0; $i < $countFile; $i++) { 
-                if (!isset($_FILES['pengeluaran']['name']['file'][$i], $_FILES["pengeluaran"]["tmp_name"]["file"][$i]))
-                    continue;
-
-                $fileSource = basename($_FILES['pengeluaran']['name']['file'][$i]);
-			    $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
+            if (!empty($_FILES['attach_parkir']['tmp_name'])) {
+                $fileSource = basename($_FILES['attach_parkir']['name']);
+                $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
                 if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
                     Yii::app()->user->setFlash('error', 'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
                     return $this->render('inputPengeluaranCrew', ['post'=>$post]);
                 }
-                $fileName = 'lampiran_pengeluaran_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+                $fileName = 'lampiran_pengeluaran_parkir_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
                 $targetFile = $targetDirectory . $fileName;
-
-                if (move_uploaded_file($_FILES["pengeluaran"]["tmp_name"]["file"][$i], $targetFile)) {
+                if (move_uploaded_file($_FILES['attach_parkir']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
                     $image->resize(800, 0);
                     $image->save('uploads/' . $fileName);
 
-                    $targetFileArray[$i] = $targetFile;
-                    $fileNameArray[$i] = $fileName;
-                    $urlFileArray[$i] = SERVER . '/uploads/' . $fileName;
+                    $targetFileArray[] = $targetFile;
+                    $fileNameArray[] = $fileName;
+                    $urlFileArray[] = SERVER . '/uploads/' . $fileName;
                 }
             }
+            if (!empty($_FILES['attach_tol']['tmp_name'])) {
+                $fileSource = basename($_FILES['attach_tol']['name']);
+                $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
+                if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
+                    Yii::app()->user->setFlash('error', 'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
+                    return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+                }
+                $fileName = 'lampiran_pengeluaran_tol_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+                $targetFile = $targetDirectory . $fileName;
+                if (move_uploaded_file($_FILES['attach_tol']['tmp_name'], $targetFile)) {
+                    Yii::import('application.extensions.image.Image');
+                    $image = new Image('uploads/' . $fileName);
+                    $image->resize(800, 0);
+                    $image->save('uploads/' . $fileName);
+
+                    $targetFileArray[] = $targetFile;
+                    $fileNameArray[] = $fileName;
+                    $urlFileArray[] = SERVER . '/uploads/' . $fileName;
+                }
+            }
+            if (!empty($_FILES['attach_surat-surat']['tmp_name'])) {
+                $fileSource = basename($_FILES['attach_surat-surat']['name']);
+                $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
+                if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
+                    Yii::app()->user->setFlash('error', 'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
+                    return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+                }
+                $fileName = 'lampiran_pengeluaran_tol_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+                $targetFile = $targetDirectory . $fileName;
+                if (move_uploaded_file($_FILES['attach_surat-surat']['tmp_name'], $targetFile)) {
+                    Yii::import('application.extensions.image.Image');
+                    $image = new Image('uploads/' . $fileName);
+                    $image->resize(800, 0);
+                    $image->save('uploads/' . $fileName);
+
+                    $targetFileArray[] = $targetFile;
+                    $fileNameArray[] = $fileName;
+                    $urlFileArray[] = SERVER . '/uploads/' . $fileName;
+                }
+            }
+            
             $_POST = array_merge([
                 'user_id' => Yii::app()->user->id,
                 'role' => Yii::app()->user->role,
@@ -167,37 +238,20 @@ class BookingController extends Controller
                 ]
             ]);
 
-            if (!$res['success']) {
-                Helper::getInstance()->dump($res['message']);
-            }
-
             //unlink all image
             foreach ($targetFileArray as $targetFile_) {
                 if (file_exists($targetFile_)) {
                     unlink($targetFile_);
                 }
             }
+
+            if (!$res['success']) {
+                Helper::getInstance()->dump($res['message']);
+            }
             
             Yii::app()->user->setFlash('success', "Input Pengeluaran berhasil");
             return $this->redirect(array('inputPengeluaranCrew'));
         }
-
-        if (isset($post['data'])):
-            //cari pengeluaran data
-            $pengeluaranDatas = ApiHelper::getInstance()->callUrl([
-                'url' => 'apiMobile/getDataPengeluaran',
-                'parameter' => [
-                    'method' => 'POST',
-                    'postfields' => [
-                        'startdate' => $post['startdate'],
-                        'user_id' => Yii::app()->user->id,
-                        'penjadwalan_id' => $post['data']['penjadwalan_id'],
-                        'trip_id' => $post['data']['trip_id']
-                        ]
-                ]
-            ]);
-        endif;
-        $post['pengeluaran_data'] = isset($pengeluaranDatas['data']) ? (array)$pengeluaranDatas['data'] : [];
             // Helper::getInstance()->dump($post);
         return $this->render('inputPengeluaranCrew', ['post'=>$post]);
     }
@@ -241,6 +295,8 @@ class BookingController extends Controller
             'user_id' => Yii::app()->user->id,
             'role' => Yii::app()->user->role
         ], $_POST);
+
+        // doPrintResult($result->dump(json_encode($_POST)));
 
         $scannerResult = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/scannerResult',

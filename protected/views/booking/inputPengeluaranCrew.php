@@ -19,9 +19,18 @@
         <div class="row d-relative">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <label>Pilih Tanggal Penugasan</label>
-                <?= CHtml::textField('startdate',(isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d')),['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
+                <?= CHtml::textField('startdate',(isset($post['startdate']) ? $post['startdate'] : date('Y-m-d')),['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
             </div>
         </div>
+        <div class="row d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <label>Pilih RIT</label>
+              <?= CHtml::dropDownList('rit',(isset($post['rit']) ? $post['rit'] : 1), [
+                1 => 'RIT 1',
+                2 => 'RIT 2',
+              ],['class' => 'form-control']); ?>
+        </div>
+      </div>
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -69,7 +78,8 @@
                 <tbody>
                 <?php 
                 $no = 1;
-                foreach ($post['pengeluaran_data'] as $d) {
+                // Helper::getInstance()->dump($post['pengeluaran_data']);
+               /* foreach ($post['pengeluaran_data'] as $d) {
                 ?>
                     <tr>
                         <th><?= $no++; ?></th>
@@ -84,47 +94,61 @@
                         </td>
                     </tr>
                     <?php
-                } ?>
+                } */?>
                 </tbody>
             </table>
         </div>
     <?php endif; ?>
    
+    <?php
+    $deskripsiPengeluaran = Helper::getInstance()->getPengeluaranItem($post['data']);
+    ?>
     <div class="row d-relative">
         <table class="table border-none">
             <tbody id="contentFormAddition_">
             <tr id="elementAddition_">
                 <td class="p-0">
                     <table class="table border-none mb-0">
-                        <tr>
-                            <td width="50%">
-                                <label>Deskripsi Pengeluaran</label>
-                                <input class="form-control" name="pengeluaran[deskripsi][]" placeholder="bbm, parkir, dll" required="required"/>
-                            </td>
-                            <td width="50%">
-                                <label>Nominal</label>
-                                <input class="form-control number" name="pengeluaran[nominal][]" placeholder="Rp..." required="required"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="d-flex w-100 justify-between">
-                                    <label>Lampiran</label>
-                                    <span class="btn btn-danger none removeField" onclick="deleteFormAddition(this)"><i class="fa fa-trash"></i></span>
-                                </div>
-                                
-                                <input type="file" name="pengeluaran[file][]" class="form-control" accept="image/png, image/gif, image/jpeg"/>
-                            </td>
-                        </tr>
+                        <tbody>
+                            <?php foreach ($deskripsiPengeluaran as $key => $value) {
+                                ?>
+                                <tr>
+                                    <td>
+                                        <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
+                                        <input class="form-control number" name="<?= $key ?>" placeholder="<?= str_replace("_", " ", $key) ?>" 
+                                        <?= isset($value['readonly']) && $value['readonly'] ? 'readonly="readonly"' : ''; ?>
+                                        value="<?= isset($post['pengeluaran_data'][$key]['value']) ? Helper::getInstance()->getRupiah($post['pengeluaran_data'][$key]['value']) : Helper::getInstance()->getRupiah($value['value']); ?>"
+                                        />
+                                    </td>
+                                </tr>
+                                <?php
+                                if (isset($value['attach']) && $value['attach']) {
+                                    ?>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>Lampiran</label>
+                                        <?php if (isset($post['pengeluaran_data'][$key]['lampiran'])): ?>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 "> 
+                                            <img src="<?= $post['pengeluaran_data'][$key]['lampiran']; ?>" class="icon-img"/>
+                                            </div>
+                                        <?php else: ?>
+                                            <input type="file" name="attach_<?= $key ?>" class="form-control" accept="image/png, image/gif, image/jpeg"/>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                                    <?php
+                                }
+                            } ?>
+                        </tbody>
                     </table>
                 </td>
             </tr>
             </tbody>
-            <tfoot>
+           <!--  <tfoot>
                 <tr>
                 <td class="text-left"><button type="button" class="btn btn-info" id="addFormAddition"><i class="fa fa-plus-circle"></i> Tambah Form</button></td>
                 </tr>
-            </tfoot>
+            </tfoot> -->
         </table>
     </div>
 
@@ -199,7 +223,7 @@
     }
 
     $('#filter').on('click', function(){
-        location.href = "<?= Constant::baseUrl() . '/' . $this->route . '?startdate=' ?>"+$('#startdate').val();
+        location.href = "<?= Constant::baseUrl() . '/' . $this->route . '?startdate=' ?>"+$('#startdate').val()+"&rit="+$('#rit').val();
     });
 
     function confirmDelete(id) {

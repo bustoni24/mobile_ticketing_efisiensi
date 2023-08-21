@@ -11,6 +11,7 @@ class Booking
     public $alamat_titik_keberangkatan;
     public $route_id = null;
     public $armada_ke = null;
+    public $rit = null;
     public $latitude, $longitude, $tujuan, $penjadwalan_id;
 
     public function searchBooking()
@@ -36,6 +37,7 @@ class Booking
                     'user_id' => Yii::app()->user->id,
                     'role' => Yii::app()->user->role,
                     'tujuan' => isset($this->tujuan) ? $this->tujuan : null,
+                    'rit' => isset($this->rit) ? $this->rit : null,
                     ]
             ]
         ]);
