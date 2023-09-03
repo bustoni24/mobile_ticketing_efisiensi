@@ -56,7 +56,7 @@
 											continue;
 										?>
 										<tr>
-											<td colspan="10">
+											<td colspan="11">
 												<h5><?= $m['header']['titik_keberangkatan'] ?></h5>
 												<p><?= $m['header']['alamat'] ?></p>
 											</td>
@@ -71,6 +71,7 @@
 											<th>No Kursi</th>
 											<th>Terjual Oleh</th>
 											<th>Status</th>
+											<th>Pengantaran</th>
 											<!-- <th>Lunas?</th>
 											<th>Discount</th> -->
 										</tr>
@@ -93,6 +94,9 @@
 													)	
 													)
 													)) ?></td>
+												<td>
+													<?= $manifest['pengantaran'] ?>
+												</td>
 											</tr>
 											<?php
 										} ?>

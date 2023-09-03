@@ -22,7 +22,8 @@
                 <?= CHtml::textField('startdate',(isset($post['startdate']) ? $post['startdate'] : date('Y-m-d')),['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
             </div>
         </div>
-        <div class="row d-relative">
+
+    <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Pilih RIT</label>
               <?= CHtml::dropDownList('rit',(isset($post['rit']) ? $post['rit'] : 1), [
@@ -34,7 +35,7 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <button type="button" class="btn btn-warning pull-right" id="filter">Cari</button>
+                <button type="button" class="btn btn-warning pull-right" id="filter">Pilih</button>
             </div>
         </div>
         <?php $this->endWidget(); ?>
@@ -44,12 +45,28 @@
 
 <div class="row">
 
-<?php if (isset($post['data']) && !empty($post['data'])): ?>
+<?php if (isset($post['data']) && !empty($post['data'])): 
+    $isTripClose = $post['data']['status_trip'] == Constant::STATUS_TRIP_CLOSE;
+    ?>
 <div class="card-booking card-book border-none">
         <div class="x_title grey-dark mb-0">
-            <h4><?= $post['data']['boarding_nama'] . ' - ' . $post['data']['destination_nama'] . ', ' . $this->getDay($post['startdate']) . ', ' . $this->IndonesiaTgl($post['startdate']); ?></h4>
+            <h4><?= 
+            (isset($post['data'][1]) ? $post['data'][1]['kota_asal'] . ' - ' . $post['data'][1]['kota_tujuan'] : '???') .
+            (isset($post['data'][2]) ?  ' | ' . $post['data'][2]['kota_asal'] . ' - ' . $post['data'][2]['kota_tujuan'] : '')
+              . '<br/>' . $this->getDay($post['startdate']) . ', ' . $this->IndonesiaTgl($post['startdate']); ?></h4>
+            <h5>Driver: <?= $post['data']['driver']; ?></h5>
+            <h5>Cabin Crew: <?= $post['data']['cabin_crew']; ?></h5>
             <?php echo (isset($post['data']['nomor_lambung']) && !empty($post['data']['nomor_lambung']) ? '<h5>Nomor Lambung: '. $post['data']['nomor_lambung'].'</h5>' : ''); ?>
+
+            <h5>Trayek: <?= (isset($post['data'][1]['label']) ? $post['data'][1]['label'] : '') . (isset($post['data'][2]['label']) ? ' - ' . $post['data'][2]['label'] : ''); ?></h5>
             <div class="clearfix"></div>
+
+            <h5>
+                Jumlah Pnp RIT 1 : <?= (isset($post['data']['ops']['penumpang_rit1']) ? $post['data']['ops']['penumpang_rit1'] : 0); ?>
+            </h5>
+            <h5>
+                Jumlah Pnp RIT 2 : <?= (isset($post['data']['ops']['penumpang_rit2']) ? $post['data']['ops']['penumpang_rit2'] : 0); ?>
+            </h5>
         </div>
     </div>
 
@@ -65,42 +82,34 @@
     )); 
     ?>
 
-    <?php if (!empty($post['pengeluaran_data'])): ?>
+    <?php if (isset($post['data']['ops']['rit1'], $post['data']['ops']['rit2'])): ?>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_title">
-                <h5 class="title">Data Pengeluaran</h5>
+                <h5 class="title">Data Pengeluaran <?= $isTripClose ? '(<span class="red">Input Pengeluaran telah ditutup karena Trip sudah berakhir</span>)' : ''; ?></h5>
                 <div class="clearfix"></div>
             </div>
         </div>
     
-        <div class="col-md-12 col-sm-12 col-xs-12 overflowX">
+        <div class="col-md-12 col-sm-12 col-xs-12 overflowX none">
             <table class="table table-striped table-bordered">
                 <tbody>
-                <?php 
-                $no = 1;
-                // Helper::getInstance()->dump($post['pengeluaran_data']);
-               /* foreach ($post['pengeluaran_data'] as $d) {
-                ?>
                     <tr>
-                        <th><?= $no++; ?></th>
                         <th width="50%">
-                            <?= $d['deskripsi_pengeluaran']; ?>
+                            <label>Biaya Operasional</label>
                         </th>
-                        <td width="40%">
-                            <?= $d['nominal'] > 0 ? Helper::getInstance()->getRupiah($d['nominal']) : $d['nominal']; ?>
-                        </td>
-                        <td width="5%">
-                            <span class="btn btn-danger" onclick="return confirmDelete('<?= $d['id']; ?>')"><i class="fa fa-trash"></i></span>
+                        <td width="50%">
+                            <label>
+                                <?= ($post['data']['ops']['rit1'] + $post['data']['ops']['rit2']) > 0 ? Helper::getInstance()->getRupiah(($post['data']['ops']['rit1'] + $post['data']['ops']['rit2'])) : ($post['data']['ops']['rit1'] + $post['data']['ops']['rit2']); ?>
+                            </label>
                         </td>
                     </tr>
-                    <?php
-                } */?>
                 </tbody>
             </table>
         </div>
     <?php endif; ?>
    
     <?php
+    // Helper::getInstance()->dump($post['data']);
     $deskripsiPengeluaran = Helper::getInstance()->getPengeluaranItem($post['data']);
     ?>
     <div class="row d-relative">
@@ -111,34 +120,62 @@
                     <table class="table border-none mb-0">
                         <tbody>
                             <?php foreach ($deskripsiPengeluaran as $key => $value) {
+
                                 ?>
-                                <tr>
-                                    <td>
-                                        <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
-                                        <input class="form-control number" name="<?= $key ?>" placeholder="<?= str_replace("_", " ", $key) ?>" 
-                                        <?= isset($value['readonly']) && $value['readonly'] ? 'readonly="readonly"' : ''; ?>
-                                        value="<?= isset($post['pengeluaran_data'][$key]['value']) ? Helper::getInstance()->getRupiah($post['pengeluaran_data'][$key]['value']) : Helper::getInstance()->getRupiah($value['value']); ?>"
-                                        />
-                                    </td>
-                                </tr>
-                                <?php
-                                if (isset($value['attach']) && $value['attach']) {
-                                    ?>
-                                <tr>
-                                    <td colspan="2">
-                                        <label>Lampiran</label>
-                                        <?php if (isset($post['pengeluaran_data'][$key]['lampiran'])): ?>
+                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) ? '' : 'none') : '' ?>">
+                                    <?php foreach ($value as $l => $dt) {
+                                        
+                                        if ($l == 'label'):
+                                        ?>
+                                        <td width="50%">
+                                            <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
+                                            <?php if (in_array($key, ['solar'])): ?>
+
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" name="<?= $key ?>" placeholder="Solar (liter)"
+                                                    value="<?= isset($post['pengeluaran_data'][$key]['value']) ? $post['pengeluaran_data'][$key]['value'] : ''; ?>" required="required">
+                                                    <span class="input-group-btn">
+                                                    <button class="btn btn-secondary h-100x" type="button">Liter</button>
+                                                    </span>
+                                                </div>
+
+                                                <?php
+                                                if (isset($value['refund'])): ?>
+                                                    <div class="row"><a href="javascript:void(0)" onclick="pengajuanRefundSolar('<?= $value['refund'] ?>')">Pengajuan refund solar</a></div>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <input class="form-control number" name="<?= $key ?>" placeholder="<?= str_replace("_", " ", $key) ?>" 
+                                                <?= isset($dt['readonly']) && $dt['readonly'] ? 'readonly="readonly"' : ''; ?>
+                                                value="<?= isset($post['pengeluaran_data'][$key]['value']) ? Helper::getInstance()->getRupiah($post['pengeluaran_data'][$key]['value']) : Helper::getInstance()->getRupiah($dt['value']); ?>"
+                                                />
+                                            <?php endif; ?>
+                                        </td>
+                                        <?php
+                                        elseif ($l == 'attach'):
+                                            ?>
+                                        <td>
+                                            <label>Lampiran</label>
+                                            <?php if (isset($post['pengeluaran_data'][$key]['lampiran'])): ?>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 "> 
                                             <div class="col-md-12 col-sm-12 col-xs-12 "> 
-                                            <img src="<?= $post['pengeluaran_data'][$key]['lampiran']; ?>" class="icon-img"/>
-                                            </div>
-                                        <?php else: ?>
-                                            <input type="file" name="attach_<?= $key ?>" class="form-control" accept="image/png, image/gif, image/jpeg"/>
-                                        <?php endif; ?>
-                                    </td>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 "> 
+                                                <img src="<?= $post['pengeluaran_data'][$key]['lampiran']; ?>" class="icon-img"/>
+                                                </div>
+                                            <?php else: ?>
+                                                <input type="file" name="attach_<?= $key ?>" class="form-control" accept="image/png, image/gif, image/jpeg"/>
+                                            <?php endif; ?>
+                                        </td>
+                                            <?php
+                                        endif;
+                                    } ?>
                                 </tr>
-                                    <?php
-                                }
+                               <?php
                             } ?>
+                            <tr>
+                                <td colspan="2">
+                                    <span id="showLainnya" class="btn btn-info ">Tampilkan Pengeluaran Lain</span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
@@ -152,7 +189,7 @@
         </table>
     </div>
 
-    <div class="container-button-float">
+    <div class="container-button-float <?= $isTripClose ? 'none' : '' ?>">
     <div class="row-0">
         <div class="button-float">
             <input type="submit" name="submit" class="none" value="1" id="submitHide"/>
@@ -164,33 +201,7 @@
     </div>
 <?php $this->endWidget(); ?>
 
-<?php else: ?>
-    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-        <h4>Tidak ditemukan penugasan</h4>
-    </div>
-<?php endif; ?>
-
-</div>
-
 <script>
-    $('#startdate').datepicker({
-		uiLibrary: 'bootstrap4',
-		format: 'yyyy-mm-dd',
-		header: true
-	});
-    $("body").on('keyup', 'input.number', function(e){
-        e.preventDefault();
-        var value = $(this).val();
-        value = value.replace(".", "");
-        value = value.replace(".", "");
-        $(this).val(accounting.formatNumber(value, 0, "."));
-    });
-
-    function confirmSubmitPengeluaran()
-    {
-        $('#submitHide').trigger('click');
-    }
-
     var count=1;
     $('#addFormAddition').on('click', function(e){
       e.preventDefault();
@@ -222,10 +233,6 @@
       }
     }
 
-    $('#filter').on('click', function(){
-        location.href = "<?= Constant::baseUrl() . '/' . $this->route . '?startdate=' ?>"+$('#startdate').val()+"&rit="+$('#rit').val();
-    });
-
     function confirmDelete(id) {
         if (confirm("Apakah yakin untuk menghapus data pengeluaran ini?") == true) {
             $.ajax({
@@ -255,4 +262,128 @@
             });
         }
     }
+
+$('#showLainnya').on('click', function() {
+    $('.inputLain').removeClass('none');
+    $(this).addClass('none');
+});
+
+function pengajuanRefundSolar(maks) {
+    var penjadwalan_id = "<?= $post['data']['penjadwalan_id'] ?>";
+    Swal.fire({
+                title: 'Pengajuan Refund Kupon Solar',
+                html: `
+                <div class="row">
+                    <div class="form-group">
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <th>Besar refund (maksimal ${maks} Liter)</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="number" id="refund" class="form-control" placeholder="- Besaran refund dalam liter -" value="" min="1" max="10">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                `,
+                icon: 'info',
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: 'Ajukan',
+                confirmButtonColor: '#F58220',
+                focusConfirm: false,
+                preConfirm: () => {
+                    const refund = Swal.getPopup().querySelector('#refund').value;
+                    if (!refund) {
+                        Swal.showValidationMessage(`Silahkan isi besaran refund`);
+                    }
+
+                    return { refund: refund }
+                }
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                    var data = {refund: result.value.refund, penjadwalan_id: penjadwalan_id};
+                    
+                    $.ajax({
+                        type : "POST",
+                        url : "<?= Constant::baseUrl() . '/booking/refundSolar' ?>",
+                        dataType : "JSON",
+                        data: data,
+                        success : function(data) {
+                            if (data.success) {
+                                Swal.fire({
+                                    html: `Pengajuan refund berhasil`,
+                                    icon: 'info',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK'
+                                    });
+                            } else {
+                                console.log(data);
+                                var message = typeof data.message !== "undefined" ? data.message : 'Data gagal konfirmasi';
+                                Swal.fire({
+                                    html: message,
+                                    icon: 'error',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK'
+                                    });
+                            }
+                        },
+                        error : function(data){
+                            if (typeof(data.responseText) !== "undefined")
+                                console.log(data.responseText);
+                        }
+                    });
+                }
+            });
+}
+
+$("body").on("keyup", '#refund', function(e){
+    e.preventDefault();
+
+    if (typeof $(this).val() !== "undefined" && $(this).val() !== 'NaN' && $(this).val() !== "") {
+        var value = parseInt($(this).val());
+        if (value > 10) {
+            value = 10;
+        }
+        $(this).val(value);
+    }
+});
+</script>
+
+<?php else: ?>
+    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+        <h4>Tidak ditemukan penugasan</h4>
+    </div>
+<?php endif; ?>
+
+</div>
+
+<script>
+    $('#startdate').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		header: true
+	});
+    $("body").on('keyup', 'input.number', function(e){
+        e.preventDefault();
+        var value = $(this).val();
+        value = value.replace(".", "");
+        value = value.replace(".", "");
+        $(this).val(accounting.formatNumber(value, 0, "."));
+    });
+
+    function confirmSubmitPengeluaran()
+    {
+        $('#submitHide').trigger('click');
+    }
+
+    $('#filter').on('click', function(){
+        location.href = "<?= Constant::baseUrl() . '/' . $this->route . '?startdate=' ?>"+$('#startdate').val()+"&rit="+$('#rit').val();
+    });
 </script>

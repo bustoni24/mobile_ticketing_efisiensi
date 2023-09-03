@@ -1,5 +1,5 @@
 <div class="row mt-20">
-    <div class="col-sm-12">
+    <div class="col-sm-12 none">
         <div class="x_title">
             <h4><i class="fa fa-info-circle"></i> Konfirmasi Data Penumpang dengan kode Booking <?= (isset($data['booking_id']) ? $data['booking_id'] : '-') ?></h4>
             <h5><?= $data['nama_kota_asal'] .' - '. $data['nama_kota_tujuan']; ?></h5>
@@ -10,91 +10,126 @@
     </div>
 </div>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-        'id'=>'pembelian-tiket-form',
-        // Please note: When you enable ajax validation, make sure the corresponding
-        // controller action is handling ajax validation correctly.
-        // There is a call to performAjaxValidation() commented in generated controller code.
-        // See class documentation of CActiveForm for details on this.,
-        'enableAjaxValidation'=>false
-    )); 
-    ?>
-
-    <?php foreach ($data['list'] as $list) {
-        // Helper::getInstance()->dump($data['list']);
-        ?>
-        <div class="card-booking card-book mb-50">
-        <?php
-        foreach ($list as $key => $value) {
-            if (in_array($key, ['tanggal', 'jam', 'jenis_kelamin', 'rit']))
-                continue;
-            ?>
-            <div class="row <?= in_array($key, ['daerah_pengantaran','zona_pengantaran']) ? "none pengantaran_field" : ""; ?>">
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                    <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
-                    <?php if (in_array($key, ['no_hp'])) {
-                        echo CHtml::numberField("Booking[$key][]", $list[$key], ['class'=>'form-control', 'readonly' => in_array($key, ['kode_booking'])]);
-                    } else if (in_array($key, ['jenis_kelamin'])) {
-                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], [
-                            'L' => 'Pria',
-                            'P' => 'Wanita'
-                        ], ['class'=>'form-control']);
-                    } else if (in_array($key, ['status'])) {
-                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], [
-                            Constant::STATUS_PENUMPANG_NAIK => 'Naik',
-                            Constant::STATUS_PENUMPANG_TURUN => 'Turun',
-                            Constant::STATUS_PENUMPANG_PENGAJUAN_REFUND => 'Pengajuan Refund',
-                        ], ['class'=>'form-control', 'prompt' => 'Pilih Status Penumpang', 'required' => true]);
-                    } else if (in_array($key, ['opsi_pengantaran'])) {
-                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], [
-                            Constant::PENGANTARAN_TIDAK => ucwords(Constant::PENGANTARAN_TIDAK),
-                            Constant::PENGANTARAN_YA => ucwords(Constant::PENGANTARAN_YA)
-                        ], ['class'=>'form-control opsi_pengantaran']);
-                    } else if (in_array($key, ['zona_pengantaran'])) {
-                        echo CHtml::dropDownList("Booking[$key][]", $list[$key], Helper::getInstance()->getZonaPengantaran(), ['class'=>'form-control']);
-                    } else {
-                        echo CHtml::textField("Booking[$key][]", $list[$key], ['class'=>'form-control', 'readonly' => in_array($key, ['kode_booking'])]);
-                    } ?>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-        </div>
-        <?php
-    }
-    ?>
-
-<div class="container-button-float">
-    <div class="row-0">
-        <div class="float-div">
-            <button class="btn btn-warning">Konfirmasi</button>
-            <!-- <input class="btn btn-success" value="Turun" name="turun" type="submit"/> -->
-            <!-- <button type="button" class="btn btn-danger" id="tolak">Tolak</button> -->
-        </div>
-    </div>
-</div>
-
-<?php $this->endWidget(); ?>
-
+<?php 
+// Helper::getInstance()->dump($data);
+$this->widget('zii.widgets.CListView', array(
+    'id'=>'listViewBooking',
+    'dataProvider'=>$model->searchBooking(),
+    'itemView'=>'_view_list_booking',
+    'emptyText' => 'Tidak ditemukan penugasan',
+    'viewData' => array(
+        'data_origin' => $data
+    ),
+));
+?>
 
 <script>
-    /* function onSubmitForm(ev) {
-        Swal.fire({
-                    title: 'Konfirmasi Booking',
-                    icon: 'info',
-                    showDenyButton: true,
-                    showCancelButton: false,
-                    confirmButtonText: 'OK',
-                    denyButtonText: `Cancel`,
-            }).then((result) => {
-                    if (result.isConfirmed) {
-                        return true;
-                    } else if (result.isDenied) {
-                        return false;
+     $("body").on("change", '.opsi_pengantaran', function(e){
+        e.preventDefault();
+
+        var parents = $(this).parent().parent().parent().parent().parent().parent();
+        if ($(this).val() === 'ya') {
+            parents.find('.opsi_pengantaran_form').removeClass('none');
+        } else {
+            parents.find('.opsi_pengantaran_form').addClass('none');
+        }
+    });
+    $("body").on("change", '.extra_bagasi', function(e){
+        e.preventDefault();
+
+        if ($(this).is(":checked")) {
+            $('.nominal_bagasi').attr('readonly', false);
+        } else {
+            $('.nominal_bagasi').attr('readonly', true);
+        }
+    });
+
+    var trip_id =  "<?= isset($data['trip_id']) ? $data['trip_id'] : ''; ?>";
+    var startdate = "<?= isset($data['tanggal']) ? $data['tanggal'] : date('Y-m-d'); ?>";
+    var armada_ke = "<?= $data['armada_ke']; ?>";
+    var tujuan = <?= json_encode($data['tujuan_id']) ?>;
+    function confirmSubmitTrip()
+    {
+        if ($('#statusPnp').val() === "") {
+            Swal.fire({
+                html: '<h5>Mohon pilih status penumpang</h5>',
+                icon: 'warning',
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'OK'
+                });
+            return false;
+        }
+        var seat = $("input[name='FormSeat[kursi][]']")
+              .map(function(){return $(this).val();}).get();
+        var kode_booking = $("input[name='FormSeat[kode_booking][]']")
+              .map(function(){return $(this).val();}).get();
+        
+        let data = {trip_id:trip_id, startdate:startdate, armada_ke:armada_ke, seat:seat, kode_booking:kode_booking, status:1};
+        //check available booking
+    // console.log(data);
+        $.ajax({
+                type : "POST",
+                url : "<?= Constant::baseUrl() . '/booking/checkAvailableBooking' ?>",
+                dataType : "JSON",
+                data: data,
+                success : function(data) {
+                    console.log(data);
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'Informasi Kursi Terisi',
+                            html: data.data,
+                            icon: 'info',
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: 'OK'
+                            });
+                            // reloadSeat();
+                    } else {
+                        console.log(data);
+                        $('#submitHide').trigger('click');
                     }
+                },
+                error : function(data){
+                    if (typeof(data.responseText) !== "undefined")
+                        console.log(data.responseText);
+                }
             });
-    } */
+    }
+
+    function reloadSeat()
+    {
+        var dataSent = {};
+        dataSent['startdate'] = startdate;
+        dataSent['rit'] = "<?= isset($data['rit']) ? $data['rit'] : '' ?>";
+        dataSent['penjadwalan_id'] = "<?= isset($data['penjadwalan_id']) ? $data['penjadwalan_id'] : '' ?>";
+        dataSent['tujuan'] = tujuan;
+        dataSent['data'] = '<?= $_GET['data'] ?>';
+        
+        updateListView(dataSent);
+    }
+
+    function updateListView(data)
+    {
+        if (typeof data === "undefined" || data === null || data === "")
+            return false;
+
+        $.fn.yiiListView.update('listViewBooking', {data:data,
+        complete: function(){
+        
+        },
+        error : function(data){
+            if (typeof(data.responseText) !== "undefined")
+                console.log(data.responseText);
+        }});
+    }
+
+    $("body").on('change', '.checkSeat', function(e){
+        e.preventDefault();
+
+        $(this).attr('checked', false);
+    });
+    /* 
 
     $('.opsi_pengantaran').on('change', function() {
         var parent = $(this).parent().parent().parent().find('.pengantaran_field');
@@ -162,5 +197,21 @@
                     });
             }
         });
+    });
+    $("body").on("change", '.extra_bagasi', function(e){
+        e.preventDefault();
+
+        if ($(this).is(":checked")) {
+            $('.nominal_bagasi').attr('readonly', false);
+        } else {
+            $('.nominal_bagasi').attr('readonly', true);
+        }
+    }); */
+    $("body").on('keyup', 'input.number', function(e){
+        e.preventDefault();
+        var value = $(this).val();
+        value = value.replace(".", "");
+        value = value.replace(".", "");
+        $(this).val(accounting.formatNumber(value, 0, "."));
     });
 </script>

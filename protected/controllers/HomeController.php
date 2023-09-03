@@ -31,7 +31,7 @@ class HomeController extends Controller
 							'method' => 'POST',
 							'postfields' => [
 								'startdate' => $post['startdate'],
-								'rit' => isset($post['rit']) ? $post['rit'] : 1,
+								'rit' => isset($post['rit']) ? $post['rit'] : null,
 								'user_id' => Yii::app()->user->id,
 								'role' => Yii::app()->user->role
 								]
@@ -85,7 +85,7 @@ class HomeController extends Controller
 		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
 		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
-		$model->rit = isset($_GET['rit']) ? $_GET['rit'] : 1;
+		$model->rit = isset($_GET['rit']) ? $_GET['rit'] : null;
 		$model->tujuan = isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
 		//cari penugasan
@@ -97,14 +97,20 @@ class HomeController extends Controller
 					'startdate' => $model->startdate,
 					'rit' => $model->rit,
 					'user_id' => Yii::app()->user->id,
-					'role' => Yii::app()->user->role
+					'role' => Yii::app()->user->role,
+					'latitude' => $model->latitude,
+            		'longitude' => $model->longitude
 					]
 			]
 		]);
+		if (isset($penugasan['data']['rit']))
+			$model->rit = $penugasan['data']['rit'];
+
 		if (!isset($model->tujuan) && isset($penugasan['data']['tujuan_id']) && !empty($penugasan['data']['tujuan_id']))
 			$model->tujuan = $penugasan['data']['tujuan_id'];
 
-		// Helper::getInstance()->dump($model->tujuan);
+		$arrayTujuan = Armada::object()->getTujuan($model);
+		// Helper::getInstance()->dump($penugasan)
 
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
@@ -138,7 +144,6 @@ class HomeController extends Controller
                 }
 
 			}
-			// Helper::getInstance()->dump([$_POST, $_FILES]);
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [
@@ -146,7 +151,7 @@ class HomeController extends Controller
 					'postfields' => [
 						'route_id' => isset($_POST['BookingTrip']['route_id']) ? $_POST['BookingTrip']['route_id'] : null,
 						'startdate' => isset($_POST['BookingTrip']['startdate']) ? $_POST['BookingTrip']['startdate'] : null,
-						'armada_ke' => isset($_POST['BookingTrip']['armada_ke']) ? $_POST['BookingTrip']['armada_ke'] : null,
+						'armada_ke' => isset($penugasan['data']['armada_ke']) ? $penugasan['data']['armada_ke'] : null,
 						'penjadwalan_id' => isset($_POST['BookingTrip']['penjadwalan_id']) ? $_POST['BookingTrip']['penjadwalan_id'] : null,
 						'BookingTrip' => $_POST['BookingTrip'],
 						'FormSeat' => $_POST['FormSeat'],
@@ -177,7 +182,8 @@ class HomeController extends Controller
 
 		$this->render('homeCrew', [
 			'model' => $model,
-			'penugasan' => $penugasan
+			'penugasan' => $penugasan,
+			'arrayTujuan' => $arrayTujuan
 		]);
 	}
 
@@ -372,10 +378,17 @@ class HomeController extends Controller
 				return $this->redirect(Constant::baseUrl() . '/home/qrResultChecker?data=' . $_GET['data']);
 				break;
 		}
-		$data = base64_decode($_GET['data']);
-		$data = json_decode($data, true);
+		$dataRaw = base64_decode($_GET['data']);
+		$data = json_decode($dataRaw, true);
 		// Helper::getInstance()->dump($data);
-		if (isset($_POST['Booking']['kode_booking'])) {
+
+		$model = new Booking;
+		$model->startdate = (isset($data['tanggal']) && !empty($data['tanggal']) ? date('Y-m-d', strtotime($data['tanggal'])) : (isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d')));
+		$model->rit = isset($data['rit']) ? $data['rit'] : (isset($_GET['rit']) ? $_GET['rit'] : null);
+		$model->tujuan = isset($data['tujuan_id']) && !empty($data['tujuan_id']) ? $data['tujuan_id'] : (isset($_GET['tujuan']) ? $_GET['tujuan'] : null);
+		$model->penjadwalan_id = isset($data['penjadwalan_id']) && !empty($data['penjadwalan_id']) ? $data['penjadwalan_id'] : (isset($_GET['penjadwalan_id']) ? $_GET['penjadwalan_id'] : null);
+
+		if (isset($_POST['FormSeat'])) {
 			// Helper::getInstance()->dump($_POST);
 			$res = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/confirmBooking',
@@ -384,12 +397,19 @@ class HomeController extends Controller
 					'postfields' => [
 						'booking_id' => $data['booking_id'],
 						'user_id' => Yii::app()->user->id,
-						'status' => isset($_POST['turun']) ? Constant::STATUS_PENUMPANG_TURUN : Constant::STATUS_PENUMPANG_NAIK,
+						'status' => isset($_POST['BookingTrip']['status']) && $_POST['BookingTrip']['status'] ? Constant::STATUS_PENUMPANG_TURUN : Constant::STATUS_PENUMPANG_NAIK,
 						'role' => Yii::app()->user->role,
-						'postArray' => $_POST['Booking']
+						'extra_bagasi' => isset($_POST['BookingTrip']['extra_bagasi']) ? $_POST['BookingTrip']['extra_bagasi'] : 0,
+						'nominal_bagasi' => isset($_POST['BookingTrip']['nominal_bagasi']) ? $_POST['BookingTrip']['nominal_bagasi'] : null,
+						'postArray' => $_POST['FormSeat'],
+						'armada_ke' => isset($_POST['BookingTrip']['armada_ke']) ? $_POST['BookingTrip']['armada_ke'] : null,
+						'penjadwalan_id' => isset($_POST['BookingTrip']['penjadwalan_id']) ? $_POST['BookingTrip']['penjadwalan_id'] : null,
+						'real_titik_id' => isset($data['real_titik_id']) ? $data['real_titik_id'] : null,
+						'real_armada_ke' => isset($data['real_armada_ke']) ? $data['real_armada_ke'] : null,
 					]
 				]
 			]);
+			// Helper::getInstance()->dump($res);
 
 			if (!$res['success']) {
 				Helper::getInstance()->dump($res['message']);
@@ -400,7 +420,9 @@ class HomeController extends Controller
 		}
 		// Helper::getInstance()->dump($data);
 		return $this->render('qrResult', [
-			'data' => $data
+			'data' => $data,
+			'model' => $model,
+			'dataRaw' => $dataRaw
 		]);
 	}
 
@@ -537,6 +559,7 @@ class HomeController extends Controller
 								'bayar' => $bayar,
 								'bonus' => $bonus,
 								'file_name' => $fileName,
+								'rekening' => $post['rekening'],
 								'url' => SERVER . '/uploads/' . $fileName,
 								'user_id' => Yii::app()->user->id,
 								'role' => Yii::app()->user->role

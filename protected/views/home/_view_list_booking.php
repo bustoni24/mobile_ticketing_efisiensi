@@ -10,7 +10,10 @@ $listTerdekat = isset($data['data']['listTitikTerdekat']) ? $data['data']['listT
 $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
 $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['seatBooked']) : 0;
 $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data']['subTripSelected'] : [];
-// Helper::getInstance()->dump($data['data']);
+$from_scanner = isset($data['data']['from_scanner']) ? $data['data']['from_scanner'] : false;
+$data_origin = isset($data_origin) ? $data_origin : [];
+$status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data']['post']['post']['status_trip'] : null;
+// Helper::getInstance()->dump($data);
 ?>
 <div class="col-sm-12">
 
@@ -31,7 +34,12 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
             <?php
         } ?>
         <div class="clearfix"></div>
-        <?php echo (isset($post['nomor_lambung']) && !empty($post['nomor_lambung']) ? '<h5>Nomor Lambung: '. $post['nomor_lambung'].'</h5>' : ''); ?>
+        <?php echo (isset($post['nomor_lambung']) && !empty($post['nomor_lambung']) ? '<h5>Nomor Lambung: '. $post['nomor_lambung'].'</h5>' : ''); 
+        
+        if ($status_trip == Constant::STATUS_TRIP_CLOSE) {
+            echo '<span class="red">(Pembelian Tiket telah ditutup karena Trip sudah berakhir)</span>';
+        }
+        ?>
     </div>
     
     <div class="card-booking b-radius-none">
@@ -241,7 +249,7 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
     )); 
     ?>
 
-<?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+<?php if (in_array(Yii::app()->user->role, ['Cabin Crew']) && !$from_scanner): ?>
 
     <div class="row height-75 d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -252,7 +260,7 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
         </div>
     </div>
 
-    <div class="row height-75 d-relative">
+    <div class="row height-75 d-relative none">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Jam Keberangkatan Terdekat</label>
             <label>( Keberangkatan Ke <?= isset($listTerdekat['armada_ke']) ? $listTerdekat['armada_ke'] : '-' ?> )</label>
@@ -262,7 +270,7 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
 
     <div class="row height-75 d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <?= CHtml::textField('BookingTrip[daerah_titik_keberangkatan]','',['autocomplete' => 'off', 'placeholder' => 'Ketik Nama Dearah Keberangkatan','required'=>true]); ?>
+            <?= CHtml::textField('BookingTrip[daerah_titik_keberangkatan]','',['autocomplete' => 'off', 'placeholder' => 'Ketik Titik Naik Keberangkatan','required'=>true]); ?>
         </div>
     </div>
 
@@ -275,78 +283,161 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
 
         <?= CHtml::hiddenField('BookingTrip[total_harga]', ''); ?>
         <?= CHtml::hiddenField('BookingTrip[route_id]', (isset($listTerdekat['route_id']) ? $listTerdekat['route_id'] : (isset($modelTripAgen->route_id) ? $modelTripAgen->route_id : ''))); ?>
-        <?= CHtml::hiddenField('BookingTrip[armada_ke]', isset($post['armada_ke']) ? $post['armada_ke'] : ''); ?>
+        <?= CHtml::hiddenField('BookingTrip[armada_ke]',  isset($listTerdekat['armada_ke']) ? $listTerdekat['armada_ke'] : (isset($post['armada_ke']) ? $post['armada_ke'] : '')); ?>
         <?= CHtml::hiddenField('BookingTrip[startdate]', isset($post['startdate']) ? $post['startdate'] : ''); ?>
         <?= CHtml::hiddenField('BookingTrip[penjadwalan_id]', isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''); ?>
         <?= CHtml::hiddenField('BookingTrip[latitude]', (isset($data['data']['latitude']) ? $data['data']['latitude'] : '')) ?>
         <?= CHtml::hiddenField('BookingTrip[longitude]', (isset($data['data']['longitude']) ? $data['data']['longitude'] : '')) ?>
         <?= CHtml::hiddenField('BookingTrip[jarak]', (isset($listTerdekat['distance']) ? $listTerdekat['distance'] : '')); ?>
-        <table class="table">
-            <tbody id="table-form-passenger">
-                <tr id="form-passenger0" class="form-passenger">
-                    <td>
-                        <table class="table border-none">
-                            <tr>
-                                <th>Nama</th>
-                                <th>No Telp</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <?= CHtml::textField('FormSeat[name][]', '', ['placeholder'=>'Penumpang' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
-                                </td>
-                                <td>
-                                    <?= CHtml::textField('FormSeat[telp][]', '', ['placeholder'=>'Telepon' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Kursi</th>
-                                <th>Gender</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <?= CHtml::textField('FormSeat[kursi][]', '', ['readonly'=>true, 'class'=>'inputSeat seatForm','required'=>true]); ?>
-                                </td>
-                                <td>
-                                    <?= CHtml::dropDownList('FormSeat[gender][]', '', [
-                                        'L' => 'Pria',
-                                        'P' => 'Wanita'
-                                    ],['class'=>'inputSeat']); ?>
-                                </td>
-                            </tr>
-                            <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+
+        <?php if ($from_scanner): 
+        echo CHtml::hiddenField('BookingTrip[status]', (isset($data_origin['status']) && $data_origin['status'] == Constant::STATUS_PENUMPANG_NAIK ? 2 : 2));
+            // Helper::getInstance()->dump($data_origin);
+            ?>
+            <table class="table">
+                <tbody id="table-form-passenger">
+                <?php foreach ($data_origin['list'] as $list) {
+                    ?>
+                    <tr id="form-passenger0" class="form-passenger">
+                        <td>
+                            <table class="table border-none">
                                 <tr>
-                                    <th>Opsi Pengantaran</th>
-                                    <th>Daerah Pengantaran</th>
+                                    <th>Nama</th>
+                                    <th>No Telp</th>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <?= CHtml::dropDownList("FormSeat[opsi_pengantaran][]", '', [
-                                                Constant::PENGANTARAN_TIDAK => ucwords(Constant::PENGANTARAN_TIDAK),
-                                                Constant::PENGANTARAN_YA => ucwords(Constant::PENGANTARAN_YA)
-                                            ], ['class'=>'inputSeat opsi_pengantaran']); 
-                                        ?>
+                                        <?= CHtml::hiddenField('FormSeat[kode_booking][]', $list['kode_booking']) ?>
+                                        <?= CHtml::textField('FormSeat[name][]', $list['nama'], ['placeholder'=>'Penumpang' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
                                     </td>
                                     <td>
-                                        <?= CHtml::textField("FormSeat[daerah_pengantaran][]", '', ['class'=>'inputSeat opsi_pengantaran']); ?>
+                                        <?= CHtml::textField('FormSeat[telp][]', $list['no_hp'], ['placeholder'=>'Telepon' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Zona Pengantaran</th>
-                                    <th></th>
+                                    <th>Kursi</th>
+                                    <th>Gender</th>
                                 </tr>
                                 <tr>
                                     <td>
-                                    <?= CHtml::dropDownList('FormSeat[zona_pengantaran][]', '', Helper::getInstance()->getZonaPengantaran(),['class'=>'inputSeat opsi_pengantaran']); ?>
+                                        <?= CHtml::textField('FormSeat[kursi][]', $list['no_kursi'], ['class'=>'inputSeat seatForm','required'=>true]); ?>
                                     </td>
                                     <td>
+                                        <?= CHtml::dropDownList('FormSeat[gender][]', $list['jenis_kelamin'], [
+                                            'L' => 'Pria',
+                                            'P' => 'Wanita'
+                                        ],['class'=>'inputSeat']); ?>
                                     </td>
                                 </tr>
-                            <?php endif; ?>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                                <tr>
+                                    <td colspan="2">
+                                        <select name="FormSeat[status][]" id="statusPnp" class="form-control" required="required">
+                                            <option value="">- Pilih Status -</option>
+                                            <option <?= $list['status'] == Constant::STATUS_PENUMPANG_NAIK ? 'selected="selected"' : '' ?> value="<?= Constant::STATUS_PENUMPANG_NAIK ?>">Naik</option>
+                                            <option <?= $list['status'] == Constant::STATUS_PENUMPANG_TURUN ? 'selected="selected"' : '' ?> value="<?= Constant::STATUS_PENUMPANG_TURUN ?>">Turun</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+                                    <tr>
+                                        <th>Opsi Pengantaran</th>
+                                        <th>Daerah Pengantaran</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <?= CHtml::dropDownList("FormSeat[opsi_pengantaran][]", $list['opsi_pengantaran'], [
+                                                    Constant::PENGANTARAN_TIDAK => ucwords(Constant::PENGANTARAN_TIDAK),
+                                                    Constant::PENGANTARAN_YA => ucwords(Constant::PENGANTARAN_YA)
+                                                ], ['class'=>'inputSeat opsi_pengantaran']); 
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?= CHtml::textField("FormSeat[daerah_pengantaran][]", $list['daerah_pengantaran'], ['class'=>'inputSeat opsi_pengantaran_form ' . ($list['opsi_pengantaran'] == 'ya' ? '' : 'none')]); ?>
+                                        </td>
+                                    </tr>
+                                    <tr class="opsi_pengantaran_form <?= ($list['opsi_pengantaran'] == 'ya' ? '' : 'none') ?>">
+                                        <th>Zona Pengantaran</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr class="opsi_pengantaran_form <?= ($list['opsi_pengantaran'] == 'ya' ? '' : 'none') ?>">
+                                        <td colspan="2">
+                                        <?= CHtml::dropDownList('FormSeat[zona_pengantaran][]', $list['zona_pengantaran'], Helper::getInstance()->getZonaPengantaran(),['class'=>'inputSeat','prompt'=>'Pilih Zona Pengantaran']); ?>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </table>
+                        </td>
+                    </tr>
+                    <?php
+                } ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <table class="table">
+                <tbody id="table-form-passenger">
+                    <tr id="form-passenger0" class="form-passenger">
+                        <td>
+                            <table class="table border-none">
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>No Telp</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?= CHtml::textField('FormSeat[name][]', '', ['placeholder'=>'Penumpang' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
+                                    </td>
+                                    <td>
+                                        <?= CHtml::textField('FormSeat[telp][]', '', ['placeholder'=>'Telepon' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Kursi</th>
+                                    <th>Gender</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?= CHtml::textField('FormSeat[kursi][]', '', ['readonly'=>true, 'class'=>'inputSeat seatForm','required'=>true]); ?>
+                                    </td>
+                                    <td>
+                                        <?= CHtml::dropDownList('FormSeat[gender][]', '', [
+                                            'L' => 'Pria',
+                                            'P' => 'Wanita'
+                                        ],['class'=>'inputSeat']); ?>
+                                    </td>
+                                </tr>
+                                <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+                                    <tr>
+                                        <th>Opsi Pengantaran</th>
+                                        <th>Daerah Pengantaran</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <?= CHtml::dropDownList("FormSeat[opsi_pengantaran][]", '', [
+                                                    Constant::PENGANTARAN_TIDAK => ucwords(Constant::PENGANTARAN_TIDAK),
+                                                    Constant::PENGANTARAN_YA => ucwords(Constant::PENGANTARAN_YA)
+                                                ], ['class'=>'inputSeat opsi_pengantaran']); 
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?= CHtml::textField("FormSeat[daerah_pengantaran][]", '', ['class'=>'inputSeat opsi_pengantaran_form none']); ?>
+                                        </td>
+                                    </tr>
+                                    <tr class="opsi_pengantaran_form none">
+                                        <th>Zona Pengantaran</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr class="opsi_pengantaran_form none">
+                                        <td colspan="2">
+                                        <?= CHtml::dropDownList('FormSeat[zona_pengantaran][]', '', Helper::getInstance()->getZonaPengantaran(),['class'=>'inputSeat','prompt'=>'Pilih Zona Pengantaran']); ?>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <?php endif; ?>
             <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
             <table class="table">
                 <tbody>
@@ -354,18 +445,18 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
                         <td width="40%">
                         <div class="checkbox">
                             <label>
-                            <?= CHtml::checkBox('BookingTrip[extra_bagasi]', false); ?> Extra Bagasi
+                            <?= CHtml::checkBox('BookingTrip[extra_bagasi]', (isset($data_origin['extra_bagasi']) ? $data_origin['extra_bagasi'] : false), ['class' => 'extra_bagasi']); ?> Extra Bagasi
                             </label>
                         </div>
                         </td>
                         <td>
                         <div class="row">
                             <label class="mt-0">Nominal Bagasi</label>
-                            <?= CHtml::textField('BookingTrip[nominal_bagasi]', '',['class'=>'form-control number', 'readonly' => true]); ?>
+                            <?= CHtml::textField('BookingTrip[nominal_bagasi]', (isset($data_origin['nominal_bagasi']) && $data_origin['nominal_bagasi'] > 0 ? Helper::getInstance()->getRupiah($data_origin['nominal_bagasi']) : ''),['class'=>'form-control number nominal_bagasi', 'readonly' => true]); ?>
                         </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="<?= $from_scanner ? 'none' : '' ?>">
                         <td>
                             <div class="row">
                                 <label class="mt-0">Tipe Pembayaran</label>
@@ -388,12 +479,12 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
             
     </div>
 
-    <div class="container-button-float">
+    <div class="container-button-float <?= $status_trip == Constant::STATUS_TRIP_CLOSE ? 'none' : '' ?>">
     <div class="row-0">
         <div class="button-float">
             <input type="submit" name="submit" class="none" value="1" id="submitHide"/>
             <button type="button" class="float-btn btn-submit" id="beliTiket" onclick="return confirmSubmitTrip();">
-                Rp &nbsp;<span id="total_price">0</span> &nbsp;| Beli Tiket
+                <?= (!$from_scanner ? 'Rp &nbsp;<span id="total_price">0</span> &nbsp;| Beli Tiket' : 'Konfirmasi') ?> 
             </button>
         </div>
     </div>

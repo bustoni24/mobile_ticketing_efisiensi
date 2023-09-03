@@ -5,7 +5,7 @@ class ApiHelper {
     public function getUrl()
     {
         if (SERVER_SEGMENT == "PROD") {
-            return "https://efisiensi.id/";
+            return "https://staging.efisiensi.id/";
         } else {
             return "http://localhost/efisiensi/";
         }

@@ -44,6 +44,8 @@ class Constant {
     const TIPE_PEMBAYARAN_TUNAI = 'tunai';
     const TIPE_PEMBAYARAN_TRANSFER = 'transfer';
 
+    const STATUS_TRIP_CLOSE = 5;
+
     public static function iconSeat($type = "") {
         switch ($type) {
             case 'selected':

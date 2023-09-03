@@ -8,7 +8,7 @@ class BookingHelper {
         if (!isset($post['trip_id'],$post['startdate'],$post['armada_ke'],$post['seat'])) {
             return $result->dump('invalid parameter');
         }
-        $check = ApiHelper::getInstance()->callUrl([
+        return $check = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/checkAvailableBooking',
             'parameter' => [
                 'method' => 'POST',
@@ -63,6 +63,42 @@ class BookingHelper {
         }
         $check = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/deletePengeluaran',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
+    }
+
+    public function refundSolar($post = [])
+    {
+        $result = new Returner;
+        if (!isset($post['refund'], $post['penjadwalan_id'])) {
+            return $result->dump('invalid parameter');
+        }
+        $post['user_id'] = Yii::app()->user->id;
+        $post['role'] = Yii::app()->user->role;
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/refundSolar',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
+    }
+
+    public function saveLatlong($post = [])
+    {
+        $result = new Returner;
+        if (!isset($post['latitude'], $post['longitude'], $post['penjadwalan_id'])) {
+            return $result->dump('invalid parameters');
+        }
+        $post['user_id'] = Yii::app()->user->id;
+        $post['role'] = Yii::app()->user->role;
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/saveLatlong',
             'parameter' => [
                 'method' => 'POST',
                 'postfields' => $post

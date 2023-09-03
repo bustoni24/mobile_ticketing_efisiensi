@@ -38,6 +38,7 @@ class Booking
                     'role' => Yii::app()->user->role,
                     'tujuan' => isset($this->tujuan) ? $this->tujuan : null,
                     'rit' => isset($this->rit) ? $this->rit : null,
+                    'penjadwalan_id' => isset($this->penjadwalan_id) ? $this->penjadwalan_id : null //ini untuk scanner
                     ]
             ]
         ]);

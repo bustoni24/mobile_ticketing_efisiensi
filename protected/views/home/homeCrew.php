@@ -21,16 +21,17 @@
       <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Pilih RIT</label>
-              <?= CHtml::dropDownList('Booking[rit]',(isset($_GET['rit']) ? $_GET['rit'] : 1), [
+              <?= CHtml::dropDownList('Booking[rit]',$model->rit, [
                 1 => 'RIT 1',
                 2 => 'RIT 2',
-              ],['class' => 'form-control']); ?>
+              ],['class' => 'form-control','prompt'=>'Pilih RIT']); ?>
         </div>
       </div>
 
       <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
-              <?= CHtml::dropDownList('Booking[tujuan]', $model->tujuan, Armada::object()->getTujuan($_GET), ['prompt'=>'Pilih Tujuan','required'=>true]); ?>
+              <?= CHtml::dropDownList('Booking[tujuan]', $model->tujuan, $arrayTujuan, 
+              ['class' => 'form-control','prompt'=>'Pilih Tujuan','required'=>true]); ?>
         </div>
       </div>
       <div class="row d-relative">
@@ -51,6 +52,7 @@
 
     <?php 
     $data = isset($model->searchBooking()->getData()[0]) ? $model->searchBooking()->getData()[0] : [];
+    $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data']['post']['post']['status_trip'] : 4;
     // Helper::getInstance()->dump($data);
     echo $this->renderPartial('_bottom_field', array(
         'data' => $data
@@ -60,11 +62,14 @@
 <script>
     var latitude = "<?= isset($_GET['latitude']) ? $_GET['latitude'] : null ?>";
     var longitude = "<?= isset($_GET['longitude']) ? $_GET['longitude'] : null ?>";
-    var tujuan = "<?= isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : (isset($penugasan['data']['tujuan_id']) ? $penugasan['data']['tujuan_id'] : null) ?>";
     var titik_real_id = "<?= isset($data['data']['listTitikTerdekat']['titik_id']) ? $data['data']['listTitikTerdekat']['titik_id'] : '' ?>";
+    var rit = "<?= $model->rit ?>";
+    var armada_ke = "<?= isset($data['data']['post']['post']['armada_ke']) ? $data['data']['post']['post']['armada_ke'] : null ?>"
+    var penjadwalan_id = <?= isset($data['data']['post']['post']['penjadwalan_id']) ? $data['data']['post']['post']['penjadwalan_id'] : null ?>
     // console.log(tujuan);
     document.addEventListener("DOMContentLoaded", function() {
         $('#Booking_tujuan').select2();
+        $('#Booking_rit').select2();
 
             if (latitude === 'null' || latitude === null || latitude === "") {
                  // Cek apakah browser mendukung Geolocation API
@@ -93,8 +98,9 @@
             <?php
         }
     ?>
+
+    repeaterLatlong = setTimeout(getLatLong, 5000*60);
         });
-        
         
     function getLatLong()
     {
@@ -126,6 +132,8 @@
             } else {
                 console.log("Geolocation tidak didukung oleh browser Anda.");
             }
+
+        saveLatlong(latitude, longitude);
     }
 
 function refreshListBooking(latitude, longitude) {
@@ -146,13 +154,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
 
     $('#cari').on('click', function(){
         $(this).html('PROSES..');
-        // var startdate = $('#Booking_startdate').val();
-        // var tujuanId = $('#Booking_tujuan').val();
         getLatLong();
-
-        /* var startdate = $('#Booking_startdate').val();
-        var tujuanId = $('#Booking_tujuan').val();
-        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+startdate+"&latitude="+latitude+"&longitude="+longitude+"&tujuan="+tujuanId; */
     });
 
     function updateListView(data)
@@ -245,6 +247,9 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
             .find("input:text").val("")
             .end()
             .find("input.seatForm").val(valSeat)
+            .end()
+            .find(".opsi_pengantaran_form")
+            .addClass('none')
             .end();
 
             // $('#harga_kursi').append('<div id="'+ elementID +'" class="row d-flex justify-between"> <p class="mb-0">Nomor Kursi '+ element.val() +'</p> <p class="mb-0 text-bold">Rp. '+harga+'</p></div>');
@@ -294,6 +299,8 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         var seat = $(this).attr('data-seat');
         let startdate = $(this).attr('data-startdate');
         let penjadwalan_id = $(this).attr('data-penjadwalan_id');
+        var real_armada_ke = $('#BookingTrip_armada_ke').val();
+        var status_trip = "<?= $status_trip == Constant::STATUS_TRIP_CLOSE ? false : true ?>";
         
         if (typeof dataPassenger.nama !== 'undefined' && dataPassenger.nama !== "" && dataPassenger.nama !== null) {
             Swal.fire({
@@ -340,6 +347,53 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                                     </select>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Opsi Pengantaran</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select id="opsi_pengantaran" class="form-control">
+                                        <option ${dataPassenger.opsi_pengantaran === "<?= Constant::PENGANTARAN_TIDAK ?>" ? 'selected="selected"' : ''} value="<?= Constant::PENGANTARAN_TIDAK ?>"><?= ucwords(Constant::PENGANTARAN_TIDAK) ?></option>
+                                        <option ${dataPassenger.opsi_pengantaran === "<?= Constant::PENGANTARAN_YA ?>" ? 'selected="selected"' : ''} value="<?= Constant::PENGANTARAN_YA ?>"><?= ucwords(Constant::PENGANTARAN_YA) ?></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="${dataPassenger.opsi_pengantaran === "<?= Constant::PENGANTARAN_YA ?>" ? '' : 'none'} opsi_pengantaran_form_id">
+                                <th>Daerah Pengantaran</th>
+                            </tr>
+                            <tr class="${dataPassenger.opsi_pengantaran === "<?= Constant::PENGANTARAN_YA ?>" ? '' : 'none'} opsi_pengantaran_form_id">
+                                <td>
+                                    <input type="text" id="daerah_pengantaran" class="form-control" placeholder="- Ketik Daerah Pengantaran -" value="${dataPassenger.daerah_pengantaran}">
+                                </td>
+                            </tr>
+                            <tr class="${dataPassenger.opsi_pengantaran === "<?= Constant::PENGANTARAN_YA ?>" ? '' : 'none'} opsi_pengantaran_form_id">
+                                <th>Zona Pengantaran</th>
+                            </tr>
+                            <tr class="${dataPassenger.opsi_pengantaran === "<?= Constant::PENGANTARAN_YA ?>" ? '' : 'none'} opsi_pengantaran_form_id">
+                                <td>
+                                    <select id="zona_pengantaran" class="form-control">
+                                        <option value="">- Pilih Zona Pengantaran -</option>
+                                        <option ${dataPassenger.zona_pengantaran === "1" ? 'selected="selected"' : ''} value="1">1</option>
+                                        <option ${dataPassenger.zona_pengantaran === "2" ? 'selected="selected"' : ''} value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-md-4 p-0">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="hidden" value="0" name="extra_bagasi"><input class="extra_bagasi" value="1" type="checkbox" name="extra_bagasi" id="extra_bagasi" ${dataPassenger.extra_bagasi === "1" ? 'checked="checked"' : ''}> Extra Bagasi
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 p-0 pl-5">
+                                    <div class="checkbox">
+                                        <input type="text" id="nominal_bagasi" class="form-control number" placeholder="- Nominal Bagasi -" value="${dataPassenger.nominal_bagasi !== null ? dataPassenger.nominal_bagasi : ''}" ${dataPassenger.extra_bagasi === "1" ? '' : 'readonly="readonly"'}>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -347,6 +401,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                 icon: 'info',
                 showDenyButton: false,
                 showCancelButton: true,
+                showConfirmButton: status_trip,
                 confirmButtonText: 'Ubah Data',
                 confirmButtonColor: '#F58220',
                 focusConfirm: false,
@@ -356,24 +411,46 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     const no_kursi = Swal.getPopup().querySelector('#no_kursi').value;
                     const kode_booking = Swal.getPopup().querySelector('#kode_booking').value;
                     const status = Swal.getPopup().querySelector('#status').value;
+                    const opsi_pengantaran = Swal.getPopup().querySelector('#opsi_pengantaran').value;
+                    const daerah_pengantaran = Swal.getPopup().querySelector('#daerah_pengantaran').value;
+                    const zona_pengantaran = Swal.getPopup().querySelector('#zona_pengantaran').value;
+                    var choose_extra_bagasi = Swal.getPopup().querySelector('#extra_bagasi');
+                    const nominal_bagasi = Swal.getPopup().querySelector('#nominal_bagasi').value;
                     if (!nama_penumpang) {
-                        Swal.showValidationMessage(`Silahkan ketik nama penumpang`)
+                        Swal.showValidationMessage(`Silahkan ketik nama penumpang`);
                     }
                     if (!no_hp) {
-                        Swal.showValidationMessage(`Silahkan ketik nama penumpang`)
+                        Swal.showValidationMessage(`Silahkan ketik nama penumpang`);
                     }
                     if (!no_kursi) {
-                        Swal.showValidationMessage(`Silahkan ketik nama penumpang`)
+                        Swal.showValidationMessage(`Silahkan ketik nama penumpang`);
                     }
                     if (!status) {
-                        Swal.showValidationMessage(`Silahkan pilih status penumpang`)
+                        Swal.showValidationMessage(`Silahkan pilih status penumpang`);
                     }
-                    return { kode_booking: kode_booking, nama_penumpang: nama_penumpang, no_hp: no_hp, no_kursi: no_kursi, status: status }
+                    var extra_bagasi = 0;
+                    if (choose_extra_bagasi.checked) {
+                        extra_bagasi = 1;
+                    }
+
+                    if (extra_bagasi === 1 && !nominal_bagasi) {
+                        Swal.showValidationMessage(`Silahkan isi nominal bagasi`);
+                    }
+
+                    return { kode_booking: kode_booking, nama_penumpang: nama_penumpang, no_hp: no_hp, no_kursi: no_kursi, status: status, opsi_pengantaran: opsi_pengantaran, daerah_pengantaran: daerah_pengantaran, zona_pengantaran: zona_pengantaran, extra_bagasi: extra_bagasi, nominal_bagasi: nominal_bagasi }
                 }
             }).then((result) => {
             if (result.isConfirmed) {
-                    var data = {kode_booking: result.value.kode_booking, nama_penumpang: result.value.nama_penumpang, no_hp: result.value.no_hp, no_kursi: result.value.no_kursi, penjadwalan_id: penjadwalan_id, status: result.value.status, latitude:"<?= isset($_GET['latitude']) ? $_GET['latitude'] : '' ?>", longitude:"<?= isset($_GET['longitude']) ? $_GET['longitude'] : '' ?>", titik_real_id:titik_real_id};
+                    var value_bagasi = result.value.nominal_bagasi;
+                    value_bagasi = value_bagasi.replace(".", "");
+                    value_bagasi = value_bagasi.replace(".", "");
 
+                    var data = {kode_booking: result.value.kode_booking, nama_penumpang: result.value.nama_penumpang, no_hp: result.value.no_hp, no_kursi: result.value.no_kursi, penjadwalan_id: penjadwalan_id, status: result.value.status, latitude:"<?= isset($_GET['latitude']) ? $_GET['latitude'] : '' ?>", longitude:"<?= isset($_GET['longitude']) ? $_GET['longitude'] : '' ?>", titik_real_id:titik_real_id,
+                    opsi_pengantaran: result.value.opsi_pengantaran, daerah_pengantaran: result.value.daerah_pengantaran, zona_pengantaran: result.value.zona_pengantaran, extra_bagasi: result.value.extra_bagasi, nominal_bagasi: value_bagasi, rit: rit, real_armada_ke: real_armada_ke, armada_ke: armada_ke
+                    };
+
+                    /* console.log(data);
+                    return false; */
                     if (data.status === "<?= Constant::STATUS_PENUMPANG_REJECT ?>") {
                         return false;
                     }
@@ -428,13 +505,13 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         value = value.replace(".", "");
         $(this).val(accounting.formatNumber(value, 0, "."));
     });
-    $("body").on("change", '#BookingTrip_extra_bagasi', function(e){
+    $("body").on("change", '.extra_bagasi', function(e){
         e.preventDefault();
 
         if ($(this).is(":checked")) {
-            $('#BookingTrip_nominal_bagasi').attr('readonly', false);
+            $('.nominal_bagasi').attr('readonly', false);
         } else {
-            $('#BookingTrip_nominal_bagasi').attr('readonly', true);
+            $('.nominal_bagasi').attr('readonly', true);
         }
     });
     $("body").on("change", '#BookingTrip_tipe_pembayaran', function(e) {
@@ -447,6 +524,54 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
             $('#formBuktiBayar').addClass('none');
             $('#BookingTrip_bukti_pembayaran').attr('required', false);
         }
+    });
+
+    $("body").on("change", '.opsi_pengantaran', function(e){
+        e.preventDefault();
+
+        var parents = $(this).parent().parent().parent().parent().parent().parent();
+        if ($(this).val() === 'ya') {
+            parents.find('.opsi_pengantaran_form').removeClass('none');
+        } else {
+            parents.find('.opsi_pengantaran_form').addClass('none');
+        }
+    });
+
+    $("body").on("change", '#opsi_pengantaran', function(e){
+        e.preventDefault();
+
+        if ($(this).val() === 'ya') {
+            $('.opsi_pengantaran_form_id').removeClass('none');
+        } else {
+            $('.opsi_pengantaran_form_id').addClass('none');
+        }
+    });
+    $("body").on("change", "#extra_bagasi", function(e){
+        e.preventDefault();
+
+        if ($(this).is(":checked")) {
+            $('#nominal_bagasi').attr('readonly', false);
+        } else {
+            $('#nominal_bagasi').attr('readonly', true);
+        }
     })
-    // setInterval(getLatLong, 5000*60);
+
+    function saveLatlong(latitude, longitude)
+    {
+      if (penjadwalan_id !== null) {
+        $.ajax({
+              type : "POST",
+              url : "<?= Constant::baseUrl() . '/booking/saveLatlong' ?>",
+              dataType : "JSON",
+              data: {penjadwalan_id:penjadwalan_id, latitude:latitude, longitude:longitude},
+              success : function(data) {
+                console.log(data);
+              },
+              error : function(data){
+                  if (typeof(data.responseText) !== "undefined")
+                      console.log(data.responseText);
+              }
+          });
+      }
+    }
 </script>

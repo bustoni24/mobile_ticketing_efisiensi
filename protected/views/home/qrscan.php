@@ -70,7 +70,45 @@
 
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
-        const videoElement = document.getElementById('qr-video');
+    var latitude = null;
+    var longitude = null;
+    document.addEventListener("DOMContentLoaded", function() {
+        getLatLong();
+    });
+    
+    function getLatLong()
+    {
+        if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                        /* alert('latitude: ' + latitude + ', longitude: ' + longitude);
+                        return false; */
+                    },
+                    function(error) {
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                console.log("Izin akses lokasi ditolak oleh pengguna.");
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                console.log("Informasi lokasi tidak tersedia.");
+                                break;
+                            case error.TIMEOUT:
+                                console.log("Permintaan waktu untuk akses lokasi habis.");
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                console.log("Terjadi kesalahan yang tidak diketahui.");
+                                break;
+                        }
+                    }
+                );
+            } else {
+                console.log("Geolocation tidak didukung oleh browser Anda.");
+            }
+    }
+
+const videoElement = document.getElementById('qr-video');
 const qrResultElement = document.getElementById('qr-result');
 
 
@@ -118,10 +156,13 @@ scanner.addListener('scan', function (content) {
 });
 
 function doExecScannerResult(value) {
+    /* alert(latitude);
+    alert(longitude);
+    return false; */
     $.ajax({
         url: "<?= Constant::baseUrl().'/booking/scannerResult' ?>",
         type: 'POST',
-        data: {id:value},
+        data: {id:value,latitude:latitude,longitude:longitude},
         dataType: 'JSON',
         success: function(data) {
             if (data.success && typeof data.data !== "undefined") {

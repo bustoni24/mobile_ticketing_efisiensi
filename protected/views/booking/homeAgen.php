@@ -139,13 +139,13 @@ function addFormSeatAction(element)
 
         // $('#harga_kursi').append('<div id="'+ elementID +'" class="row d-flex justify-between"> <p class="mb-0">Nomor Kursi '+ element.val() +'</p> <p class="mb-0 text-bold">Rp. '+harga+'</p></div>');
 
-        if (count <= 0) {
+    if (count <= 0 || $('#form-passenger0').find('input.seatForm').val() === "") {
             $('#form-passenger0').find('input.seatForm').val(valSeat);
         } else {
             $('#table-form-passenger').append($addForm);
         }
     } else {
-        if (count > 1) {
+        if (count > 1 && typeof $('#' + passengerFormId).val() !== "undefined") {
             $('#' + passengerFormId).remove();
         } else {
             $('#form-passenger0').find('input[type="text"]').val('');

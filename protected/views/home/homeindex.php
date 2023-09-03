@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Pilih RIT</label>
-              <?= CHtml::dropDownList('rit',(isset($_GET['rit']) ? $_GET['rit'] : 1), [
+              <?= CHtml::dropDownList('rit', isset($post['data']['rit']) && !empty($post['data']['rit']) ? $post['data']['rit'] : (isset($_GET['rit']) ? $_GET['rit'] : 1), [
                 1 => 'RIT 1',
                 2 => 'RIT 2',
               ],['class' => 'form-control']); ?>
@@ -87,4 +87,62 @@
     $('#filter').on('click', function(){
         location.href="<?= Constant::baseUrl() . '/home/index?startdate=' ?>" + $('#startdate').val() + "&rit=" + $('#rit').val();
     });
+
+    var latitude = null;
+    var longitude = null;
+    var penjadwalan_id = "<?= isset($post['data']['penjadwalan_id']) ? $post['data']['penjadwalan_id'] : null ?>";
+    document.addEventListener("DOMContentLoaded", function() {
+      getLatLong();
+    });
+
+    function getLatLong()
+      {
+          if ("geolocation" in navigator) {
+                  navigator.geolocation.getCurrentPosition(
+                      function(position) {
+                          latitude = position.coords.latitude;
+                          longitude = position.coords.longitude;
+                          // alert('latitude: ' + latitude + ', longitude: ' + longitude);
+                          saveLatlong(latitude, longitude);
+                      },
+                      function(error) {
+                          switch (error.code) {
+                              case error.PERMISSION_DENIED:
+                                  console.log("Izin akses lokasi ditolak oleh pengguna.");
+                                  break;
+                              case error.POSITION_UNAVAILABLE:
+                                  console.log("Informasi lokasi tidak tersedia.");
+                                  break;
+                              case error.TIMEOUT:
+                                  console.log("Permintaan waktu untuk akses lokasi habis.");
+                                  break;
+                              case error.UNKNOWN_ERROR:
+                                  console.log("Terjadi kesalahan yang tidak diketahui.");
+                                  break;
+                          }
+                      }
+                  );
+              } else {
+                  console.log("Geolocation tidak didukung oleh browser Anda.");
+              }
+      }
+
+    function saveLatlong(latitude, longitude)
+    {
+      if (penjadwalan_id !== null) {
+        $.ajax({
+              type : "POST",
+              url : "<?= Constant::baseUrl() . '/booking/saveLatlong' ?>",
+              dataType : "JSON",
+              data: {penjadwalan_id:penjadwalan_id, latitude:latitude, longitude:longitude},
+              success : function(data) {
+                console.log(data);
+              },
+              error : function(data){
+                  if (typeof(data.responseText) !== "undefined")
+                      console.log(data.responseText);
+              }
+          });
+      }
+    }
 </script>

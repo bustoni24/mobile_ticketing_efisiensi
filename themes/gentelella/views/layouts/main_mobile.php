@@ -532,6 +532,9 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     .mb-50 {
         margin-bottom: 50px;
     }
+    .mb-70 {
+        margin-bottom: 70px!important;
+    }
     .container-button-float {
         position: fixed;
         left: 0;
@@ -620,6 +623,12 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     }
     .icon-img {
         width: 70%;
+    }
+    .pl-5 {
+        padding-left: 5px!important;
+    }
+    .red {
+        color: red!important;
     }
     </style>
 </head>

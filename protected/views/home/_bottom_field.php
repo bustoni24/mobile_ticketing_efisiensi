@@ -89,7 +89,8 @@ $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['sea
             if (typeof $(this).val() !== "undefined" && $(this).val() !== null && $(this).val() !== "")
                 inputSeatCount++;
         });
-        if (inputSeatCount === 0) {
+        
+        if (inputSeatCount === 0 && !($('.swal2-popup').css('display') === 'grid')) {
             var existingCountSeatBooked = parseInt("<?= $countSeatBooked ?>");
             // console.log(existingCountSeatBooked);
             var trip_id =  "<?= isset($modelTrip->id) ? $modelTrip->id : ''; ?>";

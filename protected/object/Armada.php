@@ -84,16 +84,23 @@ class Armada
 		return $result;
     }
 
-    public function getTujuan($get)
+    public function getTujuan($model)
     {
         $result = [];
-        if (!isset($get['startdate'], $get['latitude'], $get['longitude'])) {
+        if (!isset($model->startdate, $model->latitude, $model->longitude, $model->rit)) {
             return $result;
         }
-        $get = array_merge([
+
+        // Helper::getInstance()->dump($model);
+        $get = [
             'user_id' => Yii::app()->user->id,
-            'role' => Yii::app()->user->role
-        ], $get);
+            'role' => Yii::app()->user->role,
+            'startdate' => $model->startdate,
+            'rit' => $model->rit,
+            'latitude' => $model->latitude,
+            'longitude' => $model->longitude,
+            'tujuan' => $model->tujuan
+        ];
        
 		$res = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/getTujuan',

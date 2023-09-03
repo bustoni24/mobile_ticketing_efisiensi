@@ -40,6 +40,18 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <label>Rekening Tujuan</label>
+            <?= CHtml::dropDownList('Deposit[rekening]', (isset($post['rekening']) ? $post['rekening'] : ''), [
+                'BRI' => 'BRI',
+                'MANDIRI' => 'MANDIRI',
+                'BCA' => 'BCA',
+                'BNI' => 'BNI',
+            ], ['required'=>true, 'prompt'=>'- Pilih Rekening -']) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
             <label id="bukti_tf">Bukti Transfer</label>
             <?= CHtml::fileField('Deposit[file]', '', ['class'=>'form-control', 'required'=>true]) ?>
         </div>
