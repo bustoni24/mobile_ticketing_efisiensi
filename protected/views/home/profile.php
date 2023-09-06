@@ -45,18 +45,18 @@
             <tr>
                 <th>Password</th>
                 <td style="width: 10px;">:</td>
-                <td><?= CHtml::passwordField("User[old_passwprd]", "", ['class' => 'form-control', 'placeholder' => 'ketik password lama']); ?></td>
+                <td><?= CHtml::passwordField("User[old_password]", "", ['class' => 'form-control', 'placeholder' => 'ketik password lama']); ?></td>
             </tr>
             <tr>
                 <th></th>
                 <td></td>
-                <td><?= CHtml::passwordField("User[new_passwprd]", "", ['class' => 'form-control', 'placeholder' => 'ketik password baru']); ?></td>
+                <td><?= CHtml::passwordField("User[new_password]", "", ['class' => 'form-control', 'placeholder' => 'ketik password baru']); ?></td>
             </tr>
         </table>
 
         <div class="row buttons pull-right">
             <button class="btn btn-warning">Simpan</button>
-            <button type="button" onclick="history.back();" class="btn btn-outline-warning resetBtn"><i class="fa fa-reply"></i> Kembali</button>
+            <button type="button" onclick="location.href='<?= Constant::baseUrl().'/home/akunSaya' ?>';" class="btn btn-outline-warning resetBtn"><i class="fa fa-reply"></i> Kembali</button>
         </div>
         <?php $this->endWidget(); ?>
 

@@ -69,7 +69,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         .nav-md .container.body .right_cols {
         margin-left:0;
         }
-        #preloader{
+        #preloader, #loaderWaitingRoutes{
         position: fixed;
         z-index: 999;
         width: 100%;
@@ -80,10 +80,10 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         background-color: #eeeeeef5;
         max-width: 500px;
         }
-        #preloader .jumper{
+        #preloader .jumper, #loaderWaitingRoutes .jumper{
         text-align: center;
         }
-        #preloader img {
+        #preloader img, #loaderWaitingRoutes img {
         width: 50%;
         }
         span.required {
@@ -570,12 +570,12 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         align-items: baseline;
     }
     .tagname-container span, .tagname-container a {
-        font-size: 12px;
+        font-size: 11px;
     }
     .tagname-container {
         text-align: left;
         display: flex;
-        width: 50%;
+        width: 70%;
         flex-wrap: wrap;
         flex-direction: column;
         margin-top: 25px;
@@ -629,6 +629,12 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     }
     .red {
         color: red!important;
+    }
+    .tagname-container h5 {
+        font-size: 12px;
+    }
+    .grid-view{
+        overflow-x: auto;
     }
     </style>
 </head>
@@ -693,10 +699,17 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
             <?php endif; ?>
         </div>
 
-        <!-- ***** Preloader Start ***** -->
+        <!-- ***** Preloader Start  ***** -->
         <div id="preloader" class="none">
             <div class="jumper">
+                <h5 id="additionalText"></h5>
                 <div class="box-loader"><div class="loader-04"></div></div>
+            </div>
+        </div>
+        <div id="loaderWaitingRoutes" class="none">
+            <div class="jumper">
+                <h5 id="additionalText">Kalkulasi Lokasi Rute Bus</h5>
+                <div class="box-loader"><div class="loader-01"></div></div>
             </div>
         </div>
         <!-- ***** Preloader End ***** -->
@@ -707,7 +720,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
                         <?php echo $content; ?>
 
                         <?php 
-                        if (isset(Yii::app()->user->id, Yii::app()->user->role) && in_array($this->Id, ['home','booking'])){
+                        if (isset(Yii::app()->user->id, Yii::app()->user->role) && in_array($this->Id, ['home','booking','report'])){
                             $this->renderPartial('/layouts/fix_navbar'); 
                         }
                         ?>

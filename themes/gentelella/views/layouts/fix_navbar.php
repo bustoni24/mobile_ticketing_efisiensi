@@ -56,6 +56,18 @@
                             <span class="txt">Manifest Penumpang</span>
                         </a>
                     </div>
+                    <div class="coll <?= (in_array($this->action->Id, ['trackingBus']) ? 'coll_aktif' : '') ?>" id="coll_akun">
+                        <a href="<?= Constant::baseUrl().'/booking/trackingBus'; ?>" class="menu-item" id="akun">
+                            <i class="fa fa-crosshairs"></i>
+                            <span class="txt">Crew Terdekat</span>
+                        </a>
+                    </div>
+                    <div class="coll <?= (in_array($this->action->Id, ['reportDashboard']) ? 'coll_aktif' : '') ?>" id="coll_akun">
+                        <a href="<?= Constant::baseUrl().'/report/reportDashboard'; ?>" class="menu-item" id="akun">
+                            <i class="fa fa-file-text"></i>
+                            <span class="txt">Laporan</span>
+                        </a>
+                    </div>
                     <?php
                     break;
                 

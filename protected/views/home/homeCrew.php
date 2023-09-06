@@ -14,7 +14,7 @@
       <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Masukkan Tanggal Penugasan</label>
-              <?= CHtml::textField('Booking[startdate]',$model->startdate,['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
+              <?= CHtml::textField('Booking[startdate]',$model->startdate,['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off', 'readonly'=>true]); ?>
         </div>
       </div>
 

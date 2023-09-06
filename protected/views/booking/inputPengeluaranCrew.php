@@ -47,6 +47,7 @@
 
 <?php if (isset($post['data']) && !empty($post['data'])): 
     $isTripClose = $post['data']['status_trip'] == Constant::STATUS_TRIP_CLOSE;
+    $isRitClose = $post['status_rit_close'];
     ?>
 <div class="card-booking card-book border-none">
         <div class="x_title grey-dark mb-0">
@@ -120,9 +121,8 @@
                     <table class="table border-none mb-0">
                         <tbody>
                             <?php foreach ($deskripsiPengeluaran as $key => $value) {
-
                                 ?>
-                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) ? '' : 'none') : '' ?>">
+                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) || (isset($value['label']['value']) && !empty($value['label']['value'])) ? '' : 'none') : '' ?>">
                                     <?php foreach ($value as $l => $dt) {
                                         
                                         if ($l == 'label'):
@@ -190,14 +190,20 @@
     </div>
 
     <div class="container-button-float <?= $isTripClose ? 'none' : '' ?>">
-    <div class="row-0">
-        <div class="button-float">
-            <input type="submit" name="submit" class="none" value="1" id="submitHide"/>
-            <button type="button" class="float-btn btn-submit" id="beliTiket" onclick="return confirmSubmitPengeluaran();">
-                Tambah Pengeluaran
-            </button>
+        <div class="row-0">
+            <div class="button-float">
+                <?php if ($isRitClose): ?>
+                    <button type="button" class="float-btn btn-danger" >
+                        Rit sudah berakhir
+                    </button>
+                <?php else: ?>
+                    <input type="submit" name="submit" class="none" value="1" id="submitHide"/>
+                    <button type="button" class="float-btn btn-submit" id="beliTiket" onclick="return confirmSubmitPengeluaran();">
+                        Tambah Pengeluaran
+                    </button>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
     </div>
 <?php $this->endWidget(); ?>
 

@@ -100,6 +100,7 @@ class BookingController extends Controller
     {
         $post['startdate'] = isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d');
         $post['rit'] = isset($_GET['rit']) ? $_GET['rit'] : 1;
+        $post['status_rit_close'] = 0;
 
         //cari penugasan
         $res = ApiHelper::getInstance()->callUrl([
@@ -117,6 +118,9 @@ class BookingController extends Controller
         // Helper::getInstance()->dump($res);
         if (isset($res['data']))
             $post['data'] = $res['data'];
+
+        if (isset($res['data']['ops']['status_rit'][$post['rit']]))
+            $post['status_rit_close'] = $res['data']['ops']['status_rit'][$post['rit']];
 
         if (isset($post['data'])):
             //cari pengeluaran data
@@ -436,6 +440,20 @@ class BookingController extends Controller
     {
         $res = BookingHelper::getInstance()->saveLatlong($_POST);
         doPrintResult($res);
+    }
+
+    public function actionGetCrewLocations()
+    {
+        $res = BookingHelper::getInstance()->getCrewLocations();
+        doPrintResult($res);
+    }
+
+    public function actionTrackingBus()
+    {
+        $post = [];
+        return $this->render('trackingBus', [
+			'post' => $post
+		]);
     }
 
     public function actionItinerary()

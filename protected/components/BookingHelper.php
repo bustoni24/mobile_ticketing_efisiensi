@@ -107,6 +107,21 @@ class BookingHelper {
         return $check;
     }
 
+    public function getCrewLocations()
+    {
+        $post['user_id'] = Yii::app()->user->id;
+        $post['role'] = Yii::app()->user->role;
+        $post['startdate'] = date('Y-m-d');
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getCrewLocations',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
+    }
+
     private static $instance;
 
     private function __construct()

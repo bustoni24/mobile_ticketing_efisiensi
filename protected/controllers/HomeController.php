@@ -350,6 +350,20 @@ class HomeController extends Controller
 			'no_hp' => Yii::app()->user->no_hp,
 			'alamat' => Yii::app()->user->alamat
 		];
+		if (isset($_POST['User'])) {
+			$post = $_POST['User'];
+			if (!empty($post['old_password']) && !empty($post['new_password'])) {
+				$post['user_id'] = Yii::app()->user->id;
+				$updateProfile = UserHelper::getInstance()->updateProfile($post);
+				if (!$updateProfile['success']) {
+					Yii::app()->user->setFlash('error', $updateProfile['message']);
+					return $this->render('profile', $data);
+				}
+			}
+			Yii::app()->user->setFlash('success', $updateProfile['message']);
+			return $this->redirect(Constant::baseUrl() . '/home/akunSaya');
+		}
+
 		$this->render('profile', $data);
 	}
 
@@ -514,15 +528,43 @@ class HomeController extends Controller
 		if (isset($_POST['Deposit'])) {
 			$post = $_POST['Deposit'];
 			$post['agen_id'] = isset($post['agen_id']) ? $post['agen_id'] : Yii::app()->user->sdm_id;
-			
-			if (!isset($_FILES['Deposit']['name']['file'], $_FILES["Deposit"]["tmp_name"]["file"]) && !in_array($post['agen_id'], ["self"])) {
-				Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti transfer');
-				return $this->render('topUpSaldo', [
-					'post' => $post
-				]);
+
+			switch (Yii::app()->user->tipe_agen) {
+				case 'internal':
+					$post['type'] = "internal";
+					break;
+				
+				default:
+					$post['metode_pembayaran'] = "transfer";
+					$post['type'] = "eksternal";
+					$post['agen_id'] = Yii::app()->user->sdm_id;
+					break;
 			}
-			// Helper::getInstance()->dump($post);
-			if (!in_array($post['agen_id'], ["self"])) {
+
+			switch ($post['metode_pembayaran']) {
+				case 'tunai':
+					# tidak wajib transfer
+					break;
+				
+				default:
+					if (!isset($_FILES['Deposit']['name']['file'], $_FILES["Deposit"]["tmp_name"]["file"]) || empty($_FILES['Deposit']['name']['file'])) {
+						Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti transfer');
+						return $this->render('topUpSaldo', [
+							'post' => $post
+						]);
+					}
+					if (!isset($post['rekening']) || empty($post['rekening'])) {
+						Yii::app()->user->setFlash('error', 'Jika transfer mohon untuk pilih rekening');
+						return $this->render('topUpSaldo', [
+							'post' => $post
+						]);
+					}
+					break;
+			}
+
+			$fileName = null;
+			$post['url'] = null;
+			if (isset($_FILES['Deposit']['name']['file'], $_FILES["Deposit"]["tmp_name"]["file"]) && !empty($_FILES['Deposit']['name']['file'])) {
 				$targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
 				$fileSource = basename($_FILES['Deposit']['name']['file']);
 				$imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
@@ -536,81 +578,52 @@ class HomeController extends Controller
 					]);
 				}
 
-				if (move_uploaded_file($_FILES["Deposit"]["tmp_name"]["file"], $targetFile)) {
-					Yii::import('application.extensions.image.Image');
-					$image = new Image('uploads/' . $fileName);
-					$image->resize(800, 0);
-					$image->save('uploads/' . $fileName);
-
-					$nominal = str_replace(".", "", $post['nominal']);
-					$bayar = str_replace(".", "", $post['bayar']);
-					$bonus = null;
-					if ($nominal != $bayar)
-						$bonus = 200000;
-					//upload to API
-					$res = ApiHelper::getInstance()->callUrl([
-						'url' => 'apiMobile/topUpSaldo',
-						'parameter' => [
-							'method' => 'POST',
-							'postfields' => [
-								'type' => 'eksternal',
-								'agen_id' => $post['agen_id'],
-								'nominal' => $nominal,
-								'bayar' => $bayar,
-								'bonus' => $bonus,
-								'file_name' => $fileName,
-								'rekening' => $post['rekening'],
-								'url' => SERVER . '/uploads/' . $fileName,
-								'user_id' => Yii::app()->user->id,
-								'role' => Yii::app()->user->role
-							]
-						]
-					]);
-
-					if (!$res['success']) {
-						Helper::getInstance()->dump($res['message']);
-					}
-
-					unlink($targetFile);
-					Yii::app()->user->setFlash('success', "Permintaan Top Up Saldo sudah terkirim. Mohon tunggu sampai admin konfirmasi");
-					return $this->redirect(Constant::baseUrl().'/home/index');
-				} else {
+				if (!move_uploaded_file($_FILES["Deposit"]["tmp_name"]["file"], $targetFile)) {
 					Helper::getInstance()->dump('Terjadi kesalahan');
 				}
-			} else {
-				$post['agen_id'] = Yii::app()->user->sdm_id;
-				// Helper::getInstance()->dump($post);
-				$nominal = str_replace(".", "", $post['nominal']);
-				$bayar = str_replace(".", "", $post['bayar']);
-				$bonus = null;
-				if ($nominal != $bayar)
-					$bonus = 200000;
-				//upload to API
-				$res = ApiHelper::getInstance()->callUrl([
-					'url' => 'apiMobile/topUpSaldo',
-					'parameter' => [
-						'method' => 'POST',
-						'postfields' => [
-							'type' => Yii::app()->user->tipe_agen,
-							'agen_id' => $post['agen_id'],
-							'nominal' => $nominal,
-							'bayar' => $bayar,
-							'bonus' => $bonus,
-							'file_name' => null,
-							'url' => null,
-							'user_id' => Yii::app()->user->id,
-							'role' => Yii::app()->user->role
-						]
-					]
-				]);
 
-				if (!$res['success']) {
-					Helper::getInstance()->dump($res['message']);
-				}
-				
-				Yii::app()->user->setFlash('success', "Permintaan Top Up Saldo sudah terkirim. Mohon tunggu sampai admin konfirmasi");
-				return $this->redirect(Constant::baseUrl().'/home/index');
+				$post['url'] = SERVER . '/uploads/' . $fileName;
 			}
+
+			if (isset($fileName) && !empty($fileName)) {
+				Yii::import('application.extensions.image.Image');
+				$image = new Image('uploads/' . $fileName);
+				$image->resize(800, 0);
+				$image->save('uploads/' . $fileName);
+			}
+
+			if (isset($post['agen_id']) && in_array($post['agen_id'], ['self'])) {
+				$post['agen_id'] = Yii::app()->user->sdm_id;
+			}
+
+			$nominal = str_replace(".", "", $post['nominal']);
+			$bayar = str_replace(".", "", $post['bayar']);
+			$bonus = null;
+
+			$post['file_name'] = $fileName;
+			$post['nominal'] = $nominal;
+			$post['bayar'] = $bayar;
+			$post['bonus'] = $bonus;
+			$post['user_id'] = Yii::app()->user->id;
+			$post['role'] = Yii::app()->user->role;
+
+			$res = ApiHelper::getInstance()->callUrl([
+				'url' => 'apiMobile/topUpSaldo',
+				'parameter' => [
+					'method' => 'POST',
+					'postfields' => $post
+				]
+			]);
+
+			if (!$res['success']) {
+				Helper::getInstance()->dump($res['message']);
+			}
+
+			if (isset($targetFile) && file_exists($targetFile))
+				unlink($targetFile);
+			Yii::app()->user->setFlash('success', "Permintaan Top Up Saldo sudah terkirim. Mohon tunggu sampai admin konfirmasi");
+			return $this->redirect(Constant::baseUrl().'/home/index');
+
 		}
 		return $this->render('topUpSaldo', [
 			'post' => $post

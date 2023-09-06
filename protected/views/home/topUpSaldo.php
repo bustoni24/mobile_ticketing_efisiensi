@@ -21,6 +21,16 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
             <?= CHtml::dropDownList('Deposit[agen_id]', (isset($post['agen_id']) ? $post['agen_id'] : ''), AgenPerwakilan::object()->getListAgenDeposit(), ['required'=>true, 'prompt' => 'Pilih Tujuan Deposit']) ?>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <label>Metode Pembayaran</label>
+            <?= CHtml::dropDownList('Deposit[metode_pembayaran]', (isset($post['metode_pembayaran']) ? $post['metode_pembayaran'] : ''), [
+                'tunai' => 'Tunai',
+                'transfer' => 'Transfer'
+            ], ['required'=>true, 'prompt'=>'- Pilih Metode Pembayaran -']) ?>
+        </div>
+    </div>
     <?php endif; ?>
 
     <div class="row">
@@ -30,7 +40,7 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
         </div>
     </div>
 
-    <div class="row">
+    <div class="row none">
         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
             <label>Jumlah Bayar</label>
             <?= CHtml::textField('Deposit[bayar]', (isset($post['bayar']) ? $post['bayar'] : ''), ['required'=>true, 'readonly' => true]) ?>
@@ -38,7 +48,7 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="containerRekening">
         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
             <label>Rekening Tujuan</label>
             <?= CHtml::dropDownList('Deposit[rekening]', (isset($post['rekening']) ? $post['rekening'] : ''), [
@@ -75,14 +85,37 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
 
         $('#Deposit_agen_id').on('change', function() {
             if ($(this).val() === 'self') {
-                $('#Deposit_file').attr('required', false);
-                $('#bukti_tf').html("Bukti Transfer (Tidak Wajib)");
+                switchNonRequiredFile(false);
             } else {
-                $('#Deposit_file').attr('required', true);
-                $('#bukti_tf').html("Bukti Transfer");
+                switchNonRequiredFile(true);
+            }
+        });
+
+        $('#Deposit_metode_pembayaran').on('change', function() {
+            if ($(this).val() === 'tunai') {
+                switchNonRequiredFile(false);
+            } else {
+                switchNonRequiredFile(true);
             }
         });
     });
+
+    function switchNonRequiredFile(value = true)
+    {
+        if (!value) {
+            $('#Deposit_file').attr('required', false);
+            $('#bukti_tf').html("Bukti Transfer (Tidak Wajib)");
+
+            $('#Deposit_rekening').attr('required', false);
+            $('#containerRekening').hide();
+        } else {
+            $('#Deposit_file').attr('required', true);
+            $('#bukti_tf').html("Bukti Transfer");
+
+            $('#Deposit_rekening').attr('required', true);
+            $('#containerRekening').show();
+        }
+    }
     $('input.number').on('keyup', function(e){
         e.preventDefault();
         var value = $(this).val();
@@ -95,13 +128,13 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
 
     function calculateTotalBayar(value = 0)
     {
-        if (value >= minimBonus) {
+       /*  if (value >= minimBonus) {
             value -= bonusSaldo;
             $('#diskonText').html('Dapat diskon = Rp '+accounting.formatNumber(bonusSaldo, 0, "."));
         } else {
             value = value;
             $('#diskonText').html('');
-        }
+        } */
         $('#Deposit_bayar').val(accounting.formatNumber(value, 0, "."));
     }
 </script>
