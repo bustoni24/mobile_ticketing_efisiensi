@@ -1,23 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lokasi Gadget</title>
-    <style>
-        /* Stil peta */
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
+<style>
+    /* Stil peta */
+    #map {
+        height: 600px;
+        width: 100%;
+    }
+</style>
+
+<div class="row mt-20">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <?php $form=$this->beginWidget('CActiveForm', array(
+            'id'=>'pembelian-tiket-form',
+            // Please note: When you enable ajax validation, make sure the corresponding
+            // controller action is handling ajax validation correctly.
+            // There is a call to performAjaxValidation() commented in generated controller code.
+            // See class documentation of CActiveForm for details on this.,
+            'method'=>'get',
+            'enableAjaxValidation'=>false,
+        )); 
+        ?>
+
+      <div class="row d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+              <?= CHtml::dropDownList('TrackingBus[trip_id]', "", Armada::object()->getTrip(), 
+              ['class' => 'form-control','prompt'=>'Pilih Trip','required'=>true]); ?>
+        </div>
+      </div>
+      <div class="row d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-warning pull-right" id="cari">Cari</button>
+        </div>
+      </div>
+
+        <?php $this->endWidget(); ?>
+    </div>
+</div>
+
     <!-- Peta akan ditampilkan di div dengan id "map" -->
     <div id="map"></div>
-    <button class="btn btn-warning" onclick="getLatLong()"><i class="fa fa-refresh"></i> Muat Ulang Rute</button>
+    <!-- <button class="btn btn-warning" onclick="getLatLong()"><i class="fa fa-refresh"></i> Muat Ulang Rute</button> -->
 
 <script>
 var latitude = -6.2080;
 var longitude = 106.8450;
+var trip_id = "";
 
 var gadgetLocations = [
     { name: 'E 363', lat: -7.649314, lng: 109.610703 },
@@ -25,11 +50,26 @@ var gadgetLocations = [
 ];
 
 document.addEventListener("DOMContentLoaded", function() {
-    getLatLong();
+    $('#TrackingBus_trip_id').select2();
 });
+
+$('#cari').on('click', function(){
+    getLatLong();
+})
 
 function getLatLong()
 {
+    trip_id = $('#TrackingBus_trip_id').val();
+    if (trip_id === "undefined" || trip_id === "") {
+        Swal.fire({
+                html: `Silahkan pilih Trip terlebih dahulu`,
+                icon: 'error',
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'OK'
+            });
+        return false;
+    }
     $('#loaderWaitingRoutes').removeClass('none');
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
@@ -63,12 +103,13 @@ function getLatLong()
 function getCrewLocations() {
     $.ajax({
         type : "GET",
-        url : "<?= Constant::baseUrl() . '/booking/getCrewLocations' ?>",
+        url : "<?= Constant::baseUrl() . '/booking/getCrewLocations?trip_id=' ?>"+trip_id,
         dataType : "JSON",
         success : function(data) {
             if (data.success) {
                 $('#map').css('height', '600');
                 console.log(data);
+                gadgetLocations = data.data;
                 initializeMap();
             } else {
                 console.log(data);
@@ -162,9 +203,7 @@ function calculateAndDisplayRoute(map, gadget) {
 
 // Panggil fungsi initializeMap() setelah peta dimuat
 // google.maps.event.addDomListener(window, 'load', initializeMap);
-    </script>
-    
-    <!-- Sertakan pustaka Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBpPsPOC-5hhLQWHDHCOQq0bs5SaQkrTo" async defer></script>
-</body>
-</html>
+</script>
+
+<!-- Sertakan pustaka Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBpPsPOC-5hhLQWHDHCOQq0bs5SaQkrTo" async defer></script>

@@ -57,11 +57,12 @@ class BookingController extends Controller
 			]);
 			if ($saveTransaction['success']) {
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
-				return $this->redirect(Constant::baseUrl().'/booking/routeDetail?id=' . $_GET['id']);
 			} else {
                 Yii::app()->user->setFlash('error', $saveTransaction['message']);
 				return $this->redirect(Constant::baseUrl().'/booking/routeDetail?id=' . $_GET['id']);
 			}
+
+            return Yii::app()->controller->redirect(Constant::baseUrl().'/booking/cetakETiket/' . (isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : 'all'));
 		}
         
         return $this->render('homeAgen', [
@@ -94,6 +95,11 @@ class BookingController extends Controller
         return $this->render('manifest', [
 			'post' => $post
 		]);
+    }
+
+    public function actionInputCrew()
+    {
+        return $this->render('inputCrew');
     }
 
     public function actionInputPengeluaranCrew()
@@ -444,7 +450,7 @@ class BookingController extends Controller
 
     public function actionGetCrewLocations()
     {
-        $res = BookingHelper::getInstance()->getCrewLocations();
+        $res = BookingHelper::getInstance()->getCrewLocations($_GET);
         doPrintResult($res);
     }
 
@@ -453,6 +459,74 @@ class BookingController extends Controller
         $post = [];
         return $this->render('trackingBus', [
 			'post' => $post
+		]);
+    }
+
+    public function actionCetakETiket()
+    {
+        if (!isset($_GET['id'])) {
+			throw new CHttpException(401,'invalid ID');
+		}
+		$id = $_GET['id'];
+		$model = new Booking('dataLastBooking');
+		$model->id = $id;
+
+		return $this->render('cetakEtiket', [
+			'model' => $model
+		]);
+    }
+
+    public function actionPrintTiketEdc()
+    {
+        if (!isset($_GET['id'])) {
+			throw new CHttpException(401,'invalid ID');
+		}
+        Yii::app()->controller->layout = 'print_edc';
+		header_remove();
+
+        $data = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/printTicketEdc',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'booking_trip_id' => $_GET['id']
+                ]
+            ]
+        ]);
+
+        if (!isset($data['data'])) {
+            Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
+        }
+
+        return $this->render('cetakTiketEdc', [
+			'datas' => $data['data']
+		]);
+    }
+
+    public function actionPrintTiketA5()
+    {
+        if (!isset($_GET['id'])) {
+			throw new CHttpException(401,'invalid ID');
+		}
+        Yii::app()->controller->layout = 'print_a5';
+		header_remove();
+
+        $data = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/printTiketA5',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'booking_trip_id' => $_GET['id']
+                ]
+            ]
+        ]);
+
+        if (!isset($data['data'])) {
+            Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
+        }
+
+        return $this->render('cetakTiketA5', [
+			'data' => $data['data']
 		]);
     }
 

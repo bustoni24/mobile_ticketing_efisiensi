@@ -6,6 +6,7 @@ class UserIdentity extends CUserIdentity {
     private $_id; //set id untuk unique identifier
     public $role;
     public $arPermission = array('');	
+    public $error_msg = "";
 
     public function authenticate() {
         $user = $this->username;
@@ -23,6 +24,7 @@ class UserIdentity extends CUserIdentity {
             ]
         ];
         $login = ApiHelper::getInstance()->callUrl($parameters);
+        $this->error_msg = "hahahaha";
         if (isset($login['data'])) {
             $this->_id = $login['data']['id'];
             $this->setState('sdm_id', $login['data']['sdm_id']);

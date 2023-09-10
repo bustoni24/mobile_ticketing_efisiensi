@@ -13,6 +13,7 @@ class Booking
     public $armada_ke = null;
     public $rit = null;
     public $latitude, $longitude, $tujuan, $penjadwalan_id;
+    public $id = null;
 
     public function searchBooking()
     {
@@ -105,6 +106,61 @@ class Booking
 				'pageSize' => count($data),
 				),
 			));	
+    }
+
+    public function dataLastBooking()
+    {
+        $data = [];
+        if (!isset($this->id)){
+			return new CArrayDataProvider($data, array(
+				'keyField' => 'id',
+				'pagination' => array(
+					'pageSize' => count($data),
+					),
+				));	
+		}
+		$res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/dataLastBooking',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'id' => $this->id
+                    ]
+            ]
+        ]);
+
+        $keyField = "id";
+        if (isset($res['data'])) {
+            $data = $res['data'];
+            $keyField = isset($res['key_field']) ? $res['key_field'] : "id";
+        }
+
+        // Helper::getInstance()->dump($res);
+        
+		return new CArrayDataProvider($data, array(
+			'keyField' => $keyField,
+			'pagination' => array(
+				'pageSize' => count($data),
+				),
+			));	
+    }
+
+    public function getDetailPenumpang($id)
+    {
+        $html = "-";
+        $res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getDetailPenumpang',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'id' => $id
+                    ]
+            ]
+        ]);
+        if (isset($res['data']))
+            $html = $res['data'];
+
+        return $html;
     }
 
     private static $instance;

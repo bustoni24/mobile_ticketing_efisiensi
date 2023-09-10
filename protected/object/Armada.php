@@ -116,6 +116,21 @@ class Armada
 		return $result;
     }
 
+    public function getTrip()
+	{
+		$result = [];
+		$res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getTrip?1=1',
+            'parameter' => [
+                'method' => 'GET'
+            ]
+        ]);
+        if (isset($res['data'])) {
+            $result = $res['data'];
+        }
+		return $result;
+	}
+
 	private static $instance;
 
     public static function object()
