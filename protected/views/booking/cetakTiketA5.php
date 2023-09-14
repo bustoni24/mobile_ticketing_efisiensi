@@ -75,7 +75,7 @@
         <tr>
             <td>
                 <p>TUJUAN</p>
-                <label class="mt-0"><?= strtoupper($data['nama_kota_tujuan']) ?></label>
+                <label class="mt-0"><?= isset($data['penumpang'][0]['info_turun']) ? $data['penumpang'][0]['info_turun'] : strtoupper($data['nama_kota_tujuan']) ?></label>
             </td>
         </tr>
 

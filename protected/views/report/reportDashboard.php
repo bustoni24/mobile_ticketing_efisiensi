@@ -34,4 +34,14 @@
         <p class="content-text">Info History Deposit</p>
         </div>
     </a>
+
+    <a href="<?= Constant::baseUrl().'/report/reportBooking'; ?>">
+        <div class="left-img-container">
+        <i class="fa fa-file-text-o"></i>
+        </div>
+        <div class="container-text">
+        <h4 class="header-text">Data Booking</h4>
+        <p class="content-text">Data History Booking</p>
+        </div>
+    </a>
 </div>

@@ -66,7 +66,7 @@ class Booking
     public function routeDetail()
     {
         $data = [];
-        if (!isset($this->startdate, $this->route_id, $this->armada_ke) || empty($this->route_id)){
+        if (!isset($this->startdate)){
 			return new CArrayDataProvider($data, array(
 				'keyField' => 'id',
 				'pagination' => array(
@@ -80,16 +80,17 @@ class Booking
             'parameter' => [
                 'method' => 'POST',
                 'postfields' => [
+                    'startdate'=>$this->startdate,
+                    'rit' => $this->rit,
                     'route_id' => $this->route_id,
                     'armada_ke' => $this->armada_ke,
-                    'startdate' => $this->startdate,
                     'user_id' => Yii::app()->user->id,
                     'role' => Yii::app()->user->role,
                     'penjadwalan_id' => $this->penjadwalan_id
                     ]
             ]
         ]);  
-
+// Helper::getInstance()->dump($res);
         if (isset($res['data'])) {
             $data = [
                 [   
@@ -98,7 +99,6 @@ class Booking
                 ]
             ];
         }
-        // Helper::getInstance()->dump($data);
         
 		return new CArrayDataProvider($data, array(
 			'keyField' => 'id',
@@ -150,6 +150,24 @@ class Booking
         $html = "-";
         $res = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/getDetailPenumpang',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'id' => $id
+                    ]
+            ]
+        ]);
+        if (isset($res['data']))
+            $html = $res['data'];
+
+        return $html;
+    }
+
+    public function getInfoPenumpang($id)
+    {
+        $html = "-";
+        $res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getInfoPenumpang',
             'parameter' => [
                 'method' => 'POST',
                 'postfields' => [

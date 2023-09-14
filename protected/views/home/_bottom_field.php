@@ -3,6 +3,13 @@ $post = isset($data['data']['post']['post']) ? $data['data']['post']['post'] : [
 $modelTrip = isset($data['data']['modelTrip']) ? (object)$data['data']['modelTrip'] : [];
 $modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data['data']['modelBookingExist'] : [];
 $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['seatBooked']) : 0;
+$this->widget('ext.dropDownChain.VDropDownChain', array(
+    'parentId' => 'BookingTrip_type_turun',
+    'childId' => 'BookingTrip_info_turun',
+    'url' => 'api/getAjaxDropOff?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2',
+    'valueField' => 'id',
+    'textField' => 'trip',
+));
 ?>
 
 <script>
@@ -57,7 +64,13 @@ $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['sea
         updateListView(dataSent);
     }
 
-     $(document).on('ready', function() {      
+     $(document).on('ready', function() {  
+        $('#BookingTrip_info_turun').select2(); 
+        $("body").on('change', '#BookingTrip_info_turun', function(){
+            var textTurun = $(this).find(":selected").text();
+            $('#BookingTrip_info_turun_text').val(textTurun);
+        });
+        
         <?php
         //flashes
         foreach(Yii::app()->user->getFlashes() as $key => $message){
@@ -74,7 +87,7 @@ $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['sea
             }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isDenied) {
-                        window.open("<?= Constant::baseUrl().'/booking/itinerary?id=' . (isset($modelBookingExist->id) ? $modelBookingExist->id : '')  ?>",'_blank');
+                        window.open("<?= Constant::baseUrl().'/booking/itinerary?id=' . (isset($_GET['last_id_booking']) ? $_GET['last_id_booking'] : (isset($modelBookingExist->id) ? $modelBookingExist->id : ''))  ?>",'_blank');
                     }
             });
 
@@ -123,6 +136,22 @@ $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['sea
 
     $(window).bind('load', function() {
         doRefresh();
+    });
+
+    $("body").on('change', '#BookingTrip_type_turun', function(){
+        if ($(this).val() === 'agen') {
+            $('#infoTurunSelect').removeClass('none');
+            $('#infoTurunText').addClass('none');
+            $('#BookingTrip_info_turun').attr('required', true);
+            $('#BookingTrip_info_turun_text').attr('required', false);
+            $('#BookingTrip_info_turun_text').val('');
+        } else {
+            $('#infoTurunSelect').addClass('none');
+            $('#infoTurunText').removeClass('none');
+            $('#BookingTrip_info_turun').attr('required', false);
+            $('#BookingTrip_info_turun').val('');
+            $('#BookingTrip_info_turun_text').attr('required', true);
+        }
     });
     // setInterval(doRefresh, 10000*60); //10 menit
 </script>

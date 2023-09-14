@@ -14,6 +14,10 @@ class ApiController extends Controller
 			echo json_encode($result);
 			Yii::app()->end();
 		}
+
+		if (!isset(Yii::app()->user->id, Yii::app()->user->role)){
+			doPrintResult(['success'=>2, 'message' => 'No Authorized']);
+		}
 	}
 
 	public function actionGetCrew()
@@ -61,4 +65,35 @@ class ApiController extends Controller
 		doPrintResult(['success'=>1,'saldo'=>$data['data']['saldo']]);
 	}
 	
+	public function actionGetAjaxJam()
+	{
+		$option = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getAjaxJam',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $_POST
+            ]
+        ]);
+		$data = [];
+		if (isset($option['data']))
+			$data = $option['data'];
+
+		doPrintResult($data);
+	}
+
+	public function actionGetAjaxDropOff()
+	{
+		$option = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getAjaxDropOff',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $_POST
+            ]
+        ]);
+		$data = [];
+		if (isset($option['data']))
+			$data = $option['data'];
+
+		doPrintResult($data);
+	}
 }

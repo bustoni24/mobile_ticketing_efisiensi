@@ -27,7 +27,8 @@
         @media print {
           html, body {
           width: 80mm;
-          height: 60mm;
+          height: 70mm;
+          margin: 0;
         }
 
         /* ... the rest of the rules ... */

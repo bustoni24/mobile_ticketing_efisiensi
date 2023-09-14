@@ -13,8 +13,38 @@
 		'filter'=>null,
 		'columns'=>array(
 			[
-				'header' => 'Booking ID',
+				'header' => 'No. Tiket',
 				'name' => 'booking_id'
+			],
+			[
+				'header' => 'Penumpang | Kursi',
+				'name' => 'jml_penumpang',
+				'type' => 'raw',
+				'value' => function($data) {
+					return Booking::object()->getDetailPenumpang($data['id']);
+				}
+			],
+			[
+				'header' => 'Naik',
+				'name' => 'naik',
+				'type' => 'raw',
+				'value' => function($data) {
+					$res = Booking::object()->getInfoPenumpang($data['id']);
+					return isset($res['agen_boarding_nama']) ? $res['agen_boarding_nama'] . ' ('. $data['nama_kota_asal'] .')' : '-';
+				}
+			],
+			[
+				'header' => 'Penurunan',
+				'name' => 'turun',
+				'type' => 'raw',
+				'value' => function($data) {
+					$res = Booking::object()->getInfoPenumpang($data['id']);
+					return isset($res['info_turun']) ? $res['info_turun'] : (isset($data['nama_kota_tujuan']) ? $data['nama_kota_tujuan'] : '-');
+				}
+			],
+			[
+				'header' => 'Total Harga',
+				'name' => 'total_harga'
 			],
 			[
 				'header' => 'Kota Keberangkatan',
@@ -31,18 +61,6 @@
 			[
 				'header' => 'Kelas',
 				'name' => 'kelas_bus'
-			],
-			[
-				'header' => 'Penumpang | Kursi',
-				'name' => 'jml_penumpang',
-				'type' => 'raw',
-				'value' => function($data) {
-					return Booking::object()->getDetailPenumpang($data['id']);
-				}
-			],
-			[
-				'header' => 'Total Harga',
-				'name' => 'total_harga'
 			],
 			[
 				'header' => 'Tanggal Booking',

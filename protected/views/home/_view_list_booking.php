@@ -13,7 +13,8 @@ $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data
 $from_scanner = isset($data['data']['from_scanner']) ? $data['data']['from_scanner'] : false;
 $data_origin = isset($data_origin) ? $data_origin : [];
 $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data']['post']['post']['status_trip'] : null;
-// Helper::getInstance()->dump($data);
+$resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resumePassenger'] : [];
+// Helper::getInstance()->dump($resumePassenger);
 ?>
 <div class="col-sm-12">
 
@@ -249,8 +250,9 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
     )); 
     ?>
 
-<?php if (in_array(Yii::app()->user->role, ['Cabin Crew']) && !$from_scanner): ?>
+<?php if (in_array(Yii::app()->user->role, ['Agen','Cabin Crew']) && !$from_scanner): ?>
 
+    <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
     <div class="row height-75 d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Titik Terdekat</label>
@@ -273,6 +275,25 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
             <?= CHtml::textField('BookingTrip[daerah_titik_keberangkatan]','',['autocomplete' => 'off', 'placeholder' => 'Ketik Titik Naik Keberangkatan','required'=>true]); ?>
         </div>
     </div>
+    <?php endif; ?>
+
+    <!-- Form untuk agen dan crew -->
+    <div class="row height-75 d-relative">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+        <label>Titik Turun</label>
+            <?= CHtml::dropDownList('BookingTrip[type_turun]', '', [
+                'agen' => 'Titik Agen',
+                'bebas' => 'Ketik Bebas',
+            ], ['prompt'=>'Pilih Tipe Info Turun (pakai data titik agen atau ketik bebas','required'=>true]); ?>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 none" id="infoTurunSelect">
+            <?= CHtml::dropDownList('BookingTrip[info_turun]','',[],['prompt' => 'Pilih Titik Turun','class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 none" id="infoTurunText">
+            <?= CHtml::textField('BookingTrip[info_turun_text]','',['autocomplete' => 'off', 'placeholder' => 'Ketik Titik Turun']); ?>
+        </div>
+    </div>
 
 <?php endif; ?>
 
@@ -292,7 +313,6 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
 
         <?php if ($from_scanner): 
         echo CHtml::hiddenField('BookingTrip[status]', (isset($data_origin['status']) && $data_origin['status'] == Constant::STATUS_PENUMPANG_NAIK ? 2 : 2));
-            // Helper::getInstance()->dump($data_origin);
             ?>
             <table class="table">
                 <tbody id="table-form-passenger">
@@ -491,15 +511,30 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
     </div>
     <?php endif; ?>
 
-    <?php if (in_array(Yii::app()->user->role, ['Checker'])): ?>
+    <?php if (in_array(Yii::app()->user->role, ['Checker','Cabin Crew','Agen'])): ?>
+    <?php if (!empty($resumePassenger)): ?>
+    <div class="row">
+        <div class="col-sm-12">
+            <label>Drop Off: </label> <?= $resumePassenger['drop_off'] ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <label>Naik: </label> <?= $resumePassenger['naik'] ?>
+        </div>
+    </div>
+    <?php endif; ?>
     <div class="row" style="overflow: auto;">
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
+                <th>Nomor Kursi</th>
+                <th>No. Tiket</th>
                 <th>Kode Booking</th>
                 <th>Nama Penumpang</th>
                 <th>Nomor HP</th>
+                <th>Naik</th>
+                <th>Penurunan</th>
                 <th>Jenis Kelamin</th>
-                <th>Nomor Kursi</th>
             </tr>
             <?php 
             $dataSeatBoooked = isset($data['data']['seatBooked']) ? $data['data']['seatBooked'] : [];
@@ -510,11 +545,14 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
                 $dataSeat = $seatBooked[$seatBooked['id']];
                 ?>
                 <tr>
+                    <td><?= $dataSeat['no_kursi']; ?></td>
+                    <td><?= $dataSeat['booking_id']; ?></td>
                     <td><?= $dataSeat['kode_booking']; ?></td>
                     <td><?= $dataSeat['nama']; ?></td>
                     <td><?= $dataSeat['no_hp']; ?></td>
+                    <td><?= $dataSeat['titik_naik']; ?></td>
+                    <td><?= $dataSeat['titik_turun']; ?></td>
                     <td><?= $dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita'; ?></td>
-                    <td><?= $dataSeat['no_kursi']; ?></td>
                 </tr>
                 <?php
             }
@@ -522,6 +560,7 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
         </table>
     </div>
 
+    <?php if (in_array(Yii::app()->user->role, ['Checker'])): ?>
     <div class="row">
         <table class="table table-bordered">
             <tr>
@@ -558,6 +597,8 @@ $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data
             </div>
         </div>
     </div>
+    <?php endif; ?>
+
     <?php endif; ?>
 
     <?php $this->endWidget(); ?>

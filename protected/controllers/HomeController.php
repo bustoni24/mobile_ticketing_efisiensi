@@ -37,7 +37,7 @@ class HomeController extends Controller
 								]
 						]
 					]);
-					// Helper::getInstance()->dump($res);
+				// 	Helper::getInstance()->dump($res);
 					if (isset($res['data']))
 						$post['data'] = $res['data'];
 				}
@@ -174,7 +174,7 @@ class HomeController extends Controller
 			if ($saveTransaction['success']) {			
 				$last_id_booking = isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : '';
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
-				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&last_id_booking=' . $last_id_booking);
+				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&last_id_booking=' . $last_id_booking . '&rit=' . $model->rit);
 			} else {
 				Helper::getInstance()->dump($saveTransaction);
 			}
@@ -420,6 +420,7 @@ class HomeController extends Controller
 						'penjadwalan_id' => isset($_POST['BookingTrip']['penjadwalan_id']) ? $_POST['BookingTrip']['penjadwalan_id'] : null,
 						'real_titik_id' => isset($data['real_titik_id']) ? $data['real_titik_id'] : null,
 						'real_armada_ke' => isset($data['real_armada_ke']) ? $data['real_armada_ke'] : null,
+						'rit' => $model->rit
 					]
 				]
 			]);
@@ -447,13 +448,14 @@ class HomeController extends Controller
 		}
 		$data = base64_decode($_GET['data']);
 		$data = json_decode($data, true);
-		if (!isset($data['startdate'], $data['route_id'], $data['armada_ke'], $data['penjadwalan_id'])) {
+		if (!isset($data['rit'], $data['penjadwalan_id'])) {
 			throw new CHttpException(401,'invalid parameter');
 		}
+// 		Helper::getInstance()->dump($data);
 		$model = new Booking('routeDetail');
 		$model->startdate = $data['startdate'];
 		$model->route_id = $data['route_id'];
-		$model->armada_ke = $data['armada_ke'];
+		$model->rit = $data['rit'];
 		$model->penjadwalan_id = $data['penjadwalan_id'];
 
 		if (isset($_POST['Booking']['jumlah_sesuai'])) {

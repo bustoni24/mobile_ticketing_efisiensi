@@ -1,0 +1,159 @@
+<style>
+	table.table > thead > tr > th {
+		vertical-align: middle;
+    	text-align: center;
+	}
+</style>
+<div class="col-sm-12">
+
+<div class="x_title">
+	<h2>Table Data Booking View</h2>
+	<div class="clearfix"></div>
+</div>
+
+	<div class="card-box">
+
+    <div class="row">
+    <div class="col-sm-12">
+        <label class="mt-15">Startdate - Enddate</label>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12 form-group" style="padding-left: 0;margin-top:10px;">
+        <?php echo CHtml::textField('BookingData[startdate]',$model->startdate,['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off']); ?>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-12 form-group" style="padding-left: 0;margin-top:10px;">
+        <?php echo CHtml::textField('BookingData[enddate]',$model->enddate,['placeholder' => 'yyyy-m-dd', 'class' => 'form-control enddate', 'autocomplete' => 'off']); ?>
+    </div>
+        
+    <div class="col-md-12">
+        <button type="button" class="btn btn-warning pull-right" id="filter">Filter</button>
+    </div>
+
+        <div class="col-md-12 none">
+            <a class="pull-right" href="javascript:void(0)" onclick="exportExcel()" title="Cetak EXCEL"><i class="fa fa-file-excel-o"></i></a>
+        </div>
+    </div>
+
+	<div class="row none">
+    <div class="col-sm-12">
+		<div class="col-sm-6 pl-0 mb-0">
+			<div class="dataTables_length"><label>Display <select name="BookingData[display]" aria-controls="datatable-keytable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> records</label>
+			</div>
+		</div>
+		<div class="col-sm-6 pull-right text-right pr-0 mb-0">
+			<div class="dataTables_filter"><label>Search:<input type="search" name="BookingData[filter]" class="form-control input-sm" placeholder="Ketik trip label, nama group" aria-controls="datatable-keytable"></label></div>
+		</div>
+	</div>
+    </div>
+
+		<?php 		
+		$this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'ticketing-report-grid',
+		'dataProvider'=>$model->searchDataBooking(),
+		'filter'=>null,
+		'columns'=>[
+				[
+					'header' => 'No',
+					'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',
+                ],
+				[
+                    'header' => 'No. Tiket',
+                    'name' => 'booking_id'
+                ],
+                [
+                    'header' => 'Penumpang | Kursi',
+                    'name' => 'jml_penumpang',
+                    'type' => 'raw',
+                    'value' => function($data) {
+                        return Booking::object()->getDetailPenumpang($data['id']);
+                    }
+                ],
+                [
+                    'header' => 'Naik',
+                    'name' => 'naik',
+                    'type' => 'raw',
+                    'value' => function($data) {
+                        $res = Booking::object()->getInfoPenumpang($data['id']);
+                        return isset($res['agen_boarding_nama']) ? $res['agen_boarding_nama'] . ' ('. $data['nama_kota_asal'] .')' : '-';
+                    }
+                ],
+                [
+                    'header' => 'Penurunan',
+                    'name' => 'turun',
+                    'type' => 'raw',
+                    'value' => function($data) {
+                        $res = Booking::object()->getInfoPenumpang($data['id']);
+                        return isset($res['info_turun']) ? $res['info_turun'] : (isset($data['nama_kota_tujuan']) ? $data['nama_kota_tujuan'] : '-');
+                    }
+                ],
+                [
+                    'header' => 'Total Harga',
+                    'name' => 'total_harga'
+                ],
+                [
+                    'header' => 'Kota Keberangkatan',
+                    'name' => 'nama_kota_asal'
+                ],
+                [
+                    'header' => 'Kota Tujuan',
+                    'name' => 'nama_kota_tujuan'
+                ],
+                [
+                    'header' => 'Group Trip',
+                    'name' => 'nama_group'
+                ],
+                [
+                    'header' => 'Kelas',
+                    'name' => 'kelas_bus'
+                ],
+                [
+                    'header' => 'Tanggal Booking',
+                    'name' => 'tanggal'
+                ],
+                [
+                    'header' => 'Jam Keberangkatan',
+                    'name' => 'jam'
+                ],
+                [
+                    'header' => 'Aksi',
+                    'name' => 'aksi',
+                    'type' => 'raw',
+                    'value' => function($data) {
+                        $etiket = "<a class='btn btn-warning' href='". Constant::baseUrl().'/booking/itinerary?id=' . $data['id'] ."' target='_blank'>Cetak eTicket</a>";
+                        $termal = "<a class='btn btn-success' href='". Constant::baseUrl().'/booking/printTiketEdc?id=' . $data['id'] ."' target='_blank'>Cetak EDC (80mm)</a>";
+                        $kertas = "<a class='btn btn-info' href='". Constant::baseUrl().'/booking/printTiketA5?id=' . $data['id'] ."' target='_blank'>Cetak A5</a>";
+                        return "$etiket <br/>$termal <br/>$kertas";
+                    }
+                ]
+			],
+			)); ?>
+		</div>
+	</div>
+
+    <script>
+    $('#BookingData_startdate').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		header: true
+	});
+    $('#BookingData_enddate').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		header: true
+	});
+    
+    $('#filter').on('click', function(){
+        var startdate = $('#BookingData_startdate').val();
+        var enddate = $('#BookingData_enddate').val();
+        // var data = {startdate : startdate, enddate : enddate};
+        // updateGrid(data, 'ticketing-reportPenjualan');
+        location.href="<?= Constant::baseUrl() . '/' . $this->route . '?startdate=' ?>"+startdate+"&enddate="+enddate;
+    });
+    function exportExcel()
+    {
+        var startdate = $('#BookingData_startdate').val();
+        var enddate = $('#BookingData_enddate').val();
+        window.open("<?= Constant::baseUrl() . '/' . $this->route . '/?' ?>startdate="+startdate+"&enddate="+enddate+"&excel=true");
+        return false;
+    }
+    </script>

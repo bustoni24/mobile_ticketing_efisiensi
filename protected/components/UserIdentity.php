@@ -24,7 +24,6 @@ class UserIdentity extends CUserIdentity {
             ]
         ];
         $login = ApiHelper::getInstance()->callUrl($parameters);
-        $this->error_msg = "hahahaha";
         if (isset($login['data'])) {
             $this->_id = $login['data']['id'];
             $this->setState('sdm_id', $login['data']['sdm_id']);

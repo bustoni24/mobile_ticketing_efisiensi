@@ -49,6 +49,8 @@ class Armada
         ]);
         if (isset($res['data'])) {
             $result = $res['data'];
+            if (isset($result['3']))
+                unset($result['3']);
         }
 
 		return $result;

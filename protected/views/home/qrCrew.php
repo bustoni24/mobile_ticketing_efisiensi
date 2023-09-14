@@ -35,7 +35,7 @@
     }
 
     /* Area Fokus */
-    .qr-focus-box {
+   /*  .qr-focus-box {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -44,7 +44,7 @@
         background: rgb(7 7 7 / 80%);
         -webkit-clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
         clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
-    }
+    } */
 
     #qr-result {
         position: absolute;

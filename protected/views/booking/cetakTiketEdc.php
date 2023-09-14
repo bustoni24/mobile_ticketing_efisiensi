@@ -12,7 +12,7 @@
     text-align: right;
 }
 body, html {
-    font-size: 11px;
+    font-size: 12px;
 }
 h5 {
     font-size: 12px;
@@ -25,6 +25,15 @@ label {
 .table>thead>tr>td, .table>tbody>tr>td{
     padding: 5px;
 }
+.pb-0{
+    padding-bottom: 0!important;
+}
+.pt-0{
+    padding-top: 0!important;
+}
+.m-0{
+    margin: 0!important;
+}
 </style>
 
 <?php
@@ -32,7 +41,7 @@ foreach ($datas as $data) {
     ?>
 <div style="page-break-inside: avoid;"></div>
 
-<div style="padding: 10px;">
+<div style="padding: 5px;">
 <table class="table table-content border-none" style="border: 1px solid #000;">
     <thead>
         <tr>
@@ -42,9 +51,9 @@ foreach ($datas as $data) {
             <td class="container_logo"><img src="<?= Constant::newLogoIcon(); ?>" style="width: 60px;"/></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <h5><?= $data['nama_group'] ?> / <?= $data['kelas_bus'] ?> <?= $data['nama_template'] ?></h5>
-                <label><?= $data['nama_kota_asal'] . ' - ' . $data['nama_kota_tujuan'] ?></label>
+            <td colspan="2" class="pb-0">
+                <h5 class="m-0"><?= $data['nama_group'] ?> / <?= $data['kelas_bus'] ?> <?= $data['nama_template'] ?></h5>
+                <label style="font-size: 10px;"><?= $data['nama_kota_asal'] . ' - ' . $data['nama_kota_tujuan'] ?></label>
                 <p style="font-size: 10px;"><?= $data['titik_keberangkatan'] ?></p>
                 <p style="font-size: 10px;"><?= $data['hari'] . ', ' . $this->IndonesiaTgl($data['tanggal']) . ' ' . $data['jam']; ?></p>
             </td>
@@ -86,13 +95,12 @@ foreach ($datas as $data) {
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="pt-0 pb-0">
                 <p>RP</p>
-                <h5>Rp <?= Helper::getInstance()->getRupiah($data['harga']); ?></h5>
+                <h4 class="m-0"><?= Helper::getInstance()->getRupiah($data['harga']); ?></h4>
             </td>
-            <td>
-                <p>NO. KURSI</p>
-                <h5><?= $data['seat'] ?></h5>
+            <td class="pt-0 pb-0">
+                <p>NO. KURSI: <span style="font-size: 35px;font-weight:800;"><?= $data['seat'] ?></span></p>
             </td>
         </tr>
     </tbody>

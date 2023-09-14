@@ -3,6 +3,9 @@
     .gj-datepicker {
         display: none;
     }
+    .select2-container{
+        width: 100%!important;
+    }
 </style>
 <?php 
 $data = isset($model->routeDetail()->getData()[0]) ? $model->routeDetail()->getData()[0] : [];

@@ -38,6 +38,7 @@ class BookingController extends Controller
         $model->armada_ke = $armada_ke;
 
         if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
+            // Helper::getInstance()->dump($_POST);
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [
@@ -74,11 +75,17 @@ class BookingController extends Controller
     {
         $post = [];
 		$post['startdate'] = date('Y-m-d');
+        $post['jam'] = null;
+		$post['jamArray'] = [];
+        $post['kode_booking'] = null;
+        $post['trip_id'] = null;
         if (isset($_GET['Manifest']['startdate']) && !empty($_GET['Manifest']['startdate'])) {
 			$post['startdate'] = date('Y-m-d', strtotime($_GET['Manifest']['startdate']));
 		}
 		if (isset($_GET['Manifest']['trip_id']) && !empty($_GET['Manifest']['trip_id'])) {
 			$post['trip_id'] = $_GET['Manifest']['trip_id'];
+            $post['jam'] = isset($_GET['Manifest']['jam']) ? $_GET['Manifest']['jam'] : null;
+            $post['kode_booking'] = isset($_GET['Manifest']['kode_booking']) ? $_GET['Manifest']['kode_booking'] : null;
 
             $getManifest = ApiHelper::getInstance()->callUrl([
                 'url' => 'apiMobile/getDataManifest',
@@ -361,7 +368,7 @@ class BookingController extends Controller
 
         $scannerResult = Yii::app()->controller->decode($_POST['id']);
         $scannerResult = json_decode($scannerResult, true);
-        if (!isset($scannerResult['route_id'], $scannerResult['startdate'], $scannerResult['armada_ke'])) {
+        if (!isset($scannerResult['penjadwalan_id'], $scannerResult['rit'])) {
             doPrintResult($result->dump(json_encode($scannerResult)));
         }
 

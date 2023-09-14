@@ -156,9 +156,6 @@ scanner.addListener('scan', function (content) {
 });
 
 function doExecScannerResult(value) {
-    /* alert(latitude);
-    alert(longitude);
-    return false; */
     $.ajax({
         url: "<?= Constant::baseUrl().'/booking/scannerResult' ?>",
         type: 'POST',

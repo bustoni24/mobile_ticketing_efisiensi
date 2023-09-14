@@ -62,7 +62,7 @@
                             <span class="txt">Crew Terdekat</span>
                         </a>
                     </div>
-                    <div class="coll <?= (in_array($this->action->Id, ['reportDashboard']) ? 'coll_aktif' : '') ?>" id="coll_akun">
+                    <div class="coll <?= (in_array($this->action->Id, ['reportDashboard','reportBooking']) ? 'coll_aktif' : '') ?>" id="coll_akun">
                         <a href="<?= Constant::baseUrl().'/report/reportDashboard'; ?>" class="menu-item" id="akun">
                             <i class="fa fa-file-text"></i>
                             <span class="txt">Laporan</span>
