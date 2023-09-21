@@ -1416,7 +1416,7 @@ class Helper {
     }
 
     if (isset($data['trayek'])) {
-        if (in_array('cilacap-bobotsari', $data['trayek']) || (in_array('cilacap-ajibarang', $data['trayek'])) || (in_array('bobotsari-ajibarang', $data['trayek'])) || (in_array('bobotsari-cilacap', $data['trayek'])) || (in_array('ajibarang-cilacap', $data['trayek'])) ) {
+        if (in_array('cilacap-bobotsari', $data['trayek']) || (in_array('cilacap-ajibarang', $data['trayek'])) || (in_array('bobotsari-ajibarang', $data['trayek'])) || (in_array('bobotsari-cilacap', $data['trayek'])) || (in_array('ajibarang-cilacap', $data['trayek'])) || (in_array('yogyakarta-cilacap', $data['trayek'])) || (in_array('cilacap-yogyakarta', $data['trayek'])) ) {
           $result['terminal']['label']['value'] = 80000;
           unset($result['solar']['refund']);
         } else if (in_array('cilacap-solo', $data['trayek']) || in_array('solo-cilacap', $data['trayek'])) {

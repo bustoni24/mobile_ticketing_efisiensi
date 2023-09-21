@@ -55,7 +55,7 @@
 			<div class="ln_solid_grey"></div>
 
 			<!-- resume passenger -->
-			<?php if (!empty($post['resume_passenger'])): ?>
+			<?php if (!empty($post['resume_passenger']) && false): ?>
 			<div class="row">
 				<div class="col-sm-12">
 					<label>Drop Off: </label> <?= $post['resume_passenger']['drop_off'] ?>
@@ -71,7 +71,12 @@
 			<?php 
 			if (isset($post['data'])):
 				foreach ($post['data'] as $key => $postData) {
-					echo '<h4 class="header">Keberangkatan '. $key .' '. (isset($postData['no_lambung']) ? ', Nomor Lambung: ' . $postData['no_lambung'] : '') .'</h4>';
+					echo '<h4 class="header">'. $postData['label_trip'] .' '. (isset($postData['no_lambung']) ? ', Nomor Lambung: ' . $postData['no_lambung'] : '') .'</h4>';
+
+					if (isset($postData['resume_passenger']['drop_off'], $postData['resume_passenger']['naik'])){
+						echo '<h5>Drop off: '.$postData['resume_passenger']['drop_off'].'</h5>';
+						echo '<h5>Naik: '.$postData['resume_passenger']['naik'].'</h5>';
+					}
 					?>
 					<table class="table table-bordered">
 						<?php if (isset($postData['kuota'])): ?>

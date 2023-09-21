@@ -14,6 +14,7 @@ class Booking
     public $rit = null;
     public $latitude, $longitude, $tujuan, $penjadwalan_id;
     public $id = null;
+    public $label_trip = null;
 
     public function searchBooking()
     {
@@ -86,7 +87,8 @@ class Booking
                     'armada_ke' => $this->armada_ke,
                     'user_id' => Yii::app()->user->id,
                     'role' => Yii::app()->user->role,
-                    'penjadwalan_id' => $this->penjadwalan_id
+                    'penjadwalan_id' => $this->penjadwalan_id,
+                    'label_trip' => $this->label_trip
                     ]
             ]
         ]);  

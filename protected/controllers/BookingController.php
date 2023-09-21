@@ -31,11 +31,14 @@ class BookingController extends Controller
 		$startdate = $arrId[1];
 		$armada_ke = $arrId[2];
         $penjadwalan_id = isset($arrId[3]) && !empty($arrId[3]) ? $arrId[3] : null;
+        $label_trip = isset($_POST['label_trip']) ? $_POST['label_trip'] : null;
 
         $model = new Booking('routeDetail');
         $model->route_id = $routeID;
         $model->startdate = $startdate;
         $model->armada_ke = $armada_ke;
+        $model->penjadwalan_id = $penjadwalan_id;
+        $model->label_trip = $label_trip;
 
         if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
             // Helper::getInstance()->dump($_POST);
@@ -133,8 +136,9 @@ class BookingController extends Controller
             $post['data'] = $res['data'];
 
         if (isset($res['data']['ops']['status_rit'][$post['rit']]))
-            $post['status_rit_close'] = $res['data']['ops']['status_rit'][$post['rit']];
+            $post['status_rit_close'] = in_array($res['data']['ops']['status_rit'][$post['rit']], [Constant::STATUS_RIT_CLOSE]);
 
+        // Helper::getInstance()->dump($post);
         if (isset($post['data'])):
             //cari pengeluaran data
             $pengeluaranDatas = ApiHelper::getInstance()->callUrl([
@@ -500,7 +504,7 @@ class BookingController extends Controller
                 ]
             ]
         ]);
-
+        // Helper::getInstance()->dump($data);
         if (!isset($data['data'])) {
             Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
         }
@@ -527,7 +531,7 @@ class BookingController extends Controller
                 ]
             ]
         ]);
-
+// Helper::getInstance()->dump($data);
         if (!isset($data['data'])) {
             Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
         }
@@ -552,7 +556,7 @@ class BookingController extends Controller
                 ]
             ]
         ]);
-
+// Helper::getInstance()->dump($data);
         if (!isset($data['data'])) {
             Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
         }

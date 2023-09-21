@@ -28,13 +28,13 @@ class ReportController extends Controller
 		if (isset($_GET['startdate']) && !empty($_GET['startdate'])) {
 			$model->startdate = $_GET['startdate'];
 		} else {
-			$model->startdate = date('Y-m-d');
+			$model->startdate = null;
 		}
 
         if (isset($_GET['enddate']) && !empty($_GET['enddate'])) {
 			$model->enddate = $_GET['enddate'];
 		} else {
-			$model->enddate = date('Y-m-d');
+			$model->enddate = null;
 		}
 
         return $this->render('reportDeposit', [

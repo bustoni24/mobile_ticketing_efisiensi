@@ -6,6 +6,7 @@ $modelTripAgen = isset($data['data']['modelTripAgen']) ? (object)$data['data']['
 $modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data['data']['modelBookingExist'] : [];
 $layoutDeck = isset($data['data']['layoutDeck']) ? $data['data']['layoutDeck'] : [];
 $seatBooked = isset($data['data']['seatBooked']) ? $data['data']['seatBooked'] : [];
+$dataRawSeatBooked = isset($data['data']['dataRawSeatBooked']) ? $data['data']['dataRawSeatBooked'] : [];
 $listTerdekat = isset($data['data']['listTitikTerdekat']) ? $data['data']['listTitikTerdekat'] : [];
 $isCrew = in_array(Yii::app()->user->role, ['Cabin Crew','Checker']);
 $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['seatBooked']) : 0;
@@ -14,7 +15,9 @@ $from_scanner = isset($data['data']['from_scanner']) ? $data['data']['from_scann
 $data_origin = isset($data_origin) ? $data_origin : [];
 $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data']['post']['post']['status_trip'] : null;
 $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resumePassenger'] : [];
-// Helper::getInstance()->dump($resumePassenger);
+$status_rit = isset($data['data']['post']['post']['status_rit']) ? $data['data']['post']['post']['status_rit'] : 0;
+$trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']['post']['post']['trip_label'] : null;
+// Helper::getInstance()->dump($data['data']);
 ?>
 <div class="col-sm-12">
 
@@ -35,10 +38,12 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
             <?php
         } ?>
         <div class="clearfix"></div>
-        <?php echo (isset($post['nomor_lambung']) && !empty($post['nomor_lambung']) ? '<h5>Nomor Lambung: '. $post['nomor_lambung'].'</h5>' : ''); 
+        <?php echo (isset($post['nomor_lambung']) && !empty($post['nomor_lambung']) ? 'Nomor Lambung: '. $post['nomor_lambung'] . (isset($trip_label) ? ' <span style="color:#000;">'.$trip_label.'</span>' : '' ) .'</h5>' : ''); 
         
         if ($status_trip == Constant::STATUS_TRIP_CLOSE) {
             echo '<span class="red">(Pembelian Tiket telah ditutup karena Trip sudah berakhir)</span>';
+        } else if (in_array($status_rit, [Constant::STATUS_RIT_SKIP, Constant::STATUS_RIT_CLOSE])) {
+            echo '<span class="red">(Pembelian Tiket telah ditutup karena jadwal RIT sudah berakhir)</span>';
         }
         ?>
     </div>
@@ -53,7 +58,7 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
             <div class="layout-deck">
                 <div class="header-deck">
                     <span>DECK 1</span>
-                    Harga: Rp. <?= ($post['tarif'] > 0 ? Helper::getInstance()->getRupiah($post['tarif']) : $post['tarif']); ?>
+                    <p class="mb-0" style="font-weight: 700;font-size: 2rem;">Harga: Rp. <?= ($post['tarif'] > 0 ? Helper::getInstance()->getRupiah($post['tarif']) : $post['tarif']); ?></p>
                 </div>
                 <div class="body-deck">
                     <table class="table border-none text-center table-deck">
@@ -303,6 +308,7 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
         <p>Masukan data penumpang (Nama dan No Telp) sebagai data manifest</p>
 
         <?= CHtml::hiddenField('BookingTrip[total_harga]', ''); ?>
+        <?= CHtml::hiddenField('BookingTrip[label_trip]', $trip_label); ?>
         <?= CHtml::hiddenField('BookingTrip[route_id]', (isset($listTerdekat['route_id']) ? $listTerdekat['route_id'] : (isset($modelTripAgen->route_id) ? $modelTripAgen->route_id : ''))); ?>
         <?= CHtml::hiddenField('BookingTrip[armada_ke]',  isset($listTerdekat['armada_ke']) ? $listTerdekat['armada_ke'] : (isset($post['armada_ke']) ? $post['armada_ke'] : '')); ?>
         <?= CHtml::hiddenField('BookingTrip[startdate]', isset($post['startdate']) ? $post['startdate'] : ''); ?>
@@ -395,6 +401,14 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
         <?php else: ?>
             <table class="table">
                 <tbody id="table-form-passenger">
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="checkbox" id="allCheck"/>
+                                Samakan semua
+                            </label>
+                        </td>
+                    </tr>
                     <tr id="form-passenger0" class="form-passenger">
                         <td>
                             <table class="table border-none">
@@ -407,7 +421,7 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
                                         <?= CHtml::textField('FormSeat[name][]', '', ['placeholder'=>'Penumpang' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
                                     </td>
                                     <td>
-                                        <?= CHtml::textField('FormSeat[telp][]', '', ['placeholder'=>'Telepon' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
+                                        <?= CHtml::numberField('FormSeat[telp][]', '', ['placeholder'=>'Telepon' ,'autocomplete'=>'off', 'class'=>'inputSeat', 'required' => true]); ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -499,7 +513,7 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
             
     </div>
 
-    <div class="container-button-float <?= $status_trip == Constant::STATUS_TRIP_CLOSE ? 'none' : '' ?>">
+    <div class="container-button-float <?= ($status_trip == Constant::STATUS_TRIP_CLOSE || in_array($status_rit, [Constant::STATUS_RIT_SKIP, Constant::STATUS_RIT_CLOSE])) ? 'none' : '' ?>">
     <div class="row-0">
         <div class="button-float">
             <input type="submit" name="submit" class="none" value="1" id="submitHide"/>
@@ -534,15 +548,16 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
                 <th>Nomor HP</th>
                 <th>Naik</th>
                 <th>Penurunan</th>
+                <th>Status</th>
                 <th>Jenis Kelamin</th>
             </tr>
             <?php 
-            $dataSeatBoooked = isset($data['data']['seatBooked']) ? $data['data']['seatBooked'] : [];
-            foreach ($dataSeatBoooked as $seatBooked) {
-                if (!isset($seatBooked['id']))
+            // $dataSeatBoooked = isset($data['data']['seatBooked']) ? $data['data']['seatBooked'] : [];
+            foreach ($dataRawSeatBooked as $dataSeat) {
+                /* if (!isset($seatBooked['id']))
                     continue;
 
-                $dataSeat = $seatBooked[$seatBooked['id']];
+                $dataSeat = $seatBooked[$seatBooked['id']]; */
                 ?>
                 <tr>
                     <td><?= $dataSeat['no_kursi']; ?></td>
@@ -552,6 +567,7 @@ $resumePassenger = isset($data['data']['resumePassenger']) ? $data['data']['resu
                     <td><?= $dataSeat['no_hp']; ?></td>
                     <td><?= $dataSeat['titik_naik']; ?></td>
                     <td><?= $dataSeat['titik_turun']; ?></td>
+                    <td><?= $dataSeat['status']; ?></td>
                     <td><?= $dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita'; ?></td>
                 </tr>
                 <?php

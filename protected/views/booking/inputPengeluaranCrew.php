@@ -386,7 +386,10 @@ $("body").on("keyup", '#refund', function(e){
 
     function confirmSubmitPengeluaran()
     {
-        $('#submitHide').trigger('click');
+        var rit = $('select#rit').val();
+        if (confirm("Apa Anda yakin sudah sesuai dan ingin mengakhiri RIT "+rit+" ini?") == true) {
+            $('#submitHide').trigger('click');
+        }
     }
 
     $('#filter').on('click', function(){

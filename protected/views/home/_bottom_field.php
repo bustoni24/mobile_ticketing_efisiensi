@@ -1,3 +1,8 @@
+<style>
+    input[type=checkbox] {
+        transform: scale(1.5);
+    }
+</style>
 <?php  
 $post = isset($data['data']['post']['post']) ? $data['data']['post']['post'] : [];
 $modelTrip = isset($data['data']['modelTrip']) ? (object)$data['data']['modelTrip'] : [];
@@ -22,6 +27,8 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
               .map(function(){return $(this).val();}).get();
 
         let data = {trip_id:trip_id, startdate:startdate, armada_ke:armada_ke, seat:seat};
+
+        if (confirm("Apa Anda yakin sudah sesuai dan memesan kursi ini?") == true) {
         //check available booking
         $.ajax({
                 type : "POST",
@@ -50,6 +57,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
                         console.log(data.responseText);
                 }
             });
+        }
     }
 
     function reloadSeat()
@@ -131,7 +139,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
                 });
         }
 
-        repeater = setTimeout(doRefresh, 3000);
+        repeater = setTimeout(doRefresh, 10000);
     }
 
     $(window).bind('load', function() {
@@ -152,6 +160,16 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
             $('#BookingTrip_info_turun').val('');
             $('#BookingTrip_info_turun_text').attr('required', true);
         }
+    });
+
+    $("body").on('click', '#allCheck', function(){
+        var nameField = $('tr#form-passenger0').find('input#FormSeat_name').val();
+        var telpField = $('tr#form-passenger0').find('input#FormSeat_telp').val();
+        var genderField = $('tr#form-passenger0').find('select#FormSeat_gender').val();
+
+        $('tr.form-passenger').find('input#FormSeat_name').val(nameField);
+        $('tr.form-passenger').find('input#FormSeat_telp').val(telpField);
+        $('tr.form-passenger').find('select#FormSeat_gender').val(genderField);
     });
     // setInterval(doRefresh, 10000*60); //10 menit
 </script>

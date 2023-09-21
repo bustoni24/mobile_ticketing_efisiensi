@@ -8,7 +8,7 @@ class BookingHelper {
         if (!isset($post['trip_id'],$post['startdate'],$post['armada_ke'],$post['seat'])) {
             return $result->dump('invalid parameter');
         }
-        return $check = ApiHelper::getInstance()->callUrl([
+        $check = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/checkAvailableBooking',
             'parameter' => [
                 'method' => 'POST',

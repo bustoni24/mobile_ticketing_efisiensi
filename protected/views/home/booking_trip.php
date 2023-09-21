@@ -5,7 +5,7 @@
         ?>
             <div class="card-header">
                 <h5><?= $data['header']; ?></h5>
-                <h5><?= $data['trip']; ?></h5>
+                <h5><?= $data['trip'] . (isset($post['tripLabel']) ? ' ('.$post['tripLabel'].')' : ''); ?></h5>
                 <p><?= $data['via_info']; ?></p>
             </div>
             <div class="card-header">
@@ -81,7 +81,9 @@
         var titik_id = $(this).attr('data-titik_id');
         var startdate = "<?= isset($_GET['startdate']) && !empty($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d'); ?>";
         var element = $("#content-agen"+titik_id);
-        var data = {trip_id:trip_id,titik_id:titik_id,startdate:startdate};
+        var dataLabel = "<?= isset($data['label_data']) ? $data['label_data'] : '' ?>";
+
+        var data = {trip_id:trip_id,titik_id:titik_id,startdate:startdate,data_label:dataLabel};
         // console.log(data);
         $.ajax({
             type : "POST",
@@ -114,8 +116,9 @@
         var startdate = "<?= $_GET['startdate'] ?>";
         var armada_ke = $(this).attr('data-armada_ke');
         var penjadwalan_id = $(this).attr('data-penjadwalan_id');
+        var label_trip = $(this).attr('data-label');
 
         //redirect to bookint trip
-        $.form("<?= Constant::baseUrl() . '/booking/routeDetail?id='; ?>"+route_id+"_"+startdate+"_"+armada_ke+"_"+penjadwalan_id, {route_id:route_id}).submit();
+        $.form("<?= Constant::baseUrl() . '/booking/routeDetail?id='; ?>"+route_id+"_"+startdate+"_"+armada_ke+"_"+penjadwalan_id, {route_id:route_id,label_trip:label_trip}).submit();
     });
 </script>

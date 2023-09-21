@@ -82,9 +82,10 @@ $this->breadcrumbs = array(
         var kelas = $(this).attr('data-kelas');
         var groupId = $(this).attr('data-groupId');
         var armadaId = $(this).attr('data-armadaId');
+        var tripLabel = $(this).attr('data-label');
 
        //redirect to bookint trip
-       $.form("<?= Constant::baseUrl() . '/home/bookingTrip/'; ?>"+tripId+"?startdate="+$('#PembelianTiket_startdate').val(), {group:group,kelas:kelas,groupId:groupId,armadaId:armadaId}).submit();
+       $.form("<?= Constant::baseUrl() . '/home/bookingTrip/'; ?>"+tripId+"?startdate="+$('#PembelianTiket_startdate').val(), {group:group,kelas:kelas,groupId:groupId,armadaId:armadaId,tripLabel:tripLabel}).submit();
     });
 
   $('#PembelianTiket_startdate').on('change', function(){

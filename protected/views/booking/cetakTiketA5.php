@@ -46,12 +46,12 @@
                             echo json_encode($e->getMessage());// error here
                     }
                 ?>
-                <h5><?= $data['booking_id'] ?></h5>
+                <h5><?= $data['label_keberangkatan'] ?></h5>
                 <br/>
                 <h4><?= 'Rp ' . Helper::getInstance()->getRupiah($data['total_harga']) ?></h4>
             </td>
             <td>
-                <p>PENUMPANG</p>
+                <p>PENUMPANG <?= '('.$data['booking_id'].')' ?></p>
                 <?php foreach ($data['penumpang'] as $pnp) {
                     echo '<label class="mt-0 mb-0">'.$pnp['nama_penumpang'].' / '.$pnp['no_telp'].'</label>';
                 } ?>

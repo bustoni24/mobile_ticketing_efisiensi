@@ -50,7 +50,7 @@
                     try{
                         $qr_widget = $this->widget('application.extensions.qrcode.QRCodeGenerator',array(
                             'data' => $qr_data,
-                            'filename' => Yii::app()->user->nama."_".$post['data']['rit'].".png",
+                            'filename' => Yii::app()->user->nama."_".Yii::app()->user->id."_".$post['data']['penjadwalan_id']."_".$post['data']['rit'].".png",
                             'subfolderVar' => false,
                             'matrixPointSize' => 3,
                             'displayImage'=>true,

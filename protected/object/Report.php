@@ -8,7 +8,7 @@ class Report
 
     public function searchReportDeposit()
     {
-        $data = [];
+        /* $data = [];
         if (!isset($this->startdate, $this->enddate) || empty($this->startdate) || empty($this->enddate)){
 			return new CArrayDataProvider($data, array(
 				'keyField' => 'id',
@@ -16,9 +16,9 @@ class Report
 					'pageSize' => count($data),
 					),
 				));	
-		}
+		} */
 		$res = ApiHelper::getInstance()->callUrl([
-            'url' => 'apiMobile/reportDeposit',
+            'url' => 'apiMobile/sumSaldoAgen',
             'parameter' => [
                 'method' => 'POST',
                 'postfields' => [
@@ -41,7 +41,7 @@ class Report
 		return new CArrayDataProvider($data, array(
 			'keyField' => $keyField,
 			'pagination' => array(
-				'pageSize' => count($data),
+				'pageSize' => 10,
 				),
 			));	
     }

@@ -62,10 +62,10 @@ foreach ($datas as $data) {
     <tbody>
         <tr>
             <td width="60%">
-                <p class="mb-0">PENUMPANG</p>
+                <p class="mb-0">PENUMPANG <?= '('.$data['booking_id'].')' ?></p>
             </td>
             <td width="40%" rowspan="3" class="text-center qrCode" >
-                <h5><?= $data['booking_id'] ?></h5>
+                <h5><?= $data['label_keberangkatan'] ?></h5>
                 <?php
                         $qr_data = $this->encode($data['booking_id']);
                         try{

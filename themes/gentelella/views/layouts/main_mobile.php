@@ -687,12 +687,12 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
                 </div>
 
                 <div class="content-text text-center container-icon w-50">
-                    <img src="<?= Constant::newLogoIcon(); ?>" alt="logo" class="img-logo"/>
+                    <img src="<?= Constant::newLogoIcon(); ?>" alt="logo" class="img-logo" style="width:30%;height:30px;"/>
                 </div>
 
             <?php else: ?>
                 <div class="content-text text-center container-icon w-100">
-                    <img src="<?= Constant::newLogoIcon(); ?>" alt="logo" class="img-logo"/>
+                    <img src="<?= Constant::newLogoIcon(); ?>" alt="logo" class="img-logo" style="width:30%;height:30px;"/>
                 </div>
             <?php endif; ?>
 

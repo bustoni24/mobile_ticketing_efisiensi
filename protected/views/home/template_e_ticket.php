@@ -68,14 +68,14 @@ table.back-head{
             </div>
             </td>
         </tr>
-        <!-- <tr>
+        <tr>
             <th width="20%">
                 <h5>Booking Reference</h5>
             </th>
             <th width="40%">
-                <h3>YZKQEC</h3>
+                <h5><?= '('.$data['booking_id'].')' ?></h5>
             </th>
-        </tr> -->
+        </tr>
         <tr>
             <th>
                 <h5>Dibeli dari</h5>
@@ -150,7 +150,7 @@ table.back-head{
             </th>
         </tr>
         <tr>
-            <td><?= $data['booking_details']['booking_id']; ?></td>
+            <td><?= $data['label_perjalanan']; ?></td>
             <td><?= $data['booking_details']['boarding']; ?></td>
             <td><?= $data['booking_details']['drop_off']; ?></td>
             <td><?= $data['booking_details']['group']; ?></td>
@@ -171,7 +171,7 @@ table.back-head{
 
              <tr>
                 <td width="20%">
-                    <?= $seat['booking_id']; ?>
+                    <?= $data['label_perjalanan']; ?>
                 </td>
                 <td width="20%">
                     <?= $seat['kota_berangkat']; ?>

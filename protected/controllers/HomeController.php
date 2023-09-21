@@ -37,7 +37,7 @@ class HomeController extends Controller
 								]
 						]
 					]);
-				// 	Helper::getInstance()->dump($res);
+					// Helper::getInstance()->dump($res);
 					if (isset($res['data']))
 						$post['data'] = $res['data'];
 				}
@@ -103,20 +103,23 @@ class HomeController extends Controller
 					]
 			]
 		]);
+		// Helper::getInstance()->dump($penugasan);
 		if (isset($penugasan['data']['rit']))
 			$model->rit = $penugasan['data']['rit'];
 
 		if (!isset($model->tujuan) && isset($penugasan['data']['tujuan_id']) && !empty($penugasan['data']['tujuan_id']))
 			$model->tujuan = $penugasan['data']['tujuan_id'];
 
-		$arrayTujuan = Armada::object()->getTujuan($model);
-		// Helper::getInstance()->dump($penugasan)
+		// if (isset($penugasan['data']['penjadwalan_id']))
+		// 	$model->penjadwalan_id = $penugasan['data']['penjadwalan_id'];
 
+		$arrayTujuan = Armada::object()->getTujuan($model);
+		// Helper::getInstance()->dump($arrayTujuan);
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
 				throw new CHttpException(401,'Mohon untuk memilih kursi terlebih dahulu');
 			}
-
+// Helper::getInstance()->dump($penugasan['data']['trip_label']);
 			$urlFile = null;
 			$fileName = null;
 			if (isset($_POST['BookingTrip']['tipe_pembayaran']) && in_array($_POST['BookingTrip']['tipe_pembayaran'], ['transfer'])) {
@@ -162,6 +165,7 @@ class HomeController extends Controller
 						'rit' => $model->rit,
 						'filename' => $fileName,
                 		'url_file' => $urlFile,
+						'trip_label' => isset($penugasan['data']['trip_label']) ? $penugasan['data']['trip_label'] : null
 					]
 				]
 			]);
@@ -193,6 +197,7 @@ class HomeController extends Controller
 			echo json_encode('ID atau tanggal tidak valid');
 			exit;
 		}
+		// Helper::getInstance()->dump($_POST['tripLabel']);
 		$data = [];
 		$res = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/listTripAgen',
@@ -210,6 +215,7 @@ class HomeController extends Controller
 		if (isset($res['data'])) {
 			$data = $res['data'];
 		}
+		// Helper::getInstance()->dump($data['label_data']);
 
 		return $this->render('booking_trip', [
 			'id'=>$id,
@@ -271,18 +277,22 @@ class HomeController extends Controller
 				ksort($res['data']);
 				$result['html'] = '<div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">';
 				$i = 0;
+				$dataJam = isset($_POST['data_label']) ? $_POST['data_label'] : '???';
+				$arrLabel = json_decode(base64_decode($dataJam), true);
 				foreach ($res['data'] as $d) {
+					//Keberangkatan '. $d['armada_ke'] .' ('. $d['jam'] .')
+					$jamKeberangkatan = (isset($arrLabel[$d['armada_ke']]) ? $arrLabel[$d['armada_ke']] : '');
 					$result['html'] .= '
 					<div class="panel">
 					<a class="panel-heading d-flex align-space-between" role="tab" id="headingPanel'. $d['id'] .'" data-toggle="collapse" data-parent="#accordion" href="#collapsPanel'. $d['id'] .'" aria-expanded="true" aria-controls="collapsPanel'. $d['id'] .'">
 						<table class="table border-none mb-0">
 						<tr>
-							<td><h4 class="panel-title color-primary">Keberangkatan '. $d['armada_ke'] .' ('. $d['jam'] .')</h4></td>
+							<td><h4 class="panel-title color-primary">'. $jamKeberangkatan .'</h4></td>
 							<td style="text-align:right;"><h5 class="m-0">'. $d['no_lambung'] .'</h5></td>
 						</tr>
 						</table>
 					</a>
-					<div id="collapsPanel'. $d['id'] .'" class="panel-collapse collapse '. ($i == 0 ? 'in' : '') .'" role="tabpanel" aria-labelledby="headingPanel'. $d['id'] .'">
+					<div id="collapsPanel'. $d['id'] .'" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingPanel'. $d['id'] .'">
 						<div class="panel-body">';
 						$result['html'] .= '<div class="accordion" id="subaccordion'.$d['id'].'" role="tablist" aria-multiselectable="true">';
 						$ii = 0;
@@ -315,7 +325,7 @@ class HomeController extends Controller
 										</div>
 
 										<div class="content-card">
-											<span class="btn btn-info card-trip" data-route_id="'. $d_['route_id'] .'" data-armada_ke="'. $d['armada_ke'] .'" data-penjadwalan_id="'. $d['penjadwalan_id'] .'">Beli Tiket</span>
+											<span class="btn btn-info card-trip" data-route_id="'. $d_['route_id'] .'" data-armada_ke="'. $d['armada_ke'] .'" data-penjadwalan_id="'. $d['penjadwalan_id'] .'" data-label="'.$jamKeberangkatan.'">Beli Tiket</span>
 										</div>
 									</div>';
 								}

@@ -45,6 +45,10 @@ class Constant {
     const TIPE_PEMBAYARAN_TRANSFER = 'transfer';
 
     const STATUS_TRIP_CLOSE = 5;
+    const SOURCE_NAIK_SCAN = "scan";
+    const SOURCE_NAIK_POPUP = "popup";
+    const STATUS_RIT_CLOSE = 1;
+    const STATUS_RIT_SKIP = 2;
 
     public static function iconSeat($type = "") {
         switch ($type) {

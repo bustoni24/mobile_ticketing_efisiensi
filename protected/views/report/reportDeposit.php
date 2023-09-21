@@ -56,11 +56,60 @@
 					'header' => 'No',
 					'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',
 				],
+                [
+                    'header' => 'Tanggal',
+                    'name' => 'tanggal',
+                    'value' => function($data) {
+                        return $data['tanggal'];
+                    }
+                ],
 				[
                     'header' => 'Agen',
                     'name' => 'agen_nama',
                     'value' => function($data) {
                         return $data['agen_nama'];
+                    }
+                ],
+                [
+                    'header' => 'Keterangan',
+                    'name' => 'keterangan',
+                    'value' => function($data) {
+                        return $data['keterangan'];
+                    }
+                ],
+                [
+                    'header' => 'Kode Booking',
+                    'name' => 'kode_booking',
+                    'value' => function($data) {
+                        return $data['kode_booking'];
+                    }
+                ],
+                [
+                    'header' => 'Nama Penumpang',
+                    'name' => 'nama_penumpang',
+                    'value' => function($data) {
+                        return $data['nama_penumpang'];
+                    }
+                ],
+                [
+                    'header' => 'Naik',
+                    'name' => 'naik',
+                    'value' => function($data) {
+                        return $data['naik'];
+                    }
+                ],
+                [
+                    'header' => 'Turun',
+                    'name' => 'turun',
+                    'value' => function($data) {
+                        return $data['turun'];
+                    }
+                ],
+                [
+                    'header' => 'Status',
+                    'name' => 'status',
+                    'value' => function($data) {
+                        return $data['status'];
                     }
                 ],
                 [
@@ -74,7 +123,14 @@
                     'header' => 'Top Up',
                     'name' => 'top_up',
                     'value' => function($data) {
-                        return abs($data['top_up']) > 0 ? Helper::getInstance()->getRupiah(abs($data['top_up'])) : abs($data['top_up']);
+                        return $data['top_up'] > 0 ? Helper::getInstance()->getRupiah($data['top_up']) : $data['top_up'];
+                    }
+                ],
+                [
+                    'header' => 'Penyesuaian Admin',
+                    'name' => 'penyesuaian_admin',
+                    'value' => function($data) {
+                        return $data['penyesuaian_admin'] > 0 ? Helper::getInstance()->getRupiah($data['penyesuaian_admin']) : $data['penyesuaian_admin'];
                     }
                 ],
                 [
@@ -103,6 +159,13 @@
                     'name' => 'komisi_boarding',
                     'value' => function($data) {
                         return abs($data['komisi_boarding']) > 0 ? Helper::getInstance()->getRupiah(abs($data['komisi_boarding'])) : abs($data['komisi_boarding']);
+                    }
+                ],
+                [
+                    'header' => 'Refund Tiket',
+                    'name' => 'refund_tiket',
+                    'value' => function($data) {
+                        return abs($data['refund_tiket']) > 0 ? Helper::getInstance()->getRupiah(abs($data['refund_tiket'])) : abs($data['refund_tiket']);
                     }
                 ],
                 [

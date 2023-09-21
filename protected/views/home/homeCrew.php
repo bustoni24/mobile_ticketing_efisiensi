@@ -57,6 +57,7 @@
     <?php 
     $data = isset($model->searchBooking()->getData()[0]) ? $model->searchBooking()->getData()[0] : [];
     $status_trip = isset($data['data']['post']['post']['status_trip']) ? $data['data']['post']['post']['status_trip'] : 4;
+    $status_rit = isset($data['data']['post']['post']['status_rit']) ? $data['data']['post']['post']['status_rit'] : 0;
     // Helper::getInstance()->dump($data);
     echo $this->renderPartial('_bottom_field', array(
         'data' => $data
@@ -120,21 +121,26 @@
                         switch (error.code) {
                             case error.PERMISSION_DENIED:
                                 console.log("Izin akses lokasi ditolak oleh pengguna.");
+                                refreshListBooking("-7.8033209", "110.312795");
                                 break;
                             case error.POSITION_UNAVAILABLE:
                                 console.log("Informasi lokasi tidak tersedia.");
+                                refreshListBooking("-7.8033209", "110.312795");
                                 break;
                             case error.TIMEOUT:
                                 console.log("Permintaan waktu untuk akses lokasi habis.");
+                                refreshListBooking("-7.8033209", "110.312795");
                                 break;
                             case error.UNKNOWN_ERROR:
                                 console.log("Terjadi kesalahan yang tidak diketahui.");
+                                refreshListBooking("-7.8033209", "110.312795");
                                 break;
                         }
                     }
                 );
             } else {
                 console.log("Geolocation tidak didukung oleh browser Anda.");
+                refreshListBooking("-7.8033209", "110.312795");
             }
 
         saveLatlong(latitude, longitude);
@@ -264,10 +270,11 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                 $('#table-form-passenger').append($addForm);
             }
         } else {
-            if (count > 1 && typeof $('#' + passengerFormId).val() !== "undefined") {
+            if (count > 0 && typeof $('#' + passengerFormId).val() !== "undefined") {
                 $('#' + passengerFormId).remove();
             } else {
                 $('#form-passenger0').find('input[type="text"]').val('');
+                $('#form-passenger0').find('input[type="number"]').val('');
             }
             $('#' + elementID).remove();
         }
@@ -304,7 +311,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         let startdate = $(this).attr('data-startdate');
         let penjadwalan_id = $(this).attr('data-penjadwalan_id');
         var real_armada_ke = $('#BookingTrip_armada_ke').val();
-        var status_trip = "<?= $status_trip == Constant::STATUS_TRIP_CLOSE ? false : true ?>";
+        var status_trip = "<?= ($status_trip == Constant::STATUS_TRIP_CLOSE || in_array($status_rit, [Constant::STATUS_RIT_SKIP, Constant::STATUS_RIT_CLOSE])) ? false : true ?>";
         
         if (typeof dataPassenger.nama !== 'undefined' && dataPassenger.nama !== "" && dataPassenger.nama !== null) {
             Swal.fire({
