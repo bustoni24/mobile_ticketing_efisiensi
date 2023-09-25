@@ -41,7 +41,7 @@ class Report
 		return new CArrayDataProvider($data, array(
 			'keyField' => $keyField,
 			'pagination' => array(
-				'pageSize' => 10,
+				'pageSize' => 5,
 				),
 			));	
     }

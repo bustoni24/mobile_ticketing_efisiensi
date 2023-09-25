@@ -15,6 +15,7 @@ class HomeController extends Controller
 	{
 		$post = [];
 		$post['startdate'] = date('Y-m-d');
+		$post['message'] = "Tidak ditemukan penugasan";
 		switch (Yii::app()->user->role) {			
 			case 'Cabin Crew':
 				if (isset($_GET['startdate'])) {
@@ -40,6 +41,9 @@ class HomeController extends Controller
 					// Helper::getInstance()->dump($res);
 					if (isset($res['data']))
 						$post['data'] = $res['data'];
+
+					if (isset($res['message']))
+						$post['message'] = $res['message'];
 				}
 				break;
 			case 'Agen':
@@ -103,7 +107,7 @@ class HomeController extends Controller
 					]
 			]
 		]);
-		// Helper::getInstance()->dump($penugasan);
+		// Helper::getInstance()->dump($penugasan['message']);
 		if (isset($penugasan['data']['rit']))
 			$model->rit = $penugasan['data']['rit'];
 
@@ -227,7 +231,7 @@ class HomeController extends Controller
 	public function actionAjaxBookingTrip()
 	{
 		$result = ['html' => ''];
-		$result['html'] = "Tidak ditemukan data";
+		$result['html'] = "Belum ada penjadwalan dari Manager Jalur";
 		if (isset($_POST['trip_id'], $_POST['keyword'])) {
 			$res = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/listTripAgen',
@@ -281,7 +285,10 @@ class HomeController extends Controller
 				$arrLabel = json_decode(base64_decode($dataJam), true);
 				foreach ($res['data'] as $d) {
 					//Keberangkatan '. $d['armada_ke'] .' ('. $d['jam'] .')
-					$jamKeberangkatan = (isset($arrLabel[$d['armada_ke']]) ? $arrLabel[$d['armada_ke']] : '');
+					if (!isset($arrLabel[$d['armada_ke']]))
+						continue;
+
+					$jamKeberangkatan = $arrLabel[$d['armada_ke']];
 					$result['html'] .= '
 					<div class="panel">
 					<a class="panel-heading d-flex align-space-between" role="tab" id="headingPanel'. $d['id'] .'" data-toggle="collapse" data-parent="#accordion" href="#collapsPanel'. $d['id'] .'" aria-expanded="true" aria-controls="collapsPanel'. $d['id'] .'">

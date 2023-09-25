@@ -51,7 +51,7 @@
         'id'=>'listViewBooking',
         'dataProvider'=>$model->searchBooking(),
         'itemView'=>'_view_list_booking',
-        'emptyText' => 'Tidak ditemukan penugasan',
+        'emptyText' => (isset($penugasan['message']) ? $penugasan['message'] : 'Tidak ditemukan penugasan'),
     )); ?>
 
     <?php 
@@ -151,6 +151,8 @@ function refreshListBooking(latitude, longitude) {
         location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&rit="+$('#Booking_rit').val()+"&tujuan="+$('#Booking_tujuan').val();
         // var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
         // updateListView(data);
+    } else {
+        location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude=-7.8033209&longitude=110.312795&rit="+$('#Booking_rit').val()+"&tujuan="+$('#Booking_tujuan').val();
     }
 }
 
@@ -164,6 +166,13 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
 
     $('#cari').on('click', function(){
         $(this).html('PROSES..');
+        getLatLong();
+    });
+
+    $('#Booking_rit').on('change', function(){
+        getLatLong();
+    });
+    $('#Booking_tujuan').on('change', function(){
         getLatLong();
     });
 

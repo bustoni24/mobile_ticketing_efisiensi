@@ -69,7 +69,7 @@
 
                     <?php
                     else :
-                        echo '<h5>Tidak ditemukan penugasan</h5>';
+                        echo '<h5>'. (isset($post['message']) ? $post['message'] : 'Tidak ditemukan penugasan') .'</h5>';
                     endif;
                 ?>
             </div>
@@ -83,6 +83,10 @@
 		format: 'yyyy-mm-dd',
 		header: true
 	});
+
+    $('#rit').on('change', function(){
+        location.href="<?= Constant::baseUrl() . '/home/index?startdate=' ?>" + $('#startdate').val() + "&rit=" + $(this).val();
+    })
 
     $('#filter').on('click', function(){
         location.href="<?= Constant::baseUrl() . '/home/index?startdate=' ?>" + $('#startdate').val() + "&rit=" + $('#rit').val();

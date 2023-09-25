@@ -528,13 +528,43 @@ $trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']
     <?php if (in_array(Yii::app()->user->role, ['Checker','Cabin Crew','Agen'])): ?>
     <?php if (!empty($resumePassenger)): ?>
     <div class="row">
-        <div class="col-sm-12">
-            <label>Drop Off: </label> <?= $resumePassenger['drop_off'] ?>
+        <div class="col-sm-6">
+            <?php if (isset($resumePassenger['naik'])): ?>
+            <table class="table table-condensed">
+                <tr>
+                    <th colspan="2">Naik:</th>
+                </tr>
+                <?php 
+                    foreach ($resumePassenger['naik'] as $naik => $row) {
+                    ?>
+                    <tr>
+                        <td><?= $naik . ' ('. $row['jam'] .'): ' ?></td>
+                        <td><?= $row['jml'] . ' Seat(s)' ?></td>
+                    </tr>
+                    <?php
+                    }
+                ?>
+            </table>
+            <?php endif; ?>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <label>Naik: </label> <?= $resumePassenger['naik'] ?>
+        <div class="col-sm-6">
+            <?php if (isset($resumePassenger['drop_off'])): ?>
+            <table class="table table-condensed">
+                <tr>
+                    <th colspan="2">Drop Off:</th>
+                </tr>
+                <?php 
+                    foreach ($resumePassenger['drop_off'] as $drop_off => $row) {
+                    ?>
+                    <tr>
+                        <td style="width: 200px;"><?= $drop_off . ': ' ?></td>
+                        <td style="width: 150px;"><?= $row['jml'] . ' Seat(s)' ?></td>
+                    </tr>
+                    <?php
+                    }
+                ?>
+            </table>
+            <?php endif; ?>
         </div>
     </div>
     <?php endif; ?>

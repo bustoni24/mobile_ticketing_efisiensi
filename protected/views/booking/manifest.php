@@ -72,12 +72,57 @@
 			if (isset($post['data'])):
 				foreach ($post['data'] as $key => $postData) {
 					echo '<h4 class="header">'. $postData['label_trip'] .' '. (isset($postData['no_lambung']) ? ', Nomor Lambung: ' . $postData['no_lambung'] : '') .'</h4>';
-
-					if (isset($postData['resume_passenger']['drop_off'], $postData['resume_passenger']['naik'])){
-						echo '<h5>Drop off: '.$postData['resume_passenger']['drop_off'].'</h5>';
-						echo '<h5>Naik: '.$postData['resume_passenger']['naik'].'</h5>';
+					?>
+					<div class="row">
+					<?php
+					if (isset($postData['resume_passenger']['naik'])){
+						?>
+						<div class="col-sm-12">
+							<table class="table table-condensed">
+								<tr>
+									<th colspan="3">Naik:</th>
+								</tr>
+								<?php 
+									foreach ($postData['resume_passenger']['naik'] as $naik => $row) {
+									?>
+									<tr>
+										<td style="width: 200px;"><?= $naik . ' ('. $row['jam'] .'): ' ?></td>
+										<td style="width: 150px;"><?= $row['jml'] . ' Seat(s)' ?></td>
+										<td style="word-break: break-all;"><?= '('. $row['seat'] . ')' ?></td>
+									</tr>
+									<?php
+									}
+								?>
+							</table>
+						</div>
+						<?php
 					}
 					?>
+					<?php
+					if (isset($postData['resume_passenger']['drop_off'])){
+						?>
+						<div class="col-sm-12">
+							<table class="table table-condensed">
+								<tr>
+									<th colspan="3">Drop Off:</th>
+								</tr>
+								<?php 
+									foreach ($postData['resume_passenger']['drop_off'] as $drop_off => $row) {
+									?>
+									<tr>
+										<td style="width: 200px;"><?= $drop_off . ': ' ?></td>
+										<td style="width: 150px;"><?= $row['jml'] . ' Seat(s)' ?></td>
+										<td style="word-break: break-all;"><?= '('. $row['seat'] . ')' ?></td>
+									</tr>
+									<?php
+									}
+								?>
+							</table>
+						</div>
+						<?php
+					}
+					?>
+					</div>
 					<table class="table table-bordered">
 						<?php if (isset($postData['kuota'])): ?>
 							<tr>

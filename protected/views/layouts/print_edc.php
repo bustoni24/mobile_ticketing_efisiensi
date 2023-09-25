@@ -99,7 +99,32 @@
         }
     </style>
 </head>
-<body onLoad="javascript:window.print();">
+<body onLoad="loadHandler();">
     <?= $content ?>
+
+    <button class="btn btn-info" id="btnPrint" onclick="return loadHandler();"><i class="fa fa-print"></i></button>
 </body>
+
+<script>
+function loadHandler(){
+    var is_chrome = function () { return Boolean(window.chrome); }
+    if(is_chrome) 
+    {
+        window.print();
+        // setTimeout(function(){window.close();}, 10000); 
+        window.onbeforeprint = function(){
+            document.getElementById("btnPrint").style.display = 'none';
+        }
+        //give them 10 seconds to print, then close
+    }
+    else
+    {
+        window.print();
+        window.onbeforeprint = function(){
+            document.getElementById("btnPrint").style.display = 'none';
+        }
+        // window.close();
+    }
+}
+</script>
 </html>

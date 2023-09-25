@@ -50,6 +50,9 @@ class Constant {
     const STATUS_RIT_CLOSE = 1;
     const STATUS_RIT_SKIP = 2;
 
+    const TYPE_DATE_BUY = "buy";
+    const TYPE_DATE_CREATE = "created";
+
     public static function iconSeat($type = "") {
         switch ($type) {
             case 'selected':
