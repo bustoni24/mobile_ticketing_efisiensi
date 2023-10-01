@@ -34,4 +34,14 @@
         <p class="content-text">Input data pengeluaran crew selama perjalanan</p>
         </div>
     </a>
+
+    <a href="<?= Constant::baseUrl().'/booking/inputPenumpangSodok/'.Yii::app()->user->sdm_id; ?>">
+        <div class="left-img-container">
+        <i class="fa fa-file-text-o"></i>
+        </div>
+        <div class="container-text">
+        <h4 class="header-text">Input Penumpang Sodok</h4>
+        <p class="content-text">Pemindahan penumpang sodok secara manual</p>
+        </div>
+    </a>
 </div>

@@ -63,7 +63,7 @@ $isAgenInternal = isset(Yii::app()->user->tipe_agen) && in_array(Yii::app()->use
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
             <label id="bukti_tf">Bukti Transfer</label>
-            <?= CHtml::fileField('Deposit[file]', '', ['class'=>'form-control', 'required'=>true]) ?>
+            <?= CHtml::fileField('Deposit[file]', '', ['class'=>'form-control', 'required'=>true,'accept'=>'application/pdf, image/png, image/gif, image/jpeg, .gif, .jpeg, .jpg, .pdf, .png']) ?>
         </div>
     </div>
 

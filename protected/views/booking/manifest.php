@@ -25,6 +25,16 @@
     )); 
     ?>
 	<div class="row height-75 d-relative">
+		<div class="col-sm-4 pl-0">
+			<label>Pilih Tipe Tanggal</label>
+            <?= CHtml::dropDownList('Manifest[type_date]',(isset($post['type_date']) ? $post['type_date'] : ''), [
+				Constant::TYPE_DATE_BUY => 'Tanggal Berangkat',
+				Constant::TYPE_DATE_CREATE => 'Tanggal Input'
+			],['required'=>true]); ?>
+		</div>
+	</div>
+
+	<div class="row height-75 d-relative">
 		<div class="col-sm-12 pl-0 mb-0">
             <?= CHtml::textField('Manifest[startdate]',(isset($post['startdate']) ? $post['startdate'] : ''),['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off', 'required'=>true]); ?>
 		</div>

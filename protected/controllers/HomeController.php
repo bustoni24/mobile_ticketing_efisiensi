@@ -47,6 +47,7 @@ class HomeController extends Controller
 				}
 				break;
 			case 'Agen':
+			case 'Sub Agen':
 				return $this->actionListBus();
 				break;
 			case 'Checker':
@@ -151,6 +152,8 @@ class HomeController extends Controller
                 }
 
 			}
+
+			// Helper::getInstance()->dump($_POST);
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [

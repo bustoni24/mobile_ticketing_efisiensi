@@ -49,6 +49,7 @@
                     break;
 
                 case 'Agen':
+                case 'Sub Agen':
                     ?>
                     <div class="coll <?= (in_array($this->action->Id, ['manifest']) ? 'coll_aktif' : '') ?>" id="coll_akun">
                         <a href="<?= Constant::baseUrl().'/booking/manifest'; ?>" class="menu-item" id="akun">

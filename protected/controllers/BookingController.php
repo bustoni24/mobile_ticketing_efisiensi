@@ -41,7 +41,7 @@ class BookingController extends Controller
         $model->label_trip = $label_trip;
 
         if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
-            // Helper::getInstance()->dump($_POST);
+            // Helper::getInstance()->dump(Yii::app()->user->id);
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [
@@ -59,6 +59,7 @@ class BookingController extends Controller
 					]
 				]
 			]);
+            // Helper::getInstance()->dump($saveTransaction);
 			if ($saveTransaction['success']) {
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 			} else {
@@ -82,9 +83,13 @@ class BookingController extends Controller
 		$post['jamArray'] = [];
         $post['kode_booking'] = null;
         $post['trip_id'] = null;
+        $post['type_date'] = Constant::TYPE_DATE_CREATE;
         if (isset($_GET['Manifest']['startdate']) && !empty($_GET['Manifest']['startdate'])) {
 			$post['startdate'] = date('Y-m-d', strtotime($_GET['Manifest']['startdate']));
 		}
+        if (isset($_GET['Manifest']['type_date']) && !empty($_GET['Manifest']['type_date'])){
+			$post['type_date'] = $_GET['Manifest']['type_date'];
+        }
 		if (isset($_GET['Manifest']['trip_id']) && !empty($_GET['Manifest']['trip_id'])) {
 			$post['trip_id'] = $_GET['Manifest']['trip_id'];
             $post['jam'] = isset($_GET['Manifest']['jam']) ? $_GET['Manifest']['jam'] : null;
@@ -110,6 +115,12 @@ class BookingController extends Controller
     public function actionInputCrew()
     {
         return $this->render('inputCrew');
+    }
+
+    public function actionInputPenumpangSodok()
+    {
+        $post = [];
+        return $this->render('inputPenumpangSodok', ['post'=>$post]);
     }
 
     public function actionInputPengeluaranCrew()

@@ -15,7 +15,7 @@ class ApiController extends Controller
 			Yii::app()->end();
 		}
 
-		if (!isset(Yii::app()->user->id, Yii::app()->user->role)){
+		if (!isset(Yii::app()->user->id)){
 			doPrintResult(['success'=>2, 'message' => 'No Authorized']);
 		}
 	}

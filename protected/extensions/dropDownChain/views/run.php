@@ -1,8 +1,9 @@
 <!-- SCRIPT CHAIN DROPDOWNLIST RELATED -->
 <script>           
     
-    $(function(){                           
-        $('#<?php echo $parentId;?>').change(function(){
+    $(function(){        
+        $("body").on('change', '#<?php echo $parentId;?>', function(){                   
+        // $('#<?php echo $parentId;?>').change(function(){
             var parentId = $('#<?php echo $parentId;?>').val(); 
             var secondParentId = 0;
             var data = {'<?php echo $parentId;?>':parentId};

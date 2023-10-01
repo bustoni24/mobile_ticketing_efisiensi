@@ -670,7 +670,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
                 <img src="<?= Constant::getImageUrl().'/back_btn.png'; ?>" id="backBtn" />
             <?php } ?>
 
-            <?php if (in_array(Yii::app()->user->role, ['Agen'])): ?>
+            <?php if (in_array(Yii::app()->user->role, ['Agen','Sub Agen'])): ?>
                 <div class="tagname-container mb-10">
                     <h5 class="mb-0">Nama: <?= Yii::app()->user->nama; ?></h5>
                     <div class="d-flex align-items-baseline">
@@ -734,10 +734,10 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     <!-- jQuery -->
     <?= AppAsset::registerJs(); ?>
     <script type="text/javascript">
-        <?php if (isset(Yii::app()->user->role) && in_array(Yii::app()->user->role, ['Agen'])): ?>
+        <?php if (isset(Yii::app()->user->role) && in_array(Yii::app()->user->role, ['Agen','Sub Agen'])): ?>
         function doWork() {
             getUpdateSaldo(<?= Yii::app()->user->id ?>);
-            repeater = setTimeout(doWork, 1000);
+            repeater = setTimeout(doWork, 1500);
         }
         doWork();
     <?php endif; ?>

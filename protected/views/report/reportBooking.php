@@ -107,7 +107,11 @@
                     'name' => 'kelas_bus'
                 ],
                 [
-                    'header' => 'Tanggal Booking',
+                    'header' => 'Tanggal Input',
+                    'name' => 'created_date'
+                ],
+                [
+                    'header' => 'Tanggal Berangkat',
                     'name' => 'tanggal'
                 ],
                 [

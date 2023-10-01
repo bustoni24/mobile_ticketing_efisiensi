@@ -13,7 +13,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
     'childId' => 'BookingTrip_info_turun',
     'url' => 'api/getAjaxDropOff?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2',
     'valueField' => 'id',
-    'textField' => 'trip',
+    'textField' => 'cityName',
 ));
 ?>
 
@@ -72,13 +72,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
         updateListView(dataSent);
     }
 
-     $(document).on('ready', function() {  
-        $('#BookingTrip_info_turun').select2(); 
-        $("body").on('change', '#BookingTrip_info_turun', function(){
-            var textTurun = $(this).find(":selected").text();
-            $('#BookingTrip_info_turun_text').val(textTurun);
-        });
-        
+     $(document).on('ready', function() {          
         <?php
         //flashes
         foreach(Yii::app()->user->getFlashes() as $key => $message){
@@ -153,6 +147,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
             $('#BookingTrip_info_turun').attr('required', true);
             $('#BookingTrip_info_turun_text').attr('required', false);
             $('#BookingTrip_info_turun_text').val('');
+            $('#BookingTrip_info_turun').select2();
         } else {
             $('#infoTurunSelect').addClass('none');
             $('#infoTurunText').removeClass('none');
@@ -172,4 +167,10 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
         $('tr.form-passenger').find('select#FormSeat_gender').val(genderField);
     });
     // setInterval(doRefresh, 10000*60); //10 menit
+
+    $("body").on('change', '#BookingTrip_info_turun', function(){
+        var textTurun = $(this).find(":selected").text();
+        // alert(textTurun);
+        $('#BookingTrip_info_turun_text').val(textTurun);
+    });
 </script>

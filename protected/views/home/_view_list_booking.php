@@ -255,7 +255,7 @@ $trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']
     )); 
     ?>
 
-<?php if (in_array(Yii::app()->user->role, ['Agen','Cabin Crew']) && !$from_scanner): ?>
+<?php if (in_array(Yii::app()->user->role, ['Agen','Cabin Crew','Sub Agen']) && !$from_scanner): ?>
 
     <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
     <div class="row height-75 d-relative">
@@ -302,7 +302,7 @@ $trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']
 
 <?php endif; ?>
 
-<?php if (in_array(Yii::app()->user->role, ['Agen', 'Cabin Crew'])): ?>
+<?php if (in_array(Yii::app()->user->role, ['Agen', 'Cabin Crew', 'Sub Agen'])): ?>
     <div class="layout-form-deck" id="layoutPenumpang">
         <h5>DATA PENUMPANG</h5>
         <p>Masukan data penumpang (Nama dan No Telp) sebagai data manifest</p>
@@ -525,7 +525,7 @@ $trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']
     </div>
     <?php endif; ?>
 
-    <?php if (in_array(Yii::app()->user->role, ['Checker','Cabin Crew','Agen'])): ?>
+    <?php if (in_array(Yii::app()->user->role, ['Checker','Cabin Crew','Agen','Sub Agen'])): ?>
     <?php if (!empty($resumePassenger)): ?>
     <div class="row">
         <div class="col-sm-6">

@@ -57,7 +57,14 @@
 					'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',
 				],
                 [
-                    'header' => 'Tanggal',
+                    'header' => 'Tanggal Input',
+                    'name' => 'created_date',
+                    'value' => function($data) {
+                        return $data['created_date'];
+                    }
+                ],
+                [
+                    'header' => 'Tanggal Berangkat',
                     'name' => 'tanggal',
                     'value' => function($data) {
                         return $data['tanggal'];
@@ -124,6 +131,13 @@
                     'name' => 'top_up',
                     'value' => function($data) {
                         return $data['top_up'] > 0 ? Helper::getInstance()->getRupiah($data['top_up']) : $data['top_up'];
+                    }
+                ],
+                [
+                    'header' => 'Top Up Admin',
+                    'name' => 'top_up_admin',
+                    'value' => function($data) {
+                        return $data['top_up_admin'] > 0 ? Helper::getInstance()->getRupiah($data['top_up_admin']) : $data['top_up_admin'];
                     }
                 ],
                 [
