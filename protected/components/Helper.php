@@ -696,7 +696,7 @@ class Helper {
    }
 
    public function getRupiah($number) {
-      if (is_numeric($number))
+      if (is_numeric($number) && $number > 0)
         return number_format($number, 0, ",", ".");
       else 
         return $number;
@@ -1194,7 +1194,11 @@ class Helper {
                 header('Content-Disposition:attachment; filename="'.$title.'.xlsx";');
                 header('Cache-Control:max-age=0;');
 
-                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+                $excelType = 'Excel2007';
+                if (SERVER_SEGMENT == 'LOCAL') {
+                  $excelType = 'Excel5';
+                }
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, $excelType);
                 $objWriter->save('php://output');
 
                 Yii::app()->end();
@@ -1391,10 +1395,10 @@ class Helper {
         'refund' => 10
       ],
       'terminal' => [
-        'label' => ['value' => '', 'readonly' => true]
+        'label' => ['value' => '']
       ],
       'parkir_bandara' => [
-        'label' => ['value' => 10000, 'readonly' => true],
+        'label' => ['value' => ''],
       ],
       'parkir' => [
         'label' => ['value' => ''], 

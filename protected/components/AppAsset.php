@@ -89,7 +89,7 @@ class AppAsset
 			
 			default:
 				foreach (self::$js as $asset) {
-					if (in_array(Yii::app()->controller->action->Id, ['login','index','homeCrew','qrResult'
+					if (in_array(Yii::app()->controller->action->Id, ['login','index','homeCrew','qrResult','routeDetail'
 					]) && in_array($asset, ['js/jquery-2.1.0.min.js']) || 
 					(!in_array(Yii::app()->controller->action->Id, ['login']) && in_array($asset, ['js/tags/jquery.tagsinput.js'])))
 						continue;

@@ -37,6 +37,7 @@ class Constant {
     const STATUS_PENUMPANG_REFUND = 4;
     const STATUS_PENUMPANG_REJECT = 5;
     const STATUS_PENUMPANG_PENGAJUAN_REFUND = 6;
+    const STATUS_PENUMPANG_HANGUS = 7;
 
     const AGEN_SALDO = 'agen_saldo';
     const PENGANTARAN_YA = 'ya';

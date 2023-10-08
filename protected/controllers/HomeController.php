@@ -281,7 +281,7 @@ class HomeController extends Controller
 				]
 			]);
 			if (isset($res['data']) && !empty($res['data'])) {
-				ksort($res['data']);
+				// ksort($res['data']);
 				$result['html'] = '<div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">';
 				$i = 0;
 				$dataJam = isset($_POST['data_label']) ? $_POST['data_label'] : '???';

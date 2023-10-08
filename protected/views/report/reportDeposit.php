@@ -178,8 +178,12 @@
                 [
                     'header' => 'Refund Tiket',
                     'name' => 'refund_tiket',
+                    'type' => 'raw',
                     'value' => function($data) {
-                        return abs($data['refund_tiket']) > 0 ? Helper::getInstance()->getRupiah(abs($data['refund_tiket'])) : abs($data['refund_tiket']);
+                        $html = "<span class='text-bold'>Penjualan:</span> " . Helper::getInstance()->getRupiah(abs($data['refund_tiket']));
+                        $html .= "<br/><span class='text-bold'>Komisi Penjualan:</span> " . Helper::getInstance()->getRupiah(abs($data['batal_komisi_penjualan']));
+                        $html .= "<br/><span class='text-bold'>Komisi Boarding:</span> " . Helper::getInstance()->getRupiah(abs($data['batal_komisi_boarding']));
+                        return $html;
                     }
                 ],
                 [

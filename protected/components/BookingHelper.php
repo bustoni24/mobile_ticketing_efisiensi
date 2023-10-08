@@ -123,6 +123,86 @@ class BookingHelper {
         return $check;
     }
 
+    public function exportBookingDataUser($model)
+    {
+        Yii::app()->controller->layout = false;
+        header_remove();
+
+        if (!isset($model))
+            Helper::getInstance()->dump("Data model tidak valid");
+
+        $title = "Report_booking_per_user";
+        $titleSheet = "REPORT PENJUALAN PER USER";
+
+        $columnField = [
+            ['No Tiket','Jam Keberangkatan','Penumpang','Kursi','Naik','Penurunan','Kota Tujuan','Harga Satuan','Dijual Oleh','Group Trip','Kelas','Tgl Input','Tgl Keberangkatan']
+        ];
+        $columns = [];$i = 0;
+        foreach(range('A','Z') as $v){
+            if (!isset($columnField[0][$i]))
+                break;
+            $columns_ = ['column' => $v, 'value' => strtolower(str_replace(' ','_',$columnField[0][$i])), 'text' => $columnField[0][$i]];
+            array_push($columns, $columns_);
+            $i++;
+        }
+
+        $fieldRaw = [];
+        $i = 1;
+
+        $totalPenjualan = 0;
+        foreach ($model->searchDataBookingUser(false)->getData() as $data){
+            // Helper::getInstance()->dump($data);
+            array_push($fieldRaw, [
+                $data['booking_id'],
+                $data['booking_trip_label'],
+                $data['nama_penumpang'],
+                $data['kursi'],
+                $data['naik'],
+                $data['turun'],
+                $data['nama_kota_tujuan'],
+                $data['harga_satuan'],
+                $data['user_jual'],
+                $data['nama_group'],
+                $data['kelas_bus'],
+                $data['created_date'],
+                $data['tanggal']
+            ]);
+
+            $totalPenjualan += (int)$data['harga_satuan'];
+        }
+
+        array_push($fieldRaw, ['Total Penjualan','','','','','','',$totalPenjualan,'','','','','']);
+        
+        $dataExcel = [];
+            //tambah row summary
+            array_push($fieldRaw, ['','','','','','','','','','','','','']);
+            $j=0;
+            foreach ($fieldRaw as $val) {
+                $k = 0;
+                $data_ = [];
+                foreach ($columns as $column_) {
+                    $data_[$column_['value']] = $val[$k];
+                    $k++;
+                }
+                array_push($dataExcel, $data_);
+                $j++;
+            }
+
+            $countColumn = count($columns);
+            $firstColumn = $columns[0]['column'];
+            $lastColumn = $columns[$countColumn - 1]['column'];
+
+            Helper::getInstance()->exportExcelRaw([
+                'title' => $title,
+                'titleSheet' => $titleSheet,
+                'firstColumn' => $firstColumn,
+                'lastColumn' => $lastColumn,
+                'columns' => $columns,
+                'dataExcel' => $dataExcel
+                ]);
+        exit;
+    }
+
     private static $instance;
 
     private function __construct()

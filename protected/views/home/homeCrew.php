@@ -71,6 +71,7 @@
     var rit = "<?= $model->rit ?>";
     var armada_ke = "<?= isset($data['data']['post']['post']['armada_ke']) ? $data['data']['post']['post']['armada_ke'] : null ?>"
     var penjadwalan_id = <?= isset($data['data']['post']['post']['penjadwalan_id']) ? $data['data']['post']['post']['penjadwalan_id'] : null ?>
+    
     // console.log(tujuan);
     document.addEventListener("DOMContentLoaded", function() {
         $('#Booking_tujuan').select2();

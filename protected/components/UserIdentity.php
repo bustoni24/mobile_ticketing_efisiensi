@@ -24,6 +24,7 @@ class UserIdentity extends CUserIdentity {
             ]
         ];
         $login = ApiHelper::getInstance()->callUrl($parameters);
+        // Helper::getInstance()->dump($login);
         if (isset($login['data'])) {
             $this->_id = $login['data']['id'];
             $this->setState('sdm_id', $login['data']['sdm_id']);
@@ -35,6 +36,7 @@ class UserIdentity extends CUserIdentity {
             $this->setState('saldo', $login['data']['saldo']);
             $this->setState('tipe_agen', $login['data']['tipe_agen']);
             $this->setState('agen_id', $login['data']['agen_id']);
+            $this->setState('tipe_sdm', isset($login['tipe_sdm']) ? $login['tipe_sdm'] : 'efisiensi');
 
             $this->errorCode = self::ERROR_NONE;
 

@@ -44,4 +44,16 @@
         <p class="content-text">Data History Booking</p>
         </div>
     </a>
+
+    <?php if (in_array(Yii::app()->user->role, ['Sub Agen'])): ?>
+        <a href="<?= Constant::baseUrl().'/report/reportBookingUser'; ?>">
+            <div class="left-img-container">
+            <i class="fa fa-file-text-o"></i>
+            </div>
+            <div class="container-text">
+            <h4 class="header-text">Data Booking Pengguna</h4>
+            <p class="content-text">Data History Booking per Pengguna</p>
+            </div>
+        </a>
+    <?php endif; ?>
 </div>

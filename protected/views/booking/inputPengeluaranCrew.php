@@ -122,12 +122,17 @@
                         <tbody>
                             <?php foreach ($deskripsiPengeluaran as $key => $value) {
                                 ?>
-                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) || (isset($value['label']['value']) && !empty($value['label']['value'])) ? '' : 'none') : '' ?>">
+                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) || (isset($value['label']['value']) && !empty($value['label']['value'])) ? '' : '') : '' ?>">
                                     <?php foreach ($value as $l => $dt) {
                                         
                                         if ($l == 'label'):
                                         ?>
                                         <td width="50%">
+                                            <?php if (in_array($key, ['terminal'])): ?>
+                                                <label class="mb-0">Pengeluaran Lain <span class="red">(diisi jika perlu)</span></label>
+                                                <hr class="mb-0 mt-0"/>
+                                                <?php endif; ?>
+
                                             <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
                                             <?php if (in_array($key, ['solar'])): ?>
 
@@ -171,11 +176,11 @@
                                 </tr>
                                <?php
                             } ?>
-                            <tr>
+                           <!--  <tr>
                                 <td colspan="2">
                                     <span id="showLainnya" class="btn btn-info ">Tampilkan Pengeluaran Lain</span>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </td>

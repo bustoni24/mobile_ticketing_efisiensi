@@ -172,7 +172,9 @@ class BookingController extends Controller
             $targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
             //upload multiple
             $postPengeluaran = $_POST;
-            $postPengeluaran = array_merge($post['pengeluaran_data'], $postPengeluaran);
+            if (isset($post['pengeluaran_data'])){
+                $postPengeluaran = array_merge($post['pengeluaran_data'], $postPengeluaran);
+            }
             // Helper::getInstance()->dump([$postPengeluaran, $_FILES]);
             if (!empty($postPengeluaran['solar']) && empty($_FILES['attach_solar']['tmp_name']) && !isset($post['pengeluaran_data']['solar']['lampiran'])) {
                 Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti pengeluaran parkir');

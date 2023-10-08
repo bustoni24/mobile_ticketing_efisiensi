@@ -569,17 +569,11 @@ $trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']
     </div>
     <?php endif; ?>
     <div class="row" style="overflow: auto;">
-        <table class="table table-bordered">
+        <table class="table table-bordered manifest-pnp">
             <tr>
                 <th>Nomor Kursi</th>
-                <th>No. Tiket</th>
-                <th>Kode Booking</th>
-                <th>Nama Penumpang</th>
-                <th>Nomor HP</th>
-                <th>Naik</th>
-                <th>Penurunan</th>
+                <th>Data Penumpang</th>
                 <th>Status</th>
-                <th>Jenis Kelamin</th>
             </tr>
             <?php 
             // $dataSeatBoooked = isset($data['data']['seatBooked']) ? $data['data']['seatBooked'] : [];
@@ -591,14 +585,18 @@ $trip_label = isset($data['data']['post']['post']['trip_label']) ? $data['data']
                 ?>
                 <tr>
                     <td><?= $dataSeat['no_kursi']; ?></td>
-                    <td><?= $dataSeat['booking_id']; ?></td>
-                    <td><?= $dataSeat['kode_booking']; ?></td>
-                    <td><?= $dataSeat['nama']; ?></td>
-                    <td><?= $dataSeat['no_hp']; ?></td>
-                    <td><?= $dataSeat['titik_naik']; ?></td>
-                    <td><?= $dataSeat['titik_turun']; ?></td>
+                    <td>
+                    <?= 
+                    "<label>".$dataSeat['nama']."</label>" . 
+                    "<p>No. Tiket: ".$dataSeat['booking_id']."</p>".
+                    "<p>Kode Booking: ". $dataSeat['kode_booking'] ."</p>" . 
+                    "<p>No. HP: ".$dataSeat['no_hp']."</p>" . 
+                    "<p>Jenis Kelamin: ".($dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita')."</p>" .
+                    "<p>Naik: ".$dataSeat['titik_naik']."</p>" .
+                    "<p>Turun: ".$dataSeat['titik_turun']."</p>"; 
+                    ?>  
+                    </td>
                     <td><?= $dataSeat['status']; ?></td>
-                    <td><?= $dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita'; ?></td>
                 </tr>
                 <?php
             }

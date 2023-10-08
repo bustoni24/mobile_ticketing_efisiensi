@@ -25,7 +25,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     <!-- Custom Theme Style -->
     <link href="<?php echo $baseUrl; ?>/css/select2.min.css" rel="stylesheet">
     <link href="<?php echo $baseUrl; ?>/build/css/custom.min.css" rel="stylesheet">
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/images/icon.png" rel="SHORTCUT ICON" />
+    <link href="<?php echo Yii::app()->request->baseUrl; ?>/images/logo_text.png" rel="SHORTCUT ICON" />
     <link href="<?php echo $baseUrl; ?>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
    
     <script src="<?php echo Yii::app()->theme->baseUrl; ?>/tinymice/tinymce.min.js"></script>
@@ -748,16 +748,16 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         // Pasang event handler untuk 'beforeunload'
         $(window).on('beforeunload', function() {
             $('#preloader').removeClass('none');
-            /* setTimeout(function() {
-                $('#preloader').addClass('none');
-            }, 200) */
         });
-        $(window).bind('load', function() {
-            // $('#preloader').removeClass('none');
-            // setTimeout(function() {
-                $('#preloader').addClass('none');
-            // }, 200)
-        });
+        /* $(window).bind('load', function() {
+            $('#preloader').addClass('none');
+        }); */
+        function onQuit()
+        {
+            $('#preloader').addClass('none');
+        }
+        window.onunload = onQuit;
+
         $('#backBtn').on('click', function(){
             window.history.go(-1);
         });
