@@ -120,7 +120,9 @@
                 <td class="p-0">
                     <table class="table border-none mb-0">
                         <tbody>
-                            <?php foreach ($deskripsiPengeluaran as $key => $value) {
+                            <?php 
+                            $i = 1;
+                            foreach ($deskripsiPengeluaran as $key => $value) {
                                 ?>
                                 <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) || (isset($value['label']['value']) && !empty($value['label']['value'])) ? '' : '') : '' ?>">
                                     <?php foreach ($value as $l => $dt) {
@@ -128,10 +130,16 @@
                                         if ($l == 'label'):
                                         ?>
                                         <td width="50%">
-                                            <?php if (in_array($key, ['terminal'])): ?>
+                                            <?php if (in_array($key, ['terminal'])): 
+                                            ?>
                                                 <label class="mb-0">Pengeluaran Lain <span class="red">(diisi jika perlu)</span></label>
                                                 <hr class="mb-0 mt-0"/>
-                                                <?php endif; ?>
+                                            <?php
+                                                if (isset($post['pengeluaran_data'][$key]['value']) && isset($post['rit']) && $post['rit'] == '2')
+                                                    continue;
+                                                    
+                                                ?>
+                                            <?php endif; ?>
 
                                             <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
                                             <?php if (in_array($key, ['solar'])): ?>
@@ -175,6 +183,7 @@
                                     } ?>
                                 </tr>
                                <?php
+                               $i++;
                             } ?>
                            <!--  <tr>
                                 <td colspan="2">

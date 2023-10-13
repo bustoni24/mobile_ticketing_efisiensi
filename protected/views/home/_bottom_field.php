@@ -10,6 +10,7 @@ $modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data[
 $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['seatBooked']) : 0;
 $this->widget('ext.dropDownChain.VDropDownChain', array(
     'parentId' => 'BookingTrip_type_turun',
+    'secondParentId' => 'Booking_tujuan',
     'childId' => 'BookingTrip_info_turun',
     'url' => 'api/getAjaxDropOff?id=h3n5r5w5q584g4r4a4a356g4m5i484b4o4e4t5p5u5t4e4w2',
     'valueField' => 'id',

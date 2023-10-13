@@ -71,7 +71,7 @@
     var rit = "<?= $model->rit ?>";
     var armada_ke = "<?= isset($data['data']['post']['post']['armada_ke']) ? $data['data']['post']['post']['armada_ke'] : null ?>"
     var penjadwalan_id = <?= isset($data['data']['post']['post']['penjadwalan_id']) ? $data['data']['post']['post']['penjadwalan_id'] : null ?>
-    
+
     // console.log(tujuan);
     document.addEventListener("DOMContentLoaded", function() {
         $('#Booking_tujuan').select2();
@@ -134,6 +134,9 @@
                                 break;
                             case error.UNKNOWN_ERROR:
                                 console.log("Terjadi kesalahan yang tidak diketahui.");
+                                refreshListBooking("-7.8033209", "110.312795");
+                                break;
+                            default:
                                 refreshListBooking("-7.8033209", "110.312795");
                                 break;
                         }
@@ -311,7 +314,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         $('#BookingTrip_total_harga').val(totalHarga);
     }
 
-    $("body").on('click', 'span.booked, span.text-checkmark', function(){
+    $("body").on('click', 'span.booked, span.text-checkmark, span.booked-girl', function(){
         var idPassenger = $(this).attr('data-passengerId');
         var dataPassenger = {};
         if (typeof $(this).attr('data-passengerData') !== "undefined" && $(this).attr('data-passengerData') !== ""){

@@ -76,9 +76,10 @@
 				'type' => 'raw',
                 'value' => function($data) {
                     $etiket = "<a class='btn btn-warning' href='". Constant::baseUrl().'/booking/itinerary?id=' . $data['id'] ."' target='_blank'>Cetak eTicket</a>";
-                    $termal = "<a class='btn btn-success' href='". Constant::baseUrl().'/booking/printTiketEdc?id=' . $data['id'] ."' target='_blank'>Cetak EDC (80mm)</a>";
-                    $kertas = "<a class='btn btn-info' href='". Constant::baseUrl().'/booking/printTiketA5?id=' . $data['id'] ."' target='_blank'>Cetak A5</a>";
-                    return "$etiket <br/>$termal <br/>$kertas";
+					$termal = "<a class='btn btn-success' href='". Constant::baseUrl().'/booking/printTiketEdc?id=' . $data['id'] ."' target='_blank'>Cetak EDC (80mm)</a>";
+					$termal58 = "<a class='btn btn-primary' href='". Constant::baseUrl().'/booking/printTiketEdc58?id=' . $data['id'] ."' target='_blank'>Cetak EDC (58mm)</a>";
+					$kertas = "<a class='btn btn-info' href='". Constant::baseUrl().'/booking/printTiketA5?id=' . $data['id'] ."' target='_blank'>Cetak A5</a>";
+					return "$etiket <br/>$termal <br/>$termal58 <br/>$kertas";
                 }
             ]
 			),

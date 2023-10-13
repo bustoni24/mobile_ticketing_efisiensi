@@ -4,9 +4,13 @@
     $(function(){        
         $("body").on('change', '#<?php echo $parentId;?>', function(){                   
         // $('#<?php echo $parentId;?>').change(function(){
-            var parentId = $('#<?php echo $parentId;?>').val(); 
+            var parentId = $('#<?php echo $parentId;?>').val();
             var secondParentId = 0;
-            var data = {'<?php echo $parentId;?>':parentId};
+            if (typeof <?php echo $secondParentId;?> !== "undefined" && <?php echo $secondParentId;?> !== null && <?php echo $secondParentId;?> !== ""){
+                secondParentId = $('#<?php echo $secondParentId;?>').val();
+            }
+            
+            var data = {'<?php echo $parentId;?>':parentId, '<?php echo $secondParentId;?>':secondParentId};
   
         $("#<?php echo $childId;?> > option").remove();
             

@@ -20,14 +20,14 @@
 
     <style>
         @media print{
-                @page {size: 80mm 90mm;margin: 0;}
+                @page {size: 56mm 110mm;margin: 0;}
                 body { margin: 0; }
             }
 
         @media print {
           html, body {
-          width: 80mm;
-          height: 80mm;
+          width: 56mm;
+          height: 100mm;
           margin: 0;
         }
 

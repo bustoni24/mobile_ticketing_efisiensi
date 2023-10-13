@@ -56,6 +56,9 @@ foreach ($datas as $data) {
                 <label style="font-size: 10px;"><?= $data['nama_kota_asal'] . ' - ' . $data['nama_kota_tujuan'] ?></label>
                 <p style="font-size: 10px;"><?= $data['titik_keberangkatan'] ?></p>
                 <p style="font-size: 10px;"><?= $data['hari'] . ', ' . $this->IndonesiaTgl($data['tanggal']) . ' ' . $data['jam']; ?></p>
+                <br/>
+                <p style="font-size: 10px;">Tgl Input: <?= $this->IndonesiaTgl($data['created_date'], true) ?></p>
+                <p style="font-size: 10px;">Dibeli dari: <?= $data['user_jual'] . ' ' . (isset($data['sub_agen_nama']) ? ' - ('.$data['sub_agen_nama'].')' : ''); ?></p>
             </td>
         </tr>
     </thead>

@@ -79,38 +79,20 @@
                 ],
                 [
                     'header' => 'Keterangan',
-                    'name' => 'keterangan',
-                    'value' => function($data) {
-                        return $data['keterangan'];
-                    }
-                ],
-                [
-                    'header' => 'Kode Booking',
                     'name' => 'kode_booking',
+                    'type' => 'raw',
                     'value' => function($data) {
-                        return $data['kode_booking'];
-                    }
-                ],
-                [
-                    'header' => 'Nama Penumpang',
-                    'name' => 'nama_penumpang',
-                    'value' => function($data) {
-                        return $data['nama_penumpang'];
-                    }
-                ],
-                [
-                    'header' => 'Naik',
-                    'name' => 'naik',
-                    'value' => function($data) {
-                        return $data['naik'];
-                    }
-                ],
-                [
-                    'header' => 'Turun',
-                    'name' => 'turun',
-                    'value' => function($data) {
-                        return $data['turun'];
-                    }
+                        if (isset($data['kode_booking']) && !empty($data['kode_booking']) && in_array($data['keterangan'], ['Penjualan Tiket', 'Komisi Penjualan', 'Komisi Boarding', 'Batal Komisi Penjualan', 'Batal Komisi Boarding'])) {
+                            return "<span class='text-bold'>Kode Booking:</span> " . $data['kode_booking'] . "<br/>" . 
+                                "<span class='text-bold'>Nama:</span> " . $data['nama_penumpang'] . "<br/>" .
+                                "<span class='text-bold'>Naik:</span> " . $data['naik'] . "<br/>" . 
+                                "<span class='text-bold'>Turun:</span> " . $data['turun'];
+                        } else {
+                            return $data['keterangan'];
+                        }
+                        
+                    },
+                    'htmlOptions' => ['style' => 'width:200px;min-width:200px;']
                 ],
                 [
                     'header' => 'Status',

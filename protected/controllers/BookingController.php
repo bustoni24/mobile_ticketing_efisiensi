@@ -79,10 +79,10 @@ class BookingController extends Controller
     {
         $post = [];
 		$post['startdate'] = date('Y-m-d');
-        $post['jam'] = null;
 		$post['jamArray'] = [];
-        $post['kode_booking'] = null;
-        $post['trip_id'] = null;
+        $post['kode_booking'] = isset($_GET['Manifest']['kode_booking']) ? $_GET['Manifest']['kode_booking'] : null;
+        $post['trip_id'] = isset($_GET['Manifest']['trip_id']) && !empty($_GET['Manifest']['trip_id']) ? $_GET['Manifest']['trip_id'] : null;
+        $post['jam'] = isset($_GET['Manifest']['jam']) ? $_GET['Manifest']['jam'] : null;
         $post['type_date'] = Constant::TYPE_DATE_CREATE;
         if (isset($_GET['Manifest']['startdate']) && !empty($_GET['Manifest']['startdate'])) {
 			$post['startdate'] = date('Y-m-d', strtotime($_GET['Manifest']['startdate']));
@@ -90,11 +90,8 @@ class BookingController extends Controller
         if (isset($_GET['Manifest']['type_date']) && !empty($_GET['Manifest']['type_date'])){
 			$post['type_date'] = $_GET['Manifest']['type_date'];
         }
-		if (isset($_GET['Manifest']['trip_id']) && !empty($_GET['Manifest']['trip_id'])) {
-			$post['trip_id'] = $_GET['Manifest']['trip_id'];
-            $post['jam'] = isset($_GET['Manifest']['jam']) ? $_GET['Manifest']['jam'] : null;
-            $post['kode_booking'] = isset($_GET['Manifest']['kode_booking']) ? $_GET['Manifest']['kode_booking'] : null;
 
+		if (isset($post['trip_id']) || isset($post['kode_booking'])) {
             $getManifest = ApiHelper::getInstance()->callUrl([
                 'url' => 'apiMobile/getDataManifest',
                 'parameter' => [
@@ -506,6 +503,33 @@ class BookingController extends Controller
 			throw new CHttpException(401,'invalid ID');
 		}
         Yii::app()->controller->layout = 'print_edc';
+		header_remove();
+
+        $data = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/printTicketEdc',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'booking_trip_id' => $_GET['id']
+                ]
+            ]
+        ]);
+        // Helper::getInstance()->dump($data);
+        if (!isset($data['data'])) {
+            Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
+        }
+
+        return $this->render('cetakTiketEdc', [
+			'datas' => $data['data']
+		]);
+    }
+
+    public function actionPrintTiketEdc58()
+    {
+        if (!isset($_GET['id'])) {
+			throw new CHttpException(401,'invalid ID');
+		}
+        Yii::app()->controller->layout = 'print_edc_58';
 		header_remove();
 
         $data = ApiHelper::getInstance()->callUrl([

@@ -1395,7 +1395,7 @@ class Helper {
         'refund' => 10
       ],
       'terminal' => [
-        'label' => ['value' => '']
+        'label' => ['value' => '','readonly'=>true]
       ],
       'parkir_bandara' => [
         'label' => ['value' => ''],
@@ -1420,18 +1420,21 @@ class Helper {
     }
 
     if (isset($data['trayek'])) {
-        if (in_array('cilacap-bobotsari', $data['trayek']) || (in_array('cilacap-ajibarang', $data['trayek'])) || (in_array('bobotsari-ajibarang', $data['trayek'])) || (in_array('bobotsari-cilacap', $data['trayek'])) || (in_array('ajibarang-cilacap', $data['trayek'])) || (in_array('yogyakarta-cilacap', $data['trayek'])) || (in_array('cilacap-yogyakarta', $data['trayek'])) ) {
+        if (in_array('cilacap-bobotsari', $data['trayek']) || (in_array('cilacap-ajibarang', $data['trayek'])) || (in_array('bobotsari-ajibarang', $data['trayek'])) || (in_array('bobotsari-cilacap', $data['trayek'])) || (in_array('ajibarang-cilacap', $data['trayek'])) || (in_array('yogyakarta-cilacap', $data['trayek'])) || 
+        (in_array('cilacap-yogyakarta', $data['trayek'])) || (in_array('ajibarang-yogyakarta', $data['trayek'])) ||
+        (in_array('bobotsari-yogyakarta', $data['trayek'])) || (in_array('yogyakarta-bobotsari', $data['trayek'])) ||
+        (in_array('yogyakarta-ajibarang', $data['trayek'])) ) {
           $result['terminal']['label']['value'] = 80000;
           unset($result['solar']['refund']);
         } else if (in_array('cilacap-solo', $data['trayek']) || in_array('solo-cilacap', $data['trayek'])) {
           $result['terminal']['label']['value'] = 100000;
           unset($result['solar']['refund']);
-        } else if (in_array('semarang-jepara', $data['trayek']) || in_array('jepara-semarang', $data['trayek'])) {
+        } else if (in_array('semarang-jepara', $data['trayek']) || in_array('jepara-semarang', $data['trayek']) || in_array('cilacap-semarang', $data['trayek']) || in_array('semarang-cilacap', $data['trayek']) || in_array('cilacap-jepara', $data['trayek']) || in_array('jepara-cilacap', $data['trayek'])) {
           $result['terminal']['label']['value'] = 110000;
         } else {
           unset($result['terminal']);
           if (in_array('cilacap-semarang', $data['trayek']) || in_array('semarang-cilacap', $data['trayek']) || in_array('cilacap-jepara', $data['trayek']) || in_array('jepara-cilacap', $data['trayek'])) {
-
+            
           } else {
             unset($result['solar']['refund']);
           }

@@ -39,7 +39,7 @@
             <?= CHtml::textField('Manifest[startdate]',(isset($post['startdate']) ? $post['startdate'] : ''),['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off', 'required'=>true]); ?>
 		</div>
 		<div class="col-sm-12 pl-0">
-            <?= CHtml::dropDownList('Manifest[trip_id]',(isset($post['trip_id']) ? $post['trip_id'] : ''), Armada::object()->getOptionsArmada(),['prompt' => 'Pilih Armada', 'required'=>true]); ?>
+            <?= CHtml::dropDownList('Manifest[trip_id]',(isset($post['trip_id']) ? $post['trip_id'] : ''), Armada::object()->getOptionsArmada(),['prompt' => 'Pilih Armada']); ?>
 		</div>
 	</div>
 
@@ -81,13 +81,14 @@
 			<?php 
 			if (isset($post['data'])):
 				foreach ($post['data'] as $key => $postData) {
-					echo '<h4 class="header">'. $postData['label_trip'] .' '. (isset($postData['no_lambung']) ? ', Nomor Lambung: ' . $postData['no_lambung'] : '') .'</h4>';
+					echo '<h4 class="header">'. (isset($postData['booking_trip_label']) ? $postData['booking_trip_label'] : $postData['trip_label']) .' '. (isset($postData['no_lambung']) ? ', Nomor Lambung: ' . $postData['no_lambung'] : '') .'</h4>';
+
 					?>
 					<div class="row">
 					<?php
 					if (isset($postData['resume_passenger']['naik'])){
 						?>
-						<div class="col-sm-12">
+						<div class="col-sm-6">
 							<table class="table table-condensed">
 								<tr>
 									<th colspan="3">Naik:</th>
@@ -111,7 +112,7 @@
 					<?php
 					if (isset($postData['resume_passenger']['drop_off'])){
 						?>
-						<div class="col-sm-12">
+						<div class="col-sm-6">
 							<table class="table table-condensed">
 								<tr>
 									<th colspan="3">Drop Off:</th>
@@ -139,7 +140,7 @@
 								<th colspan="4">
 									<h4>Kuota: <?= $postData['kuota'] ?></h4>
 								</th>
-								<th colspan="10">
+								<th colspan="12">
 									<h4>Terjual: <?= $postData['kursi_terjual'] ?></h4>
 								</th>
 							</tr>
@@ -150,7 +151,7 @@
 											continue;
 										?>
 										<tr>
-											<td colspan="14">
+											<td colspan="16">
 												<h5><?= $m['header']['titik_keberangkatan'] ?></h5>
 												<p><?= $m['header']['alamat'] ?></p>
 											</td>
@@ -160,31 +161,34 @@
 											<th>No.Tiket</th>
 											<th>Kode Booking</th>
 											<th>Penumpang</th>
-											<th>Telp</th>
 											<th>Naik</th>
 											<th>Penurunan</th>
 											<th>Harga</th>
-											<th>Tgl. Input</th>
-											<th>Keberangkatan</th>
+											<th>Tanggal</th>
 											<th>Tujuan</th>
+											<th>Kota Pengambilan Tarif</th>
 											<th>Terjual Oleh</th>
 											<th>Status</th>
-											<th>Pengantaran</th>
+											<th>Tipe Bayar</th>
 										</tr>
 										<?php foreach ($m['data'] as $manifest) {
 											?>
 											<tr>
-												<td><?= $manifest['kursi'] ?></td>
-												<td><?= $manifest['booking_id'] ?></td>
+											<td><?= $manifest['kursi'] ?></td>
+												<td><?= $manifest['booking_id'] . '<br/>'. '<br/>'.
+													'<a href="'. Constant::baseUrl() . '/booking/cetakETiket?id=' . $manifest['id_tiket'] .'" target="_blank" style="font-size:11px;"><i class="fa fa-print" style="font-size:14px;"></i> Cetak Ulang Tiket</a>'
+												 ?></td>
 												<td><?= $manifest['kode_booking'] ?></td>
-												<td><?= $manifest['nama_penumpang'] ?></td>
-												<td><?= $manifest['no_telp'] ?></td>
+												<td><?= 'Nama: ' . $manifest['nama_penumpang'] . '<br/><br/>'. 
+														'No. Telp: ' . $manifest['no_telp']; ?></td>
 												<td><?= $manifest['titik_naik'] ?></td>
 												<td><?= $manifest['info_turun'] ?></td>
 												<td><?= $manifest['harga'] > 0 ? Helper::getInstance()->getRupiah($manifest['harga']) : $manifest['harga']; ?></td>
-												<td><?= $manifest['created_date'] ?></td>
-												<td><?= $manifest['tanggal'] . '<br/>' . $manifest['jam'] ?></td>
-												<td><?= $manifest['kota_tujuan'] ?></td>
+												<td><?= 'Tgl. Input: '. $manifest['created_date'] . '<br/><br/>'. 
+														'Keberangkatan: '. $manifest['tanggal'] . '<br/>' . $manifest['jam']; ?></td>
+												<td><?= $manifest['kota_tujuan'] . '<br/><br/>'. 
+														'<span class="text-bold">Pengantaran: </span>' . $manifest['pengantaran'] ?></td>
+												<td><?= $manifest['kota_asal']. ' - ' . $manifest['kota_tujuan']; ?></td>
 												<td><?= $manifest['agen_nama'] ?></td>
 												<td><?= ($manifest['status'] == Constant::STATUS_PENUMPANG_TURUN ? 'Konfirmasi turun' : 
 													($manifest['status'] == Constant::STATUS_PENUMPANG_RESCHEDULING ? 'Reschedule' : 
@@ -194,9 +198,7 @@
 													)	
 													)
 													)) ?></td>
-												<td>
-													<?= $manifest['pengantaran'] ?>
-												</td>
+												<td><?= $manifest['type_bayar_pnp'] ?></td>
 											</tr>
 											<?php
 										} ?>

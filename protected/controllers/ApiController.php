@@ -83,6 +83,10 @@ class ApiController extends Controller
 
 	public function actionGetAjaxDropOff()
 	{
+		/* $parentId = isset($_POST['Booking_tujuan']) ? $_POST['Booking_tujuan'] : null;
+		if (isset($parentId)){
+			$_POST['tujuan_id'] = $parentId;
+		} */
 		$option = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/getAjaxDropOff',
             'parameter' => [
@@ -90,7 +94,7 @@ class ApiController extends Controller
                 'postfields' => $_POST
             ]
         ]);
-		$data = [];
+		$data = $_POST;
 		if (isset($option['data']))
 			$data = $option['data'];
 

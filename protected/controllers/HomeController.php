@@ -656,4 +656,10 @@ class HomeController extends Controller
 	{
 		return $this->render('testQr');
 	}
+
+	public function actionPrintBluetooth()
+	{
+		$this->layout = "raw";
+		return $this->render('printBluetooth', []);
+	}
 }
