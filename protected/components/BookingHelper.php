@@ -203,6 +203,32 @@ class BookingHelper {
         exit;
     }
 
+    public function searchTujuan($post)
+    {
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/searchTujuan',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
+    }
+
+    public function updateStatus($post)
+    {
+        $post['role'] = Yii::app()->user->role;
+        $post['source_naik'] = 'manifest';
+        $check = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/updateStatus',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $post
+            ]
+        ]);
+        return $check;
+    }
+
     private static $instance;
 
     private function __construct()

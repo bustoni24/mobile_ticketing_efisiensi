@@ -32,6 +32,8 @@ class BookingController extends Controller
 		$armada_ke = $arrId[2];
         $penjadwalan_id = isset($arrId[3]) && !empty($arrId[3]) ? $arrId[3] : null;
         $label_trip = isset($_POST['label_trip']) ? $_POST['label_trip'] : null;
+        $agen_id_asal = isset($_POST['agen_id_asal']) ? $_POST['agen_id_asal'] : null;
+        $agen_id_tujuan = isset($_POST['agen_id_tujuan']) ? $_POST['agen_id_tujuan'] : null;
 
         $model = new Booking('routeDetail');
         $model->route_id = $routeID;
@@ -71,6 +73,68 @@ class BookingController extends Controller
 		}
         
         return $this->render('homeAgen', [
+			'model' => $model
+		]);
+    }
+
+    public function actionRouteDetailV2()
+    {
+        if (!isset($_GET['id'])) {
+            throw new CHttpException(401,'invalid ID');
+        }
+
+        $arrId = explode('_', $_GET['id']);
+		if (!isset($arrId[0], $arrId[1], $arrId[2]))
+			throw new CHttpException(400,'Invalid Parameter array ID');
+
+		$routeID = $arrId[0];
+		$startdate = $arrId[1];
+		$armada_ke = $arrId[2];
+        $penjadwalan_id = isset($arrId[3]) && !empty($arrId[3]) ? $arrId[3] : null;
+        $label_trip = isset($_POST['label_trip']) ? $_POST['label_trip'] : null;
+        $agen_id_asal = isset($_POST['agen_id_asal']) ? $_POST['agen_id_asal'] : null;
+        $agen_id_tujuan = isset($_POST['agen_id_tujuan']) ? $_POST['agen_id_tujuan'] : null;
+
+        $model = new Booking('routeDetail');
+        $model->route_id = $routeID;
+        $model->startdate = $startdate;
+        $model->armada_ke = $armada_ke;
+        $model->penjadwalan_id = $penjadwalan_id;
+        $model->label_trip = $label_trip;
+        $model->agen_id_asal = $agen_id_asal;
+        $model->agen_id_tujuan = $agen_id_tujuan;
+
+        if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
+            // Helper::getInstance()->dump(Yii::app()->user->id);
+			$saveTransaction = ApiHelper::getInstance()->callUrl([
+				'url' => 'apiMobile/transactionBooking',
+				'parameter' => [
+					'method' => 'POST',
+					'postfields' => [
+						'route_id' => isset($_POST['BookingTrip']['route_id']) ? $_POST['BookingTrip']['route_id'] : null,
+						'startdate' => isset($_POST['BookingTrip']['startdate']) ? $_POST['BookingTrip']['startdate'] : null,
+						'armada_ke' => isset($_POST['BookingTrip']['armada_ke']) ? $_POST['BookingTrip']['armada_ke'] : null,
+						'penjadwalan_id' => $penjadwalan_id,
+						'BookingTrip' => $_POST['BookingTrip'],
+						'FormSeat' => $_POST['FormSeat'],
+						'user_id' => Yii::app()->user->id,
+						'crew_id' => Yii::app()->user->id,
+						'role' => Yii::app()->user->role,
+					]
+				]
+			]);
+            // Helper::getInstance()->dump($saveTransaction);
+			if ($saveTransaction['success']) {
+				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
+			} else {
+                Yii::app()->user->setFlash('error', $saveTransaction['message']);
+				return $this->redirect(Constant::baseUrl().'/booking/routeDetail?id=' . $_GET['id']);
+			}
+
+            return Yii::app()->controller->redirect(Constant::baseUrl().'/booking/cetakETiket/' . (isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : 'all'));
+		}
+        
+        return $this->render('homeAgenV2', [
 			'model' => $model
 		]);
     }
@@ -472,6 +536,18 @@ class BookingController extends Controller
     public function actionGetCrewLocations()
     {
         $res = BookingHelper::getInstance()->getCrewLocations($_GET);
+        doPrintResult($res);
+    }
+
+    public function actionSearchTujuan()
+    {
+        $res = BookingHelper::getInstance()->searchTujuan($_POST);
+        doPrintResult($res);
+    }
+
+    public function actionUpdateStatus()
+    {
+        $res = BookingHelper::getInstance()->updateStatus($_POST);
         doPrintResult($res);
     }
 

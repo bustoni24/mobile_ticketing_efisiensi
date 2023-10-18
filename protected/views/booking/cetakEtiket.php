@@ -13,10 +13,6 @@
 		'filter'=>null,
 		'columns'=>array(
 			[
-				'header' => 'No. Tiket',
-				'name' => 'booking_id'
-			],
-			[
 				'header' => 'Penumpang | Kursi',
 				'name' => 'jml_penumpang',
 				'type' => 'raw',
@@ -25,50 +21,24 @@
 				}
 			],
 			[
-				'header' => 'Naik',
+				'header' => 'Info Detail',
 				'name' => 'naik',
 				'type' => 'raw',
 				'value' => function($data) {
 					$res = Booking::object()->getInfoPenumpang($data['id']);
-					return isset($res['agen_boarding_nama']) ? $res['agen_boarding_nama'] . ' ('. $data['nama_kota_asal'] .')' : '-';
-				}
-			],
-			[
-				'header' => 'Penurunan',
-				'name' => 'turun',
-				'type' => 'raw',
-				'value' => function($data) {
-					$res = Booking::object()->getInfoPenumpang($data['id']);
-					return isset($res['info_turun']) ? $res['info_turun'] : (isset($data['nama_kota_tujuan']) ? $data['nama_kota_tujuan'] : '-');
+					$html = "<span style='font-weight: 700;'>No. Tiket: </span>" . $data['booking_id'];
+					$html .= '<br/><br/>Naik: ' . (isset($res['agen_boarding_nama']) ? $res['agen_boarding_nama'] . ' ('. $data['nama_kota_asal'] .')' : '-');
+					$html .= '<br/>Penurunan: ' . (isset($res['info_turun']) ? $res['info_turun'] : (isset($data['nama_kota_tujuan']) ? $data['nama_kota_tujuan'] : '-'));
+					$html .= "<br/><br/>Group Trip: " . $data['nama_group'];
+					$html .= "<br/>Kelas: " . $data['kelas_bus'];
+					$html .= "<br/>Tanggal: " . $data['tanggal'];
+					$html .= "<br/>Jam Keberangkatan: " . $data['jam'];
+					return $html;
 				}
 			],
 			[
 				'header' => 'Total Harga',
 				'name' => 'total_harga'
-			],
-			[
-				'header' => 'Kota Keberangkatan',
-				'name' => 'nama_kota_asal'
-			],
-			[
-				'header' => 'Kota Tujuan',
-				'name' => 'nama_kota_tujuan'
-			],
-			[
-				'header' => 'Group Trip',
-				'name' => 'nama_group'
-			],
-			[
-				'header' => 'Kelas',
-				'name' => 'kelas_bus'
-			],
-			[
-				'header' => 'Tanggal Booking',
-				'name' => 'tanggal'
-			],
-			[
-				'header' => 'Jam Keberangkatan',
-				'name' => 'jam'
 			],
 			[
                 'header' => 'Aksi',

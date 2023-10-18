@@ -12,9 +12,10 @@ class Booking
     public $route_id = null;
     public $armada_ke = null;
     public $rit = null;
-    public $latitude, $longitude, $tujuan, $penjadwalan_id;
+    public $latitude, $longitude, $tujuan, $penjadwalan_id, $penjadwalan_id_fake;
     public $id = null;
     public $label_trip = null;
+    public $agen_id_asal = null, $agen_id_tujuan = null;
 
     public function searchBooking()
     {
@@ -88,7 +89,9 @@ class Booking
                     'user_id' => Yii::app()->user->id,
                     'role' => Yii::app()->user->role,
                     'penjadwalan_id' => $this->penjadwalan_id,
-                    'label_trip' => $this->label_trip
+                    'label_trip' => $this->label_trip,
+                    'agen_id_asal' => $this->agen_id_asal,
+                    'agen_id_tujuan' => $this->agen_id_tujuan
                     ]
             ]
         ]);  

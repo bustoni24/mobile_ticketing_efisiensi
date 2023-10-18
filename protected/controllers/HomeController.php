@@ -66,6 +66,9 @@ class HomeController extends Controller
 
 	public function actionListBus()
 	{
+		if ((int)Setting::getValue("REDESIGN", 0) == 1) {
+			return $this->actionListBusV2();
+		}
 		$model = new Armada('searchListBus');
 		if (isset($_GET['startdate']) && !empty($_GET['startdate'])) {
 			$model->startdate = $_GET['startdate'];
@@ -84,8 +87,62 @@ class HomeController extends Controller
 		]);
 	}
 
+	public function actionListBusV2()
+	{
+		$model = new Armada('searchListBusV2');
+		if (isset($_GET['startdate']) && !empty($_GET['startdate'])) {
+			$model->startdate = $_GET['startdate'];
+		} else {
+			$model->startdate = date('Y-m-d');
+		}
+		if (isset($_GET['titik_id'])) {
+			$model->titik_id = $_GET['titik_id'];
+		}
+		if (isset($_GET['agen_id'])) {
+			$model->agen_id = $_GET['agen_id'];
+		}
+		if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+			$model->filter = $_GET['filter'];
+		}
+		// Helper::getInstance()->dump(Yii::app()->user->titik_id);
+		if (!isset($model->titik_id) && isset(Yii::app()->user->agen_id, Yii::app()->user->titik_id) && !empty(Yii::app()->user->agen_id)) {
+			$model->titik_id = Yii::app()->user->titik_id;
+			if (!isset($model->agen_id)) {
+				$model->agen_id = Yii::app()->user->agen_id;
+			}
+		}
+
+		$arrTujuan = [];
+		if (isset($model->startdate, $model->titik_id)) {
+			$option = ApiHelper::getInstance()->callUrl([
+				'url' => 'apiMobile/getTujuanKeberangkatan',
+				'parameter' => [
+					'method' => 'POST',
+					'postfields' => [
+						'startdate' => $model->startdate,
+						'titik_id' => $model->titik_id,
+						'agen_id' => $model->agen_id,
+						'filter' => $model->filter,
+						'Armada_kota_asal' => $model->titik_id
+					]
+				]
+			]);
+
+			if (isset($option['data']))
+				$arrTujuan = $option['data'];
+		}
+
+		$this->render('new_index', [
+			'model' => $model,
+			'arrTujuan' => $arrTujuan
+		]);
+	}
+
 	public function actionHomeCrew()
 	{
+		if ((int)Setting::getValue("REDESIGN", 0) == 1) {
+			return $this->actionHomeCrewV2();
+		}
 		$model = new Booking;
 		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
@@ -192,6 +249,127 @@ class HomeController extends Controller
 		}
 
 		$this->render('homeCrew', [
+			'model' => $model,
+			'penugasan' => $penugasan,
+			'arrayTujuan' => $arrayTujuan
+		]);
+	}
+
+	public function actionHomeCrewV2()
+	{
+		$model = new Booking;
+		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
+		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
+		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
+		$model->rit = isset($_GET['rit']) ? $_GET['rit'] : null;
+		$model->tujuan = isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : null;
+
+		//cari penugasan
+		$penugasan = ApiHelper::getInstance()->callUrl([
+			'url' => 'apiMobile/penugasanCrew',
+			'parameter' => [
+				'method' => 'POST',
+				'postfields' => [
+					'startdate' => $model->startdate,
+					'rit' => $model->rit,
+					'user_id' => Yii::app()->user->id,
+					'role' => Yii::app()->user->role,
+					'latitude' => $model->latitude,
+            		'longitude' => $model->longitude
+					]
+			]
+		]);
+		// Helper::getInstance()->dump($penugasan);
+		if (isset($penugasan['data']['rit']))
+			$model->rit = $penugasan['data']['rit'];
+
+		if (!isset($model->tujuan) && isset($penugasan['data']['tujuan_id']) && !empty($penugasan['data']['tujuan_id']))
+			$model->tujuan = $penugasan['data']['tujuan_id'];
+		if (isset($penugasan['data']['trip_id'])) {
+			$model->trip_id = $penugasan['data']['trip_id'];
+		}
+
+		$model->penjadwalan_id_fake = isset($penugasan['data']['penjadwalan_id']) ? $penugasan['data']['penjadwalan_id'] : null;
+
+		$arrayTujuan = Armada::object()->getTujuan($model);
+		if (isset($arrayTujuan['dataSelected']['drop_off_city'])) {
+			$arrayTujuan['dataSelected']['drop_off_city'] = isset($_GET['turun']) && !empty($_GET['turun']) ? $_GET['turun'] : $arrayTujuan['dataSelected']['drop_off_city'];
+		}
+		if (isset($arrayTujuan['dataSelected']['boarding_city'])) {
+			$arrayTujuan['dataSelected']['boarding_city'] = isset($_GET['naik']) && !empty($_GET['naik']) ? $_GET['naik'] : $arrayTujuan['dataSelected']['boarding_city'];
+		}
+		// Helper::getInstance()->dump($arrayTujuan);
+		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
+			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {
+				throw new CHttpException(401,'Mohon untuk memilih kursi terlebih dahulu');
+			}
+			$urlFile = null;
+			$fileName = null;
+			if (isset($_POST['BookingTrip']['tipe_pembayaran']) && in_array($_POST['BookingTrip']['tipe_pembayaran'], ['transfer'])) {
+				//harus melampirkan bukti bayar
+				if (!isset($_FILES['BookingTrip']['tmp_name']['bukti_pembayaran']) || empty($_FILES['BookingTrip']['tmp_name']['bukti_pembayaran'])) {
+					throw new CHttpException(401,'Mohon untuk melampirkan bukti pembayaran jika memilih pembayaran transfer');
+				}
+
+				$targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/";
+				$fileSource = basename($_FILES['BookingTrip']['name']['bukti_pembayaran']);
+			    $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
+                if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
+                    throw new CHttpException(401,'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
+                }
+                $fileName = 'bukti_pembayaran_booking_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+                $targetFile = $targetDirectory . $fileName;
+
+                if (move_uploaded_file($_FILES["BookingTrip"]["tmp_name"]["bukti_pembayaran"], $targetFile)) {
+                    Yii::import('application.extensions.image.Image');
+                    $image = new Image('uploads/' . $fileName);
+                    $image->resize(800, 0);
+                    $image->save('uploads/' . $fileName);
+
+                    $urlFile = SERVER . '/uploads/' . $fileName;
+                }
+
+			}
+
+			// Helper::getInstance()->dump($_POST);
+			$saveTransaction = ApiHelper::getInstance()->callUrl([
+				'url' => 'apiMobile/transactionBooking',
+				'parameter' => [
+					'method' => 'POST',
+					'postfields' => [
+						'route_id' => isset($_POST['BookingTrip']['route_id']) ? $_POST['BookingTrip']['route_id'] : null,
+						'startdate' => isset($_POST['BookingTrip']['startdate']) ? $_POST['BookingTrip']['startdate'] : null,
+						'armada_ke' => isset($penugasan['data']['armada_ke']) ? $penugasan['data']['armada_ke'] : null,
+						'penjadwalan_id' => isset($_POST['BookingTrip']['penjadwalan_id']) ? $_POST['BookingTrip']['penjadwalan_id'] : null,
+						'BookingTrip' => $_POST['BookingTrip'],
+						'FormSeat' => $_POST['FormSeat'],
+						'user_id' => Yii::app()->user->id,
+						'crew_id' => Yii::app()->user->id,
+						'role' => Yii::app()->user->role,
+						'tujuan_id' => $model->tujuan,
+						'rit' => $model->rit,
+						'filename' => $fileName,
+                		'url_file' => $urlFile,
+						'trip_label' => isset($penugasan['data']['trip_label']) ? $penugasan['data']['trip_label'] : null
+					]
+				]
+			]);
+			// Helper::getInstance()->dump($saveTransaction);
+			if (isset($targetFile) && !empty($targetFile)) {
+				if (file_exists($targetFile)) {
+					unlink($targetFile);	
+				}
+			}
+			if ($saveTransaction['success']) {			
+				$last_id_booking = isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : '';
+				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
+				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&last_id_booking=' . $last_id_booking . '&rit=' . $model->rit);
+			} else {
+				Helper::getInstance()->dump($saveTransaction);
+			}
+		}
+
+		$this->render('homeCrewV2', [
 			'model' => $model,
 			'penugasan' => $penugasan,
 			'arrayTujuan' => $arrayTujuan
@@ -660,6 +838,6 @@ class HomeController extends Controller
 	public function actionPrintBluetooth()
 	{
 		$this->layout = "raw";
-		return $this->render('printBluetooth', []);
+		return $this->render('printBluetoothV2', []);
 	}
 }

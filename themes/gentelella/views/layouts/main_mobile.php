@@ -337,7 +337,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         position: initial;
     }
     .gj-datepicker-bootstrap [role=right-icon] button {
-        height: 34px;
+        height: 40px;
     }
     .input-group {
         display: flex;
@@ -355,7 +355,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         margin-bottom: 10px;
     }
     .card-booking .content-card {
-        padding: 20px 10px;
+        padding: 10px 10px;
     }
     .card-booking .border-all {
         border-radius: 8px;
@@ -737,7 +737,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         <?php if (isset(Yii::app()->user->role) && in_array(Yii::app()->user->role, ['Agen','Sub Agen'])): ?>
         function doWork() {
             getUpdateSaldo(<?= Yii::app()->user->id ?>);
-            repeater = setTimeout(doWork, 1500);
+            repeater = setTimeout(doWork, 3000);
         }
         doWork();
     <?php endif; ?>

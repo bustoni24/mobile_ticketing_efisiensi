@@ -1,8 +1,0 @@
-2022/04/22 04:58:27 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/1d3c3efe/swiper-bundle.min.js.map" in C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php:286
-Stack trace:
-#0 C:\xampp\htdocs\kellola\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/1d3c3efe...')
-#1 C:\xampp\htdocs\kellola\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
-#2 C:\xampp\htdocs\kellola\index.php(29): CApplication->run()
-#3 {main}
-REQUEST_URI=/kellola/assets/1d3c3efe/swiper-bundle.min.js.map
----

@@ -134,6 +134,10 @@ class Constant {
         return Yii::app()->assetManager->publish('./themes/gentelella');
     }
 
+    public static function bowerUrl() {
+        return Yii::app()->request->baseUrl.'/.';
+    }
+
     public static function defaultAction() {
     	return ['admin','index','create','view','update','delete'];
     }

@@ -74,7 +74,7 @@ $config = array(
                 'class'=>'CFileLogRoute',
                 'levels'=>'info, vardump, error',
                 // 'categories'=>"ezy",
-                'logFile'=>'logging.log'.date('d-m-y H'),
+                'logFile'=>'logging.log'.date('d-m-y'),
             ),             
                 // uncomment the following to show log messages on web pages
                 /*

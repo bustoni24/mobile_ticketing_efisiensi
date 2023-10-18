@@ -1,9 +1,0 @@
-2022/06/30 18:05:52 [error] [exception.CHttpException.404] CHttpException: Tidak bisa mengurai request "assets/acb3d16b/vendors/iCheck/skins/fflast/green.css" in C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php:286
-Stack trace:
-#0 C:\xampp\htdocs\efisiensi\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/acb3d16b...')
-#1 C:\xampp\htdocs\efisiensi\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
-#2 C:\xampp\htdocs\efisiensi\index.php(27): CApplication->run()
-#3 {main}
-REQUEST_URI=/efisiensi/assets/acb3d16b/vendors/iCheck/skins/fflast/green.css
-HTTP_REFERER=http://localhost/efisiensi/pembelian/permintaanBarang
----

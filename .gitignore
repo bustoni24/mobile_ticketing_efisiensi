@@ -15,3 +15,6 @@ protected/runtime/*
 /captures
 .externalNativeBuild
 .cxx
+bower.json
+composer-setup.php
+bower_components

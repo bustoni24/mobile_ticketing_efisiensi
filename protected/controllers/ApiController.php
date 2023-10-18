@@ -100,4 +100,36 @@ class ApiController extends Controller
 
 		doPrintResult($data);
 	}
+
+	public function actionGetTujuanKeberangkatan()
+    {
+		$option = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getTujuanKeberangkatan',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $_POST
+            ]
+        ]);
+        $data = ['0' => 'Pilih Tujuan'];
+		if (isset($option['data']))
+			$data = $data + $option['data'];
+
+		doPrintResult($data);
+    }
+
+	public function actionGetTujuanKota()
+	{
+		$option = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getTujuanKota',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => $_POST
+            ]
+        ]);
+        $data = ['0' => 'Pilih Tujuan'];
+		if (isset($option['data']['turun']))
+			$data = $data + $option['data']['turun'];
+
+		doPrintResult($data);
+	}
 }

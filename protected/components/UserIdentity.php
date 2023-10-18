@@ -36,7 +36,8 @@ class UserIdentity extends CUserIdentity {
             $this->setState('saldo', $login['data']['saldo']);
             $this->setState('tipe_agen', $login['data']['tipe_agen']);
             $this->setState('agen_id', $login['data']['agen_id']);
-            $this->setState('tipe_sdm', isset($login['tipe_sdm']) ? $login['tipe_sdm'] : 'efisiensi');
+            $this->setState('tipe_sdm', isset($login['data']['tipe_sdm']) ? $login['data']['tipe_sdm'] : 'efisiensi');
+            $this->setState('titik_id', isset($login['data']['titik_id']) ? $login['data']['titik_id'] : null);
 
             $this->errorCode = self::ERROR_NONE;
 

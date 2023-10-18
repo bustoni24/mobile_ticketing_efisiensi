@@ -1,1 +1,0 @@
-2022/06/30 23:23:01 [error] [system.db.CDbCommand] CDbCommand::execute() gagal: SQLSTATE[HY000]: General error: 1364 Field 'harga_satuan' doesn't have a default value. Statement SQL yang dijalankan: INSERT INTO `penawaran_barang_detail` (`status`, `id_penawaran`, `id_supplier`, `id_barang`) VALUES (:yp0, :yp1, :yp2, :yp3). Bound with :yp0=0, :yp1=2, :yp2=1, :yp3=1.

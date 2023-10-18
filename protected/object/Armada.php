@@ -4,6 +4,7 @@ class Armada
 {
 	public $startdate, $filter = null, $get = null;
 	public $id_trip,$group,$kelas,$groupId,$armadaId;
+    public $titik_id = null, $agen_id = null;
     public function searchListBus()
     {
         $data = [];
@@ -26,6 +27,42 @@ class Armada
 					]
             ]
         ]);
+        if (isset($res['data'])) {
+            $data = $res['data'];
+        }
+        
+		return new CArrayDataProvider($data, array(
+			'keyField' => 'id',
+			'pagination' => array(
+				'pageSize' => count($data),
+				),
+			));	
+    }
+
+    public function searchListBusV2()
+    {
+        $data = [];
+        if (!isset($this->startdate) || empty($this->startdate)){
+			return new CArrayDataProvider($data, array(
+				'keyField' => 'id',
+				'pagination' => array(
+					'pageSize' => count($data),
+					),
+				));	
+		}
+		$res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/listBusV2',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+					'startdate' => $this->startdate,
+					'titik_id' => $this->titik_id,
+					'agen_id' => $this->agen_id,
+					'filter' => $this->filter
+					]
+            ]
+        ]);
+        // Helper::getInstance()->dump($res);
         if (isset($res['data'])) {
             $data = $res['data'];
         }
@@ -86,6 +123,21 @@ class Armada
 		return $result;
     }
 
+    public function getAsalKeberangkatan()
+    {
+        $result = [];
+		$res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getAsalKeberangkatan?1=1',
+            'parameter' => [
+                'method' => 'GET'
+            ]
+        ]);
+        if (isset($res['data'])) {
+            $result = $res['data'];
+        }
+		return $result;
+    }
+
     public function getTujuan($model)
     {
         $result = [];
@@ -101,7 +153,8 @@ class Armada
             'rit' => $model->rit,
             'latitude' => $model->latitude,
             'longitude' => $model->longitude,
-            'tujuan' => $model->tujuan
+            'tujuan' => $model->tujuan,
+            'penjadwalan_id' => $model->penjadwalan_id_fake
         ];
        
 		$res = ApiHelper::getInstance()->callUrl([
