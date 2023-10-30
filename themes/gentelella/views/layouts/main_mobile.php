@@ -736,7 +736,7 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
     <script type="text/javascript">
         <?php if (isset(Yii::app()->user->role) && in_array(Yii::app()->user->role, ['Agen','Sub Agen'])): ?>
         function doWork() {
-            getUpdateSaldo(<?= Yii::app()->user->id ?>);
+            getUpdateSaldo(<?= Yii::app()->user->agen_id ?>);
             repeater = setTimeout(doWork, 3000);
         }
         doWork();
