@@ -596,7 +596,7 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                     <td>
                     <?= 
                     "<label>".$dataSeat['nama']."</label>" . 
-                    "<p>No. Tiket: ".$dataSeat['booking_id']."</p>".
+                    "<p>No. Tiket: ".$dataSeat['no_tiket']."</p>".
                     "<p>Kode Booking: ". $dataSeat['kode_booking'] ."</p>" . 
                     "<p>No. HP: ".$dataSeat['no_hp']."</p>" . 
                     "<p>Jenis Kelamin: ".($dataSeat['jenis_kelamin'] == 'L' ? 'Pria' : 'Wanita')."</p>" .
@@ -605,12 +605,30 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                     "<p>Harga: ". Helper::getInstance()->getRupiah($dataSeat['harga'])."</p>"; 
                     ?>  
                     </td>
-                    <td style="width: 150px;"><?=  ($isOnlyCrew ? CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
-                        Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
-                        Constant::STATUS_PENUMPANG_NAIK => 'Naik',
-                        Constant::STATUS_PENUMPANG_TURUN => 'Turun',
-                        Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
-                    ], ['prompt' => '-- Pilih --', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-id'=>$dataSeat['id']]) : $dataSeat['status'])
+                    <td style="width: 150px;"><?php 
+                    
+                    if ($isOnlyCrew) {
+                        if (in_array($dataSeat['status_id'], [Constant::STATUS_PENUMPANG_TURUN, Constant::STATUS_PENUMPANG_HANGUS])) {
+                            echo $dataSeat['status'];
+                        } else {
+                            echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
+                                // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
+                                Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                                Constant::STATUS_PENUMPANG_TURUN => 'Turun',
+                                // Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
+                            ], ['prompt' => 'Belum Dinaikkan', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id']]);
+                        }
+                        
+                    } else if (in_array(Yii::app()->user->role, ['Checker'])) {
+                        echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
+                            // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
+                            Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                            Constant::STATUS_PENUMPANG_TURUN => 'Turun',
+                            Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
+                        ], ['prompt' => 'Belum Dinaikkan', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id'], 'data-startdate' => $post['startdate']]);
+                    } else {
+                        echo $dataSeat['status'];
+                    }
                     
                     ?></td>
                 </tr>

@@ -201,12 +201,12 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
     });
     $('#Booking_tujuan').on('change', function(){
         if ($('#Booking_asal').val() !== "")
-            searchTujuan($('#Booking_asal').val(), $(this).val());
+            searchTujuan($('#Booking_asal').val(), $(this).val(), $('#Booking_trip_id').val());
     });
 
-    function searchTujuan(asal, tujuan)
+    function searchTujuan(asal, tujuan, trip_id)
     {
-        var dataSend = {asal:asal, tujuan:tujuan};
+        var dataSend = {asal:asal, tujuan:tujuan, trip_id:trip_id};
         $('#preloader').removeClass('none');
         $.ajax({
               type : "POST",
@@ -633,11 +633,13 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         e.preventDefault();
 
         var id = $(this).attr('data-id');
+        var penjadwalan_id = $(this).attr('data-penjadwalan_id');
         var status = $(this).val();
         var startdate = $('#Booking_startdate').val();
-        var data = {id:id, status:status, startdate:startdate};
+        var data = {id:id, status:status, startdate:startdate, penjadwalan_id:penjadwalan_id};
 
-        $.ajax({
+        if (status !== "") {
+            $.ajax({
             type : "POST",
             url : "<?= Constant::baseUrl() . '/booking/updateStatus' ?>",
             dataType : "JSON",
@@ -669,6 +671,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     console.log(data.responseText);
             }
         });
+        }
     });
 
     function saveLatlong(latitude, longitude)

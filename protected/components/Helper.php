@@ -1191,13 +1191,13 @@ class Helper {
                 $objWriter->save('./protected/views/report/csv/'.$title.'.xlsx');
             } else {
                 header('Content-Type:application/vnd.ms-excel;');
-                header('Content-Disposition:attachment; filename="'.$title.'.xlsx";');
+                header('Content-Disposition:attachment; filename="'.$title.'.xls";');
                 header('Cache-Control:max-age=0;');
 
-                $excelType = 'Excel2007';
-                if (SERVER_SEGMENT == 'LOCAL') {
+                // $excelType = 'Excel2007';
+                // if (SERVER_SEGMENT == 'LOCAL') {
                   $excelType = 'Excel5';
-                }
+                // }
                 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, $excelType);
                 $objWriter->save('php://output');
 

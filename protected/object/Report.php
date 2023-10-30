@@ -109,7 +109,8 @@ class Report
                     'agen_id' => Yii::app()->user->sdm_id,
                     'role' => Yii::app()->user->role,
                     'type_date' => isset($this->type_date) ? $this->type_date : null,
-                    'is_export' => $this->is_export
+                    'is_export' => $this->is_export,
+                    'get_total' => isset($params['get_total']) && $params['get_total'] ? $params['get_total'] : null
                     ]
             ]
         ]);

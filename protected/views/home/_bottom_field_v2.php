@@ -10,6 +10,7 @@ $modelBookingExist = !empty($data['data']['modelBookingExist']) ? (object)$data[
 $countSeatBooked = isset($data['data']['seatBooked']) ? count($data['data']['seatBooked']) : 0;
 $subTripSelected = isset($data['data']['subTripSelected']) ? (object)$data['data']['subTripSelected'] : [];
 $startdate = isset($post['startdate']) ? $post['startdate'] : '';
+// $isOnlyCrew = in_array(Yii::app()->user->role, ['Cabin Crew']);
 // Helper::getInstance()->dump($data);
 ?>
 
@@ -17,6 +18,18 @@ $startdate = isset($post['startdate']) ? $post['startdate'] : '';
 
     function confirmSubmitTrip()
     {       
+        <?php if (in_array(Yii::app()->user->role, ['Cabin Crew'])): ?>
+            if ($('#Booking_tujuan').val() === "" || $('#Booking_asal').val() === "") {
+                Swal.fire({
+                        title: 'Harap pilih Asal dan Tujuan dengan benar',
+                        icon: 'warning',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                        });
+                return false;
+            }
+        <?php endif; ?>
         var nama = "<?= isset(Yii::app()->user->nama) ? Yii::app()->user->nama : '-' ?>";
         var no_hp = "<?= isset(Yii::app()->user->no_hp) ? (int)Yii::app()->user->no_hp : '0' ?>";
         

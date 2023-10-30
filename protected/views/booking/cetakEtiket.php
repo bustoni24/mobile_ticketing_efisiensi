@@ -17,7 +17,7 @@
 				'name' => 'jml_penumpang',
 				'type' => 'raw',
 				'value' => function($data) {
-					return Booking::object()->getDetailPenumpang($data['id']);
+					return Booking::object()->getDetailPenumpang($data['nama_pnp_kursi']);
 				}
 			],
 			[

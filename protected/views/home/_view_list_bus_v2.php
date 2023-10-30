@@ -3,7 +3,7 @@
         <h5 class="mt-5 mb-5 d-flex"><?= $data['kelas_bus']; ?> <ul style="padding-left: 20px;margin-bottom: 0;">
 	<li><span class="red" style="font-size: 11px;"><?= $data['seats_left']; ?> Seats Left</span></li>
     </ul></h5>
-    <h5 class="mb-0"><?= $data['no_lambung']; ?></h5>
+    <h5 class="mb-0"><span class="highlight"><?= $data['no_lambung']; ?></span></h5>
     </div>
 
     <table class="table border-none mb-0 content-card">

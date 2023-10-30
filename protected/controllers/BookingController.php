@@ -128,7 +128,7 @@ class BookingController extends Controller
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 			} else {
                 Yii::app()->user->setFlash('error', $saveTransaction['message']);
-				return $this->redirect(Constant::baseUrl().'/booking/routeDetail?id=' . $_GET['id']);
+				return $this->redirect(Constant::baseUrl().'/booking/routeDetailV2?id=' . $_GET['id']);
 			}
 
             return Yii::app()->controller->redirect(Constant::baseUrl().'/booking/cetakETiket/' . (isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : 'all'));
@@ -203,7 +203,11 @@ class BookingController extends Controller
                     ]
             ]
         ]);
-        // Helper::getInstance()->dump($res);
+
+        /* if (isset(Yii::app()->user->sdm_id) && Yii::app()->user->sdm_id == 449) {
+            Helper::getInstance()->dump($res);
+        } */
+    
         if (isset($res['data']))
             $post['data'] = $res['data'];
 
@@ -670,7 +674,9 @@ class BookingController extends Controller
             ]
         ]);
 // Helper::getInstance()->dump($data);
-        if (!isset($data['data'])) {
+        $data = (array)$data['data']; 
+
+        if (!isset($data) || empty($data)) {
             Helper::getInstance()->dump('invalid data :: ' . json_encode($data));
         }
 
@@ -682,9 +688,20 @@ class BookingController extends Controller
 		ob_start();
 		ob_end_clean();
 		$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
-		$mpdf->WriteHTML($this->renderPartial('/home/template_e_ticket', [
-			'data' => $data['data']
-		], true));
+
+        $i = 1;
+		$count = count($data);
+        foreach ($data as $data_) {
+			$mpdf->WriteHTML($this->renderPartial('/home/template_e_ticket', [
+				'data' => $data_
+			], true));
+
+			if ($i < $count){
+				$mpdf->AddPage();
+			}
+			$i++;
+		}
+
 		$mpdf->shrink_tables_to_fit = 2;
 		$mpdf->Output('e-ticket.pdf', 'I');
 		$res['success'] = 1;

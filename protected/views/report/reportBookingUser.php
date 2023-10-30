@@ -59,13 +59,11 @@
 	</div>
     </div>
 
-    <?php if (isset($total_penjualan)): ?>
     <div class="row" style="background: #eee;">
         <div class="col-sm-6">
-            <h5>Total Penjualan: Rp <?= Helper::getInstance()->getRupiah($total_penjualan); ?></h5>
+            <h5>Total Penjualan: Rp <span id="totalPenjualan"></span></h5>
         </div>
     </div>
-    <?php endif; ?>
     
 		<?php 		
 		$this->widget('zii.widgets.grid.CGridView', array(
@@ -79,10 +77,10 @@
                 ], */
                 [
                     'header' => 'Penumpang | Kursi',
-                    'name' => 'jml_penumpang',
+                    'name' => 'nama_pnp_kursi',
                     'type' => 'raw',
                     'value' => function($data) {
-                        return Booking::object()->getDetailPenumpang($data['id']);
+                        return Booking::object()->getDetailPenumpang($data['nama_pnp_kursi']);
                     }
                 ],
                 [
@@ -90,10 +88,9 @@
                     'name' => 'naik',
                     'type' => 'raw',
                     'value' => function($data) {
-                        $res = Booking::object()->getInfoPenumpang($data['id']);
                         $html = "<span style='font-weight: 700;'>No. Tiket: </span>" . $data['booking_id'];
-                        $html .= '<br/><br/>Naik: ' . (isset($res['agen_boarding_nama']) ? $res['agen_boarding_nama'] . ' ('. $data['nama_kota_asal'] .')' : '-');
-                        $html .= '<br/>Penurunan: ' . (isset($res['info_turun']) ? $res['info_turun'] : (isset($data['nama_kota_tujuan']) ? $data['nama_kota_tujuan'] : '-'));
+                        $html .= '<br/><br/>Naik: ' . $data['naik'];
+                        $html .= '<br/>Penurunan: ' . $data['turun'];
                         $html .= "<br/><br/>Group Trip: " . $data['nama_group'];
                         $html .= "<br/>Kelas: " . $data['kelas_bus'];
                         $html .= "<br/>Tgl Input: " . $data['created_date'];

@@ -135,7 +135,7 @@ class BookingHelper {
         $titleSheet = "REPORT PENJUALAN PER USER";
 
         $columnField = [
-            ['No Tiket','Jam Keberangkatan','Penumpang','Kursi','Naik','Penurunan','Kota Tujuan','Harga Satuan','Dijual Oleh','Group Trip','Kelas','Tgl Input','Tgl Keberangkatan']
+            ['Kursi','Jam Keberangkatan','Penumpang','Jml Penumpang','Naik','Penurunan','Kota Tujuan','Total Harga','Dijual Oleh','Group Trip','Kelas','Tgl Input','Tgl Keberangkatan']
         ];
         $columns = [];$i = 0;
         foreach(range('A','Z') as $v){
@@ -153,14 +153,14 @@ class BookingHelper {
         foreach ($model->searchDataBookingUser(false)->getData() as $data){
             // Helper::getInstance()->dump($data);
             array_push($fieldRaw, [
-                $data['booking_id'],
+                $data['kursi'],
                 $data['booking_trip_label'],
                 $data['nama_penumpang'],
-                $data['kursi'],
+                $data['jml_penumpang'],
                 $data['naik'],
                 $data['turun'],
                 $data['nama_kota_tujuan'],
-                $data['harga_satuan'],
+                $data['total_harga'],
                 $data['user_jual'],
                 $data['nama_group'],
                 $data['kelas_bus'],
@@ -168,7 +168,7 @@ class BookingHelper {
                 $data['tanggal']
             ]);
 
-            $totalPenjualan += (int)$data['harga_satuan'];
+            $totalPenjualan += (int)$data['total_harga'];
         }
 
         array_push($fieldRaw, ['Total Penjualan','','','','','','',$totalPenjualan,'','','','','']);

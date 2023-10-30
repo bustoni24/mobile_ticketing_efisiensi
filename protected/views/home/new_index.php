@@ -41,6 +41,11 @@
     table.content-card>tbody>tr>td{
         padding-bottom: 0;
     }
+    span.highlight{
+    color: red;
+    font-size: 16px;
+    font-weight: 700;
+}
 </style>
 <?php
 $this->breadcrumbs = array(
@@ -118,7 +123,11 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
 		uiLibrary: 'bootstrap4',
 		format: 'yyyy-mm-dd',
     minDate: today,
-		header: true
+		header: true,
+        close: function (e) {
+            var data = {startdate:$(this).val()};            
+            updateListView(data);
+         }
 	});
 
   $("body").on("click", ".card-book", function(e){
@@ -136,16 +145,17 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
        $.form("<?= Constant::baseUrl() . '/booking/routeDetailV2?id='; ?>"+route_id+"_"+startdate+"_"+armada_ke+"_"+penjadwalan_id, {route_id:route_id,label_trip:label_trip,agen_id_asal:agen_id_asal,agen_id_tujuan:agen_id_tujuan}).submit();
     });
 
-  $('#PembelianTiket_startdate').on('change', function(){
+  /* $('#PembelianTiket_startdate').on('change', function(){
       var data = {startdate:$(this).val()};            
       updateListView(data);
-  });
+  }); */
 
   function updateListView(data)
   {
       if (typeof data === "undefined" || data === null || data === "")
           return false;
 // console.log(data);
+$('#listViewTrip .table').html('');
       $.fn.yiiListView.update('listViewTrip', {data:data,
       complete: function(){
 

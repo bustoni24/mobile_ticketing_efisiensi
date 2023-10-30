@@ -68,6 +68,8 @@
             <h5>
                 Jumlah Pnp RIT 2 : <?= (isset($post['data']['ops']['penumpang_rit2']) ? $post['data']['ops']['penumpang_rit2'] : 0); ?>
             </h5>
+
+            <?= (isset($post['rit']) && $post['rit'] == '2' ? '<h5 class="red">Mohon Driver segera melakukan Input Daily Check Setelah Mengemudi jika Rit 2 telah berakhir</h5>' : '') ?>
         </div>
     </div>
 
@@ -146,7 +148,7 @@
 
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" name="<?= $key ?>" placeholder="Solar (liter)"
-                                                    value="<?= isset($post['pengeluaran_data'][$key]['value']) ? $post['pengeluaran_data'][$key]['value'] : ''; ?>" required="required">
+                                                    value="<?= isset($post['pengeluaran_data'][$key]['value']) ? $post['pengeluaran_data'][$key]['value'] : '0'; ?>" required="required">
                                                     <span class="input-group-btn">
                                                     <button class="btn btn-secondary h-100x" type="button">Liter</button>
                                                     </span>
@@ -378,7 +380,7 @@ $("body").on("keyup", '#refund', function(e){
 
 <?php else: ?>
     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-        <h4>Tidak ditemukan penugasan</h4>
+        <h4>Tidak ditemukan penugasan yang sedang aktif</h4>
     </div>
 <?php endif; ?>
 

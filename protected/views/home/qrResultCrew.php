@@ -5,7 +5,7 @@
 $this->widget('zii.widgets.CListView', array(
     'id'=>'listViewBooking',
     'dataProvider'=>$model->routeDetail(),
-    'itemView'=>'/home/_view_list_booking',
+    'itemView'=>'/home/_view_list_booking_v2',
     'emptyText' => 'Tidak ditemukan data booking',
 )); 
 ?>
@@ -166,5 +166,50 @@ $("body").on('click', '#tolak', function(){
                     });
             }
         });
+    });
+
+    $("body").on("change", ".changeStatusPnp", function(e){
+        e.preventDefault();
+
+        var id = $(this).attr('data-id');
+        var penjadwalan_id = $(this).attr('data-penjadwalan_id');
+        var status = $(this).val();
+        var startdate = $(this).attr('data-startdate');
+        var data = {id:id, status:status, startdate:startdate, penjadwalan_id:penjadwalan_id};
+
+        if (status !== "") {
+            $.ajax({
+            type : "POST",
+            url : "<?= Constant::baseUrl() . '/booking/updateStatus' ?>",
+            dataType : "JSON",
+            data: data,
+            success : function(data) {
+                if (data.success) {
+                    updateListView({'Booking[startdate]':startdate});
+                    Swal.fire({
+                        html: `Status berhasil diubah`,
+                        icon: 'info',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                        });
+                } else {
+                    console.log(data);
+                    var message = typeof data.message !== "undefined" ? data.message : 'Data gagal konfirmasi';
+                    Swal.fire({
+                        html: message,
+                        icon: 'error',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                        });
+                }
+            },
+            error : function(data){
+                if (typeof(data.responseText) !== "undefined")
+                    console.log(data.responseText);
+            }
+        });
+        }
     });
 </script>

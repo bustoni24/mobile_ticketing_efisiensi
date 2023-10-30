@@ -140,7 +140,7 @@ class HomeController extends Controller
 
 	public function actionHomeCrew()
 	{
-		if ((int)Setting::getValue("REDESIGN", 0) == 1) {
+		if ((int)Setting::getValue("REDESIGN_CREW", 1) == 1) {
 			return $this->actionHomeCrewV2();
 		}
 		$model = new Booking;

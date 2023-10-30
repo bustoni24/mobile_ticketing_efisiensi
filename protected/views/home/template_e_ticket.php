@@ -168,7 +168,10 @@ table.back-head{
                 <h4>Pembagian Kursi</h4>
             </th>
         </tr>
-        <?php foreach ($data['seat_details'] as $seat) {
+        <?php 
+        foreach ($data['seat_details'] as $seat) {
+            if (!isset($seat['booking_id']))
+                continue;
             ?>
 
              <tr>
@@ -196,7 +199,8 @@ table.back-head{
             </tr>
 
             <?php
-        } ?>
+        } 
+        ?>
     </tbody>
 </table>
 
