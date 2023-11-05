@@ -62,10 +62,10 @@ class BookingController extends Controller
 				]
 			]);
             // Helper::getInstance()->dump($saveTransaction);
-			if ($saveTransaction['success']) {
+			if (isset($saveTransaction['success']) && $saveTransaction['success']) {
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 			} else {
-                Yii::app()->user->setFlash('error', $saveTransaction['message']);
+                Yii::app()->user->setFlash('error', (isset($saveTransaction['message']) ? $saveTransaction['message'] : 'Terjadi Kesalahan'));
 				return $this->redirect(Constant::baseUrl().'/booking/routeDetail?id=' . $_GET['id']);
 			}
 
@@ -124,10 +124,10 @@ class BookingController extends Controller
 				]
 			]);
             // Helper::getInstance()->dump($saveTransaction);
-			if ($saveTransaction['success']) {
+			if (isset($saveTransaction['success']) && $saveTransaction['success']) {
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 			} else {
-                Yii::app()->user->setFlash('error', $saveTransaction['message']);
+                Yii::app()->user->setFlash('error', (isset($saveTransaction['message']) ? $saveTransaction['message'] : 'Terjadi Kesalahan'));
 				return $this->redirect(Constant::baseUrl().'/booking/routeDetailV2?id=' . $_GET['id']);
 			}
 
@@ -272,7 +272,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_solar']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(800, 0);
+                    $image->resize(400, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['solar'] = $targetFile;
@@ -292,7 +292,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_parkir']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(800, 0);
+                    $image->resize(400, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['parkir'] = $targetFile;
@@ -312,7 +312,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_tol']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(800, 0);
+                    $image->resize(400, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['tol'] = $targetFile;
@@ -332,7 +332,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_surat-surat']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(800, 0);
+                    $image->resize(400, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['surat-surat'] = $targetFile;

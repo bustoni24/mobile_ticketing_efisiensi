@@ -86,6 +86,23 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         #preloader img, #loaderWaitingRoutes img {
         width: 50%;
         }
+        #preloader, #loaderWaitingGeocode{
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eeeeeef5;
+        max-width: 500px;
+        }
+        #preloader .jumper, #loaderWaitingGeocode .jumper{
+        text-align: center;
+        }
+        #preloader img, #loaderWaitingGeocode img {
+        width: 50%;
+        }
         span.required {
         color: red!important;
         }
@@ -709,6 +726,12 @@ $baseUrl = Yii::app()->assetManager->publish('./themes/gentelella');
         <div id="loaderWaitingRoutes" class="none">
             <div class="jumper">
                 <h5 id="additionalText">Kalkulasi Lokasi Rute Bus</h5>
+                <div class="box-loader"><div class="loader-01"></div></div>
+            </div>
+        </div>
+        <div id="loaderWaitingGeocode" class="none">
+            <div class="jumper">
+                <h5 id="additionalText">Sedang kalkulasi lokasi Anda, mohon tunggu beberapa menit...</h5>
                 <div class="box-loader"><div class="loader-01"></div></div>
             </div>
         </div>

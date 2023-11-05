@@ -67,6 +67,7 @@ class ApiController extends Controller
 	
 	public function actionGetAjaxJam()
 	{
+		$_POST['gtype'] = 'all';
 		$option = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/getAjaxJam',
             'parameter' => [

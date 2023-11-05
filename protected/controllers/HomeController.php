@@ -140,9 +140,9 @@ class HomeController extends Controller
 
 	public function actionHomeCrew()
 	{
-		if ((int)Setting::getValue("REDESIGN_CREW", 1) == 1) {
+		// if ((int)Setting::getValue("REDESIGN_CREW", 1) == 1) {
 			return $this->actionHomeCrewV2();
-		}
+		// }
 		$model = new Booking;
 		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
@@ -239,12 +239,14 @@ class HomeController extends Controller
 					unlink($targetFile);	
 				}
 			}
-			if ($saveTransaction['success']) {			
+			if (isset($saveTransaction['success']) && $saveTransaction['success']) {			
 				$last_id_booking = isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : '';
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&last_id_booking=' . $last_id_booking . '&rit=' . $model->rit);
 			} else {
-				Helper::getInstance()->dump($saveTransaction);
+				// Helper::getInstance()->dump($saveTransaction);
+				Yii::app()->user->setFlash('error', (isset($saveTransaction['message']) ? $saveTransaction['message'] : 'Terjadi Kesalahan'));
+				return $this->redirect(Constant::baseUrl().'/home/homeCrew?startdate=' . $model->startdate .'&latitude=' . $model->latitude .'&longitude=' . $model->longitude .'&tujuan=' . $model->tujuan . '&rit=' . $model->rit);
 			}
 		}
 
@@ -261,7 +263,7 @@ class HomeController extends Controller
 		$model->startdate = (isset($_GET['startdate']) && !empty($_GET['startdate']) ? date('Y-m-d', strtotime($_GET['startdate'])) : date('Y-m-d'));
 		$model->latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
 		$model->longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
-		$model->rit = isset($_GET['rit']) ? $_GET['rit'] : null;
+		$model->rit = isset($_GET['rit']) ? $_GET['rit'] : 1;
 		$model->tujuan = isset($_GET['tujuan']) && !empty($_GET['tujuan']) ? $_GET['tujuan'] : null;
 
 		//cari penugasan
@@ -788,7 +790,7 @@ class HomeController extends Controller
 			if (isset($fileName) && !empty($fileName)) {
 				Yii::import('application.extensions.image.Image');
 				$image = new Image('uploads/' . $fileName);
-				$image->resize(800, 0);
+				$image->resize(400, 0);
 				$image->save('uploads/' . $fileName);
 			}
 

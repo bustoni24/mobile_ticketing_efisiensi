@@ -133,6 +133,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
         
     function getLatLong()
     {
+        $('#loaderWaitingGeocode').removeClass('none');
         if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
@@ -174,6 +175,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
     }
 
 function refreshListBooking(latitude, longitude) {
+    $('#loaderWaitingGeocode').addClass('none');
     if (latitude !== null && longitude !== null) {
         location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val()+"&latitude="+latitude+"&longitude="+longitude+"&rit="+$('#Booking_rit').val()+"&tujuan="+$('#Booking_tujuan_id').val()+"&naik="+$('#Booking_asal').val()+"&turun="+$('#Booking_tujuan').val();
         // var data = {'Booking[startdate]': $('#Booking_startdate').val(), latitude: latitude, longitude: longitude};
@@ -375,6 +377,22 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         var real_armada_ke = $('#BookingTrip_armada_ke').val();
         var status_trip = "<?= ($status_trip == Constant::STATUS_TRIP_CLOSE || in_array($status_rit, [Constant::STATUS_RIT_SKIP, Constant::STATUS_RIT_CLOSE])) ? false : true ?>";
         
+        /*
+<tr>
+                                <th>Status Penumpang</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select id="status" class="form-control">
+                                        <option value="">- Pilih Status -</option>
+                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_NAIK ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_NAIK ?>">Naik</option>
+                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_TURUN ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_TURUN ?>">Turun</option>
+                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_HANGUS ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_HANGUS ?>">Hangus</option>
+                                    </select>
+                                </td>
+                            </tr>
+        */
+
         if (typeof dataPassenger.nama !== 'undefined' && dataPassenger.nama !== "" && dataPassenger.nama !== null) {
             Swal.fire({
                 title: 'Layout Kursi Nomor '+seat,
@@ -406,19 +424,6 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                             <tr>
                                 <td>
                                     <input type="text" id="no_kursi" class="form-control" placeholder="- Ketik Nomor Kursi -" value="${dataPassenger.no_kursi}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Status Penumpang</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select id="status" class="form-control">
-                                        <option value="">- Pilih Status -</option>
-                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_NAIK ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_NAIK ?>">Naik</option>
-                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_TURUN ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_TURUN ?>">Turun</option>
-                                        <option ${dataPassenger.status === "<?= Constant::STATUS_PENUMPANG_HANGUS ?>" ? 'selected="selected"' : ''} value="<?= Constant::STATUS_PENUMPANG_HANGUS ?>">Hangus</option>
-                                    </select>
                                 </td>
                             </tr>
                             <tr>

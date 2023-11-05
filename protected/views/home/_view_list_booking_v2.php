@@ -611,21 +611,39 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                         if (in_array($dataSeat['status_id'], [Constant::STATUS_PENUMPANG_TURUN, Constant::STATUS_PENUMPANG_HANGUS])) {
                             echo $dataSeat['status'];
                         } else {
+                            if (in_array($dataSeat['status_id'], [Constant::STATUS_PENUMPANG_NAIK])) {
+                                echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
+                                    // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
+                                    Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                                    Constant::STATUS_PENUMPANG_TURUN => 'Turun',
+                                    // Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
+                                ], ['style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id']]);
+                            } else {
+                                echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
+                                    // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
+                                    Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                                    // Constant::STATUS_PENUMPANG_TURUN => 'Turun',
+                                    // Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
+                                ], ['prompt' => 'Belum Dinaikkan', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id']]);
+                            }
+                        }
+                        
+                    } else if (in_array(Yii::app()->user->role, ['Checker'])) {
+                        if (in_array($dataSeat['status_id'], [Constant::STATUS_PENUMPANG_NAIK])) {
                             echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
                                 // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
                                 Constant::STATUS_PENUMPANG_NAIK => 'Naik',
                                 Constant::STATUS_PENUMPANG_TURUN => 'Turun',
-                                // Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
-                            ], ['prompt' => 'Belum Dinaikkan', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id']]);
+                                Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
+                            ], ['style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id'], 'data-startdate' => $post['startdate']]);
+                        } else {
+                            echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
+                                // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
+                                Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                                // Constant::STATUS_PENUMPANG_TURUN => 'Turun',
+                                Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
+                            ], ['prompt' => 'Belum Dinaikkan', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id'], 'data-startdate' => $post['startdate']]);
                         }
-                        
-                    } else if (in_array(Yii::app()->user->role, ['Checker'])) {
-                        echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
-                            // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
-                            Constant::STATUS_PENUMPANG_NAIK => 'Naik',
-                            Constant::STATUS_PENUMPANG_TURUN => 'Turun',
-                            Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
-                        ], ['prompt' => 'Belum Dinaikkan', 'style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id'], 'data-startdate' => $post['startdate']]);
                     } else {
                         echo $dataSeat['status'];
                     }

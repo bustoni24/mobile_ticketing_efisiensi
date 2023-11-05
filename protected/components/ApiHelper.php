@@ -7,7 +7,7 @@ class ApiHelper {
         if (SERVER_SEGMENT == "PROD") {
             return "https://efisiensi.id/";
         } else if (SERVER_SEGMENT == "STG") {
-            return "https://staging.efisiensi.id/";
+            return "https://efisiensi.web.id/staging/";
         } else {
             return "http://localhost/efisiensi/";
         }

@@ -59,11 +59,13 @@
 	</div>
     </div>
 
+    <?php if (isset($total_penjualan)): ?>
     <div class="row" style="background: #eee;">
         <div class="col-sm-6">
-            <h5>Total Penjualan: Rp <span id="totalPenjualan"></span></h5>
+            <h5>Total Penjualan: Rp <?= Helper::getInstance()->getRupiah($total_penjualan); ?></h5>
         </div>
     </div>
+    <?php endif; ?>
     
 		<?php 		
 		$this->widget('zii.widgets.grid.CGridView', array(
