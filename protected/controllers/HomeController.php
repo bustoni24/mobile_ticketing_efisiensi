@@ -300,6 +300,8 @@ class HomeController extends Controller
 		if (isset($arrayTujuan['dataSelected']['boarding_city'])) {
 			$arrayTujuan['dataSelected']['boarding_city'] = isset($_GET['naik']) && !empty($_GET['naik']) ? $_GET['naik'] : $arrayTujuan['dataSelected']['boarding_city'];
 		}
+
+		//latitude=-7.7705021&longitude=110.3899462
 		// Helper::getInstance()->dump($arrayTujuan);
 		if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
 			if (!isset($_POST['FormSeat']['kursi'][0]) || empty($_POST['FormSeat']['kursi'][0])) {

@@ -559,10 +559,6 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                                     showCancelButton: false,
                                     confirmButtonText: 'OK'
                                     });
-                                    //action reload
-                                    /* setTimeout(function() {
-                                        location.reload();
-                                    }, 1500); */
                             }
                         },
                         error : function(data){
@@ -651,14 +647,20 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
             data: data,
             success : function(data) {
                 if (data.success) {
-                    updateListView({'Booking[startdate]':startdate});
                     Swal.fire({
                         html: `Status berhasil diubah`,
                         icon: 'info',
                         showDenyButton: false,
                         showCancelButton: false,
                         confirmButtonText: 'OK'
+                        }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                                updateListView({'Booking[startdate]':startdate});
+                            }
                         });
+
+                    updateListView({'Booking[startdate]':startdate});
                 } else {
                     console.log(data);
                     var message = typeof data.message !== "undefined" ? data.message : 'Data gagal konfirmasi';

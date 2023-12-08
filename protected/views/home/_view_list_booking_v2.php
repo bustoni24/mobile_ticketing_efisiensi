@@ -314,6 +314,10 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
         <?= CHtml::hiddenField('BookingTrip[longitude]', (isset($data['data']['longitude']) ? $data['data']['longitude'] : '')) ?>
         <?= CHtml::hiddenField('BookingTrip[jarak]', (isset($listTerdekat['distance']) ? $listTerdekat['distance'] : '')); ?>
 
+        <?= CHtml::hiddenField('label_trip', $trip_label); ?>
+        <?= CHtml::hiddenField('agen_id_asal', isset($subTripSelected->agen_id_asal) ? $subTripSelected->agen_id_asal : ''); ?>
+        <?= CHtml::hiddenField('agen_id_tujuan', isset($subTripSelected->agen_id_tujuan) ? $subTripSelected->agen_id_tujuan : ''); ?>
+
         <?php if ($from_scanner && isset($data_origin['list'])): 
         echo CHtml::hiddenField('BookingTrip[status]', (isset($data_origin['status']) && $data_origin['status'] == Constant::STATUS_PENUMPANG_NAIK ? 2 : 2));
             ?>

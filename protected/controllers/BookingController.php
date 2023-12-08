@@ -95,6 +95,15 @@ class BookingController extends Controller
         $agen_id_asal = isset($_POST['agen_id_asal']) ? $_POST['agen_id_asal'] : null;
         $agen_id_tujuan = isset($_POST['agen_id_tujuan']) ? $_POST['agen_id_tujuan'] : null;
 
+        if (isset($arrId[4]) && !empty($arrId[4])) {
+			$other_params = base64_decode($arrId[4]);
+			$other_params = json_decode($other_params, true);
+
+			$label_trip = isset($other_params['label_trip']) ? $other_params['label_trip'] : null;
+			$agen_id_asal = isset($other_params['agen_id_asal']) ? $other_params['agen_id_asal'] : null;
+			$agen_id_tujuan = isset($other_params['agen_id_tujuan']) ? $other_params['agen_id_tujuan'] : null;
+		}
+
         $model = new Booking('routeDetail');
         $model->route_id = $routeID;
         $model->startdate = $startdate;
@@ -120,6 +129,8 @@ class BookingController extends Controller
 						'user_id' => Yii::app()->user->id,
 						'crew_id' => Yii::app()->user->id,
 						'role' => Yii::app()->user->role,
+                        'agen_id_asal' => $agen_id_asal,
+				        'agen_id_tujuan' => $agen_id_tujuan
 					]
 				]
 			]);
@@ -128,7 +139,7 @@ class BookingController extends Controller
 				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
 			} else {
                 Yii::app()->user->setFlash('error', (isset($saveTransaction['message']) ? $saveTransaction['message'] : 'Terjadi Kesalahan'));
-				return $this->redirect(Constant::baseUrl().'/booking/routeDetailV2?id=' . $_GET['id']);
+				return $this->redirect(Constant::baseUrl().'/booking/routeDetailV2?id=' . $_GET['id'] . '_' . base64_encode(json_encode(['label_trip' => $label_trip, 'agen_id_asal' => $agen_id_asal, 'agen_id_tujuan' => $agen_id_tujuan])));
 			}
 
             return Yii::app()->controller->redirect(Constant::baseUrl().'/booking/cetakETiket/' . (isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : 'all'));

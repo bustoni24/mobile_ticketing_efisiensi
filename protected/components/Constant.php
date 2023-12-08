@@ -13,6 +13,7 @@ class Constant {
     const KELAS_BUSSINESS = 1;
     const KELAS_GOLD = 2;
     const KELAS_BANDARA = 3;
+    const KELAS_BUSSINESS_VIA_SLAWI = 4;
 
     const LEVEL_AKSES_ADMIN = 1;
     const LEVEL_AKSES_AGEN = 2;
