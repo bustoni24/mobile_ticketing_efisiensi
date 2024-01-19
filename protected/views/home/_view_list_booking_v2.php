@@ -511,6 +511,20 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                     </tr>
                 </tbody>
             </table>
+            <?php else: ?>
+            <table class="table">
+                <tbody>
+                    <td>
+                        <div class="row">
+                            <label class="mt-0">Tipe Pembayaran</label>
+                            <?= CHtml::dropDownList('BookingTrip[tipe_pembayaran]', '', [
+                                Constant::TYPE_PEMBAYARAN_DEPOSIT => ucwords(Constant::TYPE_PEMBAYARAN_DEPOSIT),
+                                Constant::TYPE_PEMBAYARAN_QRIS => strtoupper(Constant::TYPE_PEMBAYARAN_QRIS)
+                            ],['class'=>'form-control']); ?>
+                        </div>
+                    </td>
+                </tbody>
+            </table>
             <?php endif; ?>
             
     </div>
@@ -583,8 +597,8 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
     <div class="row" style="overflow: auto;">
         <table class="table table-bordered manifest-pnp">
             <tr>
-                <th>Nomor Kursi</th>
-                <th>Data Penumpang</th>
+                <th style="width: 30px;">Nomor Kursi</th>
+                <th style="width: 220px;">Data Penumpang</th>
                 <th>Status</th>
             </tr>
             <?php 
@@ -613,15 +627,16 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                     
                     if ($isOnlyCrew) {
                         if (in_array($dataSeat['status_id'], [Constant::STATUS_PENUMPANG_TURUN, Constant::STATUS_PENUMPANG_HANGUS])) {
-                            echo $dataSeat['status'];
+                            echo "<label class='red'>".$dataSeat['status']."</label>";
                         } else {
                             if (in_array($dataSeat['status_id'], [Constant::STATUS_PENUMPANG_NAIK])) {
+                                echo "<label class='green'>Sudah Dinaikkan</label>";
                                 echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
                                     // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',
-                                    Constant::STATUS_PENUMPANG_NAIK => 'Naik',
+                                    // Constant::STATUS_PENUMPANG_NAIK => 'Naik',
                                     Constant::STATUS_PENUMPANG_TURUN => 'Turun',
                                     // Constant::STATUS_PENUMPANG_HANGUS => 'Hangus'
-                                ], ['style'=>'padding:2px;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id']]);
+                                ], ['prompt' => 'Belum Diturunkan','style'=>'padding:2px;background-color:orange;color:white;', 'class'=>'changeStatusPnp', 'data-penjadwalan_id' => (isset($post['penjadwalan_id']) ? $post['penjadwalan_id'] : ''), 'data-id'=>$dataSeat['id']]);
                             } else {
                                 echo CHtml::dropDownList('Booking[change_status]['.$dataSeat['id'].']', $dataSeat['status_id'], [
                                     // Constant::STATUS_PENUMPANG_BOOKED => 'Pemesanan Baru',

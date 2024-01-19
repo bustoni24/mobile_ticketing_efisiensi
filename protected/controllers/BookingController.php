@@ -17,66 +17,6 @@ class BookingController extends Controller
         }
 	}
 
-    public function actionRouteDetail()
-    {
-        if (!isset($_GET['id'])) {
-            throw new CHttpException(401,'invalid ID');
-        }
-
-        $arrId = explode('_', $_GET['id']);
-		if (!isset($arrId[0], $arrId[1], $arrId[2]))
-			throw new CHttpException(400,'Invalid Parameter array ID');
-
-		$routeID = $arrId[0];
-		$startdate = $arrId[1];
-		$armada_ke = $arrId[2];
-        $penjadwalan_id = isset($arrId[3]) && !empty($arrId[3]) ? $arrId[3] : null;
-        $label_trip = isset($_POST['label_trip']) ? $_POST['label_trip'] : null;
-        $agen_id_asal = isset($_POST['agen_id_asal']) ? $_POST['agen_id_asal'] : null;
-        $agen_id_tujuan = isset($_POST['agen_id_tujuan']) ? $_POST['agen_id_tujuan'] : null;
-
-        $model = new Booking('routeDetail');
-        $model->route_id = $routeID;
-        $model->startdate = $startdate;
-        $model->armada_ke = $armada_ke;
-        $model->penjadwalan_id = $penjadwalan_id;
-        $model->label_trip = $label_trip;
-
-        if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
-            // Helper::getInstance()->dump(Yii::app()->user->id);
-			$saveTransaction = ApiHelper::getInstance()->callUrl([
-				'url' => 'apiMobile/transactionBooking',
-				'parameter' => [
-					'method' => 'POST',
-					'postfields' => [
-						'route_id' => isset($_POST['BookingTrip']['route_id']) ? $_POST['BookingTrip']['route_id'] : null,
-						'startdate' => isset($_POST['BookingTrip']['startdate']) ? $_POST['BookingTrip']['startdate'] : null,
-						'armada_ke' => isset($_POST['BookingTrip']['armada_ke']) ? $_POST['BookingTrip']['armada_ke'] : null,
-						'penjadwalan_id' => $penjadwalan_id,
-						'BookingTrip' => $_POST['BookingTrip'],
-						'FormSeat' => $_POST['FormSeat'],
-						'user_id' => Yii::app()->user->id,
-						'crew_id' => Yii::app()->user->id,
-						'role' => Yii::app()->user->role,
-					]
-				]
-			]);
-            // Helper::getInstance()->dump($saveTransaction);
-			if (isset($saveTransaction['success']) && $saveTransaction['success']) {
-				Yii::app()->user->setFlash('success', 'Pembelian Tiket Berhasil Dibuat');
-			} else {
-                Yii::app()->user->setFlash('error', (isset($saveTransaction['message']) ? $saveTransaction['message'] : 'Terjadi Kesalahan'));
-				return $this->redirect(Constant::baseUrl().'/booking/routeDetail?id=' . $_GET['id']);
-			}
-
-            return Yii::app()->controller->redirect(Constant::baseUrl().'/booking/cetakETiket/' . (isset($saveTransaction['last_id_booking']) ? $saveTransaction['last_id_booking'] : 'all'));
-		}
-        
-        return $this->render('homeAgen', [
-			'model' => $model
-		]);
-    }
-
     public function actionRouteDetailV2()
     {
         if (!isset($_GET['id'])) {
@@ -195,6 +135,55 @@ class BookingController extends Controller
         return $this->render('inputPenumpangSodok', ['post'=>$post]);
     }
 
+    public function actionInputPendapatanLain()
+    {
+        $post['startdate'] = isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d');
+        //cari penugasan
+        $res = ApiHelper::getInstance()->callUrl([
+            'url' => 'apiMobile/getInputPengeluaranCrew',
+            'parameter' => [
+                'method' => 'POST',
+                'postfields' => [
+                    'startdate' => $post['startdate'],
+                    'user_id' => Yii::app()->user->id,
+                    'role' => Yii::app()->user->role,
+                    'open' => 1
+                    ]
+            ]
+        ]);
+        
+        if (isset($res['data']))
+            $post['data'] = $res['data'];
+
+        // Helper::getInstance()->dump($post['data']['pendapatan_save']);
+        if (isset($_POST['submit'])) {
+            $_POST['penjadwalan_id'] = isset($res['data']['penjadwalan_id']) ? $res['data']['penjadwalan_id'] : null;
+            $_POST = array_merge([
+                'user_id' => Yii::app()->user->id,
+                'role' => Yii::app()->user->role,
+                'startdate' => $post['startdate']
+            ], $_POST);
+
+            $res = ApiHelper::getInstance()->callUrl([
+                'url' => 'apiMobile/inputPendapatanCrew',
+                'parameter' => [
+                    'method' => 'POST',
+                    'postfields' => $_POST
+                ]
+            ]);
+            // Helper::getInstance()->dump($res);
+
+            if (!$res['success']) {
+                Helper::getInstance()->dump($res['message']);
+            }
+            
+            Yii::app()->user->setFlash('success', "Input Pendapatan Lain berhasil");
+            return $this->redirect(array('inputPendapatanLain'));
+        }
+
+        return $this->render('inputPendapatanLain', ['post'=>$post]);
+    }
+
     public function actionInputPengeluaranCrew()
     {
         $post['startdate'] = isset($_GET['startdate']) ? $_GET['startdate'] : date('Y-m-d');
@@ -215,9 +204,7 @@ class BookingController extends Controller
             ]
         ]);
 
-        /* if (isset(Yii::app()->user->sdm_id) && Yii::app()->user->sdm_id == 449) {
-            Helper::getInstance()->dump($res);
-        } */
+        // Helper::getInstance()->dump($res);
     
         if (isset($res['data']))
             $post['data'] = $res['data'];
@@ -241,9 +228,9 @@ class BookingController extends Controller
                 ]
             ]);
             $post['pengeluaran_data'] = isset($pengeluaranDatas['data']) ? (array)$pengeluaranDatas['data'] : [];
-            // Helper::getInstance()->dump($post['pengeluaran_data']['parkir_bandara']['value']);
         endif;
 
+        // Helper::getInstance()->dump($post);
         if (isset($_POST['submit'])) {
             $targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
             //upload multiple
@@ -253,7 +240,7 @@ class BookingController extends Controller
             }
             // Helper::getInstance()->dump([$postPengeluaran, $_FILES]);
             if (!empty($postPengeluaran['solar']) && empty($_FILES['attach_solar']['tmp_name']) && !isset($post['pengeluaran_data']['solar']['lampiran'])) {
-                Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti pengeluaran parkir');
+                Yii::app()->user->setFlash('error', 'Mohon lampirkan bukti pengeluaran solar');
                 return $this->render('inputPengeluaranCrew', ['post'=>$post]);
             }
             if (!empty($postPengeluaran['parkir']) && empty($_FILES['attach_parkir']['tmp_name']) && !isset($post['pengeluaran_data']['parkir']['lampiran'])) {
@@ -283,7 +270,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_solar']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(400, 0);
+                    $image->resize(500, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['solar'] = $targetFile;
@@ -303,7 +290,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_parkir']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(400, 0);
+                    $image->resize(500, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['parkir'] = $targetFile;
@@ -323,7 +310,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_tol']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(400, 0);
+                    $image->resize(500, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['tol'] = $targetFile;
@@ -343,7 +330,7 @@ class BookingController extends Controller
                 if (move_uploaded_file($_FILES['attach_surat-surat']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');
                     $image = new Image('uploads/' . $fileName);
-                    $image->resize(400, 0);
+                    $image->resize(500, 0);
                     $image->save('uploads/' . $fileName);
 
                     $targetFileArray['surat-surat'] = $targetFile;

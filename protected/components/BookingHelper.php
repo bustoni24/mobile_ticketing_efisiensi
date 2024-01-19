@@ -218,6 +218,7 @@ class BookingHelper {
     public function updateStatus($post)
     {
         $post['role'] = Yii::app()->user->role;
+        $post['user_id'] = Yii::app()->user->id;
         $post['source_naik'] = 'manifest';
         $check = ApiHelper::getInstance()->callUrl([
             'url' => 'apiMobile/updateStatus',

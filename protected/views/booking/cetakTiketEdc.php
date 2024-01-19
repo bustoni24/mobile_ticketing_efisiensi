@@ -53,7 +53,7 @@ foreach ($datas as $data) {
         <tr>
             <td colspan="2" class="pb-0">
                 <h5 class="m-0"><?= $data['nama_group'] ?> / <?= $data['kelas_bus'] ?> <?= $data['nama_template'] ?></h5>
-                <label style="font-size: 10px;"><?= $data['nama_kota_asal'] . ' - ' . $data['nama_kota_tujuan'] ?></label>
+                <label style="font-size: 10px;"><?= $data['nama_kota_asal'] . ' - ' . $data['nama_kota_tujuan'] . (isset($data['kota_transit']) ? ' [TRANSIT '.$data['kota_transit'].']' : '') ?></label>
                 <p style="font-size: 10px;"><?= $data['titik_keberangkatan'] ?></p>
                 <p style="font-size: 10px;"><?= $data['hari'] . ', ' . $this->IndonesiaTgl($data['tanggal']) . ' ' . $data['jam']; ?></p>
                 <br/>
@@ -74,7 +74,7 @@ foreach ($datas as $data) {
                         try{
                             $qr_widget = $this->widget('application.extensions.qrcode.QRCodeGenerator',array(
                                 'data' => $qr_data,
-                                'filename' => $data['nama_penumpang'].".png",
+                                'filename' => (isset($data['id']) ? $data['id'] : $data['booking_id']).".png",
                                 'subfolderVar' => false,
                                 'matrixPointSize' => 2,
                                 'displayImage'=>true,

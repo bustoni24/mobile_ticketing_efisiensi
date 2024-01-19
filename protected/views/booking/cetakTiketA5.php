@@ -35,7 +35,7 @@
                     try{
                         $qr_widget = $this->widget('application.extensions.qrcode.QRCodeGenerator',array(
                             'data' => $qr_data,
-                            'filename' => (isset($data['penumpang'][0]['nama_penumpang']) ? $data['penumpang'][0]['nama_penumpang'] : $data['booking_id']).".png",
+                            'filename' => (isset($data['penumpang'][0]['id']) ? $data['penumpang'][0]['id'] : $data['booking_id']).".png",
                             'subfolderVar' => false,
                             'matrixPointSize' => 6,
                             'displayImage'=>true,
@@ -75,7 +75,7 @@
         <tr>
             <td>
                 <p>TUJUAN</p>
-                <label class="mt-0"><?= isset($data['penumpang'][0]['info_turun']) ? $data['penumpang'][0]['info_turun'] : strtoupper($data['nama_kota_tujuan']) ?></label>
+                <label class="mt-0"><?= isset($data['penumpang'][0]['info_turun']) ? $data['penumpang'][0]['info_turun'] : strtoupper($data['nama_kota_tujuan']) . (isset($data['penumpang'][0]['kota_transit']) ? ' [TRANSIT '.$data['penumpang'][0]['kota_transit'].']' : '') ?></label>
             </td>
         </tr>
 

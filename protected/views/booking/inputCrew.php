@@ -11,7 +11,7 @@
     border-bottom: 1px solid #c9c9c9;
 }
 .vertical-menu .left-img-container {
-    width: 55px;
+    width: 45px;
     display: inline-block;
 }
 .vertical-menu .left-img-container .fa{
@@ -32,6 +32,16 @@
         <div class="container-text">
         <h4 class="header-text">Input Pengeluaran</h4>
         <p class="content-text">Input data pengeluaran crew selama perjalanan</p>
+        </div>
+    </a>
+
+    <a href="<?= Constant::baseUrl().'/booking/inputPendapatanLain/'.Yii::app()->user->sdm_id; ?>">
+        <div class="left-img-container">
+        <i class="fa fa-file-text-o"></i>
+        </div>
+        <div class="container-text">
+        <h4 class="header-text">Input Pendapatan Lain</h4>
+        <p class="content-text">Input data pendapatan lain crew selama perjalanan</p>
         </div>
     </a>
 

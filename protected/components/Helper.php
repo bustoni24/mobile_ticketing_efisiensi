@@ -1388,6 +1388,7 @@ class Helper {
 
   public function getPengeluaranItem($data)
   {
+    // Helper::getInstance()->dump($data['trayek']);
     $result = [
       'solar' => [
         'label' => ['value' => ''], 
@@ -1413,8 +1414,8 @@ class Helper {
         'attach' => true
       ],
     ];
-    if (isset($data[1]['trip_label'])) {
-      if (in_array($data[1]['trip_label'], ['SMG','JEP'])) {
+    if (isset($data['data'][1]['trip_label'])) {
+      if (in_array($data['data'][1]['trip_label'], ['SMG','JEP'])) {
           unset($result['parkir_bandara']);
       }
     }
@@ -1429,8 +1430,11 @@ class Helper {
         } else if (in_array('cilacap-solo', $data['trayek']) || in_array('solo-cilacap', $data['trayek'])) {
           $result['terminal']['label']['value'] = 100000;
           unset($result['solar']['refund']);
-        } else if (in_array('semarang-jepara', $data['trayek']) || in_array('jepara-semarang', $data['trayek']) || in_array('cilacap-semarang', $data['trayek']) || in_array('semarang-cilacap', $data['trayek']) || in_array('cilacap-jepara', $data['trayek']) || in_array('jepara-cilacap', $data['trayek'])) {
+        } else if (in_array('semarang-jepara', $data['trayek']) || in_array('jepara-semarang', $data['trayek']) || in_array('cilacap-semarang', $data['trayek']) || in_array('semarang-cilacap', $data['trayek']) || in_array('cilacap-jepara', $data['trayek']) || in_array('jepara-cilacap', $data['trayek']) || in_array('semarang-purwokerto', $data['trayek']) || in_array('purwokerto-semarang', $data['trayek'])) {
           $result['terminal']['label']['value'] = 110000;
+        } else if (in_array('cilacap-gunungkidul', $data['trayek']) || in_array('gunungkidul-cilacap', $data['trayek']) || in_array('cilacap-gunung kidul', $data['trayek']) || in_array('gunung kidul-cilacap', $data['trayek']) ) {
+          $result['terminal']['label']['value'] = 80000;
+          unset($result['solar']['refund']);
         } else {
           unset($result['terminal']);
           if (in_array('cilacap-semarang', $data['trayek']) || in_array('semarang-cilacap', $data['trayek']) || in_array('cilacap-jepara', $data['trayek']) || in_array('jepara-cilacap', $data['trayek'])) {
@@ -1439,10 +1443,35 @@ class Helper {
             unset($result['solar']['refund']);
           }
         }
+
+        if (isset($data['data'][3])):
+          if ((in_array('yogyakarta-cilacap', $data['trayek']) || 
+          in_array('cilacap-yogyakarta', $data['trayek']))) {
+            $result['terminal']['label']['value'] = 100000;
+            unset($result['solar']['refund']);
+          } else if ((in_array('yogyakarta-purwokerto', $data['trayek']) || 
+          in_array('purwokerto-yogyakarta', $data['trayek']))) {
+            $result['terminal']['label']['value'] = 100000;
+            unset($result['solar']['refund']);
+          }
+        endif;
+
     } else {
       unset($result['terminal']);
     }
+
     return $result;
+  }
+
+  public function getRitDisplay()
+  {
+    $count = (int)Setting::getValue("RIT", 3);
+    $rit = [];
+    for ($i=1; $i <= $count; $i++) { 
+      $rit[$i] = 'RIT ' . $i;
+    }
+
+    return $rit;
   }
 
   public function hashSha1($body = [])

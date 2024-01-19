@@ -103,7 +103,9 @@ let opts = {
 const scanner = new Instascan.Scanner(opts);
 // Mengaktifkan kamera dan memulai scanning QR code
 Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 0) {
+    if (cameras.length > 1) {
+        scanner.start(cameras[1]); // Gunakan kamera belakang
+    } else if (cameras.length > 0) { 
         scanner.start(cameras[0]); // Gunakan kamera pertama yang ditemukan
     } else {
         console.error('Kamera tidak ditemukan.');

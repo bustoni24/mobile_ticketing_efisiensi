@@ -76,6 +76,7 @@ $startdate = isset($post['startdate']) ? $post['startdate'] : '';
         var trip_id =  "<?= isset($modelTrip->id) ? $modelTrip->id : ''; ?>";
         var startdate = $('#Booking_startdate').val();
         var armada_ke = "<?= isset($post['armada_ke']) ? $post['armada_ke'] : ''; ?>";
+        var trip_label = "<?= isset($post['trip_label']) ? $post['trip_label'] : ''; ?>";
         var seat = $("input[name='FormSeat[kursi][]']")
               .map(function(){return $(this).val();}).get();
 
@@ -86,7 +87,7 @@ $startdate = isset($post['startdate']) ? $post['startdate'] : '';
 
         Swal.fire({
             html: `
-            <h5 class="text-center">Konfirmasi Pesanan</h5>    
+            <h5 class="text-center">Konfirmasi Pesanan <br/>${trip_label}</h5>
             <table class='table border-none' style='text-align:left;width: 100%;'>
                     <tbody>
                     <tr>
@@ -217,14 +218,14 @@ $startdate = isset($post['startdate']) ? $post['startdate'] : '';
                             console.log(data.responseText);
                     }
                 });
-        }
 
-        repeater = setTimeout(doRefresh, 10000);
+            repeater = setTimeout(doRefresh, 10000);
+        }
     }
 
-    $(window).bind('load', function() {
+   /*  $(window).bind('load', function() {
         doRefresh();
-    });
+    }); */
 
     $("body").on('click', '#allCheck', function(){
         var nameField = $('tr#form-passenger0').find('input#FormSeat_name').val();

@@ -27,10 +27,7 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Pilih RIT</label>
-              <?= CHtml::dropDownList('rit', isset($post['data']['rit']) && !empty($post['data']['rit']) ? $post['data']['rit'] : (isset($_GET['rit']) ? $_GET['rit'] : 1), [
-                1 => 'RIT 1',
-                2 => 'RIT 2',
-              ],['class' => 'form-control']); ?>
+              <?= CHtml::dropDownList('rit', isset($post['data']['rit']) && !empty($post['data']['rit']) ? $post['data']['rit'] : (isset($_GET['rit']) ? $_GET['rit'] : 1), Helper::getInstance()->getRitDisplay(),['class' => 'form-control']); ?>
         </div>
       </div>
 

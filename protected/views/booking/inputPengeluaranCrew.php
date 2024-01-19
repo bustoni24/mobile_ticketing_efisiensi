@@ -26,10 +26,7 @@
     <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Pilih RIT</label>
-              <?= CHtml::dropDownList('rit',(isset($post['rit']) ? $post['rit'] : 1), [
-                1 => 'RIT 1',
-                2 => 'RIT 2',
-              ],['class' => 'form-control']); ?>
+              <?= CHtml::dropDownList('rit',(isset($post['rit']) ? $post['rit'] : 1), Helper::getInstance()->getRitDisplay(),['class' => 'form-control']); ?>
         </div>
       </div>
 
@@ -45,31 +42,47 @@
 
 <div class="row">
 
-<?php if (isset($post['data']) && !empty($post['data'])): 
+<?php if (isset($post['data']['data']) && !empty($post['data']['data'])): 
     $isTripClose = $post['data']['status_trip'] == Constant::STATUS_TRIP_CLOSE;
     $isRitClose = $post['status_rit_close'];
+    // Helper::getInstance()->dump($post['data']['ops']['rit']);
     ?>
 <div class="card-booking card-book border-none">
         <div class="x_title grey-dark mb-0">
-            <h4><?= 
-            (isset($post['data'][1]) ? $post['data'][1]['kota_asal'] . ' - ' . $post['data'][1]['kota_tujuan'] : '???') .
-            (isset($post['data'][2]) ?  ' | ' . $post['data'][2]['kota_asal'] . ' - ' . $post['data'][2]['kota_tujuan'] : '')
-              . '<br/>' . $this->getDay($post['startdate']) . ', ' . $this->IndonesiaTgl($post['startdate']); ?></h4>
+            <h4><?php
+            $displayRit = "";
+            $displayLabel = "";
+            $displayJmlPnp = "";
+            $ritEnd = 2;
+            $displayRitComplete = ['biaya_operasional' => 0];
+            foreach ($post['data']['data'] as $rit => $d_) {
+                if (!isset($d_['kota_asal'], $d_['kota_tujuan']))
+                    continue;
+
+                $displayRit .= (!empty($displayRit) ? ' | ' : '') . $d_['kota_asal'] . ' - ' . $d_['kota_tujuan'];
+                $displayLabel .= (!empty($displayLabel) ? ' - ' : '') . $d_['label'];
+                $displayJmlPnp .= "<h5>Jumlah Pnp RIT ". $rit ." : ". (isset($post['data']['ops']['penumpang_rit'][$rit]) ? $post['data']['ops']['penumpang_rit'][$rit] : 0) ."</h5>";
+                $displayRitComplete['biaya_operasional'] += isset($post['data']['ops']['rit'][$rit]) ? $post['data']['ops']['rit'][$rit] : 0;
+
+                $ritEnd = $rit;
+            }
+              $displayRit .= '<br/><br/>' . $this->getDay($post['startdate']) . ', ' . $this->IndonesiaTgl($post['startdate']);
+            
+              echo $displayRit;
+            ?></h4>
+
+
             <h5>Driver: <?= $post['data']['driver']; ?></h5>
             <h5>Cabin Crew: <?= $post['data']['cabin_crew']; ?></h5>
             <?php echo (isset($post['data']['nomor_lambung']) && !empty($post['data']['nomor_lambung']) ? '<h5>Nomor Lambung: '. $post['data']['nomor_lambung'].'</h5>' : ''); ?>
 
-            <h5>Trayek: <?= (isset($post['data'][1]['label']) ? $post['data'][1]['label'] : '') . (isset($post['data'][2]['label']) ? ' - ' . $post['data'][2]['label'] : ''); ?></h5>
+
+            <h5>Trayek: <?= $displayLabel; ?></h5>
             <div class="clearfix"></div>
 
-            <h5>
-                Jumlah Pnp RIT 1 : <?= (isset($post['data']['ops']['penumpang_rit1']) ? $post['data']['ops']['penumpang_rit1'] : 0); ?>
-            </h5>
-            <h5>
-                Jumlah Pnp RIT 2 : <?= (isset($post['data']['ops']['penumpang_rit2']) ? $post['data']['ops']['penumpang_rit2'] : 0); ?>
-            </h5>
-
-            <?= (isset($post['rit']) && $post['rit'] == '2' ? '<h5 class="red">Mohon Driver segera melakukan Input Daily Check Setelah Mengemudi jika Rit 2 telah berakhir</h5>' : '') ?>
+            <?= $displayJmlPnp ?>
+            
+            <?= (isset($post['rit']) && $post['rit'] == $ritEnd ? '<h5 class="red">Mohon Driver segera melakukan Input Daily Check Setelah Mengemudi jika Rit '. $ritEnd .' telah berakhir</h5>' : '') ?>
         </div>
     </div>
 
@@ -85,10 +98,53 @@
     )); 
     ?>
 
-    <?php if (isset($post['data']['ops']['rit1'], $post['data']['ops']['rit2'])): ?>
+<?php 
+$skipField = [];
+    if (isset($post['pengeluaran_data']) && !empty($post['pengeluaran_data'])):
+        ?>
+        <table class="table table-bordered">
+            <tbody>
+                    <tr>
+                        <td colspan="2"><h4>Pengeluaran Tersimpan</h4></td>
+                    </tr>
+                    <tr>
+                        <th>Keterangan</th>
+                        <th>Lampiran</th>
+                    </tr>
+                    <?php                
+                    foreach ($post['pengeluaran_data'] as $pengeluaran) {
+                        $skipField[$pengeluaran['deskripsi']] = ['value' => $pengeluaran['value'], 'rit' => $pengeluaran['rit']];
+                        ?>
+                        <tr>
+                            <td width="30%"><?= ucwords(str_replace("_", " ", $pengeluaran['deskripsi'])) . ' RIT ' . $pengeluaran['rit'] . '<br/>' . 
+                                'Nominal: ' . Helper::getInstance()->getRupiah($pengeluaran['value']);
+                            ?></td>
+                            <td>
+                            <?php if (isset($pengeluaran['lampiran']) && !empty($pengeluaran['lampiran'])) {
+                                ?>
+                                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                <img src="<?= $pengeluaran['lampiran']; ?>" class="icon-img"/>
+                                </div>
+                                <?php
+                            } ?>
+                            </td>
+                        </tr>
+                        <?php
+                    } 
+                ?>
+                    <tr>
+                        <td colspan="2" style="border-bottom: 1px solid!important;"></td>
+                    </tr>
+            </tbody>
+        </table>
+        <?php
+            endif;
+        ?>
+
+    <?php if (isset($displayRitComplete['biaya_operasional'])): ?>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_title">
-                <h5 class="title">Data Pengeluaran <?= $isTripClose ? '(<span class="red">Input Pengeluaran telah ditutup karena Trip sudah berakhir</span>)' : ''; ?></h5>
+                <h4 class="title">Input Pengeluaran <?= $isTripClose ? '(<span class="red">Input Pengeluaran telah ditutup karena Trip sudah berakhir</span>)' : ''; ?></h4>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -102,7 +158,7 @@
                         </th>
                         <td width="50%">
                             <label>
-                                <?= ($post['data']['ops']['rit1'] + $post['data']['ops']['rit2']) > 0 ? Helper::getInstance()->getRupiah(($post['data']['ops']['rit1'] + $post['data']['ops']['rit2'])) : ($post['data']['ops']['rit1'] + $post['data']['ops']['rit2']); ?>
+                                <?= Helper::getInstance()->getRupiah($displayRitComplete['biaya_operasional']); ?>
                             </label>
                         </td>
                     </tr>
@@ -112,8 +168,8 @@
     <?php endif; ?>
    
     <?php
-    // Helper::getInstance()->dump($post['data']);
     $deskripsiPengeluaran = Helper::getInstance()->getPengeluaranItem($post['data']);
+    // Helper::getInstance()->dump($post);
     ?>
     <div class="row d-relative">
         <table class="table border-none">
@@ -126,9 +182,8 @@
                             $i = 1;
                             foreach ($deskripsiPengeluaran as $key => $value) {
                                 ?>
-                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($post['pengeluaran_data'][$key]['value']) || (isset($value['label']['value']) && !empty($value['label']['value'])) ? '' : '') : '' ?>">
+                                <tr class="<?= !in_array($key, ['solar']) ? 'inputLain ' . (isset($skipField[$key]['value']) || (isset($value['label']['value']) && !empty($value['label']['value'])) ? '' : '') : '' ?>">
                                     <?php foreach ($value as $l => $dt) {
-                                        
                                         if ($l == 'label'):
                                         ?>
                                         <td width="50%">
@@ -137,18 +192,18 @@
                                                 <label class="mb-0">Pengeluaran Lain <span class="red">(diisi jika perlu)</span></label>
                                                 <hr class="mb-0 mt-0"/>
                                             <?php
-                                                if (isset($post['pengeluaran_data'][$key]['value']) && isset($post['rit']) && $post['rit'] == '2')
+                                                if (isset($skipField[$key]['value'], $skipField[$key]['rit']) && isset($post['rit']) && $post['rit'] != $skipField[$key]['rit'])
                                                     continue;
-                                                    
                                                 ?>
                                             <?php endif; ?>
-
-                                            <label><?= ucwords(str_replace("_", " ", $key)); ?></label>
+                                            <?php if (isset($skipField[$key]['value'], $skipField[$key]['rit']) && isset($post['rit']) && $post['rit'] != $skipField[$key]['rit'] && $key == 'parkir_bandara')
+                                                    continue; ?>
+                                            <label><?= ucwords(str_replace("_", " ", $key)) . (in_array($key, ['solar']) ? ' <span class="red">(jika belum mohon diisi 0)</span>' : '' ); ?></label>
                                             <?php if (in_array($key, ['solar'])): ?>
 
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" name="<?= $key ?>" placeholder="Solar (liter)"
-                                                    value="<?= isset($post['pengeluaran_data'][$key]['value']) ? $post['pengeluaran_data'][$key]['value'] : '0'; ?>" required="required">
+                                                    value="" <?= !isset($skipField[$key]['value']) ? 'required="required"' : '' ?>>
                                                     <span class="input-group-btn">
                                                     <button class="btn btn-secondary h-100x" type="button">Liter</button>
                                                     </span>
@@ -161,7 +216,7 @@
                                             <?php else: ?>
                                                 <input class="form-control number" name="<?= $key ?>" placeholder="<?= str_replace("_", " ", $key) ?>" 
                                                 <?= isset($dt['readonly']) && $dt['readonly'] ? 'readonly="readonly"' : ''; ?>
-                                                value="<?= isset($post['pengeluaran_data'][$key]['value']) ? Helper::getInstance()->getRupiah($post['pengeluaran_data'][$key]['value']) : Helper::getInstance()->getRupiah($dt['value']); ?>"
+                                                value="<?= isset($skipField[$key]['value']) ? Helper::getInstance()->getRupiah($skipField[$key]['value']) : Helper::getInstance()->getRupiah($dt['value']); ?>"
                                                 />
                                             <?php endif; ?>
                                         </td>
@@ -170,15 +225,7 @@
                                             ?>
                                         <td>
                                             <label>Lampiran</label>
-                                            <?php if (isset($post['pengeluaran_data'][$key]['lampiran'])): ?>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 "> 
-                                            <div class="col-md-12 col-sm-12 col-xs-12 "> 
-                                                <div class="col-md-12 col-sm-12 col-xs-12 "> 
-                                                <img src="<?= $post['pengeluaran_data'][$key]['lampiran']; ?>" class="icon-img"/>
-                                                </div>
-                                            <?php else: ?>
-                                                <input type="file" name="attach_<?= $key ?>" class="form-control" accept="image/png, image/gif, image/jpeg"/>
-                                            <?php endif; ?>
+                                            <input type="file" name="attach_<?= $key ?>" class="form-control" accept="image/png, image/gif, image/jpeg"/>
                                         </td>
                                             <?php
                                         endif;

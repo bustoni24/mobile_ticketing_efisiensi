@@ -126,10 +126,14 @@ class Armada
     public function getAsalKeberangkatan()
     {
         $result = [];
+        $this->agen_id = isset(Yii::app()->user->agen_id) ? Yii::app()->user->agen_id : null;
 		$res = ApiHelper::getInstance()->callUrl([
-            'url' => 'apiMobile/getAsalKeberangkatan?1=1',
+            'url' => 'apiMobile/getAsalKeberangkatan',
             'parameter' => [
-                'method' => 'GET'
+                'method' => 'POST',
+                'postfields' => [
+					'agen_id' => $this->agen_id
+                ]
             ]
         ]);
         if (isset($res['data'])) {

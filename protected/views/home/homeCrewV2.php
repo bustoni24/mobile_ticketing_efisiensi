@@ -39,10 +39,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
 
       <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
-              <?= CHtml::dropDownList('Booking[rit]',$model->rit, [
-                1 => 'RIT 1',
-                2 => 'RIT 2',
-              ],['class' => 'form-control','prompt'=>'Pilih RIT']); ?>
+              <?= CHtml::dropDownList('Booking[rit]',$model->rit, Helper::getInstance()->getRitDisplay(),['class' => 'form-control','prompt'=>'Pilih RIT']); ?>
         </div>
       </div>
 
@@ -639,7 +636,17 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
         var startdate = $('#Booking_startdate').val();
         var data = {id:id, status:status, startdate:startdate, penjadwalan_id:penjadwalan_id};
 
-        if (status !== "") {
+        var proses = true;
+        if (status === "<?= Constant::STATUS_PENUMPANG_TURUN ?>") {
+            proses = false;
+            if (confirm("Apakah Anda Yakin penumpang ini akan diturunkan? Jika status sudah turun maka daftar penumpang tersebut akan hilang dari manifest Crew") == true) {
+                proses = true;
+            } else {
+                updateListView({'Booking[startdate]':startdate});
+            }
+        }
+
+        if (status !== "" && proses) {
             $.ajax({
             type : "POST",
             url : "<?= Constant::baseUrl() . '/booking/updateStatus' ?>",

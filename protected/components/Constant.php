@@ -45,6 +45,8 @@ class Constant {
     const PENGANTARAN_TIDAK = 'tidak';
     const TIPE_PEMBAYARAN_TUNAI = 'tunai';
     const TIPE_PEMBAYARAN_TRANSFER = 'transfer';
+    const TYPE_PEMBAYARAN_DEPOSIT = "deposit";
+    const TYPE_PEMBAYARAN_QRIS = "qris";
 
     const STATUS_TRIP_CLOSE = 5;
     const SOURCE_NAIK_SCAN = "scan";
