@@ -691,7 +691,7 @@ class Helper {
       'Ambarketawang' => 'Ambarketawang',
       'Tamanwinangun' => 'Tamanwinangun',
       'Sokaraja' => 'Sokaraja',
-      'Lainnya' => 'Lainnya'
+      'Cash' => 'Cash'
     ];
    }
 
@@ -1424,16 +1424,22 @@ class Helper {
         if (in_array('cilacap-bobotsari', $data['trayek']) || (in_array('cilacap-ajibarang', $data['trayek'])) || (in_array('bobotsari-ajibarang', $data['trayek'])) || (in_array('bobotsari-cilacap', $data['trayek'])) || (in_array('ajibarang-cilacap', $data['trayek'])) || (in_array('yogyakarta-cilacap', $data['trayek'])) || 
         (in_array('cilacap-yogyakarta', $data['trayek'])) || (in_array('ajibarang-yogyakarta', $data['trayek'])) ||
         (in_array('bobotsari-yogyakarta', $data['trayek'])) || (in_array('yogyakarta-bobotsari', $data['trayek'])) ||
-        (in_array('yogyakarta-ajibarang', $data['trayek'])) ) {
+        (in_array('yogyakarta-ajibarang', $data['trayek'])) ||
+        (in_array('yogyakarta-purbalingga', $data['trayek'])) ||
+        (in_array('purbalingga-yogyakarta', $data['trayek'])) ) {
           $result['terminal']['label']['value'] = 80000;
           unset($result['solar']['refund']);
         } else if (in_array('cilacap-solo', $data['trayek']) || in_array('solo-cilacap', $data['trayek'])) {
-          $result['terminal']['label']['value'] = 100000;
+          $result['terminal']['label']['value'] = 80000;
           unset($result['solar']['refund']);
         } else if (in_array('semarang-jepara', $data['trayek']) || in_array('jepara-semarang', $data['trayek']) || in_array('cilacap-semarang', $data['trayek']) || in_array('semarang-cilacap', $data['trayek']) || in_array('cilacap-jepara', $data['trayek']) || in_array('jepara-cilacap', $data['trayek']) || in_array('semarang-purwokerto', $data['trayek']) || in_array('purwokerto-semarang', $data['trayek'])) {
           $result['terminal']['label']['value'] = 110000;
         } else if (in_array('cilacap-gunungkidul', $data['trayek']) || in_array('gunungkidul-cilacap', $data['trayek']) || in_array('cilacap-gunung kidul', $data['trayek']) || in_array('gunung kidul-cilacap', $data['trayek']) ) {
           $result['terminal']['label']['value'] = 80000;
+          unset($result['solar']['refund']);
+        } else if ((in_array('yogyakarta-purwokerto', $data['trayek']) || 
+        in_array('purwokerto-yogyakarta', $data['trayek']))) {
+          $result['terminal']['label']['value'] = 100000;
           unset($result['solar']['refund']);
         } else {
           unset($result['terminal']);
@@ -1446,10 +1452,7 @@ class Helper {
 
         if (isset($data['data'][3])):
           if ((in_array('yogyakarta-cilacap', $data['trayek']) || 
-          in_array('cilacap-yogyakarta', $data['trayek']))) {
-            $result['terminal']['label']['value'] = 100000;
-            unset($result['solar']['refund']);
-          } else if ((in_array('yogyakarta-purwokerto', $data['trayek']) || 
+          in_array('cilacap-yogyakarta', $data['trayek'])) || (in_array('yogyakarta-purwokerto', $data['trayek']) || 
           in_array('purwokerto-yogyakarta', $data['trayek']))) {
             $result['terminal']['label']['value'] = 100000;
             unset($result['solar']['refund']);
@@ -1462,6 +1465,21 @@ class Helper {
 
     return $result;
   }
+
+  public function does_url_exists($url)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($code == 200) {
+            $status = 200;
+        } else {
+            $status = 404;
+        }
+        curl_close($ch);
+        return $status;
+    }
 
   public function getRitDisplay()
   {

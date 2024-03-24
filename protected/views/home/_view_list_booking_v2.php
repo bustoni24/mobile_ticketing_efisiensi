@@ -78,7 +78,7 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                                                         echo '<td style="width:22.5%">
                                                             <div class="checkbox">
                                                             <label class="checkbox-wrapper">
-                                                                '. CHtml::checkBox('SeatBus[seat][99]', (isset($post['seat_bus'][99]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$k, 'data-index' => 99, 'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'], 'disabled' => isset($seatBooked[$k]) ] )
+                                                                '. CHtml::checkBox('SeatBus[seat][98]', (isset($post['seat_bus'][98]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$k, 'data-index' => 98, 'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'], 'disabled' => isset($seatBooked[$k]) ] )
                                                                 .' <span class="checkmark '. (isset($seatBooked[$k]['jk']) ? $seatBooked[$k]['jk'] : '') .'" 
                                                                 data-passengerId="'.$indexed.'"
                                                                 data-passengerData=\''. $subIndexed .'\'
@@ -95,6 +95,33 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                                                                 data-penjadwalan_id="'.$post['penjadwalan_id'].'"
                                                                 data-tujuan="'.($modelTrip->daerah_tujuan . '<br/>' . $modelTrip->destination_kota_nama).'"
                                                                 >'. $k .'</span>
+                                                            </label>
+                                                            </div>
+                                                        </td>';
+                                                    } else if (!empty($k) && $k=='TL2'){
+                                                        $indexed = (isset($seatBooked[$k]['id']) ? $seatBooked[$k]['id'] : '');
+                                                        $subIndexed = (isset($seatBooked[$k][$indexed]) ? json_encode($seatBooked[$k][$indexed]) : '' );
+                                                        $seatValue = $k;
+                                                        echo '<td style="width:22.5%">
+                                                            <div class="checkbox">
+                                                            <label class="checkbox-wrapper">
+                                                                '. CHtml::checkBox('SeatBus[seat][99]', (isset($post['seat_bus'][99]['value'])), ['class' => 'none checkSeat', 'style' => 'display: contents;', 'value'=>$k, 'data-index' => 99, 'data-tarif'=>$post['tarif'], 'data-tlActive'=>$post['seatTl_active'], 'disabled' => isset($seatBooked[$k]) ] )
+                                                                .' <span class="checkmark '. (isset($seatBooked[$k]['jk']) ? $seatBooked[$k]['jk'] : '') .'" 
+                                                                data-passengerId="'.$indexed.'"
+                                                                data-passengerData=\''. $subIndexed .'\'
+                                                                data-seat="'. $seatValue .'"
+                                                                data-startdate="'.$post['startdate'].'"
+                                                                data-penjadwalan_id="'.$post['penjadwalan_id'].'"
+                                                                data-tujuan="'.($modelTrip->daerah_tujuan . '<br/>' . $modelTrip->destination_kota_nama).'"
+                                                                ></span> 
+                                                                <span class="text-checkmark" 
+                                                                data-passengerId="'.$indexed.'"
+                                                                data-passengerData=\''. $subIndexed .'\'
+                                                                data-seat="'. $seatValue .'"
+                                                                data-startdate="'.$post['startdate'].'"
+                                                                data-penjadwalan_id="'.$post['penjadwalan_id'].'"
+                                                                data-tujuan="'.($modelTrip->daerah_tujuan . '<br/>' . $modelTrip->destination_kota_nama).'"
+                                                                >'. str_replace('2','',$k) .'</span>
                                                             </label>
                                                             </div>
                                                         </td>';
@@ -143,13 +170,15 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                                                 }
                                             echo '</tr>';
                                         }
-                                    } else if (in_array($key, ['toilet','pintu'])) {
+                                    } else if (in_array($key, ['toilet','pintu', 'pintu_tengah'])) {
                                         foreach ($deck as $seat) {
                                             echo '<tr>';
                                                 foreach ($seat as $i => $seat_) {
                                                     if (!empty($seat_)):
                                                         if (!is_numeric($i)) {
-                                                            echo '<td><img src="'. $seat_  .'" class="img-icon" alt="toilet" '. ($i == 'item_image_2' ? 'style="width:60%;margin-top: 10px;"' : '') .'/></td>';
+                                                            echo '<td><img src="'. $seat_  .'" class="img-icon" alt="toilet" '. ($i == 'item_image_2' ? 'style="width:40px;margin-top: 10px;"' : '') .'/></td>';
+                                                        } else if ($seat_ == 'separator') {
+                                                            echo '<td></td>';
                                                         } else {
                                                             $indexed = (isset($seatBooked[$seat_]['id']) ? $seatBooked[$seat_]['id'] : '');
                                                             $subIndexed = (isset($seatBooked[$seat_][$indexed]) ? json_encode($seatBooked[$seat_][$indexed]) : '' );
@@ -179,9 +208,9 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                                                             </td>';
                                                         }
                                                     else:
-                                                        if ($key == 'pintu') {
+                                                        if (in_array($key, ['pintu','pintu_tengah'])) {
                                                             echo '<td colspan="2" class="door">
-                                                            Pintu Belakang
+                                                            '. ($key == 'pintu_tengah' ? 'Pintu Tengah' : 'Pintu Belakang') .'
                                                             </td>';
                                                             echo '<td></td>';
                                                         } else {
@@ -498,7 +527,7 @@ $tujuan_text = isset($data['data']['subTripSelected']['tujuan_text']) ? $data['d
                                 <label class="mt-0">Tipe Pembayaran</label>
                                 <?= CHtml::dropDownList('BookingTrip[tipe_pembayaran]', '', [
                                     Constant::TIPE_PEMBAYARAN_TUNAI => ucwords(Constant::TIPE_PEMBAYARAN_TUNAI),
-                                    Constant::TIPE_PEMBAYARAN_TRANSFER => ucwords(Constant::TIPE_PEMBAYARAN_TRANSFER)
+                                    // Constant::TIPE_PEMBAYARAN_TRANSFER => ucwords(Constant::TIPE_PEMBAYARAN_TRANSFER)
                                 ],['class'=>'form-control']); ?>
                             </div>
                         </td>

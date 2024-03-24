@@ -62,11 +62,23 @@ class Armada
 					]
             ]
         ]);
-        // Helper::getInstance()->dump($res);
-        if (isset($res['data'])) {
-            $data = $res['data'];
+        if (!isset($res['data'])) {
+            $data = [
+                [
+                    'id' => 1,
+                    'message' => isset($res['message']) ? $res['message'] : 'Tidak tersedia'
+                ]
+            ];
+
+            return new CArrayDataProvider($data, array(
+                'keyField' => 'id',
+                'pagination' => array(
+                    'pageSize' => count($data),
+                    ),
+            ));
         }
-        
+        // Helper::getInstance()->dump($res);
+        $data = $res['data'];
 		return new CArrayDataProvider($data, array(
 			'keyField' => 'id',
 			'pagination' => array(

@@ -203,6 +203,8 @@ class HomeController extends Controller
 
 			}
 
+			$ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null);
+        	$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] . ', IP: ' . $ip : $ip;
 			// Helper::getInstance()->dump($_POST);
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
@@ -222,7 +224,8 @@ class HomeController extends Controller
 						'rit' => $model->rit,
 						'filename' => $fileName,
                 		'url_file' => $urlFile,
-						'trip_label' => isset($penugasan['data']['trip_label']) ? $penugasan['data']['trip_label'] : null
+						'trip_label' => isset($penugasan['data']['trip_label']) ? $penugasan['data']['trip_label'] : null,
+						'user_agent' => $userAgent
 					]
 				]
 			]);

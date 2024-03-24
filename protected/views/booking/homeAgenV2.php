@@ -127,8 +127,14 @@ if (element.is(":checked")) {
         return false;
     }
 
-    if (!tlActive && element.attr('data-index') === '99') {
+    if (!tlActive && (element.attr('data-index') === '98' || element.attr('data-index') === '99')) {
         swal.fire('Maaf Kursi TL belum bisa dipesan jika kursi belum full', '', 'warning');
+        element.attr('checked', false);
+        return false;
+    }
+
+    if ((element.attr('data-index') === '99')) {
+        swal.fire('Maaf Kursi TL ini hanya Crew yang boleh memilih', '', 'warning');
         element.attr('checked', false);
         return false;
     }

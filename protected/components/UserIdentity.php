@@ -12,6 +12,8 @@ class UserIdentity extends CUserIdentity {
         $user = $this->username;
         $pass = $this->password;
         
+        $ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null);
+        $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] . ', IP: ' . $ip : $ip;
         $parameters = [
             'url' => 'apiMobile/login',
             'parameter' => [
@@ -19,6 +21,7 @@ class UserIdentity extends CUserIdentity {
                 'postfields' => [
                     'username' => $user,
                     'password' => md5($pass),
+                    'user_agent' => $userAgent,
                     'type' => 'admin'
                 ]
             ]
@@ -38,6 +41,7 @@ class UserIdentity extends CUserIdentity {
             $this->setState('agen_id', $login['data']['agen_id']);
             $this->setState('tipe_sdm', isset($login['data']['tipe_sdm']) ? $login['data']['tipe_sdm'] : 'efisiensi');
             $this->setState('titik_id', isset($login['data']['titik_id']) ? $login['data']['titik_id'] : null);
+            $this->setState('user_agent', $userAgent);
 
             $this->errorCode = self::ERROR_NONE;
 

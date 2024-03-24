@@ -121,11 +121,13 @@ $skipField = [];
                             ?></td>
                             <td>
                             <?php if (isset($pengeluaran['lampiran']) && !empty($pengeluaran['lampiran'])) {
+                                if (Helper::getInstance()->does_url_exists($pengeluaran['lampiran']) === 200) {
                                 ?>
                                 <div class="col-md-12 col-sm-12 col-xs-12 ">
                                 <img src="<?= $pengeluaran['lampiran']; ?>" class="icon-img"/>
                                 </div>
                                 <?php
+                                }
                             } ?>
                             </td>
                         </tr>
@@ -209,6 +211,9 @@ $skipField = [];
                                                     </span>
                                                 </div>
 
+                                                <label>Pilih SPBU</label>
+                                                <?= CHtml::dropDownList("PengeluaranCrew[spbu]", "", Helper::getInstance()->getSpbu(), ['prompt' => 'Pilih SPBU','required' => true]) ?>
+
                                                 <?php
                                                 if (isset($value['refund'])): ?>
                                                     <div class="row"><a href="javascript:void(0)" onclick="pengajuanRefundSolar('<?= $value['refund'] ?>')">Pengajuan refund solar</a></div>
@@ -226,6 +231,7 @@ $skipField = [];
                                         <td>
                                             <label>Lampiran</label>
                                             <input type="file" name="attach_<?= $key ?>" class="form-control" accept="image/png, image/gif, image/jpeg"/>
+                                            <span class="red" style="font-size: 11px;">*Min Size 100kb dan Maks 5MB / 5000Kb</span>
                                         </td>
                                             <?php
                                         endif;

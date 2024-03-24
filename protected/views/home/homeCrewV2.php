@@ -30,7 +30,7 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
             'enableAjaxValidation'=>false,
         )); 
         ?>
-      <div class="row d-relative none">
+      <div class="row d-relative">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <label>Masukkan Tanggal Penugasan</label>
               <?= CHtml::textField('Booking[startdate]',$model->startdate,['placeholder' => 'yyyy-m-dd', 'class' => 'form-control startdate', 'autocomplete' => 'off', 'readonly'=>true]); ?>
@@ -161,6 +161,11 @@ $this->widget('ext.dropDownChain.VDropDownChain', array(
                                 refreshListBooking("-7.8033209", "110.312795");
                                 break;
                         }
+                    },
+                    {
+                        enableHighAccuracy: false,
+                        timeout: 5000,
+                        maximumAge: Infinity
                     }
                 );
             } else {
@@ -186,7 +191,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
   $('#Booking_startdate').datepicker({
 		uiLibrary: 'bootstrap4',
 		format: 'yyyy-mm-dd',
-    minDate: today,
+        maxDate: today,
 		header: true
 	});
 
@@ -217,7 +222,10 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     $('#Booking_tujuan_id').val(data.data.tujuan_id);
                     getLatLong();
                 } else {
-                    location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val();
+                    swal.fire(`Tarif Trip Anda tidak ada yang cocok, mohon hubungi pihak Developer dan kirimkan kode ini {asal:${dataSend.asal},tujuan:${dataSend.tujuan},trip:${dataSend.trip_id}}`, '', 'warning');
+                    $('#preloader').addClass('none');
+                    return false;
+                    // location.href="<?= Constant::baseUrl().'/'.$this->route.'?startdate=' ?>"+$('#Booking_startdate').val();
                 }
               },
               error : function(data){
@@ -306,7 +314,7 @@ var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                 return false;
             }
 
-            if (!tlActive && element.attr('data-index') === '99') {
+            if (!tlActive && (element.attr('data-index') === '98' || element.attr('data-index') === '99')) {
                 swal.fire('Maaf Kursi TL belum bisa dipesan jika kursi belum full', '', 'warning');
                 element.attr('checked', false);
                 return false;

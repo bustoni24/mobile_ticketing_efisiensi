@@ -39,7 +39,7 @@ table.back-head{
         </tr>
         <tr>
             <td colspan="3">
-                <p>Ini adalah Tanda Terima eTicket. Untuk masuk ke Stasiun / Titik Keberangkatan dan melakukan check-in, Anda harus menunjukkan tanda terima perjalanan ini.</p>
+                <p>Ini adalah Tanda Terima eTicket. Untuk masuk ke Terminal / Titik Keberangkatan dan melakukan check-in, Anda harus menunjukkan tanda terima perjalanan ini.</p>
             </td>
         </tr>
         <tr><td colspan="3"><br/></td></tr>
@@ -168,6 +168,12 @@ table.back-head{
                 <h4>Pembagian Kursi</h4>
             </th>
         </tr>
+        <tr>
+            <th>No. Tiket</th>
+            <th>Naik</th>
+            <th>Turun</th>
+            <th>Detail</th>
+        </tr>
         <?php 
         foreach ($data['seat_details'] as $seat) {
             if (!isset($seat['booking_id']))
@@ -175,7 +181,7 @@ table.back-head{
             ?>
 
              <tr>
-                <td width="20%">
+                <td width="20%" style="padding-right: 10px;">
                     <?= $seat['booking_id']; ?>
                 </td>
                 <td width="20%">
@@ -186,11 +192,15 @@ table.back-head{
                 </td>
                 <td width="40%" style="padding-top: 20px;">
                     <table class="table" style="width: 100%;">
+                    <tr>
+                        <th width="20%">Kursi</th>
+                        <th width="80%">Nama</th>
+                    </tr>
                     <?php foreach ($seat['passenger'] as $s) {
                         ?>
                         <tr>
-                            <td><?= $s['seat']; ?></td>
-                            <td><?= $s['name']; ?></td>
+                            <td width="20%"><?= $s['seat']; ?></td>
+                            <td width="80%"><?= $s['name']; ?></td>
                         </tr>
                         <?php
                     } ?>

@@ -55,6 +55,8 @@ class BookingController extends Controller
 
         if (isset($_POST['BookingTrip'], $_POST['FormSeat']) && !empty($_POST['BookingTrip'])) {
             // Helper::getInstance()->dump(Yii::app()->user->id);
+            $ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null);
+        	$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] . ', IP: ' . $ip : $ip;
 			$saveTransaction = ApiHelper::getInstance()->callUrl([
 				'url' => 'apiMobile/transactionBooking',
 				'parameter' => [
@@ -70,7 +72,8 @@ class BookingController extends Controller
 						'crew_id' => Yii::app()->user->id,
 						'role' => Yii::app()->user->role,
                         'agen_id_asal' => $agen_id_asal,
-				        'agen_id_tujuan' => $agen_id_tujuan
+				        'agen_id_tujuan' => $agen_id_tujuan,
+                        'user_agent' => $userAgent
 					]
 				]
 			]);
@@ -235,6 +238,7 @@ class BookingController extends Controller
             $targetDirectory = Yii::getPathOfAlias('webroot') . "/uploads/"; // Direktori tujuan untuk menyimpan file (pastikan direktori sudah dibuat)
             //upload multiple
             $postPengeluaran = $_POST;
+            // Helper::getInstance()->dump($postPengeluaran['PengeluaranCrew']['spbu']);
             if (isset($post['pengeluaran_data'])){
                 $postPengeluaran = array_merge($post['pengeluaran_data'], $postPengeluaran);
             }
@@ -258,7 +262,14 @@ class BookingController extends Controller
             $targetFileArray = [];
             $fileNameArray = [];
             $urlFileArray = [];
+            $maksFile = 10000;
             if (!empty($_FILES['attach_solar']['tmp_name'])) {
+                $fileSize = $_FILES['attach_solar']['size'];
+                $fileSize = round($fileSize/1000, 2);
+                if ($fileSize < 100 || $fileSize > $maksFile) {
+                    Yii::app()->user->setFlash('error', 'Maaf, ukuran file lampiran Solar terlalu kecil atau terlalu besar. Ukuran yang diperbolehkan antara 100Kb sampai '.$maksFile.'Kb. Ukuran file Anda: ' . $fileSize . ' Kb');
+                    return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+                }
                 $fileSource = basename($_FILES['attach_solar']['name']);
                 $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
                 if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
@@ -279,6 +290,13 @@ class BookingController extends Controller
                 }
             }
             if (!empty($_FILES['attach_parkir']['tmp_name'])) {
+                $fileSize = $_FILES['attach_parkir']['size'];
+                $fileSize = round($fileSize/1000, 2);
+                if ($fileSize < 100 || $fileSize > $maksFile) {
+                    Yii::app()->user->setFlash('error', 'Maaf, ukuran file lampiran Parkir terlalu kecil atau terlalu besar. Ukuran yang diperbolehkan antara 100Kb sampai '.$maksFile.'Kb. Ukuran file Anda: ' . $fileSize . ' Kb');
+                    return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+                }
+
                 $fileSource = basename($_FILES['attach_parkir']['name']);
                 $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
                 if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
@@ -299,6 +317,12 @@ class BookingController extends Controller
                 }
             }
             if (!empty($_FILES['attach_tol']['tmp_name'])) {
+                $fileSize = $_FILES['attach_tol']['size'];
+                $fileSize = round($fileSize/1000, 2);
+                if ($fileSize < 100 || $fileSize > $maksFile) {
+                    Yii::app()->user->setFlash('error', 'Maaf, ukuran file lampiran Tol terlalu kecil atau terlalu besar. Ukuran yang diperbolehkan antara 100Kb sampai '.$maksFile.'Kb. Ukuran file Anda: ' . $fileSize . ' Kb');
+                    return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+                }
                 $fileSource = basename($_FILES['attach_tol']['name']);
                 $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
                 if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
@@ -319,13 +343,19 @@ class BookingController extends Controller
                 }
             }
             if (!empty($_FILES['attach_surat-surat']['tmp_name'])) {
+                $fileSize = $_FILES['attach_surat-surat']['size'];
+                $fileSize = round($fileSize/1000, 2);
+                if ($fileSize < 100 || $fileSize > $maksFile) {
+                    Yii::app()->user->setFlash('error', 'Maaf, ukuran file lampiran Surat-surat terlalu kecil atau terlalu besar. Ukuran yang diperbolehkan antara 100Kb sampai '.$maksFile.'Kb. Ukuran file Anda: ' . $fileSize . ' Kb');
+                    return $this->render('inputPengeluaranCrew', ['post'=>$post]);
+                }
                 $fileSource = basename($_FILES['attach_surat-surat']['name']);
                 $imageFileType = strtolower(pathinfo($fileSource,PATHINFO_EXTENSION));
                 if(!in_array($imageFileType, ["jpg","png","jpeg","gif"])) {
                     Yii::app()->user->setFlash('error', 'Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.');
                     return $this->render('inputPengeluaranCrew', ['post'=>$post]);
                 }
-                $fileName = 'lampiran_pengeluaran_tol_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
+                $fileName = 'lampiran_pengeluaran_surat_' . Yii::app()->user->id . '_' . date('YmdHis') . '.' . $imageFileType;
                 $targetFile = $targetDirectory . $fileName;
                 if (move_uploaded_file($_FILES['attach_surat-surat']['tmp_name'], $targetFile)) {
                     Yii::import('application.extensions.image.Image');

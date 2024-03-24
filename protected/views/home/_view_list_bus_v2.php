@@ -1,3 +1,4 @@
+<?php if (isset($data['route_id'])): ?>
 <div class="card-booking card-book" data-route_id="<?= $data['route_id']; ?>" data-armada_ke="<?= $data['armada_ke'] ?>" data-penjadwalan_id="<?= (isset($data['penjadwalan_id']) ? $data['penjadwalan_id'] : '') ?>" data-label_trip="<?= (isset($data['booking_trip_label']) ? $data['booking_trip_label'] : $data['trip_label']) ?>" data-agen_id_asal="<?= $data['agen_id_asal'] ?>" data-agen_id_tujuan="<?= $data['agen_id_tujuan'] ?>">
     <div class="x_title grey-dark mb-0 d-flex" style="width: 100%;justify-content: space-between;">
         <h5 class="mt-5 mb-5 d-flex"><?= $data['kelas_bus']; ?> <ul style="padding-left: 20px;margin-bottom: 0;">
@@ -37,3 +38,12 @@
     </table>
     
 </div>
+
+<?php elseif (isset($data['message'])): ?>
+    <div class="card-booking card-book">
+    <div class="x_title grey-dark mb-0 d-flex" style="width: 100%;justify-content: space-between;">
+        <h5 class="mt-5 mb-5 d-flex"><?= $data['message']; ?> </h5>
+    </div>
+    
+</div>
+<?php endif; ?>

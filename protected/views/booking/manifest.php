@@ -194,7 +194,9 @@
 													($manifest['status'] == Constant::STATUS_PENUMPANG_RESCHEDULING ? 'Reschedule' : 
 													($manifest['status'] == Constant::STATUS_PENUMPANG_REJECT ? 'Ditolak' : 
 													($manifest['status'] == Constant::STATUS_PENUMPANG_REFUND ? 'Refund' : 
-														($manifest['status'] == Constant::STATUS_PENUMPANG_NAIK ? 'Konfirmasi Naik' : 'Pemesanan Baru')
+														($manifest['status'] == Constant::STATUS_PENUMPANG_NAIK ? 'Konfirmasi Naik' : (
+															$manifest['status'] == Constant::STATUS_PENUMPANG_HANGUS ? 'Hangus' : 'Pemesanan Baru'
+														))
 													)	
 													)
 													)) ?></td>
